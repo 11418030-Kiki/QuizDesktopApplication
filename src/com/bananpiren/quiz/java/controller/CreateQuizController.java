@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import javax.swing.event.ChangeListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class CreateQuizController {
 
@@ -46,7 +48,11 @@ public class CreateQuizController {
 
         // Button Create Quiz
         buttonCreateQuiz.setOnAction(e -> {
-            createQuiz();
+            try {
+                createQuiz();
+            } catch (ParseException e1) {
+                System.out.println("Coulnd't create quiz!");
+            }
         });
 
         // Show slidervalue at label
@@ -71,31 +77,33 @@ public class CreateQuizController {
         vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer, newAnswer2, newAnswer3, newAnswer4);
     }
 
-    private void createQuiz() {
+    private void createQuiz() throws ParseException {
         // todo add logic for taking in information and adding quiz to database
         StringBuilder warnings = new StringBuilder();
 
         String quizName = textFieldQuizName.getText();
+
 
         // Check if Quiz name is entered
         if(quizName.isEmpty() ) {
             warnings.append("Quiznamn saknas!\n");
         } else {
             quizName = textFieldQuizName.getText();
+            System.out.println("Quiznamn: " + quizName);
         }
 
         // Check if Starting date is entered
-        if(datePickerStartDate != null ) {
+        if(datePickerStartDate == null ) {
             warnings.append("Startdatum saknas!\n");
         } else {
-            // create startDate for jpa
+            System.out.println("startdatum är " + datePickerStartDate.getValue());
         }
 
         // Check if Ending date is entered
-        if(datePickerStartDate != null ) {
+        if(datePickerEndDate == null ) {
             warnings.append("Slutdatum saknas!\n");
         } else {
-            // create endDate for jpa
+            System.out.println("slutdatum är " + datePickerEndDate.getValue());
         }
 
         if(warnings.length() > 0) {
