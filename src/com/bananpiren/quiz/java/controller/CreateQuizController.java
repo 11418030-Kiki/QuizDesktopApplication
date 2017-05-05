@@ -16,10 +16,19 @@ public class CreateQuizController {
     private Slider sliderTime;
 
     @FXML
+    private DatePicker datePickerEndDate;
+
+    @FXML
     private Button buttonCreateQuiz;
 
     @FXML
+    private DatePicker datePickerStartDate;
+
+    @FXML
     private VBox vboxAddQuestions;
+
+    @FXML
+    private TextField textFieldQuizName;
 
     @FXML
     private Label labelMinutes;
@@ -37,7 +46,7 @@ public class CreateQuizController {
 
         // Button Create Quiz
         buttonCreateQuiz.setOnAction(e -> {
-            createQuit();
+            createQuiz();
         });
 
         // Show slidervalue at label
@@ -62,7 +71,42 @@ public class CreateQuizController {
         vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer, newAnswer2, newAnswer3, newAnswer4);
     }
 
-    private void createQuit() {
+    private void createQuiz() {
         // todo add logic for taking in information and adding quiz to database
+        StringBuilder warnings = new StringBuilder();
+
+        String quizName = textFieldQuizName.getText();
+
+        // Check if Quiz name is entered
+        if(quizName.isEmpty() ) {
+            warnings.append("Quiznamn saknas!\n");
+        } else {
+            quizName = textFieldQuizName.getText();
+        }
+
+        // Check if Starting date is entered
+        if(datePickerStartDate != null ) {
+            warnings.append("Startdatum saknas!\n");
+        } else {
+            // create startDate for jpa
+        }
+
+        // Check if Ending date is entered
+        if(datePickerStartDate != null ) {
+            warnings.append("Slutdatum saknas!\n");
+        } else {
+            // create endDate for jpa
+        }
+
+        if(warnings.length() > 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
+            alert.showAndWait();
+            return;
+        } else {
+            // Create quiz "JPA"
+        }
+
     }
 }

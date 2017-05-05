@@ -18,7 +18,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextField promptText="namn" />
+            <TextField fx:id="textFieldQuizName" promptText="namn" />
             <GridPane>
                <children>
                   <Label text="Välj tidsgräns">
@@ -54,13 +54,13 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="datePickerEndDate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Välj startdatum">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <DatePicker GridPane.rowIndex="1" />
+                  <DatePicker fx:id="datePickerStartDate" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
