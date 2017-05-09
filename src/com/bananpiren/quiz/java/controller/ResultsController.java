@@ -1,7 +1,14 @@
 package com.bananpiren.quiz.java.controller;
 
-/**
- * Created by Andreas on 2017-05-03.
- */
+import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+
 public class ResultsController {
+
+    @FXML
+    private TableView resultsTable;
+
+    @FXML
+    private TextArea resultsTextArea;
 }
