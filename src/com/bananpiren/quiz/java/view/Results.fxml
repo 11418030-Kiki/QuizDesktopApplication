@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.ResultsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.ResultsController">
    <top>
       <Label text="Resultat" BorderPane.alignment="CENTER">
          <font>
@@ -16,4 +16,18 @@
          </font>
       </Label>
    </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="87.0" layoutY="14.0" prefHeight="200.0" prefWidth="474.0">
+              <columns>
+                <TableColumn prefWidth="260.0" text="Prov" />
+                <TableColumn prefWidth="104.0" text="Antal Rätt" />
+                  <TableColumn prefWidth="109.0" text="Antal Frågor" />
+              </columns>
+            </TableView>
+            <TextArea layoutX="87.0" layoutY="250.0" prefHeight="274.0" prefWidth="474.0" />
+         </children>
+      </Pane>
+   </center>
 </BorderPane>
