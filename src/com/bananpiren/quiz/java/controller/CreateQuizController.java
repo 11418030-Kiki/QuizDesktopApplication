@@ -124,7 +124,7 @@ public class CreateQuizController {
             alert.showAndWait();
         } else {
             // HÄR JPA
-            createQuizServices.createQuiz(1, quizName, timeLimit, quizStartDate, quizEndDate);
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
 
         }
 

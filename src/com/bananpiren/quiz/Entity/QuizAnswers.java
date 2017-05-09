@@ -1,16 +1,24 @@
 package com.bananpiren.quiz.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by per on 2017-05-04.
  */
 
+
 @Entity
 public class QuizAnswers {
 
+    // increase 1
+    @TableGenerator(
+            name = "autoGenerator",
+            allocationSize = 1)
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "autoGenerator")
+
     private int taId;
     private int taQuestionId;
     private String answer;

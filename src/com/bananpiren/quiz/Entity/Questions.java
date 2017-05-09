@@ -1,16 +1,17 @@
 package com.bananpiren.quiz.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by per on 2017-05-04.
  */
 
 @Entity
+@Table
 public class Questions {
 
     @Id
+    @GeneratedValue( strategy= GenerationType.AUTO )
     private int questionTestId;
     private int questionId;
     private String question;

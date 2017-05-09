@@ -11,14 +11,23 @@ import java.time.LocalDate;
 @Table
 public class Quiz {
 
+    // increase 1
+    @TableGenerator(
+            name = "autoGenerator",
+            allocationSize = 1)
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "autoGenerator")
+
     private int quizId;
 
     private String quizName;
     private int timeLimit;
     private String quizStartDate;
     private String quizEndDate;
+
+
 
     public Quiz() {
 
