@@ -21,9 +21,10 @@
          <children>
             <TableView fx:id="resultsTable" layoutX="87.0" layoutY="14.0" prefHeight="200.0" prefWidth="474.0">
               <columns>
-                <TableColumn prefWidth="260.0" text="Prov" />
-                <TableColumn prefWidth="104.0" text="Antal Rätt" />
-                  <TableColumn prefWidth="109.0" text="Antal Frågor" />
+                <TableColumn minWidth="0.0" prefWidth="192.0" text="Prov" />
+                <TableColumn minWidth="0.0" prefWidth="94.0" text="Antal Rätt" />
+                  <TableColumn minWidth="0.0" prefWidth="94.0" text="Antal Frågor" />
+                  <TableColumn minWidth="0.0" prefWidth="93.0" text="Datum" />
               </columns>
             </TableView>
             <TextArea fx:id="resultsTextArea" layoutX="87.0" layoutY="250.0" prefHeight="274.0" prefWidth="474.0" />

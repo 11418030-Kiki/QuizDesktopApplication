@@ -13,7 +13,7 @@ import java.io.IOException;
 // yo
 
 public class Main extends Application {
-    private Stage primaryStage;
+    public Stage primaryStage;
     private static BorderPane mainLayout;
 
     @Override
