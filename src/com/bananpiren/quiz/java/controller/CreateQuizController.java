@@ -4,15 +4,22 @@ package com.bananpiren.quiz.java.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import com.bananpiren.quiz.Services.CreateQuizService;
 
 import javax.swing.event.ChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class CreateQuizController {
 
+    private CreateQuizService createQuizServices = new CreateQuizService();
+
     private int questionNumber = 1;
     private int answerNumber = 1;
+    private int timeLimit = 0;
+    private LocalDate quizEndDate;
+    private LocalDate quizStartDate;
 
     @FXML
     private Slider sliderTime;
@@ -42,7 +49,7 @@ public class CreateQuizController {
     private void initialize() {
 
         // Button add Question
-        buttonAddQuestion.setOnAction(e-> {
+        buttonAddQuestion.setOnAction(e -> {
             addQuestion();
         });
 
@@ -58,6 +65,8 @@ public class CreateQuizController {
         // Show slidervalue at label
         sliderTime.valueProperty().addListener((observable, oldValue, newValue) -> {
             labelMinutes.setText(newValue.intValue() + " minuter");
+
+            timeLimit = newValue.intValue();
         });
 
     }
@@ -85,7 +94,7 @@ public class CreateQuizController {
 
 
         // Check if Quiz name is entered
-        if(quizName.isEmpty() ) {
+        if (quizName.isEmpty()) {
             warnings.append("Quiznamn saknas!\n");
         } else {
             quizName = textFieldQuizName.getText();
@@ -93,27 +102,30 @@ public class CreateQuizController {
         }
 
         // Check if Starting date is entered
-        if(datePickerStartDate == null ) {
+        if (datePickerStartDate == null) {
             warnings.append("Startdatum saknas!\n");
         } else {
             System.out.println("startdatum är " + datePickerStartDate.getValue());
+            quizStartDate = datePickerStartDate.getValue();
         }
 
         // Check if Ending date is entered
-        if(datePickerEndDate == null ) {
+        if (datePickerEndDate == null) {
             warnings.append("Slutdatum saknas!\n");
         } else {
             System.out.println("slutdatum är " + datePickerEndDate.getValue());
+            quizEndDate = datePickerEndDate.getValue();
         }
 
-        if(warnings.length() > 0) {
+        if (warnings.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
-            return;
         } else {
-            // Create quiz "JPA"
+            // HÄR JPA
+            createQuizServices.createQuiz(1, quizName, timeLimit, quizStartDate, quizEndDate);
+
         }
 
     }
