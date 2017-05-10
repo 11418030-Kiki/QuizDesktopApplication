@@ -18,7 +18,6 @@ public class CreateQuizService {
 
 
         public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate) {
-//    public void createQuiz(int quizId, String quizName) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -26,7 +25,6 @@ public class CreateQuizService {
         entityManager.getTransaction().begin();
 
         Quiz quiz = new Quiz();
-//        quiz.setQuizId(quizId);
         quiz.setQuizName(quizName);
         quiz.setTimeLimit(timeLimit);
         quiz.setQuizStartDate(quizStartDate.toString());
