@@ -53,11 +53,12 @@ public class PersonAddDialogController {
             String lastName = lastNameTextField.getText();
             String userMail = mailTextField.getText();
             String password = passwordTextField.getText();
+            //TODO: Change user password to password field instead of text field.
             String accountLevel = userLevelChoiceBox.getValue();
 
-            System.out.println("First Name: " +firstName +
-                                "Last name: " +lastName +
-                                "Mail: " + userMail +
+            System.out.println("First Name: " +firstName + "\n" +
+                                "Last name: " +lastName + "\n" +
+                                "Mail: " + userMail + "\n" +
                                 "Password: " + password);
 
             createUserService.createUser(firstName, lastName, userMail, password, accountLevel);
