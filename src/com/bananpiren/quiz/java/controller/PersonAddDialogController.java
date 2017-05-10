@@ -52,6 +52,7 @@ public class PersonAddDialogController {
             String firstName = firstNameTextfield.getText();
             String lastName = lastNameTextField.getText();
             String userMail = mailTextField.getText();
+            //TODO: Validate user mail as a mail input.
             String password = passwordTextField.getText();
             //TODO: Change user password to password field instead of text field.
             String accountLevel = userLevelChoiceBox.getValue();
