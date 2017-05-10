@@ -9,24 +9,17 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.MainController">
-   <center>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
-         <image>
-            <Image url="@../../resources/images/logo.jpg" />
-         </image>
-      </ImageView>
-   </center>
    <left>
-      <VBox prefHeight="200.0" prefWidth="120.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefWidth="160.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonStart" mnemonicParsing="false" prefWidth="100.0" text="Start" />
-            <Button fx:id="buttonCreateQuiz" mnemonicParsing="false" prefWidth="100.0" text="Skapa Quiz" />
-            <Button fx:id="buttonEditQuiz" layoutX="20.0" layoutY="50.0" mnemonicParsing="false" prefWidth="100.0" text="Redigera Quiz" />
-            <Button fx:id="buttonResults" mnemonicParsing="false" prefWidth="100.0" text="Resultat" />
-            <Button fx:id="buttonUsers" mnemonicParsing="false" prefWidth="100.0" text="Användare" />
-            <Button fx:id="buttonStatistics" mnemonicParsing="false" prefWidth="100.0" text="Statistik" />
-            <Button fx:id="buttonSettings" mnemonicParsing="false" prefWidth="100.0" text="Inställningar" />
-            <Button fx:id="buttonExit" mnemonicParsing="false" prefWidth="100.0" text="Avsluta" />
+            <Button fx:id="buttonStart" mnemonicParsing="false" prefWidth="120.0" text="Start" />
+            <Button fx:id="buttonCreateQuiz" mnemonicParsing="false" prefWidth="120.0" text="Skapa Quiz" />
+            <Button fx:id="buttonEditQuiz" layoutX="20.0" layoutY="50.0" mnemonicParsing="false" prefWidth="120.0" text="Redigera Quiz" />
+            <Button fx:id="buttonResults" mnemonicParsing="false" prefWidth="120.0" text="Resultat" />
+            <Button fx:id="buttonUsers" mnemonicParsing="false" prefWidth="120.0" text="Användare" />
+            <Button fx:id="buttonStatistics" mnemonicParsing="false" prefWidth="120.0" text="Statistik" />
+            <Button fx:id="buttonSettings" mnemonicParsing="false" prefWidth="120.0" text="Inställningar" />
+            <Button fx:id="buttonExit" mnemonicParsing="false" prefWidth="120.0" text="Avsluta" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -36,7 +29,4 @@
          </padding>
       </VBox>
    </left>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </right>
 </BorderPane>

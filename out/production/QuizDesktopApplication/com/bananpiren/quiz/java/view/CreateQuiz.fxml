@@ -19,7 +19,12 @@
                </font>
             </Label>
             <TextField fx:id="textFieldQuizName" promptText="namn" />
-            <GridPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <CheckBox fx:id="timeLimitCheckBox" mnemonicParsing="false" text="Tidsbegränsning" />
+               </children>
+            </HBox>
+            <GridPane fx:id="timeLimitGridPane" visible="false">
                <children>
                   <Label text="Välj tidsgräns">
                      <font>

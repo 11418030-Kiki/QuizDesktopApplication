@@ -3,6 +3,7 @@ package com.bananpiren.quiz.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import com.bananpiren.quiz.Services.CreateQuizService;
 
@@ -20,6 +21,12 @@ public class CreateQuizController {
     private int timeLimit = 0;
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
+
+    @FXML
+    private CheckBox timeLimitCheckBox;
+
+    @FXML
+    private GridPane timeLimitGridPane;
 
     @FXML
     private Slider sliderTime;
@@ -47,6 +54,15 @@ public class CreateQuizController {
 
     @FXML
     private void initialize() {
+
+        // Timelimit
+        timeLimitCheckBox.setOnAction(e -> {
+            if(timeLimitCheckBox.isSelected()) {
+                timeLimitGridPane.setVisible(true);
+            } else {
+                timeLimitGridPane.setVisible(false);
+            }
+        });
 
         // Button add Question
         buttonAddQuestion.setOnAction(e -> {
