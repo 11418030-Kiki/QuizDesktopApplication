@@ -3,19 +3,14 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.java.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Created by Andreas on 2017-05-03.
- */
 public class UsersController {
 
     @FXML
@@ -51,6 +46,7 @@ public class UsersController {
     @FXML
     private TableColumn<?, ?> lastNameColumn;
 
+
     @FXML
     private void initialize() {
 
@@ -65,19 +61,17 @@ public class UsersController {
         deleteButton.setOnAction(e -> {
             handleDeletePerson();
         });
-
     }
 
-
-    // Button Lägg till
+    // Button "Lägg till"
     public void showPersonAddDialog() {
         try {
-            // Load the fxml file and create a new stage for the popup dialog.
+            // Load FXML file to dialog stage
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PersonAddDialog.fxml"));
             BorderPane page = loader.load();
 
-            // Create the dialog Stage.
+            // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Lägg till ny användare");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -89,7 +83,6 @@ public class UsersController {
 //            controller.setDialogStage(dialogStage);
 //            controller.setPerson(person);
 
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -97,15 +90,15 @@ public class UsersController {
         }
     }
 
-    // Button Redigera
+    // Button "Redigera"
     public void showPersonEditDialog() {
         try {
-            // Load the fxml file and create a new stage for the popup dialog.
+            // Load FXML file to dialog stage
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PersonEditDialog.fxml"));
             BorderPane page = loader.load();
 
-            // Create the dialog Stage.
+            // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Redigera användare");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -125,7 +118,7 @@ public class UsersController {
         }
     }
 
-    // Button Ta bort
+    // Button "Ta bort"
     @FXML
     private void handleDeletePerson() {
 
@@ -152,8 +145,6 @@ public class UsersController {
 //            lastNameLabel.setText(person.getLastName());
 //            mailLabel.setText(person.getStreet());
 //            userLevelLabel.setText(Integer.toString(person.getPostalCode()));
-//
-//            // birthdayLabel.setText(...);
 //        } else {
 //            // Person is null, remove all the text.
 //            firstNameLabel.setText("");
