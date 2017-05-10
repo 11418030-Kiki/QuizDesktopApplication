@@ -1,10 +1,12 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.java.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,10 +28,13 @@ public class UsersController {
     private Label userLevelLabel;
 
     @FXML
-    private TableColumn<?, ?> levelColumn;
+    private TableColumn<User, String> firstNameColumn;
 
     @FXML
-    private TableColumn<?, ?> firstNameColumn;
+    private TableColumn<User, String> lastNameColumn;
+
+    @FXML
+    private TableColumn<User, String> levelColumn;
 
     @FXML
     private Button editButton;
@@ -43,12 +48,18 @@ public class UsersController {
     @FXML
     private Button addButton;
 
-    @FXML
-    private TableColumn<?, ?> lastNameColumn;
-
+    public UsersController() {
+        // TODO: Load data to table
+    }
 
     @FXML
     private void initialize() {
+
+        // Setting data to right column "cellvalue"
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Förnamn"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Efternamn"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Nivå"));
+
 
         addButton.setOnAction(e -> {
             showPersonAddDialog();
@@ -78,10 +89,11 @@ public class UsersController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            //TODO: Skicka med vald anvädnare till lägga till scenen
             // Set the person into the controller.
 //            PersonEditDialogController controller = loader.getController();
 //            controller.setDialogStage(dialogStage);
-//            controller.setPerson(person);
+//            controller.setPerson(user);
 
             dialogStage.showAndWait();
 
@@ -105,10 +117,11 @@ public class UsersController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            //TODO: Skicka med vald anvädnare till redigera scenen
             // Set the person into the controller.
 //            PersonEditDialogController controller = loader.getController();
 //            controller.setDialogStage(dialogStage);
-//            controller.setPerson(person);
+//            controller.setPerson(user);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -136,21 +149,21 @@ public class UsersController {
     }
 
     //  Show Person details (Person person) - in method head)
-//    private void showPersonDetails(Person person) {
-//        if (person != null) {
-//            // TODO: Get data from JPA person
-//
-//            // Fill the labels with info from the person object.
-//            firstNameLabel.setText(person.getFirstName());
-//            lastNameLabel.setText(person.getLastName());
-//            mailLabel.setText(person.getStreet());
-//            userLevelLabel.setText(Integer.toString(person.getPostalCode()));
-//        } else {
-//            // Person is null, remove all the text.
-//            firstNameLabel.setText("");
-//            lastNameLabel.setText("");
-//            mailLabel.setText("");
-//            userLevelLabel.setText("");
-//        }
-//    }
+    private void showPersonDetails(User user) {
+        if (user != null) {
+            // TODO: Get data from JPA person
+
+            // Fill the labels with info from the person object.
+            firstNameLabel.setText(user.getFirstName());
+            lastNameLabel.setText(user.getLastName());
+            mailLabel.setText(user.getEmail());
+            userLevelLabel.setText(user.getAccountLevel());
+        } else {
+            // Person is null, remove all the text.
+            firstNameLabel.setText("");
+            lastNameLabel.setText("");
+            mailLabel.setText("");
+            userLevelLabel.setText("");
+        }
+    }
 }

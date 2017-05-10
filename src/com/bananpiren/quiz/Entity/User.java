@@ -4,12 +4,11 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 
-/**
- * Created by ${Eric} on 2017-05-10.
- */
-
 @Entity
 @Table
+@NamedQuery(name = "User.FindAll",
+        query = "SELECT u FROM User u")
+
 public class User {
     @TableGenerator(
             name = "autoGenerator",
@@ -33,6 +32,7 @@ public class User {
     public User() {
     }
 
+    // Getters and setters
     public String getAccountLevel() {
         return accountLevel;
     }
