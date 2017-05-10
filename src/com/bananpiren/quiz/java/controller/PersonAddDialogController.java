@@ -1,16 +1,18 @@
 package com.bananpiren.quiz.java.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Created by Andreas on 2017-05-09.
  */
-public class PersonAddDialog {
+public class PersonAddDialogController {
 
     ObservableList<String> userLevel = FXCollections
             .observableArrayList("Användare", "Admin");
@@ -36,6 +38,16 @@ public class PersonAddDialog {
     @FXML
     private void initialize() {
         userLevelChoiceBox.setItems(userLevel);
+        userLevelChoiceBox.getSelectionModel().select(0);
+
+        saveButton.setOnAction(e -> {
+            //TODO: Save person logic here
+        });
+
+        cancelButton.setOnAction(e -> {
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        });
     }
 
 }

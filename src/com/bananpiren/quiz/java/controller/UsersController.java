@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -54,20 +55,7 @@ public class UsersController {
     private void initialize() {
 
         addButton.setOnAction(e -> {
-            try {
-                Stage stage;
-                Parent root;
-
-                stage = new Stage();
-                root = FXMLLoader.load(getClass().getResource("AddPersonDialog.fxml"));
-                stage.setScene(new Scene(root));
-                stage.setTitle("My modal window");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
+            showPersonAddDialog();
         });
 
         editButton.setOnAction(e -> {
@@ -86,8 +74,8 @@ public class UsersController {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("com/bananpiren/quiz/java/view/PersonAddDialog.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            loader.setLocation(Main.class.getResource("PersonAddDialog.fxml"));
+            BorderPane page = loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
@@ -114,8 +102,8 @@ public class UsersController {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/PersonEditDialog.fxml"));
-            AnchorPane page = loader.load();
+            loader.setLocation(Main.class.getResource("PersonEditDialog.fxml"));
+            BorderPane page = loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
