@@ -10,6 +10,7 @@
         <class>com.bananpiren.quiz.Entity.QuizQuestions</class>
         <class>com.bananpiren.quiz.Entity.Quiz</class>
         <class>com.bananpiren.quiz.Entity.QuestionAnswers</class>
+        <class>com.bananpiren.quiz.Entity.User</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bananpiren?autoReconnect=true&amp;useSSL=false"/>
