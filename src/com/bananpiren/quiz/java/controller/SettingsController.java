@@ -34,6 +34,7 @@ public class SettingsController {
 
     @FXML
     private void initialize(){
+
         emailBtn.setOnAction(e->{
             String email = emailTextField.getText();
 
@@ -46,6 +47,7 @@ public class SettingsController {
                 JOptionPane.showMessageDialog(null, "Skriv in en korrekt email-adress för att gå vidare");
             }
         });
+
         passwordBtn.setOnAction(e->{
             String password = passwordTextField.getText();
             String confirmPassword = confirmPasswordTextField.getText();
@@ -58,6 +60,7 @@ public class SettingsController {
                 JOptionPane.showMessageDialog(null, "Ditt lösenord stämmer inte överens med ditt bekräftade lösenord.");
             }
         });
+
         usernameBtn.setOnAction(e->{
 
         });

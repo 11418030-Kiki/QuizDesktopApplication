@@ -6,10 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- * Created by ${Eric} on 2017-05-10.
- */
 public class CreateUserService {
+
+    public CreateUserService() {}
 
     public void createUser(String firstName, String lastName, String email, String password, String accountLevel) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -29,8 +28,5 @@ public class CreateUserService {
 
         entityManager.close();
         entityManagerFactory.close();
-    }
-
-    public CreateUserService() {
     }
 }

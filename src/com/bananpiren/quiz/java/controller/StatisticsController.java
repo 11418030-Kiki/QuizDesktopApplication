@@ -9,11 +9,11 @@ import javafx.scene.control.TableColumn;
 
 public class StatisticsController {
 
+    // Dummydata
     ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
             new PieChart.Data("Rätt svar", 60),
             new PieChart.Data("Fel svar", 40)
     );
-
 
     @FXML
     private Tab correctAnswersTab;

@@ -60,7 +60,6 @@ public class UsersController {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Efternamn"));
         levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Nivå"));
 
-
         addButton.setOnAction(e -> {
             showPersonAddDialog();
         });
@@ -74,7 +73,6 @@ public class UsersController {
         });
     }
 
-    // Button "Lägg till"
     public void showPersonAddDialog() {
         try {
             // Load FXML file to dialog stage
@@ -102,7 +100,6 @@ public class UsersController {
         }
     }
 
-    // Button "Redigera"
     public void showPersonEditDialog() {
         try {
             // Load FXML file to dialog stage
@@ -131,7 +128,6 @@ public class UsersController {
         }
     }
 
-    // Button "Ta bort"
     @FXML
     private void handleDeletePerson() {
 
@@ -148,7 +144,6 @@ public class UsersController {
         }
     }
 
-    //  Show Person details (Person person) - in method head)
     private void showPersonDetails(User user) {
         if (user != null) {
             // TODO: Get data from JPA person

@@ -8,9 +8,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Created by Andreas on 2017-05-09.
- */
 public class PersonEditDialogController {
 
     ObservableList<String> userLevel = FXCollections
@@ -36,6 +33,7 @@ public class PersonEditDialogController {
 
     @FXML
     private void initialize() {
+
         userLevelChoiceBox.setItems(userLevel);
         userLevelChoiceBox.getSelectionModel().select(0);
 

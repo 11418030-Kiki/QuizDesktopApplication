@@ -7,15 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 
-/**
- * Created by per on 2017-05-04.
- */
 public class CreateQuizService {
 
-    public CreateQuizService() {
-
-    }
-
+    public CreateQuizService() {}
 
         public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate) {
 
@@ -35,7 +29,5 @@ public class CreateQuizService {
 
         entityManager.close();
         entityManagerFactory.close();
-
     }
-
 }

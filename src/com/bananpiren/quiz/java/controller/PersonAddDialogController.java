@@ -5,16 +5,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sun.security.util.Password;
 
-/**
- * Created by Andreas on 2017-05-09.
- */
 public class PersonAddDialogController {
 
     private CreateUserService createUserService = new CreateUserService();
@@ -41,7 +35,7 @@ public class PersonAddDialogController {
     private TextField firstNameTextfield;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
 
     @FXML
     private void initialize() {
@@ -52,17 +46,32 @@ public class PersonAddDialogController {
             String firstName = firstNameTextfield.getText();
             String lastName = lastNameTextField.getText();
             String userMail = mailTextField.getText();
-            //TODO: Validate user mail as a mail input.
             String password = passwordTextField.getText();
-            //TODO: Change user password to password field instead of text field.
-            String accountLevel = userLevelChoiceBox.getValue();
 
-            System.out.println("First Name: " +firstName + "\n" +
-                                "Last name: " +lastName + "\n" +
-                                "Mail: " + userMail + "\n" +
-                                "Password: " + password);
+            // Validate input
+            if (firstName == null || firstName.trim().isEmpty() ||
+                    lastName == null || lastName.trim().isEmpty() ||
+                    //TODO: Validate user mail as a mail input. Use regex!
+                    userMail == null || userMail.trim().isEmpty() ||
+                    password == null || password.trim().isEmpty()) {
 
-            createUserService.createUser(firstName, lastName, userMail, password, accountLevel);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Dialog");
+                    alert.setHeaderText("Alla fälten måste vara ifyllda");
+                    alert.setContentText("Försök igen!");
+
+                    alert.showAndWait();
+
+                } else {
+                    String accountLevel = userLevelChoiceBox.getValue();
+
+                    System.out.println("First Name: " +firstName + "\n" +
+                            "Last name: " +lastName + "\n" +
+                            "Mail: " + userMail + "\n" +
+                            "Password: " + password);
+
+                    createUserService.createUser(firstName, lastName, userMail, password, accountLevel);
+                }
         });
 
         cancelButton.setOnAction(e -> {
@@ -70,5 +79,4 @@ public class PersonAddDialogController {
             stage.close();
         });
     }
-
 }

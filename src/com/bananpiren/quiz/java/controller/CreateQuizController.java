@@ -1,6 +1,5 @@
 package com.bananpiren.quiz.java.controller;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -19,6 +18,7 @@ public class CreateQuizController {
     private int questionNumber = 1;
     private int answerNumber = 1;
     private int timeLimit = 0;
+
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
 
@@ -64,12 +64,10 @@ public class CreateQuizController {
             }
         });
 
-        // Button add Question
         buttonAddQuestion.setOnAction(e -> {
             addQuestion();
         });
 
-        // Button Create Quiz
         buttonCreateQuiz.setOnAction(e -> {
             try {
                 createQuiz();
@@ -78,7 +76,7 @@ public class CreateQuizController {
             }
         });
 
-        // Show slidervalue at label
+        // Show slidervalue to label
         sliderTime.valueProperty().addListener((observable, oldValue, newValue) -> {
             labelMinutes.setText(newValue.intValue() + " minuter");
 
@@ -103,11 +101,10 @@ public class CreateQuizController {
     }
 
     private void createQuiz() throws ParseException {
-        // todo add logic for taking in information and adding quiz to database
+        //TODO: add logic for taking in information and adding quiz to database
         StringBuilder warnings = new StringBuilder();
 
         String quizName = textFieldQuizName.getText();
-
 
         // Check if Quiz name is entered
         if (quizName.isEmpty()) {
@@ -139,9 +136,7 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
-            // HÄR JPA
             createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
-
         }
 
     }

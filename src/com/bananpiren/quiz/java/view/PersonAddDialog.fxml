@@ -29,7 +29,7 @@
             <TextField fx:id="mailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="userLevelChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Password" GridPane.rowIndex="3" />
-            <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />

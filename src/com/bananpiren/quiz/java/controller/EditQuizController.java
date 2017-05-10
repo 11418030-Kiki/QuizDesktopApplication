@@ -50,7 +50,6 @@ public class EditQuizController {
         });
     }
 
-    // Methods
     private void showEditQuizDialog() {
         try {
             // Load FXML file to dialog stage
