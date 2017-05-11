@@ -1,5 +1,6 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.CreateUserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -92,6 +93,7 @@ public class PersonAddDialogController {
 
                 try {
                     createUserService.createUser(firstName, lastName, userMail, password, accountLevel);
+
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Succe!");
                     alert.setHeaderText("Användare tillagd");

@@ -12,7 +12,7 @@ public class CreateUserService {
 
     }
 
-    public void createUser(String firstName, String lastName, String email, String password, String accountLevel) {
+    public Object createUser(String firstName, String lastName, String email, String password, String accountLevel) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -30,5 +30,6 @@ public class CreateUserService {
 
         entityManager.close();
         entityManagerFactory.close();
+        return null;
     }
 }

@@ -60,7 +60,7 @@
                         <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="mailLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="userLevelLabel" layoutX="10.0" layoutY="77.0" text="Användarnivå" GridPane.rowIndex="3" />
-                        <Label fx:id="mailLabel1" layoutX="209.0" layoutY="77.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="userLevelLabel" layoutX="209.0" layoutY="77.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <HBox alignment="TOP_CENTER" layoutX="85.0" layoutY="271.0" prefHeight="44.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="271.0">

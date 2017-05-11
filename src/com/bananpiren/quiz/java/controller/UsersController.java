@@ -3,7 +3,10 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.FindUserService;
 import com.bananpiren.quiz.java.view.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +75,21 @@ public class UsersController {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
         levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("accountLevel"));
+        personTable.setItems(data);
+
+        // Get tableselection and setting labels
+        personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
+            @Override
+            public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
+                if(personTable.getSelectionModel().getSelectedItem() != null) {
+                    editButton.setDisable(false);
+                    firstNameLabel.setText("hämta info");
+                    lastNameLabel.setText("hämta info");
+                    mailLabel.setText("hämta info");
+                    userLevelLabel.setText("hämta info");
+                }
+            }
+        });
 
         addButton.setOnAction(e -> showPersonAddDialog());
 
@@ -141,6 +159,7 @@ public class UsersController {
         if(personTable.getSelectionModel().getSelectedItem() != null) {
             int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
             personTable.getItems().remove(selectedIndex);
+            //TODO: Delete in database
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Inget valt");
