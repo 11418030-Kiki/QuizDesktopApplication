@@ -1,7 +1,10 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.User;
+import com.bananpiren.quiz.Services.FindUserService;
 import com.bananpiren.quiz.java.view.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -40,7 +44,7 @@ public class UsersController {
     private Button editButton;
 
     @FXML
-    private TableView<?> personTable;
+    private TableView<User> personTable;
 
     @FXML
     private Button deleteButton;
@@ -48,29 +52,32 @@ public class UsersController {
     @FXML
     private Button addButton;
 
+    final ObservableList<User> data = FXCollections.observableArrayList();
+
     public UsersController() {
         // TODO: Load data to table
+        FindUserService findUserService = new FindUserService();
+        data.addAll(findUserService.findAllUsers());
+
+//        personTable.setItems(data);
+
+        for (User u : data){
+            System.out.println(u.getFirstName() + u.getLastName() + u.getAccountLevel());
+        }
     }
 
     @FXML
     private void initialize() {
-
         // Setting data to right column "cellvalue"
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Förnamn"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Efternamn"));
-        levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("Nivå"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("accountLevel"));
 
-        addButton.setOnAction(e -> {
-            showPersonAddDialog();
-        });
+        addButton.setOnAction(e -> showPersonAddDialog());
 
-        editButton.setOnAction(e -> {
-            showPersonEditDialog();
-        });
+        editButton.setOnAction(e -> showPersonEditDialog());
 
-        deleteButton.setOnAction(e -> {
-            handleDeletePerson();
-        });
+        deleteButton.setOnAction(e -> handleDeletePerson());
     }
 
     public void showPersonAddDialog() {

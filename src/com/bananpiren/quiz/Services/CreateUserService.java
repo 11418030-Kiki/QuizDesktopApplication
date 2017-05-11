@@ -8,7 +8,9 @@ import javax.persistence.Persistence;
 
 public class CreateUserService {
 
-    public CreateUserService() {}
+    public CreateUserService() {
+
+    }
 
     public void createUser(String firstName, String lastName, String email, String password, String accountLevel) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");

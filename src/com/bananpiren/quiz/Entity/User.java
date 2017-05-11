@@ -29,7 +29,18 @@ public class User {
     @NotNull
     private String accountLevel;
 
+    public User(int userId, String firstName, String lastName, String email, String password, String accountLevel) {
+        super();
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.accountLevel = accountLevel;
+    }
+
     public User() {
+
     }
 
     // Getters and setters
