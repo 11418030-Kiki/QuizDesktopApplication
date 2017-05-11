@@ -83,10 +83,10 @@ public class UsersController {
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
                 if(personTable.getSelectionModel().getSelectedItem() != null) {
                     editButton.setDisable(false);
-                    firstNameLabel.setText("hämta info");
-                    lastNameLabel.setText("hämta info");
-                    mailLabel.setText("hämta info");
-                    userLevelLabel.setText("hämta info");
+                    firstNameLabel.setText("" + firstNameColumn.getCellData(newValue));
+                    lastNameLabel.setText("" + lastNameColumn.getCellData(newValue));
+                    mailLabel.setText("Finns ej");
+                    userLevelLabel.setText("" + levelColumn.getCellData(newValue));
                 }
             }
         });
