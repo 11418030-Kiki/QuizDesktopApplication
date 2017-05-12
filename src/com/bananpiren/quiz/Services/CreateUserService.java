@@ -13,9 +13,10 @@ public class CreateUserService {
     }
 
     public Object createUser(String firstName, String lastName, String email, String password, String accountLevel) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         User user = new User();

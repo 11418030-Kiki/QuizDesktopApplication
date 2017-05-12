@@ -6,8 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@NamedQuery(name = "User.FindAll",
-        query = "SELECT u FROM User u")
 
 public class User {
     @TableGenerator(
@@ -40,7 +38,7 @@ public class User {
     }
 
     public User() {
-
+        super();
     }
 
     // Getters and setters
