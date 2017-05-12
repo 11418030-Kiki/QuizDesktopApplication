@@ -22,4 +22,5 @@ public class FindQuizService {
 
         return query.getResultList();
     }
+
 }

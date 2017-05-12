@@ -1,7 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.User;
-import com.bananpiren.quiz.Services.FindUserService;
+import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.view.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,8 +22,10 @@ import java.io.IOException;
 public class UsersController {
 
     private final ObservableList<User> data = FXCollections.observableArrayList();
-    private int storedSelectedTableIndex;
-    private int storedUserId;
+    private static int storedSelectedTableIndex;
+    private static int storedUserId;
+
+    private UserService userService = new UserService();
 
     @FXML
     private Label firstNameLabel;
@@ -60,8 +62,7 @@ public class UsersController {
 
     public UsersController() {
         // TODO: Make refresh method
-        FindUserService findUserService = new FindUserService();
-        data.addAll(findUserService.findAllUsers());
+        data.addAll(userService.findAllUsers());
     }
 
     @FXML
@@ -81,6 +82,7 @@ public class UsersController {
 
                     storedSelectedTableIndex = personTable.getSelectionModel().getSelectedIndex();
                     storedUserId = data.get(storedSelectedTableIndex).getUserId();
+                    System.out.println("Stored Id changed to:" + storedUserId);
 
                     String storedMail = data.get(storedSelectedTableIndex).getEmail();
                     String storedFirstName = data.get(storedSelectedTableIndex).getFirstName();
@@ -123,12 +125,6 @@ public class UsersController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            //TODO: Skicka med vald anvädnare till lägga till scenen
-            // Set the person into the controller.
-//            PersonEditDialogController controller = loader.getController();
-//            controller.setDialogStage(dialogStage);
-//            controller.setPerson(user);
-
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -151,12 +147,6 @@ public class UsersController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            //TODO: Skicka med vald anvädnare till redigera scenen
-            // Set the person into the controller.
-//            PersonEditDialogController controller = loader.getController();
-//            controller.setDialogStage(dialogStage);
-//            controller.setPerson(user);
-
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
@@ -172,6 +162,8 @@ public class UsersController {
             int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
             personTable.getItems().remove(selectedIndex);
             //TODO: Delete in database
+            System.out.println(storedUserId);
+            userService.deleteUser(storedUserId);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Inget valt");
@@ -180,5 +172,17 @@ public class UsersController {
 
             alert.showAndWait();
         }
+    }
+
+    public int getStoredUserId() {
+        return storedUserId;
+    }
+
+    public int getStoredSelectedTableIndex() {
+        return storedSelectedTableIndex;
+    }
+
+    public ObservableList<User> getData() {
+        return data;
     }
 }

@@ -1,7 +1,10 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.User;
+import com.bananpiren.quiz.Services.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -10,8 +13,16 @@ import javafx.stage.Stage;
 
 public class PersonEditDialogController {
 
-    ObservableList<String> userLevel = FXCollections
+    private ObservableList<String> userLevel = FXCollections
             .observableArrayList("Användare", "Admin");
+
+    private int storedUserId;
+    private int storedUserTableIndex;
+    private ObservableList<User> data = FXCollections.observableArrayList();
+    private String storedFirstName;
+    private String storedLastName;
+    private String storedEmail;
+    private String storedAccountLevel;
 
     @FXML
     private TextField mailTextField;
@@ -33,12 +44,40 @@ public class PersonEditDialogController {
 
     @FXML
     private void initialize() {
+        UserService userService = new UserService();
+        UsersController usersController = new UsersController();
+
+        this.storedUserId = usersController.getStoredUserId();
+        this.storedUserTableIndex = usersController.getStoredSelectedTableIndex();
+        this.data = usersController.getData();
 
         userLevelChoiceBox.setItems(userLevel);
         userLevelChoiceBox.getSelectionModel().select(0);
 
-        saveButton.setOnAction(e -> {
-            //TODO: Save person logic here
+        firstNameTextfield.setText(data.get(storedUserTableIndex).getFirstName());
+        lastNameTextField.setText(data.get(storedUserTableIndex).getLastName());
+        mailTextField.setText(data.get(storedUserTableIndex).getEmail());
+
+        saveButton.setOnAction((ActionEvent e) -> {
+            if (firstNameTextfield != null) {
+                this.storedFirstName = firstNameTextfield.getText();
+            } else {
+                this.storedFirstName = data.get(storedUserTableIndex).getFirstName();
+            }
+            if (lastNameTextField != null) {
+                this.storedLastName = lastNameTextField.getText();
+            } else {
+                this.storedLastName = data.get(storedUserTableIndex).getLastName();
+            }
+            if (mailTextField != null) {
+                this.storedEmail = mailTextField.getText();
+            } else {
+                this.storedEmail = data.get(storedUserTableIndex).getEmail();
+            }
+
+            this.storedAccountLevel = userLevelChoiceBox.getValue();
+
+            userService.updateUser(storedUserId, storedFirstName, storedLastName,  storedEmail,data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
         });
 
         cancelButton.setOnAction(e -> {
@@ -46,5 +85,4 @@ public class PersonEditDialogController {
             stage.close();
         });
     }
-
 }
