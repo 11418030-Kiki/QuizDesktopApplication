@@ -22,6 +22,8 @@ import java.io.IOException;
 
 public class UsersController {
 
+    final ObservableList<User> data = FXCollections.observableArrayList();
+
     @FXML
     private Label firstNameLabel;
 
@@ -55,18 +57,10 @@ public class UsersController {
     @FXML
     private Button addButton;
 
-    final ObservableList<User> data = FXCollections.observableArrayList();
-
     public UsersController() {
-        // TODO: Load data to table
+        // TODO: Make refresh method
         FindUserService findUserService = new FindUserService();
         data.addAll(findUserService.findAllUsers());
-
-//        personTable.setItems(data);
-
-        for (User u : data){
-            System.out.println(u.getFirstName() + u.getLastName() + u.getAccountLevel());
-        }
     }
 
     @FXML
@@ -87,6 +81,12 @@ public class UsersController {
                     lastNameLabel.setText("" + lastNameColumn.getCellData(newValue));
                     mailLabel.setText("Finns ej");
                     userLevelLabel.setText("" + levelColumn.getCellData(newValue));
+                } else {
+                    // Person is null, remove all the text.
+                    firstNameLabel.setText("");
+                    lastNameLabel.setText("");
+                    mailLabel.setText("");
+                    userLevelLabel.setText("");
                 }
             }
         });
@@ -108,6 +108,7 @@ public class UsersController {
             // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Lägg till ny användare");
+            dialogStage.initOwner(addButton.getScene().getWindow());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -135,6 +136,7 @@ public class UsersController {
             // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Redigera användare");
+            dialogStage.initOwner(editButton.getScene().getWindow());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -167,24 +169,6 @@ public class UsersController {
             alert.setContentText("För att ta bort, välj en person");
 
             alert.showAndWait();
-        }
-    }
-
-    private void showPersonDetails(User user) {
-        if (user != null) {
-            // TODO: Get data from JPA person
-
-            // Fill the labels with info from the person object.
-            firstNameLabel.setText(user.getFirstName());
-            lastNameLabel.setText(user.getLastName());
-            mailLabel.setText(user.getEmail());
-            userLevelLabel.setText(user.getAccountLevel());
-        } else {
-            // Person is null, remove all the text.
-            firstNameLabel.setText("");
-            lastNameLabel.setText("");
-            mailLabel.setText("");
-            userLevelLabel.setText("");
         }
     }
 }
