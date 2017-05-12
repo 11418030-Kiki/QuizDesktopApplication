@@ -6,7 +6,6 @@ import com.bananpiren.quiz.java.view.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 import java.io.IOException;
@@ -64,6 +62,9 @@ public class UsersController {
         data.addAll(findUserService.findAllUsers());
     }
 
+    private int storedSelectedTableIndex;
+    private int storedUserId;
+
     @FXML
     private void initialize() {
         // Setting data to right column "cellvalue"
@@ -78,10 +79,20 @@ public class UsersController {
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
                 if(personTable.getSelectionModel().getSelectedItem() != null) {
                     editButton.setDisable(false);
-                    firstNameLabel.setText("" + firstNameColumn.getCellData(newValue));
-                    lastNameLabel.setText("" + lastNameColumn.getCellData(newValue));
-                    mailLabel.setText("Finns ej");
-                    userLevelLabel.setText("" + levelColumn.getCellData(newValue));
+
+                    storedSelectedTableIndex = personTable.getSelectionModel().getSelectedIndex();
+                    storedUserId = data.get(storedSelectedTableIndex).getUserId();
+
+                    String storedMail = data.get(storedSelectedTableIndex).getEmail();
+                    String storedFirstName = data.get(storedSelectedTableIndex).getFirstName();
+                    String storedLastName = data.get(storedSelectedTableIndex).getLastName();
+                    String storedAccountLevel = data.get(storedSelectedTableIndex).getAccountLevel();
+
+
+                    firstNameLabel.setText(storedFirstName);
+                    lastNameLabel.setText(storedLastName);
+                    mailLabel.setText(storedMail);
+                    userLevelLabel.setText(storedAccountLevel);
                 } else {
                     // Person is null, remove all the text.
                     firstNameLabel.setText("");
