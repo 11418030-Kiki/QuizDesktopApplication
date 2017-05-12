@@ -1,5 +1,6 @@
 package com.bananpiren.quiz.Services;
 
+import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.User;
 
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ public class FindQuizService {
     }
 
     //Getting all quizes from database and return them in a list as Quiz objects
-    public List<User> findAllQuize() {
+    public List<Quiz> findAllQuize() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
