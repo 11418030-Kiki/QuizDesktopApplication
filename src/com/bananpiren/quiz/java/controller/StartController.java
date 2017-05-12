@@ -28,7 +28,7 @@ public class StartController {
     }
 
     @FXML
-    private void initalize() {
+    private void initialize() {
         // Setting data to right column "cellvalue"
         quizIdColumn.setCellValueFactory(new PropertyValueFactory<Quiz, Integer>("quizId"));
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));

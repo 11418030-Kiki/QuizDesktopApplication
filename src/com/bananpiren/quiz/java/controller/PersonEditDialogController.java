@@ -77,7 +77,7 @@ public class PersonEditDialogController {
 
             this.storedAccountLevel = userLevelChoiceBox.getValue();
 
-            userService.updateUser(storedUserId, storedFirstName, storedLastName,  storedEmail,data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
+            userService.updateUser(storedUserId, storedFirstName, storedLastName, storedEmail, data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
         });
 
         cancelButton.setOnAction(e -> {
