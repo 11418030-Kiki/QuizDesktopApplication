@@ -11,7 +11,6 @@ import java.util.List;
 public class FindUserService {
 
     public FindUserService() {
-
     }
 
     //Getting all users from database and return them in a list as User objects.
@@ -19,7 +18,7 @@ public class FindUserService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery("SELECT u FROM  User u");
+        Query query = entityManager.createQuery("SELECT u FROM User u");
 
         return query.getResultList();
     }

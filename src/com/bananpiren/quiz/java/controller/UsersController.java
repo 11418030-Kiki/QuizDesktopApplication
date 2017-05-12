@@ -47,10 +47,10 @@ public class UsersController {
     private TableColumn<User, String> levelColumn;
 
     @FXML
-    private Button editButton;
+    private TableView<User> personTable;
 
     @FXML
-    private TableView<User> personTable;
+    private Button editButton;
 
     @FXML
     private Button deleteButton;

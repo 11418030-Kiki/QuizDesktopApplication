@@ -1,11 +1,9 @@
 package com.bananpiren.quiz.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-
-/**
- * Created by per on 2017-05-04.
- */
 
 @Entity
 @Table
@@ -19,16 +17,28 @@ public class Quiz {
     @GeneratedValue(
         strategy = GenerationType.AUTO,
         generator = "autoGenerator")
-
     private int quizId;
+    @NotNull
     private String quizName;
+    @NotNull
     private int timeLimit;
+    @NotNull
     private String quizStartDate;
+    @NotNull
     private String quizEndDate;
 
-    public Quiz() {
+    public Quiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate) {
+        super();
+        this.quizId = quizId;
+        this.quizName = quizName;
+        this.timeLimit = timeLimit;
+        this.quizStartDate = quizStartDate;
+        this.quizEndDate = quizEndDate;
     }
 
+    public Quiz() {super();}
+
+    // Getters and setters
     public int getQuizId() {
         return quizId;
     }

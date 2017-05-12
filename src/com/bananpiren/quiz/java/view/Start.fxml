@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.StartController">
    <top>
       <Label text="Start" BorderPane.alignment="CENTER">
          <font>
@@ -15,4 +15,12 @@
          </font>
       </Label>
    </top>
+   <center>
+      <TableView fx:id="quizTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="quizIdColumn" prefWidth="107.0" text="QuizId" />
+          <TableColumn fx:id="quizNameColumn" prefWidth="218.0" text="Quiz Name" />
+        </columns>
+      </TableView>
+   </center>
 </BorderPane>
