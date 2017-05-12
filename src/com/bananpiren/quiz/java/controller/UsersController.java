@@ -21,7 +21,9 @@ import java.io.IOException;
 
 public class UsersController {
 
-    final ObservableList<User> data = FXCollections.observableArrayList();
+    private final ObservableList<User> data = FXCollections.observableArrayList();
+    private int storedSelectedTableIndex;
+    private int storedUserId;
 
     @FXML
     private Label firstNameLabel;
@@ -62,9 +64,6 @@ public class UsersController {
         data.addAll(findUserService.findAllUsers());
     }
 
-    private int storedSelectedTableIndex;
-    private int storedUserId;
-
     @FXML
     private void initialize() {
         // Setting data to right column "cellvalue"
@@ -87,7 +86,6 @@ public class UsersController {
                     String storedFirstName = data.get(storedSelectedTableIndex).getFirstName();
                     String storedLastName = data.get(storedSelectedTableIndex).getLastName();
                     String storedAccountLevel = data.get(storedSelectedTableIndex).getAccountLevel();
-
 
                     firstNameLabel.setText(storedFirstName);
                     lastNameLabel.setText(storedLastName);
