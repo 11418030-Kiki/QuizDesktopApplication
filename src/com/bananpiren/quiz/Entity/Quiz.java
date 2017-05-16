@@ -4,6 +4,7 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table
@@ -27,6 +28,11 @@ public class Quiz {
     @NotNull
     private String quizEndDate;
 
+
+    @OneToMany( targetEntity=QuizQuestions.class )
+    private List questionsList;
+
+
     public Quiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate) {
         super();
         this.quizId = quizId;
@@ -39,6 +45,14 @@ public class Quiz {
     public Quiz() {super();}
 
     // Getters and setters
+    public List getQuestionsList() {
+        return questionsList;
+    }
+
+    public void setQuestionsList(List questionsList) {
+        this.questionsList = questionsList;
+    }
+
     public int getQuizId() {
         return quizId;
     }

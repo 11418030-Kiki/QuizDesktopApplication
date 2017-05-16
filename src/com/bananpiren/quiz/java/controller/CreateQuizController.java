@@ -6,10 +6,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import com.bananpiren.quiz.Services.CreateQuizService;
 
-import javax.swing.event.ChangeListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CreateQuizController {
 
@@ -18,6 +17,7 @@ public class CreateQuizController {
     private int questionNumber = 1;
     private int answerNumber = 1;
     private int timeLimit = 0;
+    private ArrayList<String> questionList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -52,12 +52,14 @@ public class CreateQuizController {
     @FXML
     private Button buttonAddQuestion;
 
+    private TextField newQuestion;
+
     @FXML
     private void initialize() {
 
         // Timelimit
         timeLimitCheckBox.setOnAction(e -> {
-            if(timeLimitCheckBox.isSelected()) {
+            if (timeLimitCheckBox.isSelected()) {
                 timeLimitGridPane.setVisible(true);
             } else {
                 timeLimitGridPane.setVisible(false);
@@ -83,21 +85,6 @@ public class CreateQuizController {
             timeLimit = newValue.intValue();
         });
 
-    }
-
-    private void addQuestion() {
-
-        TextField newQuestion = new TextField();
-        newQuestion.setPromptText("Fråga " + questionNumber++);
-        TextField newAnswer = new TextField();
-        newAnswer.setPromptText("Svar " + answerNumber++);
-        TextField newAnswer2 = new TextField();
-        newAnswer2.setPromptText("Svar " + answerNumber++);
-        TextField newAnswer3 = new TextField();
-        newAnswer3.setPromptText("Svar " + answerNumber++);
-        TextField newAnswer4 = new TextField();
-        newAnswer4.setPromptText("Svar " + answerNumber++);
-        vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer, newAnswer2, newAnswer3, newAnswer4);
     }
 
     private void createQuiz() throws ParseException {
@@ -136,8 +123,41 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
+            // add last question
+            theQuestion();
+            System.out.println("newQuestion.getText() = " + newQuestion.getText());
+
             createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
         }
+
+    }
+
+    private void theQuestion() {
+        // add question to list
+        if(questionNumber > 1) {
+            createQuizServices.addQuizQuestionObject(newQuestion.getText());
+        }
+    }
+
+    private void addQuestion() {
+        theQuestion();
+
+        // TODO: add questions and answers
+        newQuestion = new TextField();
+
+        newQuestion.setPromptText("Fråga " + questionNumber++);
+
+        TextField newAnswer = new TextField();
+        newAnswer.setPromptText("Svar " + answerNumber++);
+        TextField newAnswer2 = new TextField();
+        newAnswer2.setPromptText("Svar " + answerNumber++);
+        TextField newAnswer3 = new TextField();
+        newAnswer3.setPromptText("Svar " + answerNumber++);
+        TextField newAnswer4 = new TextField();
+        newAnswer4.setPromptText("Svar " + answerNumber++);
+        vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer, newAnswer2, newAnswer3, newAnswer4);
+
+        questionList.add(newQuestion.getPromptText());
 
     }
 }

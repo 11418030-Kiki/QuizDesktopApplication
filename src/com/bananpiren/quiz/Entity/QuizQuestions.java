@@ -10,23 +10,21 @@ import javax.persistence.*;
 @Table
 public class QuizQuestions {
 
+    // increase 1
+    @TableGenerator(
+            name = "autoGenerator",
+            allocationSize = 1)
     @Id
-    @GeneratedValue( strategy= GenerationType.AUTO )
-    private int questionTestId;
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "autoGenerator")
     private int questionId;
     private String question;
 
     public QuizQuestions() {
-
+        super();
     }
 
-    public int getQuestionTestId() {
-        return questionTestId;
-    }
-
-    public void setQuestionTestId(int questionTestId) {
-        this.questionTestId = questionTestId;
-    }
 
     public int getQuestionId() {
         return questionId;
