@@ -5,29 +5,41 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
 public class Main extends Application {
-    public Stage primaryStage;
+    private static Stage loginStage;
     private static BorderPane mainLayout;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Bananpiren Dekstop Quiz");
-        showMainView();
-        showStart();
+        loginStage = primaryStage;
+        loginStage.setTitle("Bananpiren Dekstop Quiz");
+        showLoginScreen();
     }
 
-    // Landing start page
-    private void showMainView() throws IOException {
+    // Loading login screen
+    private void showLoginScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("Login.fxml"));
+        mainLayout = loader.load();
+        Scene scene = new Scene(mainLayout);
+        loginStage.setScene(scene);
+        loginStage.show();
+    }
+
+    // Loading start page
+    public void showMainView(Stage primaryStage) throws IOException {
+        primaryStage.setTitle("Bananpiren Dekstop Quiz");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("Main.fxml"));
         mainLayout = loader.load();
         Scene scene = new Scene(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
+        loginStage.hide();
     }
 
     // Start page - welcoming user

@@ -82,7 +82,7 @@ public class UsersController {
 
                     storedSelectedTableIndex = personTable.getSelectionModel().getSelectedIndex();
                     storedUserId = data.get(storedSelectedTableIndex).getUserId();
-                    System.out.println("Stored Id changed to:" + storedUserId);
+                    System.out.println("Stored Id changed to: " + storedUserId);
 
                     String storedMail = data.get(storedSelectedTableIndex).getEmail();
                     String storedFirstName = data.get(storedSelectedTableIndex).getFirstName();
@@ -159,11 +159,9 @@ public class UsersController {
     private void handleDeletePerson() {
 
         if(personTable.getSelectionModel().getSelectedItem() != null) {
+            userService.deleteUser(storedUserId);
             int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
             personTable.getItems().remove(selectedIndex);
-            //TODO: Delete in database
-            System.out.println(storedUserId);
-            userService.deleteUser(storedUserId);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Inget valt");

@@ -42,7 +42,7 @@ public class Quiz {
         this.quizEndDate = quizEndDate;
     }
 
-    public Quiz() {super();}
+    public Quiz() {}
 
     // Getters and setters
     public List getQuestionsList() {
