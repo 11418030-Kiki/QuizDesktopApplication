@@ -32,22 +32,26 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="emailBtn" layoutX="247.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Ändra" />
-            <Button fx:id="passwordBtn" layoutX="247.0" layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Ändra" />
             <Label layoutY="128.0" text="Bekräfta Lösenord">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="198.0" text="Användarnamn">
+            <Label layoutY="198.0" text="Förnamn">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextField" layoutY="223.0" prefHeight="25.0" prefWidth="234.0" />
-            <Button fx:id="usernameBtn" layoutX="249.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Ändra" />
+            <TextField fx:id="firstNameTextField" layoutY="223.0" prefHeight="25.0" prefWidth="234.0" />
+            <Button fx:id="usernameBtn" layoutX="3.0" layoutY="337.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Ändra" />
             <PasswordField fx:id="passwordTextField" layoutY="88.0" prefHeight="25.0" prefWidth="234.0" />
             <PasswordField fx:id="confirmPasswordTextField" layoutY="160.0" prefHeight="25.0" prefWidth="234.0" />
+            <TextField fx:id="lastNameTextField" layoutY="288.0" prefHeight="25.0" prefWidth="234.0" />
+            <Label layoutX="-4.0" layoutY="263.0" text="Efternamn">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

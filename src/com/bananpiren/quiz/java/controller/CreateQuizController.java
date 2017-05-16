@@ -147,15 +147,19 @@ public class CreateQuizController {
 
         newQuestion.setPromptText("Fråga " + questionNumber++);
 
-        TextField newAnswer = new TextField();
-        newAnswer.setPromptText("Svar " + answerNumber++);
+        TextField newAnswer1 = new TextField();
+        newAnswer1.setPromptText("Svar " + answerNumber++);
+        CheckBox answerCheckbox1 = new CheckBox();
         TextField newAnswer2 = new TextField();
         newAnswer2.setPromptText("Svar " + answerNumber++);
+        CheckBox answerCheckbox2 = new CheckBox();
         TextField newAnswer3 = new TextField();
         newAnswer3.setPromptText("Svar " + answerNumber++);
+        CheckBox answerCheckbox3 = new CheckBox();
         TextField newAnswer4 = new TextField();
         newAnswer4.setPromptText("Svar " + answerNumber++);
-        vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer, newAnswer2, newAnswer3, newAnswer4);
+        CheckBox answerCheckbox4 = new CheckBox();
+        vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer1, answerCheckbox1, newAnswer2, answerCheckbox2, newAnswer3, answerCheckbox3, newAnswer4, answerCheckbox4);
 
         questionList.add(newQuestion.getPromptText());
 
