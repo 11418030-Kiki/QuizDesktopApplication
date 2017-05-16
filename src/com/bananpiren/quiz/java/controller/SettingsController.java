@@ -1,10 +1,12 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Services.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
+import javax.xml.soap.Text;
 
 
 /**
@@ -15,53 +17,37 @@ public class SettingsController {
     private TextField emailTextField;
 
     @FXML
-    private Button emailBtn;
-
-    @FXML
     private TextField passwordTextField;
-
-    @FXML
-    private Button passwordBtn;
 
     @FXML
     private TextField confirmPasswordTextField;
 
     @FXML
-    private TextField usernameTextField;
+    private Button usernameBtn;
 
     @FXML
-    private Button usernameBtn;
+    private TextField firstNameTextField;
+
+    @FXML
+    private TextField lastNameTextField;
 
     @FXML
     private void initialize(){
 
-        emailBtn.setOnAction(e->{
+        usernameBtn.setOnAction(e->{
+            // todo: logik som hämtar user info beroende på vem som är inloggad
+
             String email = emailTextField.getText();
-
-            if (email.contains("@") && email.endsWith(".com") || email.endsWith(".se")){
-                JOptionPane.showMessageDialog(null, "" +
-                        "Din email-adress har sparats.\n Din nya email är: "+email);
-
-                //Todo logic for updating users email in database
-            }else{
-                JOptionPane.showMessageDialog(null, "Skriv in en korrekt email-adress för att gå vidare");
-            }
-        });
-
-        passwordBtn.setOnAction(e->{
             String password = passwordTextField.getText();
             String confirmPassword = confirmPasswordTextField.getText();
+            String firstName = firstNameTextField.getText();
+            String lastName = lastNameTextField.getText();
 
-            if (password.equals(confirmPassword)){
-                JOptionPane.showMessageDialog(null, "Ditt lösenord har sparats!");
+            UserService userService = new UserService();
 
-                //todo Logic for updating userpassword in database
-            }else{
-                JOptionPane.showMessageDialog(null, "Ditt lösenord stämmer inte överens med ditt bekräftade lösenord.");
-            }
-        });
+            userService.updateUser(1, firstName, lastName, email, password, "Användare");
 
-        usernameBtn.setOnAction(e->{
+
 
         });
     }
