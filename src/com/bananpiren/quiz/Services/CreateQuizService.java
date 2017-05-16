@@ -1,5 +1,6 @@
 package com.bananpiren.quiz.Services;
 
+import com.bananpiren.quiz.Entity.QuestionAnswers;
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.QuizQuestions;
 
@@ -13,8 +14,17 @@ public class CreateQuizService {
 
 
     private ArrayList<QuizQuestions> quizQuestionsList = new ArrayList<>();
+    private ArrayList<QuestionAnswers> questionAnswersList = new ArrayList<>();
 
     public CreateQuizService() {
+    }
+
+    // save every answer and correct marker
+    public void addQuizAnswerObject(String answer, boolean correct) {
+        QuestionAnswers qa = new QuestionAnswers();
+        qa.setAnswer(answer);
+        qa.setCorrectAnswer(correct);
+        questionAnswersList.add(qa);
     }
 
     public void addQuizQuestionObject(String question) {
@@ -30,11 +40,18 @@ public class CreateQuizService {
 
         entityManager.getTransaction().begin();
 
-        for (QuizQuestions qq : quizQuestionsList) {
-            entityManager.persist(qq);
+        // persist QuestionAnswers entity
+        for(QuestionAnswers qa : questionAnswersList) {
+            entityManager.persist(qa);
         }
 
-        // create quiz entity
+        // persist QuizQuestions entity and create OneToMany
+        for (QuizQuestions qq : quizQuestionsList) {
+            entityManager.persist(qq);
+            qq.setAnswerList(questionAnswersList);
+        }
+
+        // create quiz entity oneToMany
         Quiz quiz = new Quiz();
         quiz.setQuizName(quizName);
         quiz.setTimeLimit(timeLimit);
@@ -42,7 +59,7 @@ public class CreateQuizService {
         quiz.setQuizEndDate(quizEndDate.toString());
         quiz.setQuestionsList(quizQuestionsList);
 
-        // store quiz
+        // persist quiz
         entityManager.persist(quiz);
 
 

@@ -1,5 +1,7 @@
 package com.bananpiren.quiz.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 
 /**
@@ -18,11 +20,11 @@ public class QuestionAnswers {
     @GeneratedValue(
             strategy = GenerationType.AUTO,
             generator = "autoGenerator")
-
-    private int taId;
-    private int taQuestionId;
+    private int answerId;
+    @NotNull
     private String answer;
-    private String correctAnswer;
+    @NotNull
+    private boolean correctAnswer;
 
 
     public QuestionAnswers() {
@@ -38,28 +40,20 @@ public class QuestionAnswers {
         this.answer = answer;
     }
 
-    public String getCorrectAnswer() {
+    public boolean getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(boolean correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
-    public int getTaId() {
-        return taId;
+    public int getAnswerId() {
+        return answerId;
     }
 
-    public void setTaId(int taId) {
-        this.taId = taId;
-    }
-
-    public int getTaQuestionId() {
-        return taQuestionId;
-    }
-
-    public void setTaQuestionId(int taQuestionId) {
-        this.taQuestionId = taQuestionId;
+    public void setAnswerId(int taId) {
+        this.answerId = taId;
     }
 
 

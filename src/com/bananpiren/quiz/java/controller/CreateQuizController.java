@@ -54,6 +54,10 @@ public class CreateQuizController {
 
     private TextField newQuestion;
 
+    private TextField newAnswer1, newAnswer2, newAnswer3, newAnswer4;
+
+    private CheckBox answerCheckbox1, answerCheckbox2, answerCheckbox3, answerCheckbox4;
+
     @FXML
     private void initialize() {
 
@@ -125,8 +129,7 @@ public class CreateQuizController {
         } else {
             // add last question
             theQuestion();
-            System.out.println("newQuestion.getText() = " + newQuestion.getText());
-
+            theAnswers();
             createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
         }
 
@@ -139,26 +142,41 @@ public class CreateQuizController {
         }
     }
 
+    private void theAnswers() {
+        if(questionNumber > 1) {
+            createQuizServices.addQuizAnswerObject(newAnswer1.getText(), answerCheckbox1.isSelected());
+            createQuizServices.addQuizAnswerObject(newAnswer2.getText(), answerCheckbox2.isSelected());
+            createQuizServices.addQuizAnswerObject(newAnswer3.getText(), answerCheckbox3.isSelected());
+            createQuizServices.addQuizAnswerObject(newAnswer4.getText(), answerCheckbox4.isSelected());
+        }
+    }
+
     private void addQuestion() {
         theQuestion();
+        theAnswers();
 
         // TODO: add questions and answers
         newQuestion = new TextField();
 
         newQuestion.setPromptText("Fråga " + questionNumber++);
 
-        TextField newAnswer1 = new TextField();
+        newAnswer1 = new TextField();
         newAnswer1.setPromptText("Svar " + answerNumber++);
-        CheckBox answerCheckbox1 = new CheckBox();
-        TextField newAnswer2 = new TextField();
+        answerCheckbox1 = new CheckBox();
+
+        newAnswer2 = new TextField();
         newAnswer2.setPromptText("Svar " + answerNumber++);
-        CheckBox answerCheckbox2 = new CheckBox();
-        TextField newAnswer3 = new TextField();
+        answerCheckbox2 = new CheckBox();
+
+        newAnswer3 = new TextField();
         newAnswer3.setPromptText("Svar " + answerNumber++);
-        CheckBox answerCheckbox3 = new CheckBox();
-        TextField newAnswer4 = new TextField();
+        answerCheckbox3 = new CheckBox();
+
+        newAnswer4 = new TextField();
         newAnswer4.setPromptText("Svar " + answerNumber++);
-        CheckBox answerCheckbox4 = new CheckBox();
+        answerCheckbox4 = new CheckBox();
+
+
         vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer1, answerCheckbox1, newAnswer2, answerCheckbox2, newAnswer3, answerCheckbox3, newAnswer4, answerCheckbox4);
 
         questionList.add(newQuestion.getPromptText());

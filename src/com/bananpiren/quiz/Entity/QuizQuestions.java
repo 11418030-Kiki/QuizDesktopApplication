@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by per on 2017-05-04.
@@ -21,10 +22,20 @@ public class QuizQuestions {
     private int questionId;
     private String question;
 
+    @OneToMany( targetEntity = QuestionAnswers.class)
+    private List answerList;
+
     public QuizQuestions() {
         super();
     }
 
+    public List getAnswerList() {
+        return answerList;
+    }
+
+    public void setAnswerList(List answerList) {
+        this.answerList = answerList;
+    }
 
     public int getQuestionId() {
         return questionId;
