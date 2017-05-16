@@ -17,7 +17,6 @@ public class CreateQuizController {
     private int questionNumber = 1;
     private int answerNumber = 1;
     private int timeLimit = 0;
-    private ArrayList<String> questionList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -178,8 +177,6 @@ public class CreateQuizController {
 
 
         vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer1, answerCheckbox1, newAnswer2, answerCheckbox2, newAnswer3, answerCheckbox3, newAnswer4, answerCheckbox4);
-
-        questionList.add(newQuestion.getPromptText());
 
     }
 }

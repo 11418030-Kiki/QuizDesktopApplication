@@ -12,11 +12,17 @@ import java.util.ArrayList;
 
 public class CreateQuizService {
 
-
     private ArrayList<QuizQuestions> quizQuestionsList = new ArrayList<>();
     private ArrayList<QuestionAnswers> questionAnswersList = new ArrayList<>();
 
     public CreateQuizService() {
+    }
+
+    public void addQuizQuestionObject(String question) {
+        QuizQuestions q = new QuizQuestions();
+        q.setQuestion(question);
+        q.setAnswerList(questionAnswersList);
+        quizQuestionsList.add(q);
     }
 
     // save every answer and correct marker
@@ -27,12 +33,6 @@ public class CreateQuizService {
         questionAnswersList.add(qa);
     }
 
-    public void addQuizQuestionObject(String question) {
-        QuizQuestions q = new QuizQuestions();
-        q.setQuestion(question);
-        quizQuestionsList.add(q);
-    }
-
     public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -40,15 +40,14 @@ public class CreateQuizService {
 
         entityManager.getTransaction().begin();
 
-        // persist QuestionAnswers entity
-        for(QuestionAnswers qa : questionAnswersList) {
-            entityManager.persist(qa);
-        }
-
-        // persist QuizQuestions entity and create OneToMany
+        // persist QuizQuestions entity
         for (QuizQuestions qq : quizQuestionsList) {
             entityManager.persist(qq);
-            qq.setAnswerList(questionAnswersList);
+        }
+
+        // persist QuestionAnswers entity
+        for (QuestionAnswers qa : questionAnswersList) {
+            entityManager.persist(qa);
         }
 
         // create quiz entity oneToMany
@@ -62,10 +61,14 @@ public class CreateQuizService {
         // persist quiz
         entityManager.persist(quiz);
 
-
         entityManager.getTransaction().commit();
 
         entityManager.close();
         entityManagerFactory.close();
+
+//        // nollställ listorna för nästa quiz
+//        quizQuestionsList.clear();
+//        quizQuestionsList.clear();
+
     }
 }
