@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -78,6 +79,13 @@ public class PersonEditDialogController {
             this.storedAccountLevel = userLevelChoiceBox.getValue();
 
             userService.updateUser(storedUserId, storedFirstName, storedLastName, storedEmail, data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
+
+
+            //TODO: Add user feedback "Alert Box" if success and update list
+
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+
         });
 
         cancelButton.setOnAction(e -> {
