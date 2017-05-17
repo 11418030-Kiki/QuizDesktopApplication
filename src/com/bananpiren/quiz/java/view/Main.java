@@ -19,6 +19,8 @@ public class Main extends Application {
     private MainController mainController;
 //  --------------------------------------
 
+    public static int currentUserId = 11;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         loginStage = primaryStage;
