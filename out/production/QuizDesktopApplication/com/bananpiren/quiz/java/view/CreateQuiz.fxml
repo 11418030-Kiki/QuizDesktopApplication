@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.CreateQuizController">
+<BorderPane maxWidth="-Infinity" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.CreateQuizController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="TOP_LEFT">
+      <VBox prefWidth="648.0" spacing="10.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <Separator prefWidth="200.0" />
             <Label text="Skriv in namn på Quizet">
@@ -27,12 +19,13 @@
                </font>
             </Label>
             <TextField fx:id="textFieldQuizName" promptText="namn" />
-            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" spacing="10.0">
                <children>
                   <CheckBox fx:id="timeLimitCheckBox" mnemonicParsing="false" text="Tidsbegränsning" />
+                  <CheckBox disable="true" mnemonicParsing="false" text="Självrättande" />
                </children>
             </HBox>
-            <GridPane fx:id="timeLimitGridPane" visible="false">
+            <GridPane fx:id="timeLimitGridPane" maxHeight="0.0" minHeight="0.0" prefHeight="0.0" visible="false">
                <children>
                   <Label text="Välj tidsgräns">
                      <font>
@@ -86,9 +79,14 @@
                </rowConstraints>
             </GridPane>
             <Separator prefWidth="200.0" />
-            <Button fx:id="buttonAddQuestion" mnemonicParsing="false" text="Lägg Till Fråga" />
-            <VBox fx:id="vboxAddQuestions" prefHeight="200.0" prefWidth="100.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="TOP_CENTER" prefHeight="30.0" spacing="10.0">
+               <children>
+                  <Button fx:id="buttonAddMultipleAnswerQuestion" mnemonicParsing="false" text="Lägg till Multisvars Fråga" />
+                  <Button fx:id="buttonAddSingleAnswerQuestion" mnemonicParsing="false" text="Lägg till singelsvars fråga" />
+               </children>
+            </HBox>
+            <VBox fx:id="vboxAddQuestions" />
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="buttonCreateQuiz" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Skapa Quiz" />
                </children>

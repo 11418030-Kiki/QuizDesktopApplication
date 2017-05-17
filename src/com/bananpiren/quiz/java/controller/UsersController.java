@@ -79,6 +79,7 @@ public class UsersController {
             public void changed(ObservableValue<? extends User> observable, User oldValue, User newValue) {
                 if(personTable.getSelectionModel().getSelectedItem() != null) {
                     editButton.setDisable(false);
+                    deleteButton.setDisable(false);
 
                     storedSelectedTableIndex = personTable.getSelectionModel().getSelectedIndex();
                     storedUserId = data.get(storedSelectedTableIndex).getUserId();
@@ -99,6 +100,8 @@ public class UsersController {
                     lastNameLabel.setText("");
                     mailLabel.setText("");
                     userLevelLabel.setText("");
+                    editButton.setDisable(true);
+                    deleteButton.setDisable(true);
                 }
             }
         });

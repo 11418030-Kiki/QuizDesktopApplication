@@ -18,6 +18,14 @@ public class CreateQuizController {
     private int answerNumber = 1;
     private int timeLimit = 0;
 
+    private TextField newQuestion;
+
+    public TextField[] newAnswer;
+    public CheckBox[] answerCheckbox;
+    public RadioButton[] radioButtonAnswer;
+
+    private ArrayList<String> questionList = new ArrayList<>();
+
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
 
@@ -49,13 +57,10 @@ public class CreateQuizController {
     private Label labelMinutes;
 
     @FXML
-    private Button buttonAddQuestion;
+    private Button buttonAddSingleAnswerQuestion;
 
-    private TextField newQuestion;
-
-    private TextField newAnswer1, newAnswer2, newAnswer3, newAnswer4;
-
-    private CheckBox answerCheckbox1, answerCheckbox2, answerCheckbox3, answerCheckbox4;
+    @FXML
+    private Button buttonAddMultipleAnswerQuestion;
 
     @FXML
     private void initialize() {
@@ -63,14 +68,24 @@ public class CreateQuizController {
         // Timelimit
         timeLimitCheckBox.setOnAction(e -> {
             if (timeLimitCheckBox.isSelected()) {
+                timeLimitGridPane.setMaxHeight(60);
+                timeLimitGridPane.setPrefHeight(60);
+                timeLimitGridPane.setMinHeight(60);
                 timeLimitGridPane.setVisible(true);
             } else {
                 timeLimitGridPane.setVisible(false);
+                timeLimitGridPane.setMaxHeight(0);
+                timeLimitGridPane.setPrefHeight(0);
+                timeLimitGridPane.setMinHeight(0);
             }
         });
 
-        buttonAddQuestion.setOnAction(e -> {
-            addQuestion();
+        buttonAddMultipleAnswerQuestion.setOnAction(e -> {
+            addMultipleAnswerQuestion();
+        });
+
+        buttonAddSingleAnswerQuestion.setOnAction(e -> {
+            addSingleAnswerQuestion();
         });
 
         buttonCreateQuiz.setOnAction(e -> {
@@ -127,56 +142,74 @@ public class CreateQuizController {
             alert.showAndWait();
         } else {
             // add last question
-            theQuestion();
-            theAnswers();
+//            theQuestion();
+//            theAnswers();
             createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
         }
 
     }
 
-    private void theQuestion() {
-        // add question to list
-        if(questionNumber > 1) {
-            createQuizServices.addQuizQuestionObject(newQuestion.getText());
-        }
-    }
+//    private void theQuestion() {
+//        // add question to list
+//        if(questionNumber > 1) {
+//            createQuizServices.addQuizQuestionObject(newQuestion.getText());
+//        }
+//    }
+//
+//    private void theAnswers() {
+//        if(questionNumber > 1) {
+//            createQuizServices.addQuizAnswerObject(newAnswer1.getText(), answerCheckbox1.isSelected());
+//            createQuizServices.addQuizAnswerObject(newAnswer2.getText(), answerCheckbox2.isSelected());
+//            createQuizServices.addQuizAnswerObject(newAnswer3.getText(), answerCheckbox3.isSelected());
+//            createQuizServices.addQuizAnswerObject(newAnswer4.getText(), answerCheckbox4.isSelected());
+//        }
+//    }
 
-    private void theAnswers() {
-        if(questionNumber > 1) {
-            createQuizServices.addQuizAnswerObject(newAnswer1.getText(), answerCheckbox1.isSelected());
-            createQuizServices.addQuizAnswerObject(newAnswer2.getText(), answerCheckbox2.isSelected());
-            createQuizServices.addQuizAnswerObject(newAnswer3.getText(), answerCheckbox3.isSelected());
-            createQuizServices.addQuizAnswerObject(newAnswer4.getText(), answerCheckbox4.isSelected());
-        }
-    }
+    private void addMultipleAnswerQuestion() {
+//        theQuestion();
+//        theAnswers();
 
-    private void addQuestion() {
-        theQuestion();
-        theAnswers();
-
-        // TODO: add questions and answers
         newQuestion = new TextField();
+        newQuestion.setPromptText("Fråga " + questionNumber);
+        vboxAddQuestions.getChildren().add(newQuestion);
 
-        newQuestion.setPromptText("Fråga " + questionNumber++);
+        newAnswer = new TextField[4];
+        answerCheckbox = new CheckBox[4];
 
-        newAnswer1 = new TextField();
-        newAnswer1.setPromptText("Svar " + answerNumber++);
-        answerCheckbox1 = new CheckBox();
+        for (int i = 0; i < 4; i++) {
+            newAnswer[i] = new TextField();
+            newAnswer[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
+            vboxAddQuestions.getChildren().add(newAnswer[i]);
 
-        newAnswer2 = new TextField();
-        newAnswer2.setPromptText("Svar " + answerNumber++);
-        answerCheckbox2 = new CheckBox();
+            answerCheckbox[i] = new CheckBox("Rätt svar");
+            vboxAddQuestions.getChildren().add(answerCheckbox[i]);
+        }
+        questionList.add(newQuestion.getPromptText());
+        questionNumber++;
+    }
 
-        newAnswer3 = new TextField();
-        newAnswer3.setPromptText("Svar " + answerNumber++);
-        answerCheckbox3 = new CheckBox();
+    private void addSingleAnswerQuestion() {
+//        theQuestion();
+//        theAnswers();
 
-        newAnswer4 = new TextField();
-        newAnswer4.setPromptText("Svar " + answerNumber++);
-        answerCheckbox4 = new CheckBox();
+        newQuestion = new TextField();
+        newQuestion.setPromptText("Fråga " + questionNumber);
+        vboxAddQuestions.getChildren().add(newQuestion);
 
+        newAnswer = new TextField[4];
+        ToggleGroup answerToggleGroup = new ToggleGroup();
+        radioButtonAnswer = new RadioButton[4];
 
-        vboxAddQuestions.getChildren().addAll(newQuestion, newAnswer1, answerCheckbox1, newAnswer2, answerCheckbox2, newAnswer3, answerCheckbox3, newAnswer4, answerCheckbox4);
+        for (int i = 0; i < 4; i++) {
+            newAnswer[i] = new TextField();
+            newAnswer[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
+            vboxAddQuestions.getChildren().add(newAnswer[i]);
 
+            radioButtonAnswer[i] = new RadioButton("Rätt svar");
+            radioButtonAnswer[i].setToggleGroup(answerToggleGroup);
+            vboxAddQuestions.getChildren().add(radioButtonAnswer[i]);
+        }
+        questionList.add(newQuestion.getPromptText());
+        questionNumber++;
     }
 }

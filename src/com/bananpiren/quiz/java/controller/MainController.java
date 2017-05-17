@@ -80,7 +80,7 @@ public class MainController {
     }
 
     @FXML
-    void showHome() {
+    public void showHome() {
         try {
             main.showStart();
         } catch (IOException e) {

@@ -67,7 +67,7 @@
                      <children>
                         <Button fx:id="addButton" mnemonicParsing="false" prefWidth="65.0" text="Lägg till" />
                         <Button fx:id="editButton" disable="true" mnemonicParsing="false" prefWidth="65.0" text="Redigera" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" prefWidth="65.0" text="Ta bort" />
+                        <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" prefWidth="65.0" text="Ta bort" />
                      </children>
                   </HBox>
                </children>
