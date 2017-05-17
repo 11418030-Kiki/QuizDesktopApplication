@@ -34,12 +34,19 @@ public class CreateQuizService {
         quizQuestionsList.add(q);
     }
 
-    public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate) {
+    public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate, ArrayList<String> qList) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
+
+        for(String s : qList) {
+            QuizQuestions q = new QuizQuestions();
+            q.setQuestion(s);
+            quizQuestionsList.add(q);
+        }
+
 
         // create quiz entity oneToMany
         Quiz quiz = new Quiz();

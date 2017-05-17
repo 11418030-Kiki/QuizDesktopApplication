@@ -145,21 +145,19 @@ public class CreateQuizController {
             // add last question
             theQuestion();
             theAnswers();
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
+
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList);
+
         }
     }
 
     private void theQuestion() {
-
         // add question to list
         if (questionNumber > 1) {
             // adding the input to the list
             qList.add(newQuestion.getText());
 
-            // adding question to the QuestionsObject
-            for (String s : qList) {
-                createQuizServices.addQuizQuestionObject(s);
-            }
+
         }
     }
 
@@ -172,7 +170,7 @@ public class CreateQuizController {
     }
 
     private void addMultipleAnswerQuestion() {
-//        theQuestion();
+        theQuestion();
         theAnswers();
 
         newQuestion = new TextField();
