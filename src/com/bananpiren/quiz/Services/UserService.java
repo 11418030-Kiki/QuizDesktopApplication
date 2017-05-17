@@ -13,6 +13,29 @@ public class UserService {
     public UserService() {
     }
 
+    //Method to create user
+    public Object createUser(String firstName, String lastName, String email, String password, String accountLevel) {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setAccountLevel(accountLevel);
+
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
+        return null;
+    }
+
     //Getting all users from database and return them in a list as User objects.
     public List<User> findAllUsers() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -23,7 +46,7 @@ public class UserService {
         return query.getResultList();
     }
 
-
+    //Updating user information
     public void updateUser(int userId, String firstName, String lastName, String userEmail, String userPassword, String userAccountLevel) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
 
@@ -42,6 +65,7 @@ public class UserService {
         entityManager.close();
     }
 
+    //Deleting user by user ID
     public void deleteUser(int userId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
 

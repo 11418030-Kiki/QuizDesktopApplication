@@ -24,6 +24,7 @@ public class LoginController {
     private Stage primaryStage = new Stage();
 
     public LoginController(){
+
     }
 
     @FXML

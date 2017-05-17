@@ -1,20 +1,17 @@
 package com.bananpiren.quiz.java.controller;
 
-import com.bananpiren.quiz.Entity.User;
-import com.bananpiren.quiz.Services.CreateUserService;
-import javafx.application.Platform;
+import com.bananpiren.quiz.Services.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import sun.security.util.Password;
 
 import java.util.Optional;
 
 public class PersonAddDialogController {
 
-    private CreateUserService createUserService = new CreateUserService();
+    private UserService userService = new UserService();
 
     ObservableList<String> userLevel = FXCollections
             .observableArrayList("Användare", "Admin");
@@ -92,7 +89,7 @@ public class PersonAddDialogController {
                 String accountLevel = userLevelChoiceBox.getValue();
 
                 try {
-                    createUserService.createUser(firstName, lastName, userMail, password, accountLevel);
+                    userService.createUser(firstName, lastName, userMail, password, accountLevel);
 
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Succe!");

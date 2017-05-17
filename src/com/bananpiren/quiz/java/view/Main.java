@@ -1,5 +1,6 @@
 package com.bananpiren.quiz.java.view;
 
+import com.bananpiren.quiz.java.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,11 +14,24 @@ public class Main extends Application {
     private static Stage loginStage;
     private static BorderPane mainLayout;
 
+//  Ta bort detta när inlogg ska läggas till!
+    private static Stage primaryStage = new Stage();
+    private MainController mainController;
+//  --------------------------------------
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         loginStage = primaryStage;
         loginStage.setTitle("Bananpiren Dekstop Quiz");
-        showLoginScreen();
+
+//      Avkommentera när loggin ska läggas till
+//      showLoginScreen(); <-
+
+//      Ta bort detta när inlogg ska läggas till!
+        showMainView(primaryStage);
+        showStart();
+//      ----------
+
     }
 
     // Loading login screen
@@ -39,7 +53,10 @@ public class Main extends Application {
         Scene scene = new Scene(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
-        loginStage.hide();
+
+//        Avkommantera detta när loggin ska läggas till
+//        loginStage.hide(); <-
+//        ---------------------
     }
 
     // Start page - welcoming user
