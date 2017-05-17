@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static Stage loginStage;
-    private static BorderPane mainLayout;
+    public static BorderPane mainLayout;
 
 //  Ta bort detta när inlogg ska läggas till!
     private static Stage primaryStage = new Stage();

@@ -2,13 +2,21 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Services.FindQuizService;
+import com.bananpiren.quiz.java.view.Main;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 public class StartController {
 
@@ -43,8 +51,26 @@ public class StartController {
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
         quizTableView.setItems(data);
 
-        takeQuizButton.setOnAction(e->{
+        takeQuizButton.setDisable(true);
+        quizTableView.getSelectionModel().selectedIndexProperty().addListener(y->{
+            takeQuizButton.setDisable(false);
+        });
+
+        takeQuizButton.setOnAction((ActionEvent e) ->{
+
             int currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
+                BorderPane takeQuiz = loader.load();
+                Main.mainLayout.setCenter(takeQuiz);
+            }catch(IOException f){
+                System.out.println(f);
+            }
+
         });
     }
 }

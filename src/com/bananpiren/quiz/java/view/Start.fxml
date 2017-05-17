@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.StartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.StartController">
    <top>
       <Label text="Start" BorderPane.alignment="CENTER">
          <font>
@@ -19,14 +19,14 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="quizTableView" prefHeight="724.0" prefWidth="544.0">
+            <TableView fx:id="quizTableView" prefHeight="646.0" prefWidth="544.0">
               <columns>
                 <TableColumn fx:id="quizIdColumn" prefWidth="107.0" text="QuizId" />
                 <TableColumn fx:id="quizNameColumn" prefWidth="218.0" text="Quiz Name" />
                   <TableColumn fx:id="quizEndDateColumn" prefWidth="157.0" text="Quiz End Date" />
               </columns>
             </TableView>
-            <Button fx:id="takeQuizButton" layoutX="568.0" layoutY="672.0" mnemonicParsing="false" text="Ta Quiz" />
+            <Button fx:id="takeQuizButton" layoutX="568.0" layoutY="592.0" mnemonicParsing="false" text="Ta Quiz" />
          </children>
       </Pane>
    </center>
