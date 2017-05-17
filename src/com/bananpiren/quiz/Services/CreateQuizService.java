@@ -12,25 +12,26 @@ import java.util.ArrayList;
 
 public class CreateQuizService {
 
+
     private ArrayList<QuizQuestions> quizQuestionsList = new ArrayList<>();
     private ArrayList<QuestionAnswers> questionAnswersList = new ArrayList<>();
 
     public CreateQuizService() {
     }
 
-    public void addQuizQuestionObject(String question) {
-        QuizQuestions q = new QuizQuestions();
-        q.setQuestion(question);
-        q.setAnswerList(questionAnswersList);
-        quizQuestionsList.add(q);
-    }
-
-    // save every answer and correct marker
+    // Creating the QuestionAnswersObjects and adding them to a list
     public void addQuizAnswerObject(String answer, boolean correct) {
         QuestionAnswers qa = new QuestionAnswers();
         qa.setAnswer(answer);
         qa.setCorrectAnswer(correct);
         questionAnswersList.add(qa);
+    }
+
+    // Creating the QuizQuestionsObjects and adding them to a list
+    public void addQuizQuestionObject(String question) {
+        QuizQuestions q = new QuizQuestions();
+        q.setQuestion(question);
+        quizQuestionsList.add(q);
     }
 
     public void createQuiz(String quizName, int timeLimit, LocalDate quizStartDate, LocalDate quizEndDate) {
@@ -39,16 +40,6 @@ public class CreateQuizService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-
-        // persist QuizQuestions entity
-        for (QuizQuestions qq : quizQuestionsList) {
-            entityManager.persist(qq);
-        }
-
-        // persist QuestionAnswers entity
-        for (QuestionAnswers qa : questionAnswersList) {
-            entityManager.persist(qa);
-        }
 
         // create quiz entity oneToMany
         Quiz quiz = new Quiz();
@@ -61,14 +52,25 @@ public class CreateQuizService {
         // persist quiz
         entityManager.persist(quiz);
 
+
+        // persist QuestionAnswers entity
+        for(QuestionAnswers qa : questionAnswersList) {
+            entityManager.persist(qa);
+        }
+
+        // persist QuizQuestions entity and create OneToMany
+        for (QuizQuestions qq : quizQuestionsList) {
+            entityManager.persist(qq);
+
+            // adding the QuestionAnswersObjects to every QuizQuestionEntity
+            qq.setAnswerList(questionAnswersList);
+        }
+
+
+
         entityManager.getTransaction().commit();
 
         entityManager.close();
         entityManagerFactory.close();
-
-//        // nollställ listorna för nästa quiz
-//        quizQuestionsList.clear();
-//        quizQuestionsList.clear();
-
     }
 }
