@@ -25,6 +25,7 @@ public class QuizQuestions {
     @OneToMany( targetEntity = QuestionAnswers.class)
     private List answerList;
 
+
     public QuizQuestions() {
         super();
     }

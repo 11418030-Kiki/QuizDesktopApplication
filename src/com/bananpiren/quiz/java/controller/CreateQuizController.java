@@ -25,6 +25,7 @@ public class CreateQuizController {
     public RadioButton[] radioButtonAnswer;
 
     private ArrayList<String> questionList = new ArrayList<>();
+    private ArrayList<String> qList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -142,32 +143,35 @@ public class CreateQuizController {
             alert.showAndWait();
         } else {
             // add last question
-//            theQuestion();
-//            theAnswers();
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
-        }
+            theQuestion();
+            theAnswers();
 
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList);
+
+        }
     }
 
-//    private void theQuestion() {
-//        // add question to list
-//        if(questionNumber > 1) {
-//            createQuizServices.addQuizQuestionObject(newQuestion.getText());
-//        }
-//    }
-//
-//    private void theAnswers() {
-//        if(questionNumber > 1) {
-//            createQuizServices.addQuizAnswerObject(newAnswer1.getText(), answerCheckbox1.isSelected());
-//            createQuizServices.addQuizAnswerObject(newAnswer2.getText(), answerCheckbox2.isSelected());
-//            createQuizServices.addQuizAnswerObject(newAnswer3.getText(), answerCheckbox3.isSelected());
-//            createQuizServices.addQuizAnswerObject(newAnswer4.getText(), answerCheckbox4.isSelected());
-//        }
-//    }
+    private void theQuestion() {
+        // add question to list
+        if (questionNumber > 1) {
+            // adding the input to the list
+            qList.add(newQuestion.getText());
+
+
+        }
+    }
+
+    private void theAnswers() {
+        if (questionNumber > 1) {
+            for (int i = 0; i < newAnswer.length; i++) {
+                createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+            }
+        }
+    }
 
     private void addMultipleAnswerQuestion() {
-//        theQuestion();
-//        theAnswers();
+        theQuestion();
+        theAnswers();
 
         newQuestion = new TextField();
         newQuestion.setPromptText("Fråga " + questionNumber);
@@ -184,6 +188,7 @@ public class CreateQuizController {
             answerCheckbox[i] = new CheckBox("Rätt svar");
             vboxAddQuestions.getChildren().add(answerCheckbox[i]);
         }
+
         questionList.add(newQuestion.getPromptText());
         questionNumber++;
     }
