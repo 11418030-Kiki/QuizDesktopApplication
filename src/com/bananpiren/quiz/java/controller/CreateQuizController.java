@@ -1,10 +1,9 @@
 package com.bananpiren.quiz.java.controller;
 
-import com.bananpiren.quiz.Entity.QuestionAnswers;
-import com.bananpiren.quiz.Entity.QuizQuestions;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import com.bananpiren.quiz.Services.CreateQuizService;
 
@@ -25,10 +24,10 @@ public class CreateQuizController {
     public TextField[] newAnswer;
     public CheckBox[] answerCheckbox;
     public RadioButton[] radioButtonAnswer;
+    public HBox[] hBox;
 
     private ArrayList<String> questionList = new ArrayList<>();
-    private ArrayList<QuizQuestions> qList = new ArrayList<>();
-    private ArrayList<QuestionAnswers> aList = new ArrayList<>();
+    private ArrayList<String> qList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -149,7 +148,7 @@ public class CreateQuizController {
             theQuestion();
             theAnswers();
 
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList, aList);
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList);
 
         }
     }
@@ -158,24 +157,16 @@ public class CreateQuizController {
         // add question to list
         if (questionNumber > 1) {
             // adding the input to the list
-            QuizQuestions q = new QuizQuestions();
-            q.setQuestion(newQuestion.getText());
-            qList.add(q);
+            qList.add(newQuestion.getText());
+
 
         }
     }
 
-    // cascadetype, primary key eventuellt som kopplas till
-    // foreignkey
     private void theAnswers() {
         if (questionNumber > 1) {
             for (int i = 0; i < newAnswer.length; i++) {
-                QuestionAnswers qa = new QuestionAnswers();
-                qa.setAnswer(newAnswer[i].getText());
-                qa.setCorrectAnswer(answerCheckbox[i].isSelected());
-                aList.add(qa);
-////              createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
-//                aList.add(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+                createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
             }
         }
     }
@@ -184,48 +175,73 @@ public class CreateQuizController {
         theQuestion();
         theAnswers();
 
+        Label questionLabel = new Label();
+        questionLabel.setText("Fråga " + questionNumber);
         newQuestion = new TextField();
-        newQuestion.setPromptText("Fråga " + questionNumber);
-        vboxAddQuestions.getChildren().add(newQuestion);
+        newQuestion.setText("Fråga " + questionNumber);
+        newQuestion.setMaxWidth(300);
+        vboxAddQuestions.getChildren().addAll(questionLabel, newQuestion);
 
         newAnswer = new TextField[4];
         answerCheckbox = new CheckBox[4];
+        hBox = new HBox[4];
 
         for (int i = 0; i < 4; i++) {
+            hBox[i] = new HBox();
+            Button deleteButton = new Button("X");
             newAnswer[i] = new TextField();
-            newAnswer[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
-            vboxAddQuestions.getChildren().add(newAnswer[i]);
+            newAnswer[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
+            hBox[i].getChildren().addAll(deleteButton, newAnswer[i]);
 
             answerCheckbox[i] = new CheckBox("Rätt svar");
-            vboxAddQuestions.getChildren().add(answerCheckbox[i]);
+            hBox[i].getChildren().add(answerCheckbox[i]);
+
+//            deleteButton.setOnAction(e -> {
+//                vboxAddQuestions.getChildren().removeAll(this.vboxAddQuestions);
+//            });
+
+            vboxAddQuestions.getChildren().add(hBox[i]);
         }
 
-        questionList.add(newQuestion.getPromptText());
         questionNumber++;
+        answerNumber = 1;
     }
 
     private void addSingleAnswerQuestion() {
 //        theQuestion();
 //        theAnswers();
 
+        Label questionLabel = new Label();
+        questionLabel.setText("Fråga " + questionNumber);
         newQuestion = new TextField();
-        newQuestion.setPromptText("Fråga " + questionNumber);
-        vboxAddQuestions.getChildren().add(newQuestion);
+        newQuestion.setText("Fråga " + questionNumber);
+        newQuestion.setMaxWidth(300);
+        vboxAddQuestions.getChildren().addAll(questionLabel, newQuestion);
 
         newAnswer = new TextField[4];
         ToggleGroup answerToggleGroup = new ToggleGroup();
         radioButtonAnswer = new RadioButton[4];
+        hBox = new HBox[4];
 
         for (int i = 0; i < 4; i++) {
+            hBox[i] = new HBox();
+            Button deleteButton = new Button("X");
             newAnswer[i] = new TextField();
-            newAnswer[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
-            vboxAddQuestions.getChildren().add(newAnswer[i]);
+            newAnswer[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
+            hBox[i].getChildren().addAll(deleteButton, newAnswer[i]);
 
             radioButtonAnswer[i] = new RadioButton("Rätt svar");
             radioButtonAnswer[i].setToggleGroup(answerToggleGroup);
-            vboxAddQuestions.getChildren().add(radioButtonAnswer[i]);
+            hBox[i].getChildren().add(radioButtonAnswer[i]);
+
+//            deleteButton.setOnAction(e -> {
+//                vboxAddQuestions.getChildren().removeAll(this.vboxAddQuestions);
+//            });
+
+            vboxAddQuestions.getChildren().add(hBox[i]);
         }
         questionList.add(newQuestion.getPromptText());
         questionNumber++;
+        answerNumber = 1;
     }
 }
