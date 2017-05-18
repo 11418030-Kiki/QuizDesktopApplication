@@ -69,6 +69,9 @@ public class CreateQuizController {
     private Button buttonAddMultipleAnswerQuestion;
 
     @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private void initialize() {
 
         // Timelimit
@@ -85,6 +88,11 @@ public class CreateQuizController {
                 timeLimitGridPane.setMinHeight(0);
                 sliderTime.setValue(0);
             }
+        });
+
+        // Autoscroll when adding questions
+        vboxAddQuestions.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue(((Double) newValue).doubleValue());
         });
 
         buttonAddMultipleAnswerQuestion.setOnAction(e -> {
