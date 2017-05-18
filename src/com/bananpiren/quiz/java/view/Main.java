@@ -4,6 +4,7 @@ import com.bananpiren.quiz.java.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -73,7 +74,7 @@ public class Main extends Application {
     public static void showCreateQuiz() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CreateQuiz.fxml"));
-        BorderPane mainMenu = loader.load();
+        ScrollPane mainMenu = loader.load();
         mainLayout.setCenter(mainMenu);
     }
 
