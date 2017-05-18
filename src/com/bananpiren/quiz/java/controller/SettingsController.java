@@ -4,8 +4,10 @@ import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class SettingsController {
@@ -26,33 +28,55 @@ public class SettingsController {
     private Button usernameBtn;
 
     @FXML
-    private TextField firstNameTextField;
-
-    @FXML
-    private TextField lastNameTextField;
-
-    @FXML
     private void initialize(){
-        firstNameTextField.setText(currentUser.getFirstName());
-        lastNameTextField.setText(currentUser.getLastName());
         emailTextField.setText(currentUser.getEmail());
-        passwordTextField.setText(currentUser.getPassword());
+
 
         usernameBtn.setOnAction(e->{
-            // todo: logik som hämtar user info beroende på vem som är inloggad
+            String regexMail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+            StringBuilder warnings = new StringBuilder();
 
             String email = emailTextField.getText();
             String password = passwordTextField.getText();
             String confirmPassword = confirmPasswordTextField.getText();
-            String firstName = firstNameTextField.getText();
-            String lastName = lastNameTextField.getText();
 
-            userService.updateUser(Main.currentUserId, firstName, lastName, email, password, "Användare");
+            if (email.isEmpty()) {
+                email = currentUser.getEmail();
+            }else if(!email.matches(regexMail)) {
+                warnings.append("Mailadress har fel format!\n" + "Rätt format är xxx@xxx.xx\n");
+            } else {
+               emailTextField.getText();
+            }
+            if(password.isEmpty()){
+                password = currentUser.getPassword();
+            }else if(!password.matches(confirmPassword)){
+                warnings.append("Lösenord matchar inte!");
+            }else{
+                passwordTextField.getText();
+                confirmPasswordTextField.getText();
+            }
+
+            if(warnings.length() > 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("" + warnings);
+                alert.setContentText("Försök igen!");
+
+                alert.showAndWait();
+            } else {
+                userService.updateUser(Main.currentUserId, currentUser.getFirstName(), currentUser.getLastName(), email, password, currentUser.getAccountLevel());
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succe!");
+                alert.setHeaderText("Användare redigerad");
+                alert.showAndWait();
+            }
         });
     }
 
     public SettingsController() {
-        //TODO: Lägg till nuvarandes användar id istället för 10!
         currentUser = userService.findUserById(Main.currentUserId);
     }
 }

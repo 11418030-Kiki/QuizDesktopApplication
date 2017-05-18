@@ -20,7 +20,7 @@ public class Main extends Application {
     private MainController mainController;
 //  --------------------------------------
 
-    public static int currentUserId = 11;
+    public static int currentUserId = 22;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

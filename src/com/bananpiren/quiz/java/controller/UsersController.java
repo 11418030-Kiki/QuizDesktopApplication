@@ -61,17 +61,12 @@ public class UsersController {
     private Button addButton;
 
     public UsersController() {
-        // TODO: Make refresh method
-        data.addAll(userService.findAllUsers());
+        loadTableData();
     }
 
     @FXML
     private void initialize() {
-        // Setting data to right column "cellvalue"
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-        levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("accountLevel"));
-        personTable.setItems(data);
+        setTableData();
 
         // Get tableselection and setting labels
         personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
@@ -113,7 +108,21 @@ public class UsersController {
         deleteButton.setOnAction(e -> handleDeletePerson());
     }
 
-    public void showPersonAddDialog() {
+    private void loadTableData() {
+        data.removeAll();
+        data.addAll(userService.findAllUsers());
+    }
+
+    // Setting data to right column "cellvalue"
+    private void setTableData() {
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("accountLevel"));
+        personTable.setItems(data);
+        //TODO: Få table view att refresha efter att data ändrats
+    }
+
+    private void showPersonAddDialog() {
         try {
             // Load FXML file to dialog stage
             FXMLLoader loader = new FXMLLoader();
@@ -133,9 +142,11 @@ public class UsersController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        loadTableData();
+        setTableData();
     }
 
-    public void showPersonEditDialog() {
+    private void showPersonEditDialog() {
         try {
             // Load FXML file to dialog stage
             FXMLLoader loader = new FXMLLoader();
@@ -153,9 +164,12 @@ public class UsersController {
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        loadTableData();
+//        setTableData();
     }
 
     @FXML
@@ -175,15 +189,15 @@ public class UsersController {
         }
     }
 
-    public int getStoredUserId() {
+    int getStoredUserId() {
         return storedUserId;
     }
 
-    public int getStoredSelectedTableIndex() {
+    int getStoredSelectedTableIndex() {
         return storedSelectedTableIndex;
     }
 
-    public ObservableList<User> getData() {
+    ObservableList<User> getData() {
         return data;
     }
 }

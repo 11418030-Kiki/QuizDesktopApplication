@@ -4,26 +4,14 @@ import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class PersonEditDialogController {
 
-    private ObservableList<String> userLevel = FXCollections
-            .observableArrayList("Användare", "Admin");
-
+    private ObservableList<String> userLevel = FXCollections.observableArrayList("Användare", "Admin");
     private int storedUserId;
-    private int storedUserTableIndex;
-    private ObservableList<User> data = FXCollections.observableArrayList();
-    private String storedFirstName;
-    private String storedLastName;
-    private String storedEmail;
-    private String storedAccountLevel;
 
     @FXML
     private TextField mailTextField;
@@ -44,48 +32,93 @@ public class PersonEditDialogController {
     private TextField firstNameTextfield;
 
     @FXML
+    private PasswordField passwordTextField;
+
+    @FXML
     private void initialize() {
         UserService userService = new UserService();
         UsersController usersController = new UsersController();
 
         this.storedUserId = usersController.getStoredUserId();
-        this.storedUserTableIndex = usersController.getStoredSelectedTableIndex();
-        this.data = usersController.getData();
+        int storedUserTableIndex = usersController.getStoredSelectedTableIndex();
+        ObservableList<User> data = usersController.getData();
 
         userLevelChoiceBox.setItems(userLevel);
-        userLevelChoiceBox.getSelectionModel().select(0);
+
+        String storedUserAccountLevel = data.get(storedUserTableIndex).getAccountLevel();
+
+        if (storedUserAccountLevel.equals("Användare")) {
+            userLevelChoiceBox.getSelectionModel().select(0);
+        } else {
+            userLevelChoiceBox.getSelectionModel().select(1);
+        }
+
+        firstNameTextfield.setPromptText(data.get(storedUserTableIndex).getFirstName());
+        lastNameTextField.setPromptText(data.get(storedUserTableIndex).getLastName());
+        mailTextField.setPromptText(data.get(storedUserTableIndex).getEmail());
+        passwordTextField.setPromptText(data.get(storedUserTableIndex).getPassword());
 
         firstNameTextfield.setText(data.get(storedUserTableIndex).getFirstName());
         lastNameTextField.setText(data.get(storedUserTableIndex).getLastName());
         mailTextField.setText(data.get(storedUserTableIndex).getEmail());
+        passwordTextField.setText(data.get(storedUserTableIndex).getPassword());
 
-        saveButton.setOnAction((ActionEvent e) -> {
-            if (firstNameTextfield != null) {
-                this.storedFirstName = firstNameTextfield.getText();
+        saveButton.setOnAction(e -> {
+            String regexMail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+            String firstName = firstNameTextfield.getText();
+            String lastName = lastNameTextField.getText();
+            String userMail = mailTextField.getText();
+            String password = passwordTextField.getText();
+
+            StringBuilder warnings = new StringBuilder();
+
+            // Validate input
+            if (firstName == null || firstName.trim().isEmpty()) {
+                warnings.append("Förnamn är inte ifyllt!\n");
             } else {
-                this.storedFirstName = data.get(storedUserTableIndex).getFirstName();
+                firstNameTextfield.getText();
             }
-            if (lastNameTextField != null) {
-                this.storedLastName = lastNameTextField.getText();
+            if (lastName == null || lastName.trim().isEmpty()) {
+                warnings.append("Efternamn är inte ifyllt!\n");
             } else {
-                this.storedLastName = data.get(storedUserTableIndex).getLastName();
+                lastNameTextField.getText();
             }
-            if (mailTextField != null) {
-                this.storedEmail = mailTextField.getText();
+            if (userMail == null || userMail.trim().isEmpty()) {
+                warnings.append("Mailadress är inte ifyllt!\n");
+            }
+            if(!userMail.matches(regexMail)) {
+                warnings.append("Mailadress har fel format!\n" + "Rätt format är xxx@xxx.xx\n");
             } else {
-                this.storedEmail = data.get(storedUserTableIndex).getEmail();
+                mailTextField.getText();
+            }
+            if(password == null || password.trim().isEmpty()) {
+                warnings.append("Lösenord är inte ifyllt!\n");
+            }else {
+                passwordTextField.getText();
             }
 
-            this.storedAccountLevel = userLevelChoiceBox.getValue();
+            if(warnings.length() > 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("" + warnings);
+                alert.setContentText("Försök igen!");
 
-            userService.updateUser(storedUserId, storedFirstName, storedLastName, storedEmail, data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
+                alert.showAndWait();
+            } else {
+                String accountLevel = userLevelChoiceBox.getValue();
 
+                userService.updateUser(storedUserId, firstName, lastName, userMail, password, accountLevel);
 
-            //TODO: Add user feedback "Alert Box" if success and update list
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succe!");
+                alert.setHeaderText("Användare redigerad");
+                alert.showAndWait();
 
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
-
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                stage.close();
+            }
         });
 
         cancelButton.setOnAction(e -> {
