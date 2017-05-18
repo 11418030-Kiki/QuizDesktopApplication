@@ -1,5 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.QuestionAnswers;
+import com.bananpiren.quiz.Entity.QuizQuestions;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -27,7 +29,8 @@ public class CreateQuizController {
     public HBox[] hBox;
 
     private ArrayList<String> questionList = new ArrayList<>();
-    private ArrayList<String> qList = new ArrayList<>();
+    private ArrayList<QuizQuestions> qList = new ArrayList<>();
+    private ArrayList<QuestionAnswers> aList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -80,6 +83,7 @@ public class CreateQuizController {
                 timeLimitGridPane.setMaxHeight(0);
                 timeLimitGridPane.setPrefHeight(0);
                 timeLimitGridPane.setMinHeight(0);
+                sliderTime.setValue(0);
             }
         });
 
@@ -95,7 +99,7 @@ public class CreateQuizController {
             try {
                 createQuiz();
             } catch (ParseException e1) {
-                System.out.println("Coulnd't create quiz!");
+                System.out.println("Couldn't create quiz!");
             }
         });
 
@@ -109,7 +113,6 @@ public class CreateQuizController {
     }
 
     private void createQuiz() throws ParseException {
-        //TODO: add logic for taking in information and adding quiz to database
         StringBuilder warnings = new StringBuilder();
 
         String quizName = textFieldQuizName.getText();
@@ -148,7 +151,7 @@ public class CreateQuizController {
             theQuestion();
             theAnswers();
 
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList);
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList, aList);
 
         }
     }
@@ -157,16 +160,24 @@ public class CreateQuizController {
         // add question to list
         if (questionNumber > 1) {
             // adding the input to the list
-            qList.add(newQuestion.getText());
-
+            QuizQuestions q = new QuizQuestions();
+            q.setQuestion(newQuestion.getText());
+            qList.add(q);
 
         }
     }
 
+    // cascadetype, primary key eventuellt som kopplas till
+    // foreignkey
     private void theAnswers() {
         if (questionNumber > 1) {
             for (int i = 0; i < newAnswer.length; i++) {
-                createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+                QuestionAnswers qa = new QuestionAnswers();
+                qa.setAnswer(newAnswer[i].getText());
+                qa.setCorrectAnswer(answerCheckbox[i].isSelected());
+                aList.add(qa);
+////              createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+//                aList.add(newAnswer[i].getText(), answerCheckbox[i].isSelected());
             }
         }
     }
@@ -203,6 +214,7 @@ public class CreateQuizController {
             vboxAddQuestions.getChildren().add(hBox[i]);
         }
 
+        questionList.add(newQuestion.getPromptText());
         questionNumber++;
         answerNumber = 1;
     }
@@ -240,6 +252,7 @@ public class CreateQuizController {
 
             vboxAddQuestions.getChildren().add(hBox[i]);
         }
+
         questionList.add(newQuestion.getPromptText());
         questionNumber++;
         answerNumber = 1;
