@@ -1,20 +1,20 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
+import com.bananpiren.quiz.Services.CreateGUIQuestionService;
 import com.bananpiren.quiz.Services.FindQuizService;
 import com.bananpiren.quiz.java.view.Main;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -23,6 +23,7 @@ public class StartController {
     final ObservableList<Quiz> data = FXCollections.observableArrayList();
 
     private FindQuizService findQuizService = new FindQuizService();
+    public int currentQuizId;
 
     @FXML
     private TableColumn<Quiz, Integer> quizIdColumn;
@@ -58,18 +59,25 @@ public class StartController {
 
         takeQuizButton.setOnAction((ActionEvent e) ->{
 
-            int currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+             currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
 
-
+            CreateGUIQuestionService QuestionService = new CreateGUIQuestionService ();
+            VBox newCoolVbox = new VBox();
+            VBox vBox1 = QuestionService.createSingleAnswerQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?");
+            VBox vBox2 = QuestionService.createMultipleChoiceQuestion("Vad innehåller bröd?", "Vatten", "Vetemjöl", "Fisar", "Sten");
+            newCoolVbox.getChildren().addAll(vBox1, vBox2);
 
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
                 BorderPane takeQuiz = loader.load();
+                takeQuiz.setCenter(newCoolVbox);
                 Main.mainLayout.setCenter(takeQuiz);
             }catch(IOException f){
-                System.out.println(f);
+                System.out.println("Couldn't load TakeQuiz.fxml: "+ f);
             }
+
+
 
         });
     }
