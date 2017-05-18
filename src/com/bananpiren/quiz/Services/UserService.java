@@ -55,6 +55,17 @@ public class UserService {
         return user;
     }
 
+    public User findFirstUser() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query query = entityManager.createQuery("SELECT u FROM  User u");
+        List list = query.getResultList();
+        User user = (User) list.get(0);
+
+        return user;
+    }
+
     //Updating user information
     public void updateUser(int userId, String firstName, String lastName, String userEmail, String userPassword, String userAccountLevel) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");

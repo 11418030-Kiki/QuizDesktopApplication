@@ -1,6 +1,9 @@
 package com.bananpiren.quiz.java.view;
 
+import com.bananpiren.quiz.Entity.User;
+import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.controller.MainController;
+import com.bananpiren.quiz.java.controller.UsersController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,12 +23,18 @@ public class Main extends Application {
     private MainController mainController;
 //  --------------------------------------
 
-    public static int currentUserId = 22;
+    private UserService userService = new UserService();
+    private User currentUser = userService.findFirstUser();
+
+
+    public static int currentUserId;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         loginStage = primaryStage;
         loginStage.setTitle("Bananpiren Dekstop Quiz");
+
+        currentUserId = currentUser.getUserId();
 
 //      Avkommentera när loggin ska läggas till
 //      showLoginScreen(); <-
