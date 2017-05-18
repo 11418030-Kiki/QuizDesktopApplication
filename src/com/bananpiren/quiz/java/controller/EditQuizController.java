@@ -1,11 +1,18 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.Quiz;
+import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.view.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -13,6 +20,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EditQuizController {
+
+    final ObservableList<Quiz> data = FXCollections.observableArrayList();
+
+    private QuizService quizService = new QuizService();
 
     @FXML
     private Label numberOfQuestionsLabel;
@@ -39,7 +50,22 @@ public class EditQuizController {
     private Label endDateLimitLabel;
 
     @FXML
+    private TableColumn<Quiz, String> quizNameColumn;
+
+    @FXML
+    private TableView<Quiz> quizTableView;
+
+    public EditQuizController() {
+        data.addAll(quizService.findAllQuiz());
+    }
+
+    @FXML
     private void initialize() {
+
+        // Setting data to right column "cellvalue"
+        quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
+        quizTableView.setItems(data);
+
         editButton.setOnAction(e -> {
             showEditQuizDialog();
         });
