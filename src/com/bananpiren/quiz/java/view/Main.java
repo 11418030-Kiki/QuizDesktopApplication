@@ -23,8 +23,8 @@ public class Main extends Application {
     private MainController mainController;
 //  --------------------------------------
 
-    private UserService userService = new UserService();
-    private User currentUser = userService.findFirstUser();
+//    private UserService userService = new UserService();
+//    private User currentUser = userService.findFirstUser();
 
 
     public static int currentUserId;
@@ -34,7 +34,7 @@ public class Main extends Application {
         loginStage = primaryStage;
         loginStage.setTitle("Bananpiren Dekstop Quiz");
 
-        currentUserId = currentUser.getUserId();
+//        currentUserId = currentUser.getUserId();
 
 //      Avkommentera när loggin ska läggas till
 //      showLoginScreen(); <-
