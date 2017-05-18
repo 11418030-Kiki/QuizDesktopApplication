@@ -2,7 +2,7 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Services.CreateGUIQuestionService;
-import com.bananpiren.quiz.Services.FindQuizService;
+import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +22,7 @@ public class StartController {
 
     final ObservableList<Quiz> data = FXCollections.observableArrayList();
 
-    private FindQuizService findQuizService = new FindQuizService();
+    private QuizService quizService = new QuizService();
     public int currentQuizId;
 
     @FXML
@@ -41,7 +41,7 @@ public class StartController {
     private Button takeQuizButton;
 
     public StartController() {
-        data.addAll(findQuizService.findAllQuiz());
+        data.addAll(quizService.findAllQuiz());
     }
 
     @FXML
