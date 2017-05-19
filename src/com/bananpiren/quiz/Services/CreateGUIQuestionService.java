@@ -9,9 +9,7 @@ import javafx.scene.layout.VBox;
 
 import java.awt.*;
 
-/**
- * Created by Anton on 2017-05-17.
- */
+
 public class CreateGUIQuestionService {
 
     public VBox createSingleAnswerQuestion(String questionName, String answer1, String answer2, String answer3, String answer4){
