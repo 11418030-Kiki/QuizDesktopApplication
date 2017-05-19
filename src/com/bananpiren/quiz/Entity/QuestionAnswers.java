@@ -4,11 +4,6 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 
-/**
- * Created by per on 2017-05-04.
- */
-
-
 @Entity
 public class QuestionAnswers {
 

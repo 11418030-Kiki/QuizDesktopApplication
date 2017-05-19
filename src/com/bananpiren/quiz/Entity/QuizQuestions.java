@@ -3,10 +3,6 @@ package com.bananpiren.quiz.Entity;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by per on 2017-05-04.
- */
-
 @Entity
 @Table
 public class QuizQuestions {
@@ -22,7 +18,7 @@ public class QuizQuestions {
     private int questionId;
     private String question;
 
-    @OneToMany( targetEntity = QuestionAnswers.class)
+    @OneToMany( targetEntity = QuestionAnswers.class, orphanRemoval = true)
     private List answerList;
 
 

@@ -29,7 +29,7 @@ public class Quiz {
     private String quizEndDate;
 
 
-    @OneToMany( targetEntity=QuizQuestions.class )
+    @OneToMany( targetEntity=QuizQuestions.class, orphanRemoval = true)
     private List questionsList;
 
 

@@ -3,15 +3,14 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.view.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -21,9 +20,12 @@ import java.io.IOException;
 
 public class EditQuizController {
 
+    private QuizService quizService = new QuizService();
+
     final ObservableList<Quiz> data = FXCollections.observableArrayList();
 
-    private QuizService quizService = new QuizService();
+    private static int storedSelectedQuizId;
+    private static int storedQuizId;
 
     @FXML
     private Label numberOfQuestionsLabel;
@@ -72,8 +74,39 @@ public class EditQuizController {
 
         // Delete quiz button
         deleteButton.setOnAction(e -> {
-            System.out.println("delete quiz");
+            handleDeleteQuiz();
         });
+
+        quizTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Quiz>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Quiz> observable, Quiz oldValue, Quiz newValue) {
+                if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
+                    storedSelectedQuizId = quizTableView.getSelectionModel().getSelectedIndex();
+                    storedQuizId = data.get(storedSelectedQuizId).getQuizId();
+                    deleteButton.setDisable(false);
+                } else {
+                    deleteButton.setDisable(true);
+                }
+            }
+        });
+    }
+
+    private void handleDeleteQuiz() {
+        if(quizTableView.getSelectionModel().getSelectedItem() != null) {
+            quizService.deleteQuiz(storedQuizId);
+            System.out.println("Deleted stored quiz with id " + storedQuizId + " from database");
+
+            int selectedQuiz = quizTableView.getSelectionModel().getSelectedIndex();
+            quizTableView.getItems().remove(selectedQuiz);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Inget valt");
+            alert.setHeaderText("Ingen quiz är valt");
+            alert.setContentText("För att ta bort, välj ett quiz");
+
+            alert.showAndWait();
+        }
     }
 
     private void showEditQuizDialog() {
@@ -89,9 +122,7 @@ public class EditQuizController {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-
             dialogStage.showAndWait();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
