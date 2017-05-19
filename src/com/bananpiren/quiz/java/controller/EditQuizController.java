@@ -20,12 +20,11 @@ import java.io.IOException;
 
 public class EditQuizController {
 
-    private QuizService quizService = new QuizService();
-
-    final ObservableList<Quiz> data = FXCollections.observableArrayList();
-
-    private static int storedSelectedQuizId;
+    private final ObservableList<Quiz> data = FXCollections.observableArrayList();
+    private static int storedSelectedTableIndex;
     private static int storedQuizId;
+
+    private QuizService quizService = new QuizService();
 
     @FXML
     private Label numberOfQuestionsLabel;
@@ -72,18 +71,25 @@ public class EditQuizController {
             showEditQuizDialog();
         });
 
-        // Delete quiz button
         deleteButton.setOnAction(e -> {
             handleDeleteQuiz();
         });
 
         quizTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Quiz>() {
-
             @Override
             public void changed(ObservableValue<? extends Quiz> observable, Quiz oldValue, Quiz newValue) {
                 if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
-                    storedSelectedQuizId = quizTableView.getSelectionModel().getSelectedIndex();
-                    storedQuizId = data.get(storedSelectedQuizId).getQuizId();
+
+                    storedSelectedTableIndex = quizTableView.getSelectionModel().getSelectedIndex();
+                    storedQuizId = data.get(storedSelectedTableIndex).getQuizId();
+
+                    quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
+                    numberOfQuestionsLabel.setText("");
+                    timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
+                    startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
+                    endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
+                    numberOfQuizTakenLabel.setText("");
+
                     deleteButton.setDisable(false);
                 } else {
                     deleteButton.setDisable(true);
