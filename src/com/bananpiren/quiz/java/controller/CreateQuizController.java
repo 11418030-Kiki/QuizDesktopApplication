@@ -20,17 +20,14 @@ public class CreateQuizController {
     private int questionNumber = 1;
     private int answerNumber = 1;
     private int timeLimit = 0;
-
     private TextField newQuestion;
 
-    public TextField[] newAnswer;
-    public CheckBox[] answerCheckbox;
-    public RadioButton[] radioButtonAnswer;
-    public HBox[] hBox;
+    private TextField[] newAnswer;
+    private CheckBox[] answerCheckbox;
+    private RadioButton[] radioButtonAnswer;
+    private HBox[] hBox;
 
     private ArrayList<String> questionList = new ArrayList<>();
-    private ArrayList<QuizQuestions> qList = new ArrayList<>();
-    private ArrayList<QuestionAnswers> aList = new ArrayList<>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -157,42 +154,62 @@ public class CreateQuizController {
         } else {
             // add last question
             theQuestion();
-            theAnswers();
+//            theAnswers();
 
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate, qList, aList);
+            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
 
         }
     }
 
+//    private void theQuestion() {
+//        // add question to list
+//        if (questionNumber > 1) {
+//            // adding the input to the list
+//            QuizQuestions q = new QuizQuestions();
+//            q.setQuestion(newQuestion.getText());
+//            qList.add(q);
+//
+//        }
+//    }
+//
+//    // cascadetype, primary key eventuellt som kopplas till
+//    // foreignkey
+//    private void theAnswers() {
+//        if (questionNumber > 1) {
+//            for (int i = 0; i < newAnswer.length; i++) {
+//                QuestionAnswers qa = new QuestionAnswers();
+//                qa.setAnswer(newAnswer[i].getText());
+//                qa.setCorrectAnswer(answerCheckbox[i].isSelected());
+//                aList.add(qa);
+//            }
+//        }
+//    }
+
+
     private void theQuestion() {
+
         // add question to list
         if (questionNumber > 1) {
             // adding the input to the list
-            QuizQuestions q = new QuizQuestions();
-            q.setQuestion(newQuestion.getText());
-            qList.add(q);
+            createQuizServices.addQuizQuestionObject(newQuestion.getText());
 
-        }
-    }
-
-    // cascadetype, primary key eventuellt som kopplas till
-    // foreignkey
-    private void theAnswers() {
-        if (questionNumber > 1) {
             for (int i = 0; i < newAnswer.length; i++) {
-                QuestionAnswers qa = new QuestionAnswers();
-                qa.setAnswer(newAnswer[i].getText());
-                qa.setCorrectAnswer(answerCheckbox[i].isSelected());
-                aList.add(qa);
-////              createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
-//                aList.add(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+
+                createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
             }
         }
     }
 
+//    private void theAnswers() {
+//        if (questionNumber > 1) {
+//
+//        }
+//    }
+
+
     private void addMultipleAnswerQuestion() {
         theQuestion();
-        theAnswers();
+//        theAnswers();
 
         Label questionLabel = new Label();
         questionLabel.setText("Fråga " + questionNumber);
