@@ -1,11 +1,9 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.User;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 public class UserService {
@@ -61,9 +59,8 @@ public class UserService {
 
         Query query = entityManager.createQuery("SELECT u FROM  User u");
         List list = query.getResultList();
-        User user = (User) list.get(0);
 
-        return user;
+        return (User) list.get(0);
     }
 
     //Updating user information
@@ -96,5 +93,21 @@ public class UserService {
         entityManager.remove(user);
         entityManager.getTransaction().commit();
         entityManagerFactory.close();
+    }
+
+    public User findUserByEmail(String userEmailInput) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List list = entityManager.createQuery(
+                "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                .setParameter("custEmail", userEmailInput)
+                .setMaxResults(1)
+                .getResultList();
+
+        User user = (User) list.get(0);
+        System.out.println(user.getFirstName() + " " + user.getLastName());
+
+        return user;
     }
 }

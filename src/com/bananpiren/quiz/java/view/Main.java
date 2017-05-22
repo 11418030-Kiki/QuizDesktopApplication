@@ -19,29 +19,25 @@ public class Main extends Application {
     public static BorderPane mainLayout;
 
 //  Ta bort detta när inlogg ska läggas till!
-    private static Stage primaryStage = new Stage();
-    private MainController mainController;
+              private static Stage primaryStage = new Stage();
+              private MainController mainController;
 //  --------------------------------------
 
-//    private UserService userService = new UserService();
-//    private User currentUser = userService.findFirstUser();
+    UserService userService = new UserService();
 
 
-    public static int currentUserId;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         loginStage = primaryStage;
         loginStage.setTitle("Bananpiren Dekstop Quiz");
 
-//        currentUserId = currentUser.getUserId();
-
 //      Avkommentera när loggin ska läggas till
-//      showLoginScreen(); <-
+//      showLoginScreen();
 
 //      Ta bort detta när inlogg ska läggas till!
-        showMainView(primaryStage);
-        showStart();
+                 showMainView(primaryStage);
+                  showStart();
 //      ----------
 
     }
@@ -67,7 +63,7 @@ public class Main extends Application {
         primaryStage.show();
 
 //        Avkommantera detta när loggin ska läggas till
-//        loginStage.hide(); <-
+//        loginStage.hide();
 //        ---------------------
     }
 

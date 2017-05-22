@@ -111,6 +111,7 @@ public class PersonEditDialogController {
 
                 userService.updateUser(storedUserId, firstName, lastName, userMail, password, accountLevel);
 
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succe!");
                 alert.setHeaderText("Användare redigerad");

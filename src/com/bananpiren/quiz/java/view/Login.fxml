@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.LoginController">
    <top>
       <Label text="Welcome" BorderPane.alignment="CENTER">
@@ -25,18 +24,20 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="User:" GridPane.halignment="CENTER" />
+            <Label text="Email:" GridPane.halignment="CENTER" />
             <Label text="Password:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="userNameTextField" GridPane.columnIndex="1" />
-            <TextField fx:id="userPasswordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="135.0" text="Login" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <TextField fx:id="userEmailTextField" GridPane.columnIndex="1" />
+            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="135.0" text="Login" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
+            <PasswordField fx:id="userPasswordTextField" prefHeight="25.0" prefWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="informationOutputTextField" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>
