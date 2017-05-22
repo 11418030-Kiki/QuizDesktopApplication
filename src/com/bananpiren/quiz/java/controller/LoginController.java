@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class LoginController {
     @FXML
     private TextField userNameTextField;
@@ -23,9 +22,7 @@ public class LoginController {
     private Main main = new Main();
     private Stage primaryStage = new Stage();
 
-    public LoginController(){
-
-    }
+    public LoginController(){}
 
     @FXML
     private void initialize() {

@@ -1,3 +1,5 @@
+//TODO: Add class info
+
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
@@ -7,25 +9,25 @@ import javax.persistence.*;
 @Entity
 public class QuestionAnswers {
 
-    // increase 1
-    @TableGenerator(
-            name = "autoGenerator",
-            allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO,
-            generator = "autoGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int answerId;
+
     @NotNull
     private String answer;
     @NotNull
-    private boolean correctAnswer;
+    private int correctAnswer;
 
+    @ManyToOne()
+    private QuizQuestions question;
 
-    public QuestionAnswers() {
-
+    public QuestionAnswers(String answer, int correctAnswer, QuizQuestions question) {
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
+        this.question = question;
     }
 
+    public QuestionAnswers() {}
 
     public String getAnswer() {
         return answer;
@@ -35,11 +37,11 @@ public class QuestionAnswers {
         this.answer = answer;
     }
 
-    public boolean getCorrectAnswer() {
+    public int getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(boolean correctAnswer) {
+    public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
@@ -50,8 +52,4 @@ public class QuestionAnswers {
     public void setAnswerId(int taId) {
         this.answerId = taId;
     }
-
-
-
-
 }

@@ -1,3 +1,5 @@
+//TODO: Add class info
+
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
@@ -7,13 +9,9 @@ import javax.persistence.*;
 @Entity
 @Table
 public class User {
-    @TableGenerator(
-            name = "autoGenerator",
-            allocationSize = 1)
+    @TableGenerator(name = "autoGenerator", allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO,
-            generator = "autoGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "autoGenerator")
     private int userId;
     @NotNull
     private String firstName;

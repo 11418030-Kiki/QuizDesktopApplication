@@ -1,6 +1,5 @@
 package com.bananpiren.quiz.java.controller;
 
-
 import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

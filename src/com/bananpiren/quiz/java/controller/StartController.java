@@ -76,9 +76,6 @@ public class StartController {
             }catch(IOException f){
                 System.out.println("Couldn't load TakeQuiz.fxml: "+ f);
             }
-
-
-
         });
     }
 }

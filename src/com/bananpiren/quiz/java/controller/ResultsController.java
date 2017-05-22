@@ -30,7 +30,5 @@ public class ResultsController {
 
     final ObservableList<User> data = FXCollections.observableArrayList();
 
-    private void initialize(){
-
-    }
+    private void initialize(){}
 }

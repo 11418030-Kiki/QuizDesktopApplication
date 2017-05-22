@@ -1,13 +1,17 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.QuestionAnswers;
+import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.QuizQuestions;
+import com.bananpiren.quiz.Services.AnswerService;
+import com.bananpiren.quiz.Services.QuestionService;
+import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.java.model.NewQuestionType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import com.bananpiren.quiz.Services.CreateQuizService;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -15,19 +19,11 @@ import java.util.ArrayList;
 
 public class CreateQuizController {
 
-    private CreateQuizService createQuizServices = new CreateQuizService();
-
-    private int questionNumber = 1;
-    private int answerNumber = 1;
     private int timeLimit = 0;
-    private TextField newQuestion;
 
-    private TextField[] newAnswer;
-    private CheckBox[] answerCheckbox;
-    private RadioButton[] radioButtonAnswer;
-    private HBox[] hBox;
+    ListView<Pane> QuestionList;
 
-    private ArrayList<String> questionList = new ArrayList<>();
+    ArrayList<NewQuestionType> newQuestionType = new ArrayList<NewQuestionType>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;
@@ -71,6 +67,9 @@ public class CreateQuizController {
     @FXML
     private void initialize() {
 
+        QuestionList = new ListView<Pane>();
+        vboxAddQuestions.getChildren().addAll(QuestionList);
+
         // Timelimit
         timeLimitCheckBox.setOnAction(e -> {
             if (timeLimitCheckBox.isSelected()) {
@@ -111,10 +110,8 @@ public class CreateQuizController {
         // Show slidervalue to label
         sliderTime.valueProperty().addListener((observable, oldValue, newValue) -> {
             labelMinutes.setText(newValue.intValue() + " minuter");
-
             timeLimit = newValue.intValue();
         });
-
     }
 
     private void createQuiz() throws ParseException {
@@ -152,134 +149,52 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
-            // add last question
-            theQuestion();
-//            theAnswers();
+            // Saves Quiz to database
+            Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString());
+            QuizService.create(quiz);
 
-            createQuizServices.createQuiz(quizName, timeLimit, quizStartDate, quizEndDate);
+            // ArrayLists for Question and Answer entities
+            ArrayList<QuizQuestions> quizQuestions = new ArrayList<>();
+            ArrayList<QuestionAnswers> answers = new ArrayList<>();
 
-        }
-    }
+            // Check for questions and add to questions list
+            int i = 0;
+            for (NewQuestionType element : newQuestionType) {
+                System.out.println(i);
 
-//    private void theQuestion() {
-//        // add question to list
-//        if (questionNumber > 1) {
-//            // adding the input to the list
-//            QuizQuestions q = new QuizQuestions();
-//            q.setQuestion(newQuestion.getText());
-//            qList.add(q);
-//
-//        }
-//    }
-//
-//    // cascadetype, primary key eventuellt som kopplas till
-//    // foreignkey
-//    private void theAnswers() {
-//        if (questionNumber > 1) {
-//            for (int i = 0; i < newAnswer.length; i++) {
-//                QuestionAnswers qa = new QuestionAnswers();
-//                qa.setAnswer(newAnswer[i].getText());
-//                qa.setCorrectAnswer(answerCheckbox[i].isSelected());
-//                aList.add(qa);
-//            }
-//        }
-//    }
+                QuizQuestions quest = new QuizQuestions(element.questionTextField.getText(), quiz);
+                quizQuestions.add(quest);
+                i++;
 
-
-    private void theQuestion() {
-
-        // add question to list
-        if (questionNumber > 1) {
-            // adding the input to the list
-            createQuizServices.addQuizQuestionObject(newQuestion.getText());
-
-            for (int i = 0; i < newAnswer.length; i++) {
-
-                createQuizServices.addQuizAnswerObject(newAnswer[i].getText(), answerCheckbox[i].isSelected());
+                // Check for answers and add to answers list
+                for(int j = 0; j < 4; j++) {
+                    int correctAnswer = 0;
+                    //TODO: add if radiobutton is checked
+                    if (element.answerCheckbox[j].isSelected()) {
+                        correctAnswer = 1;
+                    } else {
+                        correctAnswer = 0;
+                    }
+                    QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
+                    answers.add(answer);
+                }
             }
+
+            // Saves all Question and Answer objects to database
+            QuestionService.create(quizQuestions);
+            AnswerService.create(answers);
         }
     }
-
-//    private void theAnswers() {
-//        if (questionNumber > 1) {
-//
-//        }
-//    }
-
 
     private void addMultipleAnswerQuestion() {
-        theQuestion();
-//        theAnswers();
-
-        Label questionLabel = new Label();
-        questionLabel.setText("Fråga " + questionNumber);
-        newQuestion = new TextField();
-        newQuestion.setText("Fråga " + questionNumber);
-        newQuestion.setMaxWidth(300);
-        vboxAddQuestions.getChildren().addAll(questionLabel, newQuestion);
-
-        newAnswer = new TextField[4];
-        answerCheckbox = new CheckBox[4];
-        hBox = new HBox[4];
-
-        for (int i = 0; i < 4; i++) {
-            hBox[i] = new HBox();
-            Button deleteButton = new Button("X");
-            newAnswer[i] = new TextField();
-            newAnswer[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
-            hBox[i].getChildren().addAll(deleteButton, newAnswer[i]);
-
-            answerCheckbox[i] = new CheckBox("Rätt svar");
-            hBox[i].getChildren().add(answerCheckbox[i]);
-
-//            deleteButton.setOnAction(e -> {
-//                vboxAddQuestions.getChildren().removeAll(this.vboxAddQuestions);
-//            });
-
-            vboxAddQuestions.getChildren().add(hBox[i]);
-        }
-
-        questionList.add(newQuestion.getPromptText());
-        questionNumber++;
-        answerNumber = 1;
+        NewQuestionType newMultiQuestion = new NewQuestionType(QuestionList);
+        newMultiQuestion.multipleAnswer();
+        newQuestionType.add(newMultiQuestion);
     }
 
     private void addSingleAnswerQuestion() {
-//        theQuestion();
-//        theAnswers();
-
-        Label questionLabel = new Label();
-        questionLabel.setText("Fråga " + questionNumber);
-        newQuestion = new TextField();
-        newQuestion.setText("Fråga " + questionNumber);
-        newQuestion.setMaxWidth(300);
-        vboxAddQuestions.getChildren().addAll(questionLabel, newQuestion);
-
-        newAnswer = new TextField[4];
-        ToggleGroup answerToggleGroup = new ToggleGroup();
-        radioButtonAnswer = new RadioButton[4];
-        hBox = new HBox[4];
-
-        for (int i = 0; i < 4; i++) {
-            hBox[i] = new HBox();
-            Button deleteButton = new Button("X");
-            newAnswer[i] = new TextField();
-            newAnswer[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
-            hBox[i].getChildren().addAll(deleteButton, newAnswer[i]);
-
-            radioButtonAnswer[i] = new RadioButton("Rätt svar");
-            radioButtonAnswer[i].setToggleGroup(answerToggleGroup);
-            hBox[i].getChildren().add(radioButtonAnswer[i]);
-
-//            deleteButton.setOnAction(e -> {
-//                vboxAddQuestions.getChildren().removeAll(this.vboxAddQuestions);
-//            });
-
-            vboxAddQuestions.getChildren().add(hBox[i]);
-        }
-
-        questionList.add(newQuestion.getPromptText());
-        questionNumber++;
-        answerNumber = 1;
+        NewQuestionType newSingleQuestion = new NewQuestionType(QuestionList);
+        newSingleQuestion.singleAnswer();
+        newQuestionType.add(newSingleQuestion);
     }
 }

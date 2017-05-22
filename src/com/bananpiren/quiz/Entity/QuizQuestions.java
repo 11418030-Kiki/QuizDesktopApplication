@@ -1,37 +1,37 @@
+//TODO: Add class info
+
 package com.bananpiren.quiz.Entity;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
 public class QuizQuestions {
 
-    // increase 1
-    @TableGenerator(
-            name = "autoGenerator",
-            allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO,
-            generator = "autoGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int questionId;
+
     private String question;
+    private String questionType;
 
-    @OneToMany( targetEntity = QuestionAnswers.class, orphanRemoval = true)
-    private List answerList;
+    @ManyToOne()
+    private Quiz quiz;
 
+    public QuizQuestions(String question, Quiz quiz) {
+        this.question = question;
+        this.quiz = quiz;
+    }
+
+    //TODO: Add question type to create quiz
+    public QuizQuestions(String question, String questionType, Quiz quiz) {
+        this.question = question;
+        this.questionType = questionType;
+        this.quiz = quiz;
+    }
 
     public QuizQuestions() {
         super();
-    }
-
-    public List getAnswerList() {
-        return answerList;
-    }
-
-    public void setAnswerList(List answerList) {
-        this.answerList = answerList;
     }
 
     public int getQuestionId() {
@@ -48,6 +48,14 @@ public class QuizQuestions {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
     }
 
 
