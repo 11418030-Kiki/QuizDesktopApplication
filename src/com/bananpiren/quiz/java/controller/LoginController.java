@@ -3,6 +3,7 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.view.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,6 +36,10 @@ public class LoginController {
     @FXML
     private void initialize() {
         loginButton.setOnAction(event -> checkPassword());
+    }
+
+    public void onEnter(ActionEvent ae){
+        checkPassword();
     }
 
     private void checkPassword() {

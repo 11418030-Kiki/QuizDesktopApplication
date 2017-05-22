@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.LoginController">
    <top>
       <Label text="Welcome" BorderPane.alignment="CENTER">
          <font>
@@ -30,15 +31,18 @@
          <children>
             <Label text="Email:" GridPane.halignment="CENTER" />
             <Label text="Password:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="userEmailTextField" GridPane.columnIndex="1" />
-            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="135.0" text="Login" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <TextField fx:id="userEmailTextField" GridPane.columnIndex="1" onAction="#onEnter" />
+             <PasswordField fx:id="userPasswordTextField" prefHeight="25.0" prefWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#onEnter" />
+             <Label fx:id="informationOutputTextField" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onEnter" prefHeight="53.0" prefWidth="135.0" text="Login" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <PasswordField fx:id="userPasswordTextField" prefHeight="25.0" prefWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="informationOutputTextField" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </GridPane>
    </center>
 </BorderPane>
