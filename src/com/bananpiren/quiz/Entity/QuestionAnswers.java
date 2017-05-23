@@ -52,4 +52,12 @@ public class QuestionAnswers {
     public void setAnswerId(int taId) {
         this.answerId = taId;
     }
+
+    public QuizQuestions getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QuizQuestions question) {
+        this.question = question;
+    }
 }

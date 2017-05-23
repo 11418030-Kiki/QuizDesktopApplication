@@ -6,13 +6,15 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 public class Quiz {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "autoGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int quizId;
 
     @NotNull
@@ -23,6 +25,9 @@ public class Quiz {
     private String quizStartDate;
     @NotNull
     private String quizEndDate;
+
+    @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "quiz")
+    private Collection<QuizQuestions> quizQuestions;
 
     public Quiz(String quizName, int timeLimit, String quizStartDate, String quizEndDate) {
         this.quizName = quizName;
@@ -72,5 +77,13 @@ public class Quiz {
 
     public void setQuizEndDate(String testEndDate) {
         this.quizEndDate = testEndDate;
+    }
+
+    public Collection<QuizQuestions> getQuizQuestions() {
+        return quizQuestions;
+    }
+
+    public void setQuizQuestions(Collection<QuizQuestions> quizQuestions) {
+        this.quizQuestions = quizQuestions;
     }
 }

@@ -11,6 +11,7 @@ public class NewQuestionType {
 
     public static int questionNumber = 1;
     public static int answerNumber = 1;
+    public String questionType;
 
     public Label label;
     VBox questionField;
@@ -54,6 +55,7 @@ public class NewQuestionType {
             questionField.getChildren().add(hBox[i]);
         }
         answerNumber = 1;
+        questionType = "multipleAnswer";
         questionNumber++;
     }
 
@@ -80,6 +82,11 @@ public class NewQuestionType {
             questionField.getChildren().add(hBox[i]);
         }
         answerNumber = 1;
+        questionType = "singleAnswer";
         questionNumber++;
+    }
+
+    public String getQuestionType() {
+        return questionType;
     }
 }

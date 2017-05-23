@@ -149,6 +149,7 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
+            //TODO: Kolla så att prov inte är tomt! Validera svar!
             // Saves Quiz to database
             Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString());
             QuizService.create(quiz);
@@ -158,23 +159,28 @@ public class CreateQuizController {
             ArrayList<QuestionAnswers> answers = new ArrayList<>();
 
             // Check for questions and add to questions list
-            int i = 0;
             for (NewQuestionType element : newQuestionType) {
-                System.out.println(i);
+                String questionType ="";
+                switch(element.getQuestionType()) {
+                    case "multipleAnswer": questionType = "multiple";
+                        break;
+                    case "singleAnswer": questionType = "single";
+                        break;
+                }
 
-                QuizQuestions quest = new QuizQuestions(element.questionTextField.getText(), quiz);
+                QuizQuestions quest = new QuizQuestions(element.questionTextField.getText(), questionType, quiz);
                 quizQuestions.add(quest);
-                i++;
 
                 // Check for answers and add to answers list
                 for(int j = 0; j < 4; j++) {
-                    int correctAnswer = 0;
+                    int correctAnswer;
                     //TODO: add if radiobutton is checked
                     if (element.answerCheckbox[j].isSelected()) {
                         correctAnswer = 1;
                     } else {
                         correctAnswer = 0;
                     }
+
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
                     answers.add(answer);
                 }

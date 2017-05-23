@@ -75,6 +75,7 @@ public class EditQuizController {
             handleDeleteQuiz();
         });
 
+        //TODO: Ifall listan blir tom, hantera så att inte index out of bounds uppstår
         quizTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Quiz>() {
             @Override
             public void changed(ObservableValue<? extends Quiz> observable, Quiz oldValue, Quiz newValue) {
