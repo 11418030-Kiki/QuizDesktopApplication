@@ -60,7 +60,15 @@ public class LoginController {
         }
     }
 
-    private User getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void reloadCurrentUser() {
+        LoginController.currentUser = userService.findUserById(currentUser.getUserId());
+    }
+
+    public void setCurrentUser (String email) {
+        currentUser = userService.findUserByEmail(email);
     }
 }

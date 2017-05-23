@@ -9,8 +9,7 @@ import javafx.scene.control.TextField;
 
 public class SettingsController {
     private UserService userService = new UserService();
-
-//    private LoginController loginController = new LoginController();
+    private LoginController loginController = new LoginController();
 
 
     @FXML
@@ -27,10 +26,9 @@ public class SettingsController {
 
     @FXML
     private void initialize(){
-//        emailTextField.setText(loginController.getCurrentUser().getEmail());
+        emailTextField.setText(loginController.getCurrentUser().getEmail());
 
-
-        usernameBtn.setOnAction(loginController->{
+        usernameBtn.setOnAction(event ->{
             String regexMail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -41,14 +39,14 @@ public class SettingsController {
             String confirmPassword = confirmPasswordTextField.getText();
 
             if (email.isEmpty()) {
-//                email = loginController.getCurrentUser().getEmail;
+                email = loginController.getCurrentUser().getEmail();
             }else if(!email.matches(regexMail)) {
                 warnings.append("Mailadress har fel format!\n" + "Rätt format är xxx@xxx.xx\n");
             } else {
                emailTextField.getText();
             }
             if(password.isEmpty()){
-//                password = loginController.getCurrentUser().getPassword();
+                password = loginController.getCurrentUser().getPassword();
             }else if(!password.matches(confirmPassword)){
                 warnings.append("Lösenord matchar inte!");
             }else{
@@ -64,10 +62,8 @@ public class SettingsController {
 
                 alert.showAndWait();
             } else {
-//                userService.updateUser(main.getCurrentUser().getUserId(), main.getCurrentUser().getFirstName(), main.getCurrentUser().getLastName(), email, password, main.getCurrentUser().getAccountLevel());
-
-//                main.getCurrentUser().setEmail(email);
-//                main.getCurrentUser().setPassword(password);
+                userService.updateUser(loginController.getCurrentUser().getUserId(), loginController.getCurrentUser().getFirstName(), loginController.getCurrentUser().getLastName(), email, password, loginController.getCurrentUser().getAccountLevel());
+                loginController.reloadCurrentUser();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succe!");

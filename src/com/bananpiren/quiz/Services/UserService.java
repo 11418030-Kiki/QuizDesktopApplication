@@ -4,6 +4,7 @@ import com.bananpiren.quiz.Entity.User;
 import com.sun.org.apache.xpath.internal.SourceTree;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.List;
 
 public class UserService {
@@ -48,19 +49,10 @@ public class UserService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         User user = entityManager.find(User.class, userId);
-        System.out.println(user);
+
+        entityManager.close();
 
         return user;
-    }
-
-    public User findFirstUser() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Query query = entityManager.createQuery("SELECT u FROM  User u");
-        List list = query.getResultList();
-
-        return (User) list.get(0);
     }
 
     //Updating user information
@@ -99,14 +91,30 @@ public class UserService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List list = entityManager.createQuery(
-                "SELECT u FROM User u WHERE u.email LIKE :custEmail")
-                .setParameter("custEmail", userEmailInput)
-                .setMaxResults(1)
-                .getResultList();
+        User user;
 
-        User user = (User) list.get(0);
-        System.out.println(user.getFirstName() + " " + user.getLastName());
+        try {
+            List list = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                    .setParameter("custEmail", userEmailInput)
+                    .setMaxResults(1)
+                    .getResultList();
+
+            user = (User) list.get(0);
+        }catch (Exception e){
+            createUser("User", "Usersson", "user@user.se", "user", "Admin");
+
+            List list = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                    .setParameter("custEmail", userEmailInput)
+                    .setMaxResults(1)
+                    .getResultList();
+
+            user = (User) list.get(0);
+        }
+
+        entityManager.close();
+        entityManagerFactory.close();
 
         return user;
     }

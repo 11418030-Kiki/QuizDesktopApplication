@@ -142,8 +142,8 @@ public class UsersController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        loadTableData();
-        setTableData();
+//        loadTableData();
+//        setTableData();
     }
 
     private void showPersonEditDialog() {

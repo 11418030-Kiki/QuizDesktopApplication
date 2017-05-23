@@ -2,6 +2,7 @@ package com.bananpiren.quiz.java.view;
 
 import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.UserService;
+import com.bananpiren.quiz.java.controller.LoginController;
 import com.bananpiren.quiz.java.controller.MainController;
 import com.bananpiren.quiz.java.controller.UsersController;
 import javafx.application.Application;
@@ -26,9 +27,14 @@ public class Main extends Application {
     UserService userService = new UserService();
 
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
+        LoginController loginController = new LoginController();
+
+//        Ta bort detta när login aktiverats
+        loginController.setCurrentUser("user@user.se");
+//        ----------------------------
+
         loginStage = primaryStage;
         loginStage.setTitle("Bananpiren Dekstop Quiz");
 
