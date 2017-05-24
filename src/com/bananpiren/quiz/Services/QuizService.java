@@ -87,6 +87,11 @@ public class QuizService {
         Query answer = entityManager.createQuery("SELECT qa.answer FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
         List answerList = answer.getResultList();
 
+        // Query questionType and put them in a list
+        // Query answers and put them in a list
+        Query questionType = entityManager.createQuery("SELECT qa.question.questionType FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
+        List questionTypeList = questionType.getResultList();
+
         int count = 0;
 
         TakeQuiz takeQuiz;
@@ -98,6 +103,7 @@ public class QuizService {
             takeQuiz.setQuizName(quizNameList.get(i).toString());
             takeQuiz.setQuestion(questionList.get(i).toString());
             takeQuiz.setAnswer(answerList.get(i).toString());
+            takeQuiz.setQuestionType(questionTypeList.get(i).toString());
 
             takeQuizList.add(takeQuiz);
         }

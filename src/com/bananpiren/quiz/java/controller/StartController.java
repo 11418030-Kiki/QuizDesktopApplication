@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -83,24 +82,12 @@ public class StartController {
                 System.out.println("\n" + "QUIZNAMEdd " + t.getQuizName() + " count " + count);
                 System.out.println("QUIZQUESTION " + t.getQuestion() + " count " + count);
                 System.out.println("QUIZANSWER " + t.getAnswer() + " count " + count);
+                System.out.println("QUESTIONTYPE " + t.getQuestionType() + " count " + count);
             }
-//            for(int i = 0; )
-            // TODO: lägger allt i vboxar och loopar igenom
 
-            // lägger till en Vbox att lägga frågorna i. Samma som antal frågor
-
-//            takeQuizController.createMultipleChoiceQuestion(takeQuizList);
-//            takeQuizController.createMultipleChoiceQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?");
-
-//            for (int i = 0; i < 2; i++) {
-////                vbox.add(i, takeQuizController.createMultipleChoiceQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?"));
-//                vbox.add(i, takeQuizController.createMultipleChoiceQuestion(takeQuizList));
-//
-//            }
-
-            vbox = takeQuizController.createMultipleChoiceQuestion(takeQuizList);
+            // displaying the question and answers on vbox
+            vbox = takeQuizController.createQuizQuestions(takeQuizList);
             newCoolVbox.getChildren().addAll(vbox);
-
 
             try {
                 FXMLLoader loader = new FXMLLoader();
