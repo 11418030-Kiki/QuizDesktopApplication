@@ -173,12 +173,20 @@ public class CreateQuizController {
 
                 // Check for answers and add to answers list
                 for(int j = 0; j < 4; j++) {
-                    int correctAnswer;
+                    int correctAnswer = 0;
                     //TODO: add if radiobutton is checked
-                    if (element.answerCheckbox[j].isSelected()) {
-                        correctAnswer = 1;
-                    } else {
-                        correctAnswer = 0;
+                    if (questionType == "multiple") {
+                        if (element.answerCheckbox[j].isSelected()) {
+                            correctAnswer = 1;
+                        } else {
+                            correctAnswer = 0;
+                        }
+                    } else if (questionType == "single") {
+                        if (element.radioButtonAnswer[j].isSelected()) {
+                            correctAnswer = 1;
+                        } else {
+                            correctAnswer = 0;
+                        }
                     }
 
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
