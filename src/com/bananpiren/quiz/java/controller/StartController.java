@@ -1,7 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
-import com.bananpiren.quiz.Services.CreateGUIQuestionService;
+import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,10 +18,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class StartController {
 
-    final ObservableList<Quiz> data = FXCollections.observableArrayList();
+    private ObservableList<Quiz> data = FXCollections.observableArrayList();
+    //    private ObservableList<VBox> vbox = FXCollections.observableArrayList();
+    private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+
+    private VBox vbox;
 
     private QuizService quizService = new QuizService();
     public int currentQuizId;
@@ -40,6 +46,7 @@ public class StartController {
     @FXML
     private Button takeQuizButton;
 
+
     public StartController() {
         data.addAll(quizService.findAllQuiz());
     }
@@ -53,19 +60,47 @@ public class StartController {
         quizTableView.setItems(data);
 
         takeQuizButton.setDisable(true);
-        quizTableView.getSelectionModel().selectedIndexProperty().addListener(y->{
+        quizTableView.getSelectionModel().selectedIndexProperty().addListener(y -> {
             takeQuizButton.setDisable(false);
         });
 
-        takeQuizButton.setOnAction((ActionEvent e) ->{
 
-             currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+        takeQuizButton.setOnAction((ActionEvent e) -> {
 
-            CreateGUIQuestionService QuestionService = new CreateGUIQuestionService ();
+            currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+
+            TakeQuizController takeQuizController = new TakeQuizController();
             VBox newCoolVbox = new VBox();
-            VBox vBox1 = QuestionService.createSingleAnswerQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?");
-            VBox vBox2 = QuestionService.createMultipleChoiceQuestion("Vad innehåller bröd?", "Vatten", "Vetemjöl", "Fisar", "Sten");
-            newCoolVbox.getChildren().addAll(vBox1, vBox2);
+
+            // TODO: Hämta allt i quiz med query
+
+            // get the list of the current quiz
+            takeQuizList = quizService.currentQuiz(currentQuizId);
+
+            int count = 0;
+            for (TakeQuiz t : takeQuizList) {
+                count++;
+                System.out.println("\n" + "QUIZNAMEdd " + t.getQuizName() + " count " + count);
+                System.out.println("QUIZQUESTION " + t.getQuestion() + " count " + count);
+                System.out.println("QUIZANSWER " + t.getAnswer() + " count " + count);
+            }
+//            for(int i = 0; )
+            // TODO: lägger allt i vboxar och loopar igenom
+
+            // lägger till en Vbox att lägga frågorna i. Samma som antal frågor
+
+//            takeQuizController.createMultipleChoiceQuestion(takeQuizList);
+//            takeQuizController.createMultipleChoiceQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?");
+
+//            for (int i = 0; i < 2; i++) {
+////                vbox.add(i, takeQuizController.createMultipleChoiceQuestion("Vad är en heffaklump?", "En elefant", "En systemutvecklare på speed", "En SD-röstare", "Venne?"));
+//                vbox.add(i, takeQuizController.createMultipleChoiceQuestion(takeQuizList));
+//
+//            }
+
+            vbox = takeQuizController.createMultipleChoiceQuestion(takeQuizList);
+            newCoolVbox.getChildren().addAll(vbox);
+
 
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -73,8 +108,8 @@ public class StartController {
                 BorderPane takeQuiz = loader.load();
                 takeQuiz.setCenter(newCoolVbox);
                 Main.mainLayout.setCenter(takeQuiz);
-            }catch(IOException f){
-                System.out.println("Couldn't load TakeQuiz.fxml: "+ f);
+            } catch (IOException f) {
+                System.out.println("Couldn't load TakeQuiz.fxml: " + f);
             }
         });
     }
