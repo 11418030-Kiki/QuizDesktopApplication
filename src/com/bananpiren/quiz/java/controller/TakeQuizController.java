@@ -30,7 +30,9 @@ public class TakeQuizController {
         CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
 
         RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
-        ToggleGroup[] radioGroup = new ToggleGroup[10]; // ett godtyckligt antal grupper
+
+        ToggleGroup[] toggleGroups = new ToggleGroup[len]; // set with the number of questions
+
 
         HBox[] answerBox = new HBox[takeQuizList.size()];
 
@@ -39,11 +41,12 @@ public class TakeQuizController {
 
         int incQuest = 0;
         int incAnswer = 0;
+        int answerNo = 4;
 
         // loop through the questions
         for (int i = 0; i < len; i++) {
             // increment the question with the number of answers and get the question
-            incQuest = i * 4;
+            incQuest = i * answerNo;
 
             questionName[i] = takeQuizList.get(incQuest).getQuestion();
             questionType = takeQuizList.get(incQuest).getQuestionType();
@@ -53,7 +56,7 @@ public class TakeQuizController {
             questionBox.setSpacing(5);
 
             // loop through the answers
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < answerNo; j++) {
                 incAnswer = incQuest + j;
 
                 answer[j] = takeQuizList.get(incAnswer).getAnswer();
@@ -69,9 +72,21 @@ public class TakeQuizController {
                     answerCheckbox[j] = new CheckBox();
                     answerBox[j].getChildren().add(answerCheckbox[j]);
                 } else {
+                    ToggleGroup radioGroup = new ToggleGroup();
+
                     answerButton[j] = new RadioButton();
+                    answerButton[j].setToggleGroup(radioGroup);
+
                     answerBox[j].getChildren().add(answerButton[j]);
                 }
+//                toggleGroups = new ToggleGroup(); Lägg till denna
+//                // if you are on the last run with radiobuttons
+//                if(j == answerNo-1 && !questionType.equals("multiple")) {
+//                    answer1Button.setToggleGroup(radioGroup);
+//                    answer2Button.setToggleGroup(radioGroup);
+//                    answer3Button.setToggleGroup(radioGroup);
+//                    answer4Button.setToggleGroup(radioGroup);
+//                }
 
                 questionBox.getChildren().add(answerBox[j]);
             }

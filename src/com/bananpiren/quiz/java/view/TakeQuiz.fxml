@@ -11,7 +11,7 @@
    <top>
       <Pane prefHeight="49.0" prefWidth="648.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="quizLabel" alignment="TOP_CENTER" layoutX="289.0">
+            <Label fx:id="quizLabel" alignment="TOP_CENTER" layoutX="289.0" text="Label">
                <font>
                   <Font size="30.0" />
                </font>
