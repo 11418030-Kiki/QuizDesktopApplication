@@ -2,10 +2,8 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.geometry.VPos;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -16,6 +14,9 @@ public class TakeQuizController {
 
     @FXML
     private Label quizNameHeader;
+
+    @FXML
+    private Label quizLabel;
 
     VBox createQuizQuestions(ArrayList<TakeQuiz> takeQuizList) {
         // length of the list divided with the number of questions
@@ -54,6 +55,9 @@ public class TakeQuizController {
             questionLabel[i] = new Label(questionName[i]);
             questionBox.getChildren().add(questionLabel[i]);
             questionBox.setSpacing(5);
+            toggleGroups[i] = new ToggleGroup();
+            Separator separator = new Separator();
+            separator.setValignment(VPos.CENTER);
 
             // loop through the answers
             for (int j = 0; j < answerNo; j++) {
@@ -72,10 +76,10 @@ public class TakeQuizController {
                     answerCheckbox[j] = new CheckBox();
                     answerBox[j].getChildren().add(answerCheckbox[j]);
                 } else {
-                    ToggleGroup radioGroup = new ToggleGroup();
+
 
                     answerButton[j] = new RadioButton();
-                    answerButton[j].setToggleGroup(radioGroup);
+                    answerButton[j].setToggleGroup(toggleGroups[i]);
 
                     answerBox[j].getChildren().add(answerButton[j]);
                 }
@@ -90,6 +94,7 @@ public class TakeQuizController {
 
                 questionBox.getChildren().add(answerBox[j]);
             }
+            questionBox.getChildren().add(separator);
         }
 
         return questionBox;
