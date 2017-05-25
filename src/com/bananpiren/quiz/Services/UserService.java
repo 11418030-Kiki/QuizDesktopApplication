@@ -91,26 +91,40 @@ public class UserService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        User user;
+        User user = null;
 
-        try {
-            List list = entityManager.createQuery(
-                    "SELECT u FROM User u WHERE u.email LIKE :custEmail")
-                    .setParameter("custEmail", userEmailInput)
-                    .setMaxResults(1)
-                    .getResultList();
+        if (userEmailInput.equals("user@user.se")) {
+            try {
+                List list = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                        .setParameter("custEmail", userEmailInput)
+                        .setMaxResults(1)
+                        .getResultList();
 
-            user = (User) list.get(0);
-        }catch (Exception e){
-            createUser("User", "Usersson", "user@user.se", "user", "Admin");
+                user = (User) list.get(0);
+            }catch (Exception e){
+                createUser("User", "Usersson", "user@user.se", "user", "Admin");
 
-            List list = entityManager.createQuery(
-                    "SELECT u FROM User u WHERE u.email LIKE :custEmail")
-                    .setParameter("custEmail", userEmailInput)
-                    .setMaxResults(1)
-                    .getResultList();
+                List list = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                        .setParameter("custEmail", userEmailInput)
+                        .setMaxResults(1)
+                        .getResultList();
 
-            user = (User) list.get(0);
+                user = (User) list.get(0);
+            }
+        } else {
+            try {
+                List list = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.email LIKE :custEmail")
+                        .setParameter("custEmail", userEmailInput)
+                        .setMaxResults(1)
+                        .getResultList();
+
+                user = (User) list.get(0);
+            } catch (Exception e) {
+                System.out.println("Error getting mail by email");
+            }
         }
 
         entityManager.close();

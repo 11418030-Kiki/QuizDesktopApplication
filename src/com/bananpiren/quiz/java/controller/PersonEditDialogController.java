@@ -2,6 +2,7 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.UserService;
+import com.bananpiren.quiz.java.model.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,17 +48,26 @@ public class PersonEditDialogController {
     private void initialize() {
         UserService userService = new UserService();
         UsersController usersController = new UsersController();
+        Alerts alerts = new Alerts();
 
         this.storedUserId = usersController.getStoredUserId();
         this.storedUserTableIndex = usersController.getStoredSelectedTableIndex();
         this.data = usersController.getData();
 
         userLevelChoiceBox.setItems(userLevel);
-        userLevelChoiceBox.getSelectionModel().select(0);
+        if (data.get(storedUserTableIndex).getAccountLevel().equals("Användare")) {
+            userLevelChoiceBox.getSelectionModel().select(0);
+        } else {
+            userLevelChoiceBox.getSelectionModel().select(1);
+        }
 
         firstNameTextfield.setText(data.get(storedUserTableIndex).getFirstName());
         lastNameTextField.setText(data.get(storedUserTableIndex).getLastName());
         mailTextField.setText(data.get(storedUserTableIndex).getEmail());
+
+        firstNameTextfield.setPromptText(data.get(storedUserTableIndex).getFirstName());
+        lastNameTextField.setPromptText(data.get(storedUserTableIndex).getLastName());
+        mailTextField.setPromptText(data.get(storedUserTableIndex).getEmail());
 
         saveButton.setOnAction((ActionEvent e) -> {
             if (firstNameTextfield != null) {
@@ -82,6 +92,8 @@ public class PersonEditDialogController {
 
 
             //TODO: Add user feedback "Alert Box" if success and update list
+
+            alerts.informationAlert("Användare uppdaterad!", null, "Användaren har blivit korrekt uppdaterad");
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();

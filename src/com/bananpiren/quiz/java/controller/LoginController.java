@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.persistence.EntityManagerFactory;
 import java.io.IOException;
 
 public class LoginController {
@@ -46,16 +47,15 @@ public class LoginController {
         String storedUserEmail = userEmailTextField.getText();
         String storeUserPassword = userPasswordTextField.getText();
 
-        currentUser = userService.findUserByEmail(storedUserEmail);
+        try {
+            currentUser = userService.findUserByEmail(storedUserEmail);
+            if (storeUserPassword.equals(currentUser.getPassword())){
+                main.showMainView(primaryStage);
+                mainController.showHome();
+            }
 
-        if (storeUserPassword.equals(currentUser.getPassword())) try {
-            main.showMainView(primaryStage);
-            mainController.showHome();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        else {
-            informationOutputTextField.setText("Email and/or password incorrect.");
+        } catch (Exception e) {
+            informationOutputTextField.setText("Felaktigt mail och/eller lösenord");
             System.out.println("Incorrect");
         }
     }

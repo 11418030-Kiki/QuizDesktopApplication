@@ -31,6 +31,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         LoginController loginController = new LoginController();
 
+
+
 //        Ta bort detta när login aktiverats
         loginController.setCurrentUser("user@user.se");
 //        ----------------------------

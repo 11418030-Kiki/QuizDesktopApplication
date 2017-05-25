@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Services.UserService;
+import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 public class SettingsController {
     private UserService userService = new UserService();
     private LoginController loginController = new LoginController();
+    private Alerts alerts = new Alerts();
 
 
     @FXML
@@ -55,20 +57,16 @@ public class SettingsController {
             }
 
             if(warnings.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("" + warnings);
-                alert.setContentText("Försök igen!");
-
-                alert.showAndWait();
+                alerts.errorAlert(warnings);
             } else {
                 userService.updateUser(loginController.getCurrentUser().getUserId(), loginController.getCurrentUser().getFirstName(), loginController.getCurrentUser().getLastName(), email, password, loginController.getCurrentUser().getAccountLevel());
                 loginController.reloadCurrentUser();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Succe!");
-                alert.setHeaderText("Användare redigerad");
-                alert.showAndWait();
+                emailTextField.setText(loginController.getCurrentUser().getEmail());
+                passwordTextField.setText("");
+                confirmPasswordTextField.setText("");
+
+                alerts.informationAlert("Succe!", "Användare redigerad", null);
             }
         });
     }

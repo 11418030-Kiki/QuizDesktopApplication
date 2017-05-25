@@ -9,6 +9,7 @@ import java.io.IOException;
 public class MainController {
 
     private Main main;
+    private boolean adminPrivilege = true;
 
     @FXML
     private Button buttonSettings;
@@ -36,6 +37,16 @@ public class MainController {
 
     @FXML
     private void initialize() {
+        LoginController loginController = new LoginController();
+
+
+        if (loginController.getCurrentUser().getAccountLevel().equals("Användare")) {
+            buttonCreateQuiz.setManaged(false);
+            buttonEditQuiz.setManaged(false);
+            buttonUsers.setManaged(false);
+            buttonStatistics.setManaged(false);
+        }
+
 
         // Start button
         buttonStart.setOnAction(e -> {

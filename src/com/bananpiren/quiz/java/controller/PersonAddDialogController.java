@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Services.UserService;
+import com.bananpiren.quiz.java.model.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import java.util.Optional;
 public class PersonAddDialogController {
 
     private UserService userService = new UserService();
+    private Alerts alerts = new Alerts();
 
     private ObservableList<String> userLevel = FXCollections.observableArrayList("Användare", "Admin");
 
@@ -78,12 +80,7 @@ public class PersonAddDialogController {
             }
 
             if(warnings.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("" + warnings);
-                alert.setContentText("Försök igen!");
-
-                alert.showAndWait();
+                alerts.errorAlert(warnings);
             } else {
                 String accountLevel = userLevelChoiceBox.getValue();
 
