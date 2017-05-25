@@ -187,7 +187,6 @@ public class CreateQuizController {
                         } else {
                             correctAnswer = 0;
                         }
-                        //test
                     }
 
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
