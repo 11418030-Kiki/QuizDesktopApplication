@@ -16,6 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
+import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -65,39 +71,57 @@ public class StartController {
 
 
         takeQuizButton.setOnAction((ActionEvent e) -> {
-
-            currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
-
-            TakeQuizController takeQuizController = new TakeQuizController();
-            VBox newCoolVbox = new VBox();
-
-            // TODO: Hämta allt i quiz med query
-
-            // get the list of the current quiz
-            takeQuizList = quizService.currentQuiz(currentQuizId);
-
-            int count = 0;
-            for (TakeQuiz t : takeQuizList) {
-                count++;
-                System.out.println("\n" + "QUIZNAMEdd " + t.getQuizName() + " count " + count);
-                System.out.println("QUIZQUESTION " + t.getQuestion() + " count " + count);
-                System.out.println("QUIZANSWER " + t.getAnswer() + " count " + count);
-                System.out.println("QUESTIONTYPE " + t.getQuestionType() + " count " + count);
-            }
-
-            // displaying the question and answers on vbox
-            vbox = takeQuizController.createQuizQuestions(takeQuizList);
-            newCoolVbox.getChildren().addAll(vbox);
-
+            String quizEndDate = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizEndDate();
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
-                BorderPane takeQuiz = loader.load();
-                takeQuiz.setCenter(newCoolVbox);
-                Main.mainLayout.setCenter(takeQuiz);
-            } catch (IOException f) {
-                System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+                Date dateQuizEndDate = inputFormat.parse(quizEndDate);
+                Calendar calQuizEndDate = Calendar.getInstance();
+                calQuizEndDate.setTime(dateQuizEndDate);
+                Calendar calToday = Calendar.getInstance();
+                calToday.set(Calendar.HOUR_OF_DAY, 0);
+                calToday.set(Calendar.MINUTE,0);
+                calToday.set(Calendar.SECOND,0);
+                calToday.set(Calendar.MILLISECOND,0);
+                if (calQuizEndDate.compareTo(calToday) <= 0) {
+                    JOptionPane.showMessageDialog(null, "Datumet för quizet har passerat");
+                } else {
+                    currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+
+                    TakeQuizController takeQuizController = new TakeQuizController();
+                    VBox newCoolVbox = new VBox();
+
+                    // TODO: Hämta allt i quiz med query
+
+                    // get the list of the current quiz
+                    takeQuizList = quizService.currentQuiz(currentQuizId);
+
+                    int count = 0;
+                    for (TakeQuiz t : takeQuizList) {
+                        count++;
+                        System.out.println("\n" + "QUIZNAMEdd " + t.getQuizName() + " count " + count);
+                        System.out.println("QUIZQUESTION " + t.getQuestion() + " count " + count);
+                        System.out.println("QUIZANSWER " + t.getAnswer() + " count " + count);
+                        System.out.println("QUESTIONTYPE " + t.getQuestionType() + " count " + count);
+                    }
+
+                    // displaying the question and answers on vbox
+                    vbox = takeQuizController.createQuizQuestions(takeQuizList);
+                    newCoolVbox.getChildren().addAll(vbox);
+
+                    try {
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
+                        BorderPane takeQuiz = loader.load();
+                        takeQuiz.setCenter(newCoolVbox);
+                        Main.mainLayout.setCenter(takeQuiz);
+                    } catch (IOException f) {
+                        System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+                    }
+                }
+            }catch(Exception f){
+                System.out.println(f);
             }
         });
     }
+
 }
