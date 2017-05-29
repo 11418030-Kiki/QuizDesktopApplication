@@ -6,6 +6,7 @@ import com.bananpiren.quiz.Entity.QuizQuestions;
 import com.bananpiren.quiz.Services.AnswerService;
 import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.java.view.Main;
 import com.bananpiren.quiz.java.model.NewQuestionType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,9 +14,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class CreateQuizController {
 
@@ -33,6 +36,9 @@ public class CreateQuizController {
 
     @FXML
     private GridPane timeLimitGridPane;
+
+    @FXML
+    private CheckBox selfCorrectingCheckBox;
 
     @FXML
     private Slider sliderTime;
@@ -62,12 +68,16 @@ public class CreateQuizController {
     private Button buttonAddMultipleAnswerQuestion;
 
     @FXML
+    private Button buttonAddOpenAnswerQuestion;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
     private void initialize() {
 
         QuestionList = new ListView<Pane>();
+        vboxAddQuestions.setPrefHeight(265);
         vboxAddQuestions.getChildren().addAll(QuestionList);
 
         // Timelimit
@@ -99,6 +109,12 @@ public class CreateQuizController {
             addSingleAnswerQuestion();
         });
 
+        buttonAddOpenAnswerQuestion.setOnAction(e -> {
+            selfCorrectingCheckBox.setSelected(false);
+            selfCorrectingCheckBox.setDisable(true);
+            buttonAddOpenAnswerQuestion();
+        });
+
         buttonCreateQuiz.setOnAction(e -> {
             try {
                 createQuiz();
@@ -118,6 +134,9 @@ public class CreateQuizController {
         StringBuilder warnings = new StringBuilder();
 
         String quizName = textFieldQuizName.getText();
+        quizStartDate = datePickerStartDate.getValue();
+        quizEndDate = datePickerEndDate.getValue();
+        String selfcorrectingvalue = "no";
 
         // Check if Quiz name is entered
         if (quizName.isEmpty()) {
@@ -128,19 +147,24 @@ public class CreateQuizController {
         }
 
         // Check if Starting date is entered
-        if (datePickerStartDate == null) {
+        if (datePickerStartDate.getValue() == null) {
             warnings.append("Startdatum saknas!\n");
         } else {
             System.out.println("startdatum är " + datePickerStartDate.getValue());
-            quizStartDate = datePickerStartDate.getValue();
         }
 
         // Check if Ending date is entered
-        if (datePickerEndDate == null) {
+        if (datePickerEndDate.getValue() == null) {
             warnings.append("Slutdatum saknas!\n");
         } else {
             System.out.println("slutdatum är " + datePickerEndDate.getValue());
-            quizEndDate = datePickerEndDate.getValue();
+        }
+
+        // Check if Quiz is selfcorrecting or not
+        if (timeLimitCheckBox.isSelected()) {
+            selfcorrectingvalue = "yes";
+        } else {
+            selfcorrectingvalue = "no";
         }
 
         if (warnings.length() > 0) {
@@ -149,9 +173,9 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
-            //TODO: Kolla så att prov inte är tomt! Validera svar!
+            //TODO: Koolla validera av svar?
             // Saves Quiz to database
-            Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString());
+            Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString(), selfcorrectingvalue);
             QuizService.create(quiz);
 
             // ArrayLists for Question and Answer entities
@@ -160,11 +184,16 @@ public class CreateQuizController {
 
             // Check for questions and add to questions list
             for (NewQuestionType element : newQuestionType) {
-                String questionType ="";
-                switch(element.getQuestionType()) {
-                    case "multipleAnswer": questionType = "multiple";
+                String questionType = "";
+                switch (element.getQuestionType()) {
+                    case "multipleAnswer":
+                        questionType = "multiple";
                         break;
-                    case "singleAnswer": questionType = "single";
+                    case "singleAnswer":
+                        questionType = "single";
+                        break;
+                    case "openAnswer":
+                        questionType = "open";
                         break;
                 }
 
@@ -172,7 +201,7 @@ public class CreateQuizController {
                 quizQuestions.add(quest);
 
                 // Check for answers and add to answers list
-                for(int j = 0; j < 4; j++) {
+                for (int j = 0; j < element.newAnswerTextField.length ; j++) {
                     int correctAnswer = 0;
                     //TODO: add if radiobutton is checked
                     if (questionType == "multiple") {
@@ -187,6 +216,8 @@ public class CreateQuizController {
                         } else {
                             correctAnswer = 0;
                         }
+                    } else if (questionType == "open") {
+                        correctAnswer = 0;
                     }
 
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
@@ -197,6 +228,38 @@ public class CreateQuizController {
             // Saves all Question and Answer objects to database
             QuestionService.create(quizQuestions);
             AnswerService.create(answers);
+
+            // Feedback after successfully added quiz
+            successfullyCreatedQuiz();
+        }
+    }
+
+    private void successfullyCreatedQuiz() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Succe!");
+        alert.setHeaderText("Quizet sparades");
+        alert.setContentText("Vill du skapa fler quiz?");
+
+        ButtonType noButton = new ButtonType("Nej", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType yesButton = new ButtonType("Ja");
+
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == noButton) {
+            // If user don't want to create more quiz go to edit quiz page
+            try {
+                Main.showEditQuiz();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // If user want's to create more quize refresh page
+            try {
+                Main.showCreateQuiz();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -210,5 +273,11 @@ public class CreateQuizController {
         NewQuestionType newSingleQuestion = new NewQuestionType(QuestionList);
         newSingleQuestion.singleAnswer();
         newQuestionType.add(newSingleQuestion);
+    }
+
+    private void buttonAddOpenAnswerQuestion() {
+        NewQuestionType newOpenQuestion = new NewQuestionType(QuestionList);
+        newOpenQuestion.openAnswer();
+        newQuestionType.add(newOpenQuestion);
     }
 }

@@ -15,16 +15,16 @@
             <VBox prefWidth="648.0" spacing="10.0" BorderPane.alignment="TOP_LEFT">
                <children>
                   <Separator prefWidth="200.0" />
-                  <Label text="Skriv in namn på Quizet">
+                  <Label text="Quiz namn">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textFieldQuizName" promptText="namn" />
+                  <TextField fx:id="textFieldQuizName" promptText="Skriv in namn på quiz här" />
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" spacing="10.0">
                      <children>
                         <CheckBox fx:id="timeLimitCheckBox" mnemonicParsing="false" text="Tidsbegränsning" />
-                        <CheckBox disable="true" mnemonicParsing="false" text="Självrättande" />
+                        <CheckBox fx:id="selfCorrectingCheckBox" mnemonicParsing="false" text="Självrättande" />
                      </children>
                   </HBox>
                   <GridPane fx:id="timeLimitGridPane" maxHeight="0.0" minHeight="0.0" prefHeight="0.0" visible="false">
@@ -84,8 +84,9 @@
                   <VBox fx:id="vboxAddQuestions" />
                   <HBox alignment="TOP_CENTER" prefHeight="30.0" spacing="10.0">
                      <children>
-                        <Button fx:id="buttonAddMultipleAnswerQuestion" mnemonicParsing="false" text="Lägg till Multisvars Fråga" />
-                        <Button fx:id="buttonAddSingleAnswerQuestion" mnemonicParsing="false" text="Lägg till singelsvars fråga" />
+                        <Button fx:id="buttonAddMultipleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till Multisvars Fråga" />
+                        <Button fx:id="buttonAddSingleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till singelsvars fråga" />
+                        <Button fx:id="buttonAddOpenAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till öppen fråga" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">

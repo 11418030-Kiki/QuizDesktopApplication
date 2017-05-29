@@ -86,6 +86,26 @@ public class NewQuestionType {
         questionNumber++;
     }
 
+    public void openAnswer() {
+        label.setText("Öppen fråga");
+
+        newAnswerTextField = new TextField[1];
+        hBox = new HBox[1];
+
+        for(int i = 0; i < 1; i++){
+            hBox[i] = new HBox();
+            Button deleteButton = new Button("X");
+            newAnswerTextField[i] = new TextField();
+            newAnswerTextField[i].setText("Open question");
+            answerNumber++;
+            hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
+        }
+
+        answerNumber = 1;
+        questionType = "openAnswer";
+        questionNumber++;
+    }
+
     public String getQuestionType() {
         return questionType;
     }

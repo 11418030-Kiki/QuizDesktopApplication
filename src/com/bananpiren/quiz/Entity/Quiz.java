@@ -25,15 +25,18 @@ public class Quiz {
     private String quizStartDate;
     @NotNull
     private String quizEndDate;
+    @NotNull
+    private String selfcorrecting;
 
     @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "quiz")
     private Collection<QuizQuestions> quizQuestions;
 
-    public Quiz(String quizName, int timeLimit, String quizStartDate, String quizEndDate) {
+    public Quiz(String quizName, int timeLimit, String quizStartDate, String quizEndDate, String selfcorrecting) {
         this.quizName = quizName;
         this.timeLimit = timeLimit;
         this.quizStartDate = quizStartDate;
         this.quizEndDate = quizEndDate;
+        this.selfcorrecting = selfcorrecting;
     }
 
     public Quiz() {}
@@ -85,5 +88,13 @@ public class Quiz {
 
     public void setQuizQuestions(Collection<QuizQuestions> quizQuestions) {
         this.quizQuestions = quizQuestions;
+    }
+
+    public String getSelfcorrecting() {
+        return selfcorrecting;
+    }
+
+    public void setSelfcorrecting(String selfcorrecting) {
+        this.selfcorrecting = selfcorrecting;
     }
 }

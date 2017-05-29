@@ -49,7 +49,6 @@ public class QuizService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        entityManager.getTransaction().begin();
         Quiz quiz = entityManager.find(Quiz.class, quizId);
         entityManager.remove(quiz);
 

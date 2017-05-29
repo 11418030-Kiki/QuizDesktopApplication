@@ -17,14 +17,6 @@ public class QuizQuestions {
     private String question;
     private String questionType;
 
-    public Collection<QuestionAnswers> getQuestionAnswers() {
-        return questionAnswers;
-    }
-
-    public void setQuestionAnswers(Collection<QuestionAnswers> questionAnswers) {
-        this.questionAnswers = questionAnswers;
-    }
-
     @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "question")
     private Collection<QuestionAnswers> questionAnswers;
 
@@ -87,5 +79,13 @@ public class QuizQuestions {
 
     public void setQuestionAnswersList(List questionAnswersList) {
         this.questionAnswersList = questionAnswersList;
+    }
+
+    public Collection<QuestionAnswers> getQuestionAnswers() {
+        return questionAnswers;
+    }
+
+    public void setQuestionAnswers(Collection<QuestionAnswers> questionAnswers) {
+        this.questionAnswers = questionAnswers;
     }
 }
