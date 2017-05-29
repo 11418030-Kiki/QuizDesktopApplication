@@ -87,6 +87,7 @@
                         <Button fx:id="buttonAddMultipleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till Multisvars Fråga" />
                         <Button fx:id="buttonAddSingleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till singelsvars fråga" />
                         <Button fx:id="buttonAddOpenAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till öppen fråga" />
+                        <Button fx:id="buttonRemoveCurrentQuestion" layoutX="409.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" text="Ta bort vald fråga" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">

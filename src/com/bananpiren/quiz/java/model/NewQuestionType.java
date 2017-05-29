@@ -2,6 +2,7 @@
 
 package com.bananpiren.quiz.java.model;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -69,8 +70,13 @@ public class NewQuestionType {
         hBox = new HBox[4];
 
         for(int i = 0; i < 4; i++){
-            hBox[i] = new HBox();
+            final HBox answer = new HBox();
+            hBox[i] = answer;
             Button deleteButton = new Button("X");
+            deleteButton.setOnAction(e -> {
+                removeAnswer(answer);
+            });
+
             newAnswerTextField[i] = new TextField();
             newAnswerTextField[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
             hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
@@ -84,6 +90,10 @@ public class NewQuestionType {
         answerNumber = 1;
         questionType = "singleAnswer";
         questionNumber++;
+    }
+
+    private void removeAnswer(Node answer) {
+        this.questionField.getChildren().removeAll(answer);
     }
 
     public void openAnswer() {
@@ -108,5 +118,10 @@ public class NewQuestionType {
 
     public String getQuestionType() {
         return questionType;
+    }
+
+    public static void resetQuestionsAndAnswerNumbers() {
+        questionNumber = 1;
+        answerNumber = 1;
     }
 }

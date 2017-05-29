@@ -71,6 +71,9 @@ public class CreateQuizController {
     private Button buttonAddOpenAnswerQuestion;
 
     @FXML
+    private Button buttonRemoveCurrentQuestion;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
@@ -113,6 +116,10 @@ public class CreateQuizController {
             selfCorrectingCheckBox.setSelected(false);
             selfCorrectingCheckBox.setDisable(true);
             buttonAddOpenAnswerQuestion();
+        });
+
+        buttonRemoveCurrentQuestion.setOnAction(e -> {
+            removeSelectedQuestion();
         });
 
         buttonCreateQuiz.setOnAction(e -> {
@@ -197,13 +204,12 @@ public class CreateQuizController {
                         break;
                 }
 
-                QuizQuestions quest = new QuizQuestions(element.questionTextField.getText(), questionType, quiz);
-                quizQuestions.add(quest);
+                QuizQuestions questions = new QuizQuestions(element.questionTextField.getText(), questionType, quiz);
+                quizQuestions.add(questions);
 
                 // Check for answers and add to answers list
                 for (int j = 0; j < element.newAnswerTextField.length ; j++) {
                     int correctAnswer = 0;
-                    //TODO: add if radiobutton is checked
                     if (questionType == "multiple") {
                         if (element.answerCheckbox[j].isSelected()) {
                             correctAnswer = 1;
@@ -217,10 +223,10 @@ public class CreateQuizController {
                             correctAnswer = 0;
                         }
                     } else if (questionType == "open") {
-                        correctAnswer = 0;
-                    }
+                            correctAnswer = 0;
+                        }
 
-                    QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, quest);
+                    QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, questions);
                     answers.add(answer);
                 }
             }
@@ -228,6 +234,8 @@ public class CreateQuizController {
             // Saves all Question and Answer objects to database
             QuestionService.create(quizQuestions);
             AnswerService.create(answers);
+
+            NewQuestionType.resetQuestionsAndAnswerNumbers();
 
             // Feedback after successfully added quiz
             successfullyCreatedQuiz();
@@ -279,5 +287,11 @@ public class CreateQuizController {
         NewQuestionType newOpenQuestion = new NewQuestionType(QuestionList);
         newOpenQuestion.openAnswer();
         newQuestionType.add(newOpenQuestion);
+    }
+
+    private void removeSelectedQuestion() {
+        int selectedQuestion = QuestionList.getSelectionModel().getSelectedIndex();
+
+        QuestionList.getItems().remove(selectedQuestion);
     }
 }
