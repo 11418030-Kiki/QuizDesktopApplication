@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 
 
@@ -29,6 +30,8 @@ public class TakeQuizController {
         String[] answer = new String[takeQuizList.size()];
         Label[] answerLabel = new Label[takeQuizList.size()];
         CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
+
+        TextArea[] answerTextArea = new TextArea[len];
 
         RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
 
@@ -75,9 +78,10 @@ public class TakeQuizController {
                 if(questionType.equals("multiple")) {
                     answerCheckbox[j] = new CheckBox();
                     answerBox[j].getChildren().add(answerCheckbox[j]);
+                } else if(questionType.equals("open")){
+                    answerTextArea[i] = new TextArea();
+                    answerBox[i].getChildren().add(answerTextArea[i]);
                 } else {
-
-
                     answerButton[j] = new RadioButton();
                     answerButton[j].setToggleGroup(toggleGroups[i]);
 
@@ -99,5 +103,4 @@ public class TakeQuizController {
 
         return questionBox;
     }
-
 }
