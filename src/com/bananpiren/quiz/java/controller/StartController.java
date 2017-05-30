@@ -110,14 +110,14 @@ public class StartController {
                     VBox newCoolVbox = new VBox();
 
                     // get the list of the current quiz from the database
+                    // building the querys
                     takeQuizList = quizService.currentQuiz(currentQuizId);
-
 
                     // displaying the question and answers on vbox
                     vbox = createQuizQuestions();
                     newCoolVbox.getChildren().addAll(vbox);
 
-
+                // create the TakeQuizController
                     TakeQuizController takeQuizController = new TakeQuizController();
 
                     try {

@@ -37,9 +37,6 @@ public class TakeQuizController {
     @FXML
     private CorrectQuiz correctQuiz;
 
-    //    public TakeQuizController() {
-//
-//    }
 
 
     @FXML
@@ -61,6 +58,7 @@ public class TakeQuizController {
         updateQuizTimer();
     }
 
+    // store correct answer and useranswer
     private void sendQuiz() {
         int noMultiple = 0;
         int noSingle = 0;
@@ -83,7 +81,6 @@ public class TakeQuizController {
 
 //            int theResult = Integer.parseInt(takeQuizList.get(i).getPoints());
 
-
             // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
 
@@ -93,6 +90,7 @@ public class TakeQuizController {
 
     }
 
+    // correct the quiz and save it in a new table
     private void sendUserQuiz() {
         UserQuiz userQuiz = new UserQuiz();
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
