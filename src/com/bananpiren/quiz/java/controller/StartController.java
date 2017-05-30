@@ -70,21 +70,34 @@ public class StartController {
 
         takeQuizButton.setOnAction((ActionEvent e) -> {
             String quizEndDate = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizEndDate();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String quizStartDate = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizStartDate();
             try {
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date dateQuizEndDate = inputFormat.parse(quizEndDate);
+                Date dateQuizStartDate = inputFormat.parse(quizStartDate);
                 Calendar calQuizEndDate = Calendar.getInstance();
+                Calendar calquizStartDate = Calendar.getInstance();
                 calQuizEndDate.setTime(dateQuizEndDate);
+                calquizStartDate.setTime(dateQuizStartDate);
                 Calendar calToday = Calendar.getInstance();
                 calToday.set(Calendar.HOUR_OF_DAY, 0);
                 calToday.set(Calendar.MINUTE, 0);
                 calToday.set(Calendar.SECOND, 0);
                 calToday.set(Calendar.MILLISECOND, 0);
+
                 if (calQuizEndDate.compareTo(calToday) <= 0) {
-                    System.out.println("HEJ1");
-                    JOptionPane.showMessageDialog(null, "Datumet för quizet har passerat");
+                    Alert toLate = new Alert(Alert.AlertType.ERROR);
+                    toLate.setTitle("Meddelande");
+                    toLate.setHeaderText("Datumet passerat");
+                    toLate.setContentText("Datumet för provet har redan passerat");
+                    toLate.showAndWait();
+                }else if(calquizStartDate.compareTo(calToday) >=0){
+                    Alert toEarly = new Alert(Alert.AlertType.INFORMATION);
+                    toEarly.setTitle("Meddelande");
+                    toEarly.setHeaderText("Quizet har inte startat");
+                    toEarly.setContentText("Quizets startdatum har inte inträffat");
+                    toEarly.showAndWait();
                 } else {
-                    System.out.println("HEJ2");
 
                     currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
 
