@@ -8,7 +8,7 @@ package com.bananpiren.quiz.Entity;
 public class TakeQuiz {
 
     // Quiz
-    private int quizId;
+    private String quizId;
     private String quizName;
     private int timeLimit;
     private String quizStartDate;
@@ -24,14 +24,43 @@ public class TakeQuiz {
     private String answer;
     private String correctAnswer;
 
+    // UserQuiz
+    private int userQuizId;
+    private int userId;
+    private String points;
+
     public TakeQuiz() {
     }
 
-    public int getQuizId() {
+    public int getUserQuizId() {
+        return userQuizId;
+    }
+
+    public void setUserQuizId(int userQuizId) {
+        this.userQuizId = userQuizId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getPoints() {
+        return points;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
+    }
+
+    public String getQuizId() {
         return quizId;
     }
 
-    public void setQuizId(int quizId) {
+    public void setQuizId(String quizId) {
         this.quizId = quizId;
     }
 

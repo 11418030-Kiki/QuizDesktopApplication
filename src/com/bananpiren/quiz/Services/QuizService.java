@@ -14,7 +14,8 @@ import java.util.List;
 
 public class QuizService {
 
-    public QuizService() {}
+    public QuizService() {
+    }
 
     public static void create(Quiz quiz) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -102,6 +103,16 @@ public class QuizService {
         Query questionId = entityManager.createQuery("SELECT qq.questionId FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
         List questionIdList = questionId.getResultList();
 
+        // Query quizId
+        Query quizId = entityManager.createQuery("SELECT qq.quiz.quizId FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
+        List quizIdList = quizId.getResultList();
+
+        // Query points
+//        Query result = entityManager.createQuery("SELECT uq.points FROM UserQuiz uq WHERE uq.quizId = " + currentQuizId + "");
+////        String firstResult = result.getResultList();
+////result.getSingleResult():
+//        List resultList = result.getResultList();
+
 
         int count = 0;
 
@@ -109,7 +120,7 @@ public class QuizService {
         ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
         // skapar TakeQuiz med namn, frågor och svar
-        for(int i = 0; i < quizNameList.size(); i++) {
+        for (int i = 0; i < quizNameList.size(); i++) {
             takeQuiz = new TakeQuiz();
             takeQuiz.setQuizName(quizNameList.get(i).toString());
             takeQuiz.setQuestion(questionList.get(i).toString());
@@ -118,7 +129,8 @@ public class QuizService {
             takeQuiz.setAnswerId(answerIdList.get(i).toString());
             takeQuiz.setCorrectAnswer(correctAnswerList.get(i).toString());
             takeQuiz.setQuestionId(questionIdList.get(i).toString());
-
+            takeQuiz.setQuizId(quizIdList.get(i).toString());
+//            takeQuiz.setPoints(resultList.get(i).toString());
             takeQuizList.add(takeQuiz);
         }
 

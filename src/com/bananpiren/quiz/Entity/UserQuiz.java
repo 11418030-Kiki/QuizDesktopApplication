@@ -19,8 +19,18 @@ public class UserQuiz {
     @NotNull
     private String QuizName; // hämta quizname KLAR
     @NotNull
+    private String quizId;
+    @NotNull
     private int points; // räkna ihop poäng
 
+
+    public String getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(String quizId) {
+        this.quizId = quizId;
+    }
 
     public int getUserQuizId() {
         return userQuizId;

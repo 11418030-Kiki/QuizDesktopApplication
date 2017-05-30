@@ -37,8 +37,7 @@ public class TakeQuizController {
     @FXML
     private CorrectQuiz correctQuiz;
 
-
-//    public TakeQuizController() {
+    //    public TakeQuizController() {
 //
 //    }
 
@@ -56,6 +55,7 @@ public class TakeQuizController {
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
             sendUserQuiz();
+
         });
 
         updateQuizTimer();
@@ -81,17 +81,24 @@ public class TakeQuizController {
                 noSingle++;
             }
 
+//            int theResult = Integer.parseInt(takeQuizList.get(i).getPoints());
+
+
             // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
 
             correctQuizService.correctQuiz(correctQuiz);
         }
+
+
     }
 
     private void sendUserQuiz() {
         UserQuiz userQuiz = new UserQuiz();
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
+        userQuiz.setQuizId(takeQuizList.get(0).getQuizId());
+
 
         int points = 1;
         int countedPoints = 0;
@@ -128,6 +135,10 @@ public class TakeQuizController {
                 countedPoints++;
             }
         }
+
+        int theResult = countedPoints;
+//        String theResult = takeQuizList.get(0).getPoints();
+        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!").showAndWait();
 
         userQuiz.setPoints(countedPoints);
 
