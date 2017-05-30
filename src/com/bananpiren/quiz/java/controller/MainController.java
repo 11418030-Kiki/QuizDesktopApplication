@@ -3,12 +3,12 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
-    private Main main;
-    private boolean adminPrivilege = true;
+    private Main main = new Main();
 
     @FXML
     private Button buttonSettings;
@@ -88,7 +88,7 @@ public class MainController {
 
         // Log out button
         buttonLogOut.setOnAction(event -> {
-
+            showLogin();
         });
     }
 
@@ -152,6 +152,17 @@ public class MainController {
             main.showSettings();
         } catch (IOException e) {
             System.out.println("Couldn't show Settings");
+        }
+    }
+
+    @FXML
+    private void showLogin() {
+        try {
+            main.showLoginScreen();
+            Stage stage = (Stage) buttonLogOut.getScene().getWindow();
+            stage.close();
+        } catch (IOException e) {
+            System.out.println("Couldn't log out");
         }
     }
 }

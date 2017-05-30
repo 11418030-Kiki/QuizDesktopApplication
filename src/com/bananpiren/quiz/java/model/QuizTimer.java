@@ -11,20 +11,39 @@ public class QuizTimer {
         TakeQuizController takeQuizController = new TakeQuizController();
 
         Runnable updateQuizTimeRunnable = () -> {
-            int time = quizTime;
+            int timeMin = quizTime;
+            int timeSek = 60;
 
             for (int i = 0; quizTime >= i; i++) {
-                int finalTime = time;
-                Platform.runLater(() -> {
-                    quizTimeLabel.setText(finalTime + "");
-                });
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                int finalTimeMin = timeMin;
+                if (finalTimeMin > 1) {
+                    Platform.runLater(() -> {
+                        quizTimeLabel.setText(finalTimeMin + " :min");
+                    });
+                    try {
+                        Thread.sleep(60000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    timeMin--;
                 }
-                time--;
             }
+
+            for (int o = 0; timeSek > o; o++){
+                int finalTimeSek = timeSek;
+                if (timeMin == 1){
+                    Platform.runLater(() -> {
+                        quizTimeLabel.setText(finalTimeSek + " :sek");
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    timeSek--;
+                }
+            }
+
             Platform.runLater(() -> {
                 quizTimeLabel.setText("Times up!");
                 takeQuizController.ternInQuiz();
@@ -33,6 +52,5 @@ public class QuizTimer {
 
         Thread updateQuizTimeThread = new Thread(updateQuizTimeRunnable);
         updateQuizTimeThread.start();
-
     }
 }

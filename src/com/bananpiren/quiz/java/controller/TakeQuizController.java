@@ -83,7 +83,7 @@ public class TakeQuizController {
 
     private void updateQuizTimer() {
         //TODO: Stoppa in current quiz time istället för fast värde under
-        QuizTimer.quizTimerClock(3, quizTimeLabel);
+        QuizTimer.quizTimerClock(2, quizTimeLabel);
     }
 
     public void ternInQuiz() {
