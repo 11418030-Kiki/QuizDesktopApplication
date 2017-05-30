@@ -44,6 +44,9 @@ public class StartController {
     private TableColumn<Quiz, String> quizEndDateColumn;
 
     @FXML
+    private TableColumn<Quiz, String> quizStartDateColumn;
+
+    @FXML
     private Button takeQuizButton;
 
 
@@ -57,6 +60,7 @@ public class StartController {
         quizIdColumn.setCellValueFactory(new PropertyValueFactory<Quiz, Integer>("quizId"));
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
+        quizStartDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizStartDate"));
         quizTableView.setItems(data);
 
         takeQuizButton.setDisable(true);
@@ -87,7 +91,7 @@ public class StartController {
                     toLate.setHeaderText("Datumet passerat");
                     toLate.setContentText("Datumet för provet har redan passerat");
                     toLate.showAndWait();
-                }else if(calquizStartDate.compareTo(calToday) >=0){
+                }else if(calquizStartDate.compareTo(calToday) >0){
                     Alert toEarly = new Alert(Alert.AlertType.INFORMATION);
                     toEarly.setTitle("Meddelande");
                     toEarly.setHeaderText("Quizet har inte startat");
