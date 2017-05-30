@@ -4,6 +4,7 @@ import com.bananpiren.quiz.Entity.CorrectQuiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Services.CorrectQuizService;
 //import com.bananpiren.quiz.java.controller.LoginController;
+import com.bananpiren.quiz.java.model.QuizTimer;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 
 
 public class TakeQuizController {
-
     @FXML
     private Label quizNameHeader;
 
@@ -21,7 +21,7 @@ public class TakeQuizController {
     private Label quizLabel;
 
     @FXML
-    private Button sendQuizButton;
+    private Button sendQuizButton = new Button();
 
     @FXML
     private CheckBox[] answerCheckbox;
@@ -31,6 +31,9 @@ public class TakeQuizController {
 
     @FXML
     private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+
+    @FXML
+    private Label quizTimeLabel;
 
     @FXML
     private void initialize() {
@@ -58,8 +61,8 @@ public class TakeQuizController {
             }
 
         });
+        updateQuizTimer();
     }
-
 
     VBox createQuizQuestions(ArrayList<TakeQuiz> takeQuizList) {
         // length of the list divided with the number of questions
@@ -132,4 +135,13 @@ public class TakeQuizController {
         return questionBox;
     }
 
+    private void updateQuizTimer() {
+        //TODO: Stoppa in current quiz time istället för fast värde under
+        QuizTimer.quizTimerClock(3, quizTimeLabel);
+    }
+
+    public void ternInQuiz() {
+        //TODO: Skapa logik för att lämna in quiz.
+//        sendQuizButton.fire();
+    }
 }
