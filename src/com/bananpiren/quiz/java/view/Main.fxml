@@ -19,6 +19,7 @@
             <Button fx:id="buttonUsers" mnemonicParsing="false" prefWidth="120.0" text="Användare" />
             <Button fx:id="buttonStatistics" mnemonicParsing="false" prefWidth="120.0" text="Statistik" />
             <Button fx:id="buttonSettings" mnemonicParsing="false" prefWidth="120.0" text="Inställningar" />
+            <Button fx:id="buttonLogOut" mnemonicParsing="false" prefWidth="120.0" text="Logga Ut" />
             <Button fx:id="buttonExit" mnemonicParsing="false" prefWidth="120.0" text="Avsluta" />
          </children>
          <BorderPane.margin>

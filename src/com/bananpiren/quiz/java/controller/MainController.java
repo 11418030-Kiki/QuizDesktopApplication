@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 public class MainController {
-
     private Main main;
     private boolean adminPrivilege = true;
 
@@ -36,17 +35,16 @@ public class MainController {
     private Button buttonEditQuiz;
 
     @FXML
+    private Button buttonLogOut;
+
+    @FXML
     private void initialize() {
-        LoginController loginController = new LoginController();
-
-
-        if (loginController.getCurrentUser().getAccountLevel().equals("Användare")) {
+        if (LoginController.getCurrentUser().getAccountLevel().equals("Användare")) {
             buttonCreateQuiz.setManaged(false);
             buttonEditQuiz.setManaged(false);
             buttonUsers.setManaged(false);
             buttonStatistics.setManaged(false);
         }
-
 
         // Start button
         buttonStart.setOnAction(e -> {
@@ -86,6 +84,11 @@ public class MainController {
         // Exit button
         buttonExit.setOnAction(e -> {
             System.exit(1);
+        });
+
+        // Log out button
+        buttonLogOut.setOnAction(event -> {
+
         });
     }
 
@@ -151,6 +154,4 @@ public class MainController {
             System.out.println("Couldn't show Settings");
         }
     }
-
-
 }
