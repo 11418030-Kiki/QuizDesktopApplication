@@ -84,7 +84,6 @@ public class StartController {
                 calToday.set(Calendar.MINUTE, 0);
                 calToday.set(Calendar.SECOND, 0);
                 calToday.set(Calendar.MILLISECOND, 0);
-
                 if (calQuizEndDate.compareTo(calToday) <= 0) {
                     Alert toLate = new Alert(Alert.AlertType.ERROR);
                     toLate.setTitle("Meddelande");
