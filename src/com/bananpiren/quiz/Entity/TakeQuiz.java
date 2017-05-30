@@ -20,9 +20,9 @@ public class TakeQuiz {
     private String questionType;
 
     // QuestionAnswers
-    private int answerId;
+    private String answerId;
     private String answer;
-    private int correctAnswer;
+    private String correctAnswer;
 
     public TakeQuiz() {
     }
@@ -91,11 +91,11 @@ public class TakeQuiz {
         this.questionType = questionType;
     }
 
-    public int getAnswerId() {
+    public String getAnswerId() {
         return answerId;
     }
 
-    public void setAnswerId(int answerId) {
+    public void setAnswerId(String answerId) {
         this.answerId = answerId;
     }
 
@@ -107,11 +107,11 @@ public class TakeQuiz {
         this.answer = answer;
     }
 
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(int correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 }

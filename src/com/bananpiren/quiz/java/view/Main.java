@@ -19,18 +19,17 @@ public class Main extends Application {
     private static Stage loginStage;
     public static BorderPane mainLayout;
 
-//  Ta bort detta när inlogg ska läggas till!
-              private static Stage primaryStage = new Stage();
-              private MainController mainController;
+    //  Ta bort detta när inlogg ska läggas till!
+    private static Stage primaryStage = new Stage();
+    private MainController mainController;
 //  --------------------------------------
 
     UserService userService = new UserService();
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         LoginController loginController = new LoginController();
-
 
 
 //        Ta bort detta när login aktiverats
@@ -44,8 +43,8 @@ public class Main extends Application {
 //      showLoginScreen();
 
 //      Ta bort detta när inlogg ska läggas till!
-                 showMainView(primaryStage);
-                  showStart();
+        showMainView(primaryStage);
+        showStart();
 //      ----------
 
     }

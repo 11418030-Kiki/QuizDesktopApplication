@@ -9,11 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.VPos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javax.swing.*;
@@ -29,11 +29,13 @@ public class StartController {
 
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
     //    private ObservableList<VBox> vbox = FXCollections.observableArrayList();
-    private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+
+    private static ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
     private VBox vbox;
 
     private QuizService quizService = new QuizService();
+
     public int currentQuizId;
 
     @FXML
@@ -89,8 +91,10 @@ public class StartController {
 
                     TakeQuizController takeQuizController = new TakeQuizController();
                     VBox newCoolVbox = new VBox();
+            VBox newCoolVbox = new VBox();
 
                     // TODO: Hämta allt i quiz med query
+            TakeQuizController takeQuizController = new TakeQuizController();
 
                     // get the list of the current quiz
                     takeQuizList = quizService.currentQuiz(currentQuizId);
@@ -107,6 +111,9 @@ public class StartController {
                     // displaying the question and answers on vbox
                     vbox = takeQuizController.createQuizQuestions(takeQuizList);
                     newCoolVbox.getChildren().addAll(vbox);
+            // displaying the question and answers on vbox
+            vbox = takeQuizController.createQuizQuestions(takeQuizList);
+            newCoolVbox.getChildren().addAll(vbox);
 
                     try {
                         FXMLLoader loader = new FXMLLoader();
@@ -121,7 +128,14 @@ public class StartController {
             }catch(Exception f){
                 System.out.println(f);
             }
+
         });
+    }
+
+
+
+    static ArrayList<TakeQuiz> getTakeQuizList() {
+        return takeQuizList;
     }
 
 }

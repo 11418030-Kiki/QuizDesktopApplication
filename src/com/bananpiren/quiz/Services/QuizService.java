@@ -74,7 +74,7 @@ public class QuizService {
 
         entityManager.getTransaction().begin();
 
-        // Query question and put it in a list
+        // Query quizName and put it in a list
         Query quizName = entityManager.createQuery("SELECT qq.quiz.quizName FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + " ");
         List quizNameList = quizName.getResultList();
 
@@ -87,9 +87,17 @@ public class QuizService {
         List answerList = answer.getResultList();
 
         // Query questionType and put them in a list
-        // Query answers and put them in a list
         Query questionType = entityManager.createQuery("SELECT qa.question.questionType FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
         List questionTypeList = questionType.getResultList();
+
+        // Query all the answerId from the selected Quiz
+        Query answerId = entityManager.createQuery("SELECT qa.answerId FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
+        List answerIdList = answerId.getResultList();
+
+        // Query correctAnswer
+        Query correctAnswer = entityManager.createQuery("SELECT qa.correctAnswer FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
+        List correctAnswerList = correctAnswer.getResultList();
+
 
         int count = 0;
 
@@ -103,6 +111,8 @@ public class QuizService {
             takeQuiz.setQuestion(questionList.get(i).toString());
             takeQuiz.setAnswer(answerList.get(i).toString());
             takeQuiz.setQuestionType(questionTypeList.get(i).toString());
+            takeQuiz.setAnswerId(answerIdList.get(i).toString());
+            takeQuiz.setCorrectAnswer(correctAnswerList.get(i).toString());
 
             takeQuizList.add(takeQuiz);
         }

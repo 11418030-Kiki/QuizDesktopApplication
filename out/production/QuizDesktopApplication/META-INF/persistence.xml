@@ -11,6 +11,8 @@
         <class>com.bananpiren.quiz.Entity.Quiz</class>
         <class>com.bananpiren.quiz.Entity.QuestionAnswers</class>
         <class>com.bananpiren.quiz.Entity.User</class>
+        <class>com.bananpiren.quiz.Entity.CorrectQuiz</class>
+
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bananpiren?autoReconnect=true&amp;useSSL=false"/>

@@ -1,13 +1,14 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.CorrectQuiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
+import com.bananpiren.quiz.Services.CorrectQuizService;
+//import com.bananpiren.quiz.java.controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 
 
@@ -19,9 +20,50 @@ public class TakeQuizController {
     @FXML
     private Label quizLabel;
 
+    @FXML
+    private Button sendQuizButton;
+
+    @FXML
+    private CheckBox[] answerCheckbox;
+
+    @FXML
+    private CorrectQuiz correctQuiz;
+
+    @FXML
+    private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+
+    @FXML
+    private void initialize() {
+        // get the takeQuizList
+        takeQuizList = StartController.getTakeQuizList();
+
+        // Create CorrectQuizObject
+        sendQuizButton.setOnAction(event -> {
+//correct();
+            for (int i = 0; i < takeQuizList.size(); i++) {
+                correctQuiz = new CorrectQuiz();
+
+                correctQuiz.setAnswerId(Integer.parseInt(takeQuizList.get(i).getAnswerId()));
+                correctQuiz.setCorrectAnswer(Integer.parseInt(takeQuizList.get(i).getCorrectAnswer()));
+
+                // lägg i en metod och se om kommer åt
+//                LoginController.getCurrentUser();
+                // set the userAnswer
+//                correctQuiz.setUserAnswer(answerCheckbox[i].isSelected());
+
+                // create table
+                CorrectQuizService correctQuizService = new CorrectQuizService();
+
+                correctQuizService.correctQuiz(correctQuiz);
+            }
+
+        });
+    }
+
+
     VBox createQuizQuestions(ArrayList<TakeQuiz> takeQuizList) {
         // length of the list divided with the number of questions
-        int len = takeQuizList.size()/4;
+        int len = takeQuizList.size() / 4;
 
         String[] questionName = new String[len];
         Label[] questionLabel = new Label[len];
@@ -29,17 +71,13 @@ public class TakeQuizController {
 
         String[] answer = new String[takeQuizList.size()];
         Label[] answerLabel = new Label[takeQuizList.size()];
-        CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
-
-        TextArea[] answerTextArea = new TextArea[len];
+        answerCheckbox = new CheckBox[takeQuizList.size()];
 
         RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
 
         ToggleGroup[] toggleGroups = new ToggleGroup[len]; // set with the number of questions
 
-
         HBox[] answerBox = new HBox[takeQuizList.size()];
-
 
         VBox questionBox = new VBox();
 
@@ -75,26 +113,16 @@ public class TakeQuizController {
                 answerBox[j].setSpacing(5);
 
                 // checks what kind of question
-                if(questionType.equals("multiple")) {
+                if (questionType.equals("multiple")) {
                     answerCheckbox[j] = new CheckBox();
                     answerBox[j].getChildren().add(answerCheckbox[j]);
-                } else if(questionType.equals("open")){
-                    answerTextArea[i] = new TextArea();
-                    answerBox[i].getChildren().add(answerTextArea[i]);
                 } else {
+
                     answerButton[j] = new RadioButton();
                     answerButton[j].setToggleGroup(toggleGroups[i]);
 
                     answerBox[j].getChildren().add(answerButton[j]);
                 }
-//                toggleGroups = new ToggleGroup(); Lägg till denna
-//                // if you are on the last run with radiobuttons
-//                if(j == answerNo-1 && !questionType.equals("multiple")) {
-//                    answer1Button.setToggleGroup(radioGroup);
-//                    answer2Button.setToggleGroup(radioGroup);
-//                    answer3Button.setToggleGroup(radioGroup);
-//                    answer4Button.setToggleGroup(radioGroup);
-//                }
 
                 questionBox.getChildren().add(answerBox[j]);
             }
@@ -103,4 +131,5 @@ public class TakeQuizController {
 
         return questionBox;
     }
+
 }
