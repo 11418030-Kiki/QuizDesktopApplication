@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
+import javafx.scene.control.CheckBox;
 
 import javax.persistence.*;
 
@@ -56,7 +57,7 @@ public class CorrectQuiz {
         return userAnswer;
     }
 
-    public void setUserAnswer(boolean userAnswer) {
+    public void setUserAnswer(Boolean userAnswer) {
         this.userAnswer = userAnswer;
     }
 }

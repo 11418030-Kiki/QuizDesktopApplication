@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,9 @@ public class StartController {
 
     @FXML
     private Button takeQuizButton;
+
+    private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
+    private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
 
 
     public StartController() {
@@ -99,18 +104,21 @@ public class StartController {
                     toEarly.showAndWait();
                 } else {
 
+                    // get the Id of the current Quiz
                     currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
 
                     VBox newCoolVbox = new VBox();
 
-                    TakeQuizController takeQuizController = new TakeQuizController();
-
-                    // get the list of the current quiz
+                    // get the list of the current quiz from the database
                     takeQuizList = quizService.currentQuiz(currentQuizId);
 
+
                     // displaying the question and answers on vbox
-                    vbox = takeQuizController.createQuizQuestions(takeQuizList);
+                    vbox = createQuizQuestions();
                     newCoolVbox.getChildren().addAll(vbox);
+
+
+                    TakeQuizController takeQuizController = new TakeQuizController();
 
                     try {
                         FXMLLoader loader = new FXMLLoader();
@@ -130,8 +138,94 @@ public class StartController {
     }
 
 
+    // TODO: för openquestionfrågor: För varje openquestion, minska len med 3
+    VBox createQuizQuestions() {
+
+        // length of the list divided with the number of questions
+        int len = takeQuizList.size() / 4;
+
+        String[] questionName = new String[len];
+        Label[] questionLabel = new Label[len];
+        String questionType = "";
+
+        String[] answer = new String[takeQuizList.size()];
+        Label[] answerLabel = new Label[takeQuizList.size()];
+        CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
+
+        RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
+
+        ToggleGroup[] toggleGroups = new ToggleGroup[len]; // set with the number of questions
+
+        HBox[] answerBox = new HBox[takeQuizList.size()];
+
+        VBox questionBox = new VBox();
+
+        int incQuest = 0;
+        int incAnswer = 0;
+        int answerNo = 4;
+
+        // loop through the questions
+        for (int i = 0; i < len; i++) {
+            // increment the question with the number of answers and get the question
+            incQuest = i * answerNo;
+
+            questionName[i] = takeQuizList.get(incQuest).getQuestion();
+            questionType = takeQuizList.get(incQuest).getQuestionType();
+
+            questionLabel[i] = new Label(questionName[i]);
+            questionBox.getChildren().add(questionLabel[i]);
+            questionBox.setSpacing(5);
+            toggleGroups[i] = new ToggleGroup();
+            Separator separator = new Separator();
+            separator.setValignment(VPos.CENTER);
+
+            // loop through the answers
+            for (int j = 0; j < answerNo; j++) {
+                incAnswer = incQuest + j;
+
+                answer[j] = takeQuizList.get(incAnswer).getAnswer();
+
+                answerLabel[j] = new Label(answer[j]);
+                answerBox[j] = new HBox();
+
+                answerBox[j].getChildren().add(answerLabel[j]);
+                answerBox[j].setSpacing(5);
+
+                // checks what kind of question
+                if (questionType.equals("multiple")) {
+                    answerCheckbox[j] = new CheckBox();
+                    answerBox[j].getChildren().add(answerCheckbox[j]);
+
+                    multiAnswerList.add(answerCheckbox[j]);
+
+                } else {
+                    answerButton[j] = new RadioButton();
+                    answerButton[j].setToggleGroup(toggleGroups[i]);
+
+                    answerBox[j].getChildren().add(answerButton[j]);
+
+                    singleAnswerList.add(answerButton[j]);
+                }
+
+                questionBox.getChildren().add(answerBox[j]);
+            }
+            questionBox.getChildren().add(separator);
+        }
+
+        return questionBox;
+    }
+
+
     static ArrayList<TakeQuiz> getTakeQuizList() {
         return takeQuizList;
+    }
+
+    static ArrayList<CheckBox> getMultiAnswerList() {
+        return multiAnswerList;
+    }
+
+    static ArrayList<RadioButton> getSingleAnswerList() {
+        return singleAnswerList;
     }
 
 }
