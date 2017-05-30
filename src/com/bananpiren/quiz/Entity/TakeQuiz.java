@@ -15,7 +15,7 @@ public class TakeQuiz {
     private String quizEndDate;
 
     // QuizQuestions
-    private int questionId;
+    private String questionId;
     private String question;
     private String questionType;
 
@@ -67,11 +67,11 @@ public class TakeQuiz {
         this.quizEndDate = quizEndDate;
     }
 
-    public int getQuestionId() {
+    public String getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
+    public void setQuestionId(String questionId) {
         this.questionId = questionId;
     }
 

@@ -12,6 +12,7 @@
         <class>com.bananpiren.quiz.Entity.QuestionAnswers</class>
         <class>com.bananpiren.quiz.Entity.User</class>
         <class>com.bananpiren.quiz.Entity.CorrectQuiz</class>
+        <class>com.bananpiren.quiz.Entity.UserQuiz</class>
 
 
         <properties>
