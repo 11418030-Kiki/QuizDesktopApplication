@@ -73,10 +73,10 @@ public class TakeQuizController {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("TakeQuizResult.fxml"));
-                BorderPane takeQuizResult = loader.load();
-                Main.mainLayout.setCenter(takeQuizResult);
+                BorderPane takeQuiz = loader.load();
+                Main.mainLayout.setCenter(takeQuiz);
             } catch (IOException f) {
-                System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+                System.out.println("Couldn't load TakeQuizResult.fxml: " + f);
             }
         });
 

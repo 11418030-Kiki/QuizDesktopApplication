@@ -143,7 +143,7 @@ public class MainController {
         try {
             main.showStatistics();
         } catch (IOException e) {
-            System.out.println("Couldn't show Statistics");
+            System.out.println("Couldn't show Statistics"+e);
         }
     }
 
