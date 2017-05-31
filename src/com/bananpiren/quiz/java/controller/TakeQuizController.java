@@ -6,9 +6,12 @@ import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.CorrectQuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
 import com.bananpiren.quiz.java.model.QuizTimer;
+import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-
+import javafx.scene.layout.BorderPane;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -38,6 +41,10 @@ public class TakeQuizController {
     private CorrectQuiz correctQuiz;
 
 
+//    public TakeQuizController() {
+//
+//    }
+
 
     @FXML
     private Label quizTimeLabel;
@@ -52,7 +59,14 @@ public class TakeQuizController {
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
             sendUserQuiz();
-
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("TakeQuizResult.fxml"));
+                BorderPane takeQuizResult = loader.load();
+                Main.mainLayout.setCenter(takeQuizResult);
+            } catch (IOException f) {
+                System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+            }
         });
 
         updateQuizTimer();
@@ -86,8 +100,6 @@ public class TakeQuizController {
 
             correctQuizService.correctQuiz(correctQuiz);
         }
-
-
     }
 
     // correct the quiz and save it in a new table

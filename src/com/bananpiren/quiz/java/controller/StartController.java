@@ -31,7 +31,7 @@ public class StartController {
 
     private QuizService quizService = new QuizService();
 
-    public int currentQuizId;
+    public static int currentQuizId;
 
     @FXML
     private TableColumn<Quiz, Integer> quizIdColumn;
@@ -191,13 +191,14 @@ public class StartController {
                 answerLabel[j] = new Label(answer[j]);
                 answerBox[j] = new HBox();
 
-                answerBox[j].getChildren().add(answerLabel[j]);
+
                 answerBox[j].setSpacing(5);
 
                 // checks what kind of question
                 if (questionType.equals("multiple")) {
                     answerCheckbox[j] = new CheckBox();
                     answerBox[j].getChildren().add(answerCheckbox[j]);
+                    answerBox[j].getChildren().add(answerLabel[j]);
 
                     multiAnswerList.add(answerCheckbox[j]);
 
@@ -206,6 +207,7 @@ public class StartController {
                     answerButton[j].setToggleGroup(toggleGroups[i]);
 
                     answerBox[j].getChildren().add(answerButton[j]);
+                    answerBox[j].getChildren().add(answerLabel[j]);
 
                     singleAnswerList.add(answerButton[j]);
                 }
@@ -230,5 +232,7 @@ public class StartController {
     static ArrayList<RadioButton> getSingleAnswerList() {
         return singleAnswerList;
     }
-
+public int getCurrentQuizId(){
+        return currentQuizId;
+}
 }

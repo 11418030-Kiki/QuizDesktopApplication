@@ -1,12 +1,18 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.User;
+import com.bananpiren.quiz.Entity.UserQuiz;
+import com.bananpiren.quiz.Services.UserQuizService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultsController {
 
