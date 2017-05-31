@@ -49,6 +49,9 @@ public class StatisticsController {
         quizTableColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizTableView.setItems(data);
         quizTableView.getSelectionModel().selectedItemProperty().addListener(e->{
+            averageScore = 0;
+            users = 0;
+            questionCount = 0;
             quizID = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
             questionCount = Integer.parseInt(QuestionService.getNumberOfQuestions(Integer.toString(quizID)));
             userQuizList = userQuizService.getAllUserQuizById(quizID);

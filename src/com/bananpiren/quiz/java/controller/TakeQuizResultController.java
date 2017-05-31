@@ -5,6 +5,7 @@ import com.bananpiren.quiz.Services.QuizService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class TakeQuizResultController {
     private Label quizNameLabel;
 
     @FXML
-    private Text correctAnswersLabel;
+    private Text correctQuizAnswerText;
 
     private QuizService quizService = new QuizService();
     private List<TakeQuiz> takeQuizList = new ArrayList<>();
@@ -26,17 +27,10 @@ public class TakeQuizResultController {
     private int points;
     private String quizName;
 
-
+    @FXML
     private void initialize(){
         int quizId = StartController.currentQuizId;
-        takeQuizList = quizService.currentQuiz(quizId);
-
-        System.out.println("takeQuizList.size() = " + takeQuizList.size());
-        points = Integer.parseInt(takeQuizList.get(0).getPoints());
-        quizName = takeQuizList.get(0).getQuizName();
-        questionCount = takeQuizList.size()/4;
-
-        quizNameLabel.setText(quizName);
-        correctAnswersLabel.setText("Du fick: "+points+" av "+ questionCount+" poäng möjliga");
+        correctQuizAnswerText.setText("testar bara");
+        correctQuizAnswerText.setTextAlignment(TextAlignment.RIGHT);
     }
 }
