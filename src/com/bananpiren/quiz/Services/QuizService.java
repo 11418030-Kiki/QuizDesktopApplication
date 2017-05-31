@@ -1,9 +1,6 @@
 package com.bananpiren.quiz.Services;
 
-import com.bananpiren.quiz.Entity.QuestionAnswers;
-import com.bananpiren.quiz.Entity.Quiz;
-import com.bananpiren.quiz.Entity.QuizQuestions;
-import com.bananpiren.quiz.Entity.TakeQuiz;
+import com.bananpiren.quiz.Entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -156,5 +153,19 @@ public class QuizService {
 
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+
+    public static List getUserQuiz(int userId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List list = entityManager.createQuery(
+                "SELECT q FROM UserQuiz q WHERE q.userId = " + userId)
+                .getResultList();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return list;
     }
 }
