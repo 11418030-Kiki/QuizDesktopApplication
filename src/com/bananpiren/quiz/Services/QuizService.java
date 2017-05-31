@@ -65,6 +65,22 @@ public class QuizService {
         return query.getResultList();
     }
 
+    public static List numberOfQuestions(int currentQuizId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        // Query quizName and put it in a list
+        Query numberOfQuestions = entityManager.createQuery("SELECT qq FROM QuizQuestions qq WHERE qq.quiz.quizId = " + currentQuizId + " ");
+        List number = numberOfQuestions.getResultList();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return number;
+    }
+
     public ArrayList<TakeQuiz> currentQuiz(int currentQuizId) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -108,12 +124,6 @@ public class QuizService {
         Query timer = entityManager.createQuery("SELECT q.timeLimit FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
         List timerList = timer.getResultList();
 
-        // Query points
-//        Query result = entityManager.createQuery("SELECT uq.points FROM UserQuiz uq WHERE uq.quizId = " + currentQuizId + "");
-////        String firstResult = result.getResultList();
-////result.getSingleResult():
-//        List resultList = result.getResultList();
-
 
         int count = 0;
 
@@ -130,10 +140,8 @@ public class QuizService {
             takeQuiz.setAnswerId(answerIdList.get(i).toString());
             takeQuiz.setCorrectAnswer(correctAnswerList.get(i).toString());
             takeQuiz.setQuestionId(questionIdList.get(i).toString());
-            takeQuiz.setQuizId(quizIdList.get(i).toString());
-//            takeQuiz.setPoints(resultList.get(i).toString());
-            takeQuiz.setTimeLimit((int)timerList.get(i));
-//            System.out.println("(int)timerList.get(i) + \" STRING: \" + timerList.get(i) = " + timerList.get(i) + " STRING: " + timerList.get(i));
+            takeQuiz.setQuizId(quizIdList.get(i).toString());//            takeQuiz.setPoints(resultList.get(i).toString());
+            takeQuiz.setTimeLimit((int) timerList.get(i));
             takeQuizList.add(takeQuiz);
         }
 

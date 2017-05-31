@@ -4,6 +4,7 @@ import com.bananpiren.quiz.Entity.CorrectQuiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.CorrectQuizService;
+import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
 import com.bananpiren.quiz.java.model.QuizTimer;
 import com.bananpiren.quiz.java.view.Main;
@@ -17,11 +18,20 @@ import java.util.ArrayList;
 
 
 public class TakeQuizController {
+    QuizService quizService = new QuizService();
+
     @FXML
     private Label quizNameHeader;
 
     @FXML
     private Label quizLabel;
+
+    @FXML
+    private Label totQuestions;
+
+    @FXML
+    private Label maxResult;
+
 
     @FXML
     private Button sendQuizButton;
@@ -50,6 +60,12 @@ public class TakeQuizController {
         multiAnswerList = StartController.getMultiAnswerList();
         singleAnswerList = StartController.getSingleAnswerList();
 
+        // set maxResultLabel
+        maxResult.setText("" + QuizService.numberOfQuestions(StartController.currentQuizId).size());
+
+        // set totQuestionsLabel
+        totQuestions.setText("" + QuizService.numberOfQuestions(StartController.currentQuizId).size());
+
         // Create CorrectQuizObject
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
@@ -65,9 +81,10 @@ public class TakeQuizController {
         });
 
         if (takeQuizList.get(0).getTimeLimit() != 0) {
-
             startQuizTimer();
         }
+
+
     }
 
     // store correct answer and useranswer
