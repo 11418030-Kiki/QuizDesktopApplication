@@ -1,0 +1,21 @@
+.questionLabel{
+
+}
+#quizLabel{
+
+}
+#BorderPane{
+
+}
+.headerLabel{
+
+}
+#takeQuizScrollPane{
+    -fx-border-color: lightyellow;
+}
+.root{
+    -fx-background-color: lightyellow;
+    -fx-background-image: url("../../resources/logo.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+}
