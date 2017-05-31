@@ -37,7 +37,7 @@
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="quizTimeLabel" alignment="TOP_LEFT" text="Hej">
+            <Label fx:id="quizTimeLabel" alignment="TOP_LEFT">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>

@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.CorrectQuiz;
+import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.CorrectQuizService;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 
 
 public class TakeQuizController {
+    TakeQuiz takeQuiz = new TakeQuiz();
+
     @FXML
     private Label quizNameHeader;
 
@@ -35,7 +38,6 @@ public class TakeQuizController {
     @FXML
     private
     ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
-
 
     @FXML
     private CorrectQuiz correctQuiz;
@@ -63,7 +65,8 @@ public class TakeQuizController {
             }
         });
 
-        updateQuizTimer();
+        if (takeQuiz.getTimeLimit() != 0)
+        startQuizTimer();
     }
 
     // store correct answer and useranswer
@@ -102,7 +105,6 @@ public class TakeQuizController {
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
         userQuiz.setQuizId(takeQuizList.get(0).getQuizId());
-
 
         int points = 1;
         int countedPoints = 0;
@@ -150,12 +152,10 @@ public class TakeQuizController {
         UserQuizService userQuizService = new UserQuizService();
 
         userQuizService.userQuiz(userQuiz);
-
     }
 
-    private void updateQuizTimer() {
-        //TODO: Stoppa in current quiz time istället för fast värde under
-        QuizTimer.quizTimerClock(5, quizTimeLabel);
+    private void startQuizTimer() {
+        QuizTimer.quizTimerClock(takeQuiz.getTimeLimit(), quizTimeLabel);
     }
 
     public void ternInQuiz() {
