@@ -1,7 +1,6 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.CorrectQuiz;
-import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.CorrectQuizService;
@@ -12,12 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class TakeQuizController {
-    TakeQuiz takeQuiz = new TakeQuiz();
+//    TakeQuiz takeQuiz = new TakeQuiz();
 
     @FXML
     private Label quizNameHeader;
@@ -26,7 +26,7 @@ public class TakeQuizController {
     private Label quizLabel;
 
     @FXML
-    private Button sendQuizButton = new Button();
+    private Button sendQuizButton;
 
     @FXML
     private ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
@@ -38,6 +38,7 @@ public class TakeQuizController {
     @FXML
     private
     ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+
 
     @FXML
     private CorrectQuiz correctQuiz;
@@ -65,8 +66,10 @@ public class TakeQuizController {
             }
         });
 
-        if (takeQuiz.getTimeLimit() != 0)
-        startQuizTimer();
+        if (takeQuizList.get(0).getTimeLimit() != 0) {
+
+            startQuizTimer();
+        }
     }
 
     // store correct answer and useranswer
@@ -106,6 +109,7 @@ public class TakeQuizController {
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
         userQuiz.setQuizId(takeQuizList.get(0).getQuizId());
 
+
         int points = 1;
         int countedPoints = 0;
         int questionId = Integer.parseInt(takeQuizList.get(0).getQuestionId());
@@ -143,8 +147,9 @@ public class TakeQuizController {
         }
 
         int theResult = countedPoints;
+        int questionNumber = takeQuizList.size() / 4;
 //        String theResult = takeQuizList.get(0).getPoints();
-        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!").showAndWait();
+        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
 
         userQuiz.setPoints(countedPoints);
 
@@ -152,10 +157,12 @@ public class TakeQuizController {
         UserQuizService userQuizService = new UserQuizService();
 
         userQuizService.userQuiz(userQuiz);
+
     }
 
     private void startQuizTimer() {
-        QuizTimer.quizTimerClock(takeQuiz.getTimeLimit(), quizTimeLabel);
+        QuizTimer.quizTimerClock(takeQuizList.get(0).getTimeLimit(), quizTimeLabel);
+//        Integer.parseInt(takeQuiz.getTimeLimit())
     }
 
     public void ternInQuiz() {

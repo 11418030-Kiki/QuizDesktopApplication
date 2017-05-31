@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class StartController {
 
     private QuizService quizService = new QuizService();
 
-    public static int currentQuizId;
+     static int currentQuizId;
 
     @FXML
     private TableColumn<Quiz, Integer> quizIdColumn;
@@ -96,7 +97,7 @@ public class StartController {
                     toLate.setHeaderText("Datumet passerat");
                     toLate.setContentText("Datumet för provet har redan passerat");
                     toLate.showAndWait();
-                }else if(calquizStartDate.compareTo(calToday) >0){
+                } else if (calquizStartDate.compareTo(calToday) > 0) {
                     Alert toEarly = new Alert(Alert.AlertType.INFORMATION);
                     toEarly.setTitle("Meddelande");
                     toEarly.setHeaderText("Quizet har inte startat");
@@ -117,7 +118,7 @@ public class StartController {
                     vbox = createQuizQuestions();
                     newCoolVbox.getChildren().addAll(vbox);
 
-                // create the TakeQuizController
+                    // create the TakeQuizController
                     TakeQuizController takeQuizController = new TakeQuizController();
 
                     try {
@@ -130,8 +131,6 @@ public class StartController {
                         System.out.println("Couldn't load TakeQuiz.fxml: " + f);
                     }
 
-
-
                 }
             } catch (Exception f) {
                 System.out.println(f);
@@ -143,6 +142,7 @@ public class StartController {
 
     // TODO: för openquestionfrågor: För varje openquestion, minska len med 3
     VBox createQuizQuestions() {
+
 
         // length of the list divided with the number of questions
         int len = takeQuizList.size() / 4;
@@ -232,7 +232,8 @@ public class StartController {
     static ArrayList<RadioButton> getSingleAnswerList() {
         return singleAnswerList;
     }
-public int getCurrentQuizId(){
+
+     static int getCurrentQuizId() {
         return currentQuizId;
-}
+    }
 }

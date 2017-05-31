@@ -20,17 +20,18 @@ public class TakeQuizResultController {
     @FXML
     private Text correctAnswersLabel;
 
-    QuizService quizService = new QuizService();
-    List<TakeQuiz> takeQuizList = new ArrayList<>();
-    int questionCount;
-    int points;
-    String quizName;
+    private QuizService quizService = new QuizService();
+    private List<TakeQuiz> takeQuizList = new ArrayList<>();
+    private int questionCount;
+    private int points;
+    private String quizName;
 
 
     private void initialize(){
         int quizId = StartController.currentQuizId;
         takeQuizList = quizService.currentQuiz(quizId);
 
+        System.out.println("takeQuizList.size() = " + takeQuizList.size());
         points = Integer.parseInt(takeQuizList.get(0).getPoints());
         quizName = takeQuizList.get(0).getQuizName();
         questionCount = takeQuizList.size()/4;

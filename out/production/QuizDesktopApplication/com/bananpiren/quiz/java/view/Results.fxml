@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.ResultsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.ResultsController">
    <top>
       <Label text="Resultat" BorderPane.alignment="CENTER">
          <font>
@@ -21,13 +26,11 @@
          <children>
             <TableView fx:id="resultsTable" layoutX="87.0" layoutY="14.0" prefHeight="200.0" prefWidth="474.0">
               <columns>
-                <TableColumn fx:id="quizNameColumn" minWidth="0.0" prefWidth="192.0" text="Prov" />
-                <TableColumn fx:id="correctAnswersTable" minWidth="0.0" prefWidth="94.0" text="Antal Rätt" />
-                  <TableColumn fx:id="questionCountColumn" minWidth="0.0" prefWidth="94.0" text="Antal Frågor" />
-                  <TableColumn fx:id="dateColumn" minWidth="0.0" prefWidth="93.0" text="Datum" />
+                <TableColumn fx:id="quizNameColumn" minWidth="0.0" prefWidth="362.0" text="Prov" />
+                <TableColumn fx:id="correctAnswersColumn" minWidth="0.0" prefWidth="110.0" text="Antal Rätt" />
               </columns>
             </TableView>
-            <TextArea fx:id="resultsTextArea" layoutX="87.0" layoutY="250.0" prefHeight="274.0" prefWidth="474.0" />
+            <PieChart fx:id="resultPieChart" layoutX="85.0" layoutY="222.0" prefHeight="387.0" prefWidth="476.0" />
          </children>
       </Pane>
    </center>

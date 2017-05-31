@@ -49,6 +49,7 @@ public class MainController {
         // Start button
         buttonStart.setOnAction(e -> {
             showHome();
+
         });
 
         // Create Quiz Button

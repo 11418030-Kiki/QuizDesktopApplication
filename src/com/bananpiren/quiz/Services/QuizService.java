@@ -104,6 +104,10 @@ public class QuizService {
         Query quizId = entityManager.createQuery("SELECT qq.quiz.quizId FROM QuizQuestions qq JOIN QuestionAnswers qa WHERE qq.questionId = qa.question.questionId AND qq.quiz.quizId = " + currentQuizId + "");
         List quizIdList = quizId.getResultList();
 
+        // Query timer
+        Query timer = entityManager.createQuery("SELECT q.timeLimit FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
+        List timerList = timer.getResultList();
+
         // Query points
 //        Query result = entityManager.createQuery("SELECT uq.points FROM UserQuiz uq WHERE uq.quizId = " + currentQuizId + "");
 ////        String firstResult = result.getResultList();
@@ -128,6 +132,8 @@ public class QuizService {
             takeQuiz.setQuestionId(questionIdList.get(i).toString());
             takeQuiz.setQuizId(quizIdList.get(i).toString());
 //            takeQuiz.setPoints(resultList.get(i).toString());
+            takeQuiz.setTimeLimit((int)timerList.get(i));
+//            System.out.println("(int)timerList.get(i) + \" STRING: \" + timerList.get(i) = " + timerList.get(i) + " STRING: " + timerList.get(i));
             takeQuizList.add(takeQuiz);
         }
 

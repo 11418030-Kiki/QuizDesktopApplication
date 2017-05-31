@@ -43,7 +43,7 @@ public class QuestionService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery("Select q from Question q where q.test.testId = " + testId);
+        Query query = entityManager.createQuery("Select q from QuizQuestions q where q.quiz.quizId = " + testId);
         List<QuizQuestions> quizQuestions = (List<QuizQuestions>) query.getResultList();
 
         return quizQuestions;
