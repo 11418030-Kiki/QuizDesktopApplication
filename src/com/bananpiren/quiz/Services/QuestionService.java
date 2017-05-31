@@ -72,4 +72,23 @@ public class QuestionService {
         entityManager.close();
         entityManagerFactory.close();
     }
+
+    public static String getNumberOfQuestions(String quizId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List list = entityManager.createQuery(
+                "SELECT count(q) FROM QuizQuestions q WHERE q.quiz.quizId =" + quizId)
+                .getResultList();
+
+        String numberOfQuestions = list.get(0).toString();
+
+        System.out.println(list.get(0) + "LIST VALUE!");
+        System.out.println(numberOfQuestions + "NUMBET VALLUE!");
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return numberOfQuestions;
+    }
 }
