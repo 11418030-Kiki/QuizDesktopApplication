@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 
 public class TakeQuizController {
-//    TakeQuiz takeQuiz = new TakeQuiz();
-
     @FXML
     private Label quizNameHeader;
 
@@ -93,8 +91,6 @@ public class TakeQuizController {
                 noSingle++;
             }
 
-//            int theResult = Integer.parseInt(takeQuizList.get(i).getPoints());
-
             // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
 
@@ -148,7 +144,6 @@ public class TakeQuizController {
 
         int theResult = countedPoints;
         int questionNumber = takeQuizList.size() / 4;
-//        String theResult = takeQuizList.get(0).getPoints();
         new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
 
         userQuiz.setPoints(countedPoints);
@@ -162,7 +157,6 @@ public class TakeQuizController {
 
     private void startQuizTimer() {
         QuizTimer.quizTimerClock(takeQuizList.get(0).getTimeLimit(), quizTimeLabel);
-//        Integer.parseInt(takeQuiz.getTimeLimit())
     }
 
     public void ternInQuiz() {
