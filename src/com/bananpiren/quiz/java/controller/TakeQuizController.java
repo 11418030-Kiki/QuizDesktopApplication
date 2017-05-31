@@ -23,7 +23,7 @@ public class TakeQuizController {
     private Label quizLabel;
 
     @FXML
-    private Button sendQuizButton;
+    private Button sendQuizButton = new Button();
 
     @FXML
     private ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
@@ -39,12 +39,6 @@ public class TakeQuizController {
 
     @FXML
     private CorrectQuiz correctQuiz;
-
-
-//    public TakeQuizController() {
-//
-//    }
-
 
     @FXML
     private Label quizTimeLabel;
@@ -161,13 +155,11 @@ public class TakeQuizController {
 
     private void updateQuizTimer() {
         //TODO: Stoppa in current quiz time istället för fast värde under
-        QuizTimer.quizTimerClock(2, quizTimeLabel);
+        QuizTimer.quizTimerClock(5, quizTimeLabel);
     }
 
     public void ternInQuiz() {
         //TODO: Skapa logik för att lämna in quiz.
-//        sendQuizButton.fire();
+        sendQuizButton.fire();
     }
-
-
 }
