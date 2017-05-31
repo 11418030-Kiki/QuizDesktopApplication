@@ -83,9 +83,6 @@ public class QuestionService {
 
         String numberOfQuestions = list.get(0).toString();
 
-        System.out.println(list.get(0) + "LIST VALUE!");
-        System.out.println(numberOfQuestions + "NUMBET VALLUE!");
-
         entityManager.close();
         entityManagerFactory.close();
 
