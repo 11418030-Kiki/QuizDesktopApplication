@@ -5,7 +5,6 @@ import com.bananpiren.quiz.Services.QuizService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public class TakeQuizResultController {
     @FXML
-    private Label quizNameLabel;
+    private Label quizNameText;
 
     @FXML
     private Text correctQuizAnswerText;
@@ -29,8 +28,5 @@ public class TakeQuizResultController {
 
     @FXML
     private void initialize(){
-        int quizId = StartController.currentQuizId;
-        correctQuizAnswerText.setText("testar bara");
-        correctQuizAnswerText.setTextAlignment(TextAlignment.RIGHT);
     }
 }

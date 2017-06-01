@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.CreateQuizController">
-   <center>
-      <BorderPane maxWidth="-Infinity" prefWidth="648.0" BorderPane.alignment="CENTER">
+<ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.CreateQuizController">
+   <content>
+      <BorderPane maxWidth="-Infinity" prefWidth="648.0">
          <center>
             <VBox prefWidth="648.0" spacing="10.0" BorderPane.alignment="TOP_LEFT">
                <children>
@@ -95,7 +87,7 @@
                         <Button fx:id="buttonAddMultipleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till Multisvars Fråga" />
                         <Button fx:id="buttonAddSingleAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till singelsvars fråga" />
                         <Button fx:id="buttonAddOpenAnswerQuestion" mnemonicParsing="false" prefWidth="150.0" text="Lägg till öppen fråga" />
-                              <Button fx:id="buttonRemoveCurrentQuestion" layoutX="409.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" text="Ta bort vald fråga" />
+                        <Button fx:id="buttonRemoveCurrentQuestion" layoutX="409.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" text="Ta bort vald fråga" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
@@ -113,12 +105,12 @@
             </VBox>
          </center>
          <top>
-            <Label styleClass="headerLabel" text="Skapa Quiz" BorderPane.alignment="CENTER">
+            <Label text="Skapa Quiz" BorderPane.alignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
          </top>
       </BorderPane>
-   </center>
-</BorderPane>
+   </content>
+</ScrollPane>

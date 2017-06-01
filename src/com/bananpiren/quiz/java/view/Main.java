@@ -61,7 +61,7 @@ public class Main extends Application {
     public static void showCreateQuiz() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("CreateQuiz.fxml"));
-        BorderPane mainMenu = loader.load();
+        ScrollPane mainMenu = loader.load();
         mainLayout.setCenter(mainMenu);
     }
 
