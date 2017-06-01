@@ -133,7 +133,7 @@ public class TakeQuizController {
         // get points
         for (int i = 0; i < takeQuizList.size(); i++) {
 
-            // kolla om det är ny fråga
+            // check if its a new Question
             if (i % 4 == 0) {
                 points = 0;
             }

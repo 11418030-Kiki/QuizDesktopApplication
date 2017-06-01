@@ -2,7 +2,10 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
+import com.bananpiren.quiz.Entity.User;
+import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.Services.UserQuizService;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class StartController {
 
@@ -51,6 +55,8 @@ public class StartController {
     @FXML
     private Button takeQuizButton;
 
+    private boolean runQuiz = false;
+
     private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
     private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
 
@@ -67,7 +73,6 @@ public class StartController {
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
         quizStartDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizStartDate"));
         quizTableView.setItems(data);
-
         takeQuizButton.setDisable(true);
         quizTableView.getSelectionModel().selectedIndexProperty().addListener(y -> {
             takeQuizButton.setDisable(false);
@@ -75,6 +80,8 @@ public class StartController {
 
 
         takeQuizButton.setOnAction((ActionEvent e) -> {
+            runQuiz = false;
+
             String quizEndDate = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizEndDate();
             String quizStartDate = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizStartDate();
             try {
@@ -107,27 +114,53 @@ public class StartController {
                     // get the Id of the current Quiz
                     currentQuizId = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
 
-                    VBox newCoolVbox = new VBox();
+                    // get all the quiz with the loggedIn userId
+                    List<UserQuiz> uq = UserQuizService.getAllUserQuizByUserId(LoginController.getCurrentUser().getUserId());
 
-                    // get the list of the current quiz from the database
-                    // building the querys
-                    takeQuizList = quizService.currentQuiz(currentQuizId);
+                    // if no tests are done
+                    if (uq.size() == 0) {
+                        runQuiz = true;
+                    }
 
-                    // displaying the question and answers on vbox
-                    vbox = createQuizQuestions();
-                    newCoolVbox.getChildren().addAll(vbox);
+                    for (UserQuiz q : uq) {
+//                        System.out.println(" QUIZID :" + q.getQuizId() + " currntQuizID: " + currentQuizId);
+                        // If the quizId in database is the same as the currentQuizid
+                        if (Integer.parseInt(q.getQuizId()) != currentQuizId) {
+                            System.out.println("MOTHERFUCKER");
+                            runQuiz = true;
+                        } else {
+                            runQuiz = false;
+                            new Alert(Alert.AlertType.INFORMATION, "Du har redan gjort detta Quiz!").showAndWait();
+                            break;
+                        }
+                    }
 
-                    // create the TakeQuizController
-                    TakeQuizController takeQuizController = new TakeQuizController();
+                    if (runQuiz) {
 
-                    try {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
-                        BorderPane takeQuiz = loader.load();
-                        takeQuiz.setCenter(newCoolVbox);
-                        Main.mainLayout.setCenter(takeQuiz);
-                    } catch (IOException f) {
-                        System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+                        VBox newCoolVbox = new VBox();
+
+                        // get the list of the current quiz from the database
+                        // building the querys
+                        takeQuizList = quizService.currentQuiz(currentQuizId);
+
+                        // displaying the question and answers on vbox
+                        vbox = createQuizQuestions();
+                        newCoolVbox.getChildren().addAll(vbox);
+
+                        // create the TakeQuizController
+                        TakeQuizController takeQuizController = new TakeQuizController();
+
+                        try {
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(Main.class.getResource("TakeQuiz.fxml"));
+                            BorderPane takeQuiz = loader.load();
+                            takeQuiz.setCenter(newCoolVbox);
+                            Main.mainLayout.setCenter(takeQuiz);
+                        } catch (IOException f) {
+                            System.out.println("Couldn't load TakeQuiz.fxml: " + f);
+                        }
+
+
                     }
 
                 }
@@ -232,7 +265,7 @@ public class StartController {
         return singleAnswerList;
     }
 
-     static int getCurrentQuizId() {
+    static int getCurrentQuizId() {
         return currentQuizId;
     }
 }

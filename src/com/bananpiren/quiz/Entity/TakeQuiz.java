@@ -25,20 +25,20 @@ public class TakeQuiz {
     private String correctAnswer;
 
     // UserQuiz
-    private int userQuizId;
+//    private int userQuizId;
     private int userId;
     private String points;
 
     public TakeQuiz() {
     }
 
-    public int getUserQuizId() {
-        return userQuizId;
-    }
+//    public int getUserQuizId() {
+//        return userQuizId;
+//    }
 
-    public void setUserQuizId(int userQuizId) {
-        this.userQuizId = userQuizId;
-    }
+//    public void setUserQuizId(int userQuizId) {
+//        this.userQuizId = userQuizId;
+//    }
 
     public int getUserId() {
         return userId;

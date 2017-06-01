@@ -124,7 +124,6 @@ public class QuizService {
         Query timer = entityManager.createQuery("SELECT q.timeLimit FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
         List timerList = timer.getResultList();
 
-
         int count = 0;
 
         TakeQuiz takeQuiz;
@@ -182,4 +181,23 @@ public class QuizService {
 
         return list;
     }
+
+//    public static ArrayList<UserQuiz> getUserQuizId(int userId) {
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//
+//        // Query answers and put them in a list
+//        Query userQuizId = entityManager.createQuery("SELECT q.quizId FROM UserQuiz q WHERE q.userId = " + userId);
+//        List userQuizIdList = userQuizId.getResultList();
+//
+//        UserQuiz userQuiz;
+//        ArrayList<UserQuiz> takeQuizList = new ArrayList<>();
+//
+//        entityManager.close();
+//        entityManagerFactory.close();
+//
+//        return userQuizIdList;
+//    }
+
+
 }
