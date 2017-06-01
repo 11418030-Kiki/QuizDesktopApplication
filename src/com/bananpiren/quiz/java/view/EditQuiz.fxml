@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -13,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.EditQuizController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.EditQuizController">
    <top>
       <Label styleClass="headerLabel" text="Redigera Quiz" BorderPane.alignment="CENTER">
          <font>
@@ -57,13 +61,13 @@
                         <Label layoutX="10.0" layoutY="198.0" text="Tidsgräns" GridPane.rowIndex="2" />
                         <Label layoutX="10.0" layoutY="167.0" text="Start datum" GridPane.rowIndex="3" />
                         <Label layoutX="10.0" layoutY="232.0" text="Slut datum" GridPane.rowIndex="4" />
-                        <Label layoutX="10.0" layoutY="232.0" text="Antal som tagit quiz" GridPane.rowIndex="5" />
-                        <Label fx:id="quizNameLabel" text="tom" GridPane.columnIndex="1" />
-                        <Label fx:id="numberOfQuestionsLabel" text="tom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="timeLimitLabel" text="tom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="startDateLimitLabel" text="tom" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="endDateLimitLabel" layoutX="170.0" layoutY="177.0" text="tom" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="numberOfQuizTakenLabel" layoutX="170.0" layoutY="227.0" text="tom" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label layoutX="10.0" layoutY="232.0" text="Självrättande" GridPane.rowIndex="5" />
+                        <Label fx:id="quizNameLabel" text="Inget quiz är valt" GridPane.columnIndex="1" />
+                        <Label fx:id="numberOfQuestionsLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="timeLimitLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="startDateLimitLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="endDateLimitLabel" layoutX="170.0" layoutY="177.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="selCorrectedLabel" layoutX="170.0" layoutY="227.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <Label alignment="CENTER" text="Quiz Information" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">

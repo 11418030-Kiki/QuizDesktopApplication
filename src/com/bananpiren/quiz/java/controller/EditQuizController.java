@@ -21,6 +21,7 @@ import java.io.IOException;
 public class EditQuizController {
 
     private final ObservableList<Quiz> data = FXCollections.observableArrayList();
+
     private static int storedSelectedTableIndex;
     private static int storedQuizId;
 
@@ -36,7 +37,7 @@ public class EditQuizController {
     private Button deleteButton;
 
     @FXML
-    private Label numberOfQuizTakenLabel;
+    private Label selCorrectedLabel;
 
     @FXML
     private Button editButton;
@@ -75,21 +76,22 @@ public class EditQuizController {
             handleDeleteQuiz();
         });
 
-        //TODO: Ifall listan blir tom, hantera så att inte index out of bounds uppstår
         quizTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Quiz>() {
             @Override
             public void changed(ObservableValue<? extends Quiz> observable, Quiz oldValue, Quiz newValue) {
-                if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
-
+                if(quizTableView.getSelectionModel().getSelectedItem() == null) {
+                    quizTableView.setPlaceholder(new Label("Det finns inga sparade quizer"));
+                } else if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
                     storedSelectedTableIndex = quizTableView.getSelectionModel().getSelectedIndex();
                     storedQuizId = data.get(storedSelectedTableIndex).getQuizId();
 
                     quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
-                    numberOfQuestionsLabel.setText("");
+                    //TODO: hämta antal frågor
+                    numberOfQuestionsLabel.setText("Hämta antal frågor");
                     timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
                     startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                     endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
-                    numberOfQuizTakenLabel.setText("");
+                    selCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
 
                     deleteButton.setDisable(false);
                 } else {
@@ -133,5 +135,13 @@ public class EditQuizController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getStoredSelectedTableIndex() {
+        return storedSelectedTableIndex;
+    }
+
+    public static int getStoredQuizId() {
+        return storedQuizId;
     }
 }

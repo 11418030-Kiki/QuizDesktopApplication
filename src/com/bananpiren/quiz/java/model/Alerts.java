@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 
 public class Alerts {
 
-    public void informationAlert(String alertTitle, String alertHeader, String alertContent) {
+    public static void informationAlert(String alertTitle, String alertHeader, String alertContent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(alertTitle);
         alert.setHeaderText(alertHeader);
@@ -18,6 +18,15 @@ public class Alerts {
         alert.setTitle("Error Dialog");
         alert.setHeaderText("" + warnings);
         alert.setContentText("Försök igen!");
+
+        alert.showAndWait();
+    }
+
+    public static void errorAlert(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
 
         alert.showAndWait();
     }

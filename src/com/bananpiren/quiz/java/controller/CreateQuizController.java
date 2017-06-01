@@ -24,9 +24,9 @@ public class CreateQuizController {
 
     private int timeLimit = 0;
 
-    private ListView<Pane> QuestionList;
+    ListView<Pane> QuestionList;
 
-    private ArrayList<NewQuestionType> newQuestionType = new ArrayList<NewQuestionType>();
+    ArrayList<NewQuestionType> newQuestionType = new ArrayList<NewQuestionType>();
 
     private LocalDate quizEndDate;
     private LocalDate quizStartDate;

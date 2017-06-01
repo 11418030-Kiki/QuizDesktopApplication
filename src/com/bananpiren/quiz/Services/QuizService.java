@@ -41,6 +41,18 @@ public class QuizService {
         AnswerService.create(answers);
     }
 
+    // Find a quiz by ID
+    public static Quiz findQuiz(int quizId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Quiz quiz = entityManager.find(Quiz.class, quizId);
+
+        entityManager.close();
+
+        return quiz;
+    }
+
     // Delete a quiz by ID
     public void deleteQuiz(int quizId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -151,7 +163,7 @@ public class QuizService {
     }
 
 
-    public void updateQuiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate) {
+    public static void updateQuiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate, String selfCorrecting) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -163,6 +175,7 @@ public class QuizService {
         quiz.setTimeLimit(timeLimit);
         quiz.setQuizStartDate(quizStartDate);
         quiz.setQuizEndDate(quizEndDate);
+        quiz.setSelfcorrecting(selfCorrecting);
 
         entityManager.getTransaction().commit();
         entityManager.close();

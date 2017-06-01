@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.EditQuizDialogController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.EditQuizDialogController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,8 +35,11 @@
             <Label layoutX="10.0" layoutY="188.0" text="Slut Datum" GridPane.rowIndex="2" />
             <DatePicker fx:id="startDateDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <DatePicker fx:id="endDateDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label layoutX="10.0" layoutY="209.0" text="Tids begränsning" GridPane.rowIndex="3" />
-            <TextField fx:id="timeLimitTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label layoutX="10.0" layoutY="209.0" text="Tids begränsning" GridPane.rowIndex="4" />
+            <ListView fx:id="questionsList" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <Label layoutX="10.0" layoutY="136.0" text="Välj fråga:" GridPane.rowIndex="3" />
+            <CheckBox fx:id="selfCorrectingCheckBox" mnemonicParsing="false" text="Självrättande" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="timeLimitTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
@@ -41,8 +49,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <BorderPane.margin>
