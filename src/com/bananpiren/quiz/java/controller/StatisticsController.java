@@ -45,6 +45,7 @@ public class StatisticsController {
 
     @FXML
     private void initialize() {
+
         data.addAll(quizService.findAllQuiz());
         quizTableColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizTableView.setItems(data);

@@ -126,7 +126,6 @@ public class StartController {
 //                        System.out.println(" QUIZID :" + q.getQuizId() + " currntQuizID: " + currentQuizId);
                         // If the quizId in database is the same as the currentQuizid
                         if (Integer.parseInt(q.getQuizId()) != currentQuizId) {
-                            System.out.println("MOTHERFUCKER");
                             runQuiz = true;
                         } else {
                             runQuiz = false;
