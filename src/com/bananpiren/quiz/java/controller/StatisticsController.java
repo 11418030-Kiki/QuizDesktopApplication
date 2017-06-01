@@ -34,14 +34,14 @@ public class StatisticsController {
     @FXML
     private TableColumn<Quiz, String> quizTableColumn;
 
-    ObservableList<Quiz> data = FXCollections.observableArrayList();
-    QuizService quizService = new QuizService();
-    UserQuizService userQuizService = new UserQuizService();
-    int quizID;
-    int questionCount;
-    List<UserQuiz> userQuizList = new ArrayList<>();
-    double averageScore;
-    int users;
+    private ObservableList<Quiz> data = FXCollections.observableArrayList();
+    private QuizService quizService = new QuizService();
+    private UserQuizService userQuizService = new UserQuizService();
+    private int quizID;
+    private int questionCount;
+    private List<UserQuiz> userQuizList = new ArrayList<>();
+    private double averageScore;
+    private int users;
 
     @FXML
     private void initialize() {
@@ -49,7 +49,7 @@ public class StatisticsController {
         data.addAll(quizService.findAllQuiz());
         quizTableColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizTableView.setItems(data);
-        quizTableView.getSelectionModel().selectedItemProperty().addListener(e->{
+        quizTableView.getSelectionModel().selectedItemProperty().addListener(e -> {
             averageScore = 0;
             users = 0;
             questionCount = 0;
@@ -57,17 +57,18 @@ public class StatisticsController {
             questionCount = Integer.parseInt(QuestionService.getNumberOfQuestions(Integer.toString(quizID)));
             userQuizList = userQuizService.getAllUserQuizById(quizID);
 
-            userQuizList.forEach(f->{
+            userQuizList.forEach(f -> {
                 averageScore = averageScore + f.getPoints();
                 users++;
             });
-            averageScore = averageScore/users;
-            double averageScorePercentage = (averageScore/questionCount)*100;
+
+            averageScore = averageScore / users;
+            double averageScorePercentage = (averageScore / questionCount) * 100;
             double wrongAnswerPercentage = 100 - averageScorePercentage;
 
             ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
-                    new PieChart.Data("Rätt svar: "+averageScorePercentage+"%", averageScorePercentage),
-                    new PieChart.Data("Fel svar: "+wrongAnswerPercentage+"%", wrongAnswerPercentage)
+                    new PieChart.Data("Rätt svar: " + averageScorePercentage + "%", averageScorePercentage),
+                    new PieChart.Data("Fel svar: " + wrongAnswerPercentage + "%", wrongAnswerPercentage)
             );
             correctAnswersPieChart.setData(userData);
         });

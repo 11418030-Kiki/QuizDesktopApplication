@@ -32,7 +32,6 @@ public class TakeQuizController {
     @FXML
     private Label maxResult;
 
-
     @FXML
     private Button sendQuizButton;
 
@@ -47,29 +46,32 @@ public class TakeQuizController {
     private
     ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
-
     @FXML
     private CorrectQuiz correctQuiz;
 
     @FXML
     private Label quizTimeLabel;
 
+    private int maxResultNo;
+
     @FXML
     private void initialize() {
         takeQuizList = StartController.getTakeQuizList();
         multiAnswerList = StartController.getMultiAnswerList();
         singleAnswerList = StartController.getSingleAnswerList();
+        maxResultNo = QuizService.numberOfQuestions(StartController.currentQuizId).size();
 
         // set maxResultLabel
-        maxResult.setText("" + QuizService.numberOfQuestions(StartController.currentQuizId).size());
+        maxResult.setText("" + maxResultNo);
 
         // set totQuestionsLabel
-        totQuestions.setText("" + QuizService.numberOfQuestions(StartController.currentQuizId).size());
+        totQuestions.setText("" + maxResultNo);
 
         // Create CorrectQuizObject
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
             sendUserQuiz();
+
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("TakeQuizResult.fxml"));
@@ -121,7 +123,7 @@ public class TakeQuizController {
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
         userQuiz.setQuizId(takeQuizList.get(0).getQuizId());
-
+        userQuiz.setUserName(LoginController.getCurrentUser().getFirstName());
 
         int points = 1;
         int countedPoints = 0;
@@ -153,16 +155,14 @@ public class TakeQuizController {
                 points++;
             }
 
-            // om alla rätt så får du ett poäng annars inga
+            // if all is correct - get point, otherwise dont
             if (points >= 4) {
                 countedPoints++;
             }
         }
 
-        int theResult = countedPoints;
-        int questionNumber = takeQuizList.size() / 4;
-        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
-
+        userQuiz.setNoOfQuestions(maxResultNo);
+        userQuiz.setMaxPoints(maxResultNo);
         userQuiz.setPoints(countedPoints);
 
         // create table
