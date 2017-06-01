@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
