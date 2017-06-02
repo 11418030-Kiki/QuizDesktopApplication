@@ -58,7 +58,7 @@
                      <children>
                         <Label text="Quiz namn" />
                         <Label layoutX="10.0" layoutY="67.0" text="Antal frågor" GridPane.rowIndex="1" />
-                        <Label layoutX="10.0" layoutY="198.0" text="Tidsgräns" GridPane.rowIndex="2" />
+                        <Label layoutX="10.0" layoutY="198.0" text="Tidsbegränsning" GridPane.rowIndex="2" />
                         <Label layoutX="10.0" layoutY="167.0" text="Start datum" GridPane.rowIndex="3" />
                         <Label layoutX="10.0" layoutY="232.0" text="Slut datum" GridPane.rowIndex="4" />
                         <Label layoutX="10.0" layoutY="232.0" text="Självrättande" GridPane.rowIndex="5" />
@@ -67,7 +67,7 @@
                         <Label fx:id="timeLimitLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="startDateLimitLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="endDateLimitLabel" layoutX="170.0" layoutY="177.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="selCorrectedLabel" layoutX="170.0" layoutY="227.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="selfCorrectedLabel" layoutX="170.0" layoutY="227.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <Label alignment="CENTER" text="Quiz Information" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">

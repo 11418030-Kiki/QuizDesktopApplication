@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.QuestionAnswers;
+import com.bananpiren.quiz.Entity.QuizQuestions;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,10 +44,25 @@ public class AnswerService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery( "Select a from Answer a where a.question.questionId = " + questionId);
+        Query query = entityManager.createQuery( "Select a from QuestionAnswers a where a.question.questionId = " + questionId);
         List<QuestionAnswers> questionAnswers = (List<QuestionAnswers>)query.getResultList();
 
         return questionAnswers;
+    }
+
+    public static void update(int answerId, String newAnswer, int correctAnswer) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        QuestionAnswers answer = entityManager.find(QuestionAnswers.class, answerId);
+
+        entityManager.getTransaction().begin();
+        answer.setAnswer(newAnswer);
+        answer.setCorrectAnswer(correctAnswer);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
     public static void update(QuestionAnswers questionAnswers) {

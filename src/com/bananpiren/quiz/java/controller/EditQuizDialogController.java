@@ -5,21 +5,30 @@ import com.bananpiren.quiz.Entity.QuizQuestions;
 import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.model.Alerts;
+import com.bananpiren.quiz.java.view.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class EditQuizDialogController {
 
-    private final ObservableList<QuizQuestions> quiz = FXCollections.observableArrayList();
     private final ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();
 
     private static int currentQuiz;
+    private static int selectedQuestion;
 
     private String quizName;
     private int timeLimit;
@@ -40,6 +49,12 @@ public class EditQuizDialogController {
     private Button saveButton;
 
     @FXML
+    private Button editQuestionButton;
+
+    @FXML
+    private Button deleteQuestionButton;
+
+    @FXML
     private TextField quizNameTextField;
 
     @FXML
@@ -48,9 +63,14 @@ public class EditQuizDialogController {
     @FXML
     private CheckBox selfCorrectingCheckBox;
 
+//    @FXML
+//    private TableColumn<QuizQuestions, Integer> idColumn;
 
     @FXML
-    private ListView<QuizQuestions> questionsList;
+    private TableColumn<QuizQuestions, String> questionColumn;
+
+    @FXML
+    private TableView<QuizQuestions> questionsTable;
 
     public EditQuizDialogController() {
 
@@ -58,17 +78,45 @@ public class EditQuizDialogController {
 
     @FXML
     private void initialize() {
+        // Set table columns
+        questionColumn.setCellValueFactory(new PropertyValueFactory<QuizQuestions, String>("question"));
+
         // Get selected quizId
         currentQuiz = EditQuizController.getStoredQuizId();
 
         // Load current quiz from database
         loadQuiz();
 
-        // Set quiz properties
-        setQuizProperties();
+        // Set quiz properties to corresponding fields
+        setQuizPropertiesToFields();
 
         // Load selected quiz questions and set table
         loadTableData();
+
+        questionsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<QuizQuestions>() {
+            @Override
+            public void changed(ObservableValue<? extends QuizQuestions> observable, QuizQuestions oldValue, QuizQuestions newValue) {
+                if(questionsTable.getSelectionModel().getSelectedItem() == null) {
+                    questionsTable.setPlaceholder(new Label("Det finns inga sparade frågor till detta quiz"));
+                    editQuestionButton.setDisable(true);
+                    deleteQuestionButton.setDisable(true);
+                } else if (questionsTable.getSelectionModel().getSelectedItem() != null){
+                    editQuestionButton.setDisable(false);
+                    deleteQuestionButton.setDisable(false);
+                    selectedQuestion = newValue.getQuestionId();
+                }
+            }
+        });
+
+        // Edit button
+        editQuestionButton.setOnAction(e -> {
+            showEditQuizDialog();
+        });
+
+        // Delete button
+        deleteQuestionButton.setOnAction(e -> {
+            QuestionService.deleteQuestion(selectedQuestion);
+        });
 
         // Save button
         saveButton.setOnAction(e -> {
@@ -99,7 +147,7 @@ public class EditQuizDialogController {
         });
     }
 
-    private void setQuizProperties() {
+    private void setQuizPropertiesToFields() {
         quizNameTextField.setText(quizName);
 
         startDateDatePicker.setValue(LocalDate.parse(quizStartDate));
@@ -128,7 +176,7 @@ public class EditQuizDialogController {
         System.out.println(selfcorrecting);
     }
 
-    private void loadTableData() {
+    public void loadTableData() {
         // Get questions from selected quiz
         List<QuizQuestions> tempQuestions = QuestionService.read(currentQuiz);
 
@@ -136,6 +184,31 @@ public class EditQuizDialogController {
         questions.addAll(tempQuestions);
 
         // Show in listview
-        questionsList.setItems(questions);
+        questionsTable.setItems(questions);
+        questionsTable.refresh();
+    }
+
+    private void showEditQuizDialog() {
+        try {
+            // Load FXML file to dialog stage
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("EditQuestionDialog.fxml"));
+            BorderPane page = loader.load();
+
+            // Create the dialog Stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Redigera Fråga");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Getters and setters
+    public static int getSelectedQuestion() {
+        return selectedQuestion;
     }
 }

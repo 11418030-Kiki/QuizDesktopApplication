@@ -109,11 +109,7 @@ public class PersonAddDialogController {
                         userLevelChoiceBox.getSelectionModel().select(0);
                     }
                 } catch (Exception ex) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Dialog");
-                    alert.setHeaderText("Något gick fel, din användare skapades inte!");
-                    alert.setContentText("Försök igen!");
-                    alert.showAndWait();
+                    Alerts.errorAlert("Error Dialog","Något gick fel, din användare skapades inte!", "Försök igen!");
                 }
             }
         });

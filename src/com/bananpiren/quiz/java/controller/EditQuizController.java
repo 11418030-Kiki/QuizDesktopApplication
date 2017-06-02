@@ -37,7 +37,7 @@ public class EditQuizController {
     private Button deleteButton;
 
     @FXML
-    private Label selCorrectedLabel;
+    private Label selfCorrectedLabel;
 
     @FXML
     private Button editButton;
@@ -87,11 +87,11 @@ public class EditQuizController {
 
                     quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
                     //TODO: hämta antal frågor
-                    numberOfQuestionsLabel.setText("Hämta antal frågor");
+                    numberOfQuestionsLabel.setText("" + QuizService.numberOfQuestions(storedQuizId).size());
                     timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
                     startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                     endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
-                    selCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
+                    selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
 
                     deleteButton.setDisable(false);
                 } else {
@@ -143,5 +143,10 @@ public class EditQuizController {
 
     public static int getStoredQuizId() {
         return storedQuizId;
+    }
+
+    public void updateTable() {
+        data.addAll(quizService.findAllQuiz());
+        quizTableView.setItems(data);
     }
 }

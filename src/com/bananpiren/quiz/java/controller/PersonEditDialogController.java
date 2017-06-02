@@ -48,7 +48,6 @@ public class PersonEditDialogController {
     private void initialize() {
         UserService userService = new UserService();
         UsersController usersController = new UsersController();
-        Alerts alerts = new Alerts();
 
         this.storedUserId = usersController.getStoredUserId();
         this.storedUserTableIndex = usersController.getStoredSelectedTableIndex();
@@ -90,10 +89,7 @@ public class PersonEditDialogController {
 
             userService.updateUser(storedUserId, storedFirstName, storedLastName, storedEmail, data.get(storedUserTableIndex).getPassword(), storedAccountLevel);
 
-
-            //TODO: Add user feedback "Alert Box" if success and update list
-
-            alerts.informationAlert("Användare uppdaterad!", null, "Användaren har blivit korrekt uppdaterad");
+            Alerts.informationAlert("Användare uppdaterad!", null, "Användaren har blivit korrekt uppdaterad");
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();

@@ -1,5 +1,6 @@
 package com.bananpiren.quiz.Services;
 
+import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.QuizQuestions;
 
 import javax.persistence.EntityManager;
@@ -23,6 +24,20 @@ public class QuestionService {
         entityManagerFactory.close();
     }
 
+    // Delete a Question by ID
+    public static void deleteQuestion(int questionId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        QuizQuestions question = entityManager.find(QuizQuestions.class, questionId);
+        entityManager.remove(question);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
     public static void create(ArrayList<QuizQuestions> quizQuestions) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -38,6 +53,18 @@ public class QuestionService {
         entityManagerFactory.close();
     }
 
+    // Find a question by ID
+    public static QuizQuestions findQuestion(int questionId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        QuizQuestions question = entityManager.find(QuizQuestions.class, questionId);
+
+        entityManager.close();
+
+        return question;
+    }
+
     // Returns List of Questions based on testId
     public static List<QuizQuestions> read(int testId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -49,12 +76,14 @@ public class QuestionService {
         return quizQuestions;
     }
 
-    public static void update(QuizQuestions quizQuestions) {
+    public static void update(int questionId, String newQuestion) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        QuizQuestions question = entityManager.find(QuizQuestions.class, questionId);
+
         entityManager.getTransaction().begin();
-        entityManager.persist(quizQuestions);
+        question.setQuestion(newQuestion);
         entityManager.getTransaction().commit();
 
         entityManager.close();
