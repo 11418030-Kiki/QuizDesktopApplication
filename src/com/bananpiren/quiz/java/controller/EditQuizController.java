@@ -1,12 +1,9 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
-import com.bananpiren.quiz.Entity.QuizQuestions;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -67,38 +64,31 @@ public class EditQuizController {
     private void initialize() {
 
         // Setting data to right column "cellvalue"
-        quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
+        quizNameColumn.setCellValueFactory(new PropertyValueFactory<>("quizName"));
         quizTableView.setItems(data);
 
-        editButton.setOnAction(e -> {
-            showEditQuizDialog();
-        });
+        editButton.setOnAction(e -> showEditQuizDialog());
 
-        deleteButton.setOnAction(e -> {
-            handleDeleteQuiz();
-        });
+        deleteButton.setOnAction(e -> handleDeleteQuiz());
 
-        quizTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Quiz>() {
-            @Override
-            public void changed(ObservableValue<? extends Quiz> observable, Quiz oldValue, Quiz newValue) {
-                if(quizTableView.getSelectionModel().getSelectedItem() == null) {
-                    quizTableView.setPlaceholder(new Label("Det finns inga sparade quizer"));
-                } else if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
-                    storedSelectedTableIndex = quizTableView.getSelectionModel().getSelectedIndex();
-                    storedQuizId = data.get(storedSelectedTableIndex).getQuizId();
+        quizTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(quizTableView.getSelectionModel().getSelectedItem() == null) {
+                quizTableView.setPlaceholder(new Label("Det finns inga sparade quizer"));
+            } else if(quizTableView.getSelectionModel().selectedItemProperty() != null) {
+                storedSelectedTableIndex = quizTableView.getSelectionModel().getSelectedIndex();
+                storedQuizId = data.get(storedSelectedTableIndex).getQuizId();
 
-                    quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
-                    //TODO: hämta antal frågor
-                    numberOfQuestionsLabel.setText("" + QuizService.numberOfQuestions(storedQuizId).size());
-                    timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
-                    startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
-                    endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
-                    selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
+                quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
+                //TODO: hämta antal frågor
+                numberOfQuestionsLabel.setText("" + QuizService.numberOfQuestions(storedQuizId).size());
+                timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
+                startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
+                endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
+                selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
 
-                    deleteButton.setDisable(false);
-                } else {
-                    deleteButton.setDisable(true);
-                }
+                deleteButton.setDisable(false);
+            } else {
+                deleteButton.setDisable(true);
             }
         });
     }
@@ -134,11 +124,7 @@ public class EditQuizController {
         }
     }
 
-    public static int getStoredSelectedTableIndex() {
-        return storedSelectedTableIndex;
-    }
-
-    public static int getStoredQuizId() {
+    static int getStoredQuizId() {
         return storedQuizId;
     }
 }

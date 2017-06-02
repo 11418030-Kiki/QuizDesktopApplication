@@ -24,12 +24,9 @@ public class CreateQuizController {
 
     private int timeLimit = 0;
 
-    ListView<Pane> QuestionList;
+    private ListView<Pane> QuestionList;
 
-    ArrayList<NewQuestionType> newQuestionType = new ArrayList<NewQuestionType>();
-
-    private LocalDate quizEndDate;
-    private LocalDate quizStartDate;
+    private ArrayList<NewQuestionType> newQuestionType = new ArrayList<>();
 
     @FXML
     private CheckBox timeLimitCheckBox;
@@ -79,7 +76,7 @@ public class CreateQuizController {
     @FXML
     private void initialize() {
 
-        QuestionList = new ListView<Pane>();
+        QuestionList = new ListView<>();
         vboxAddQuestions.setPrefHeight(265);
         vboxAddQuestions.getChildren().addAll(QuestionList);
 
@@ -100,17 +97,11 @@ public class CreateQuizController {
         });
 
         // Autoscroll when adding questions
-        vboxAddQuestions.heightProperty().addListener((observable, oldValue, newValue) -> {
-            scrollPane.setVvalue(((Double) newValue).doubleValue());
-        });
+        vboxAddQuestions.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue((newValue).doubleValue()));
 
-        buttonAddMultipleAnswerQuestion.setOnAction(e -> {
-            addMultipleAnswerQuestion();
-        });
+        buttonAddMultipleAnswerQuestion.setOnAction(e -> addMultipleAnswerQuestion());
 
-        buttonAddSingleAnswerQuestion.setOnAction(e -> {
-            addSingleAnswerQuestion();
-        });
+        buttonAddSingleAnswerQuestion.setOnAction(e -> addSingleAnswerQuestion());
 
         buttonAddOpenAnswerQuestion.setOnAction(e -> {
             selfCorrectingCheckBox.setSelected(false);
@@ -118,9 +109,7 @@ public class CreateQuizController {
             buttonAddOpenAnswerQuestion();
         });
 
-        buttonRemoveCurrentQuestion.setOnAction(e -> {
-            removeSelectedQuestion();
-        });
+        buttonRemoveCurrentQuestion.setOnAction(e -> removeSelectedQuestion());
 
         buttonCreateQuiz.setOnAction(e -> {
             try {
@@ -141,9 +130,9 @@ public class CreateQuizController {
         StringBuilder warnings = new StringBuilder();
 
         String quizName = textFieldQuizName.getText();
-        quizStartDate = datePickerStartDate.getValue();
-        quizEndDate = datePickerEndDate.getValue();
-        String selfcorrectingvalue = "no";
+        LocalDate quizStartDate = datePickerStartDate.getValue();
+        LocalDate quizEndDate = datePickerEndDate.getValue();
+        String selfcorrectingvalue;
 
         // Check if Quiz name is entered
         if (quizName.isEmpty()) {
@@ -205,21 +194,25 @@ public class CreateQuizController {
                 // Check for answers and add to answers list
                 for (int j = 0; j < element.newAnswerTextField.length ; j++) {
                     int correctAnswer = 0;
-                    if (questionType == "multiple") {
-                        if (element.answerCheckbox[j].isSelected()) {
-                            correctAnswer = 1;
-                        } else {
+                    switch (questionType) {
+                        case "multiple":
+                            if (element.answerCheckbox[j].isSelected()) {
+                                correctAnswer = 1;
+                            } else {
+                                correctAnswer = 0;
+                            }
+                            break;
+                        case "single":
+                            if (element.radioButtonAnswer[j].isSelected()) {
+                                correctAnswer = 1;
+                            } else {
+                                correctAnswer = 0;
+                            }
+                            break;
+                        case "open":
                             correctAnswer = 0;
-                        }
-                    } else if (questionType == "single") {
-                        if (element.radioButtonAnswer[j].isSelected()) {
-                            correctAnswer = 1;
-                        } else {
-                            correctAnswer = 0;
-                        }
-                    } else if (questionType == "open") {
-                            correctAnswer = 0;
-                        }
+                            break;
+                    }
 
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, questions);
                     answers.add(answer);
@@ -249,8 +242,8 @@ public class CreateQuizController {
         alert.getButtonTypes().setAll(yesButton, noButton);
 
         Optional<ButtonType> result = alert.showAndWait();
+        // If user don't want to create more quiz go to edit quiz page
         if (result.get() == noButton) {
-            // If user don't want to create more quiz go to edit quiz page
             try {
                 Main.showEditQuiz();
             } catch (IOException e) {

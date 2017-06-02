@@ -6,8 +6,6 @@ import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,11 +20,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Observable;
 
 public class EditQuizDialogController {
 
-    public ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();
+    private ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();
 
     private static int currentQuiz;
     private static int selectedQuestion;
@@ -76,7 +73,7 @@ public class EditQuizDialogController {
     @FXML
     private void initialize() {
         // Set table columns
-        questionColumn.setCellValueFactory(new PropertyValueFactory<QuizQuestions, String>("question"));
+        questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
 
         // Get selected quizId
         currentQuiz = EditQuizController.getStoredQuizId();
@@ -90,26 +87,21 @@ public class EditQuizDialogController {
         // Load selected quiz questions and set table
         loadTableData();
 
-        questionsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<QuizQuestions>() {
-            @Override
-            public void changed(ObservableValue<? extends QuizQuestions> observable, QuizQuestions oldValue, QuizQuestions newValue) {
-                if(questionsTable.getSelectionModel().getSelectedItem() == null) {
-                    questionsTable.setPlaceholder(new Label("Det finns inga sparade frågor till detta quiz"));
-                    editQuestionButton.setDisable(true);
-                    deleteQuestionButton.setDisable(true);
-                } else if (questionsTable.getSelectionModel().getSelectedItem() != null){
-                    editQuestionButton.setDisable(false);
-                    deleteQuestionButton.setDisable(false);
-                    selectedQuestion = questionsTable.getSelectionModel().getSelectedItem().getQuestionId();
-                    System.out.println(selectedQuestion);
-                }
+        questionsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(questionsTable.getSelectionModel().getSelectedItem() == null) {
+                questionsTable.setPlaceholder(new Label("Det finns inga sparade frågor till detta quiz"));
+                editQuestionButton.setDisable(true);
+                deleteQuestionButton.setDisable(true);
+            } else if (questionsTable.getSelectionModel().getSelectedItem() != null){
+                editQuestionButton.setDisable(false);
+                deleteQuestionButton.setDisable(false);
+                selectedQuestion = questionsTable.getSelectionModel().getSelectedItem().getQuestionId();
+                System.out.println(selectedQuestion);
             }
         });
 
         // Edit button
-        editQuestionButton.setOnAction(e -> {
-            showEditQuizDialog();
-        });
+        editQuestionButton.setOnAction(e -> showEditQuizDialog());
 
         // Delete button
         deleteQuestionButton.setOnAction(e -> {
@@ -176,7 +168,7 @@ public class EditQuizDialogController {
         System.out.println(selfcorrecting);
     }
 
-    public void loadTableData() {
+    private void loadTableData() {
         // Get questions from selected quiz
         List<QuizQuestions> tempQuestions = QuestionService.read(currentQuiz);
 
@@ -209,7 +201,7 @@ public class EditQuizDialogController {
     }
 
     // Getters and setters
-    public static int getSelectedQuestion() {
+    static int getSelectedQuestion() {
         return selectedQuestion;
     }
 }

@@ -63,14 +63,15 @@ public class LoginController {
         }
     }
 
-    public static User getCurrentUser() {
+    static User getCurrentUser() {
         return currentUser;
     }
 
-    public void reloadCurrentUser() {
+    void reloadCurrentUser() {
         LoginController.currentUser = userService.findUserById(currentUser.getUserId());
     }
 
+    //TODO: Används denna?
     public void setCurrentUser (String email) {
         currentUser = userService.findUserByEmail(email);
     }
