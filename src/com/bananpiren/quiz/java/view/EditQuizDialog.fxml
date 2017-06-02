@@ -27,7 +27,7 @@
       </HBox>
    </bottom>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane styleClass="defaultDialogViewStyle" BorderPane.alignment="CENTER">
          <children>
             <Label text="Quiz Namn" />
             <TextField fx:id="quizNameTextField" GridPane.columnIndex="1" />

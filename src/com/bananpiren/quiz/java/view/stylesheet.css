@@ -1,18 +1,16 @@
-.root{
+.root {
     -fx-background-color: lightyellow;
     -fx-background-image: url("../../resources/wallpaper.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left center;
 }
-#loginBorderPane{
-}
-#loginButton{
+#loginButton {
     -fx-background-color: linear-gradient(#ff5400, #be1d00);
     -fx-background-radius: 10;
     -fx-background-insets: 0;
     -fx-text-fill: #acacac;
 }
-.defaultViewStyle{
+.defaultViewStyle {
     -fx-background-color: lightgray;
     -fx-background-radius: 10;
     -fx-opacity: 0.9;
@@ -25,4 +23,10 @@
     -fx-font-size: 16px;
     -fx-pref-width: 175px;
     -fx-pref-height: 40px;
+}
+.defaultDialogViewStyle {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 5px;
+    -fx-opacity: 0.9;
+    -fx-padding: 5px;
 }
