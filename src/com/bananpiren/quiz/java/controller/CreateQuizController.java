@@ -293,5 +293,6 @@ public class CreateQuizController {
         int selectedQuestion = QuestionList.getSelectionModel().getSelectedIndex();
 
         QuestionList.getItems().remove(selectedQuestion);
+        newQuestionType.remove(selectedQuestion);
     }
 }

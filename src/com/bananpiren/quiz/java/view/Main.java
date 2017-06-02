@@ -69,7 +69,7 @@ public class Main extends Application {
     public static void showEditQuiz() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("EditQuiz.fxml"));
-        BorderPane mainMenu = loader.load();
+        ScrollPane mainMenu = loader.load();
         mainLayout.setCenter(mainMenu);
     }
 
