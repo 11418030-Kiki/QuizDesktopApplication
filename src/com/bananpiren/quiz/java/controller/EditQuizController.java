@@ -1,7 +1,9 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
+import com.bananpiren.quiz.Entity.QuizQuestions;
 import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -104,17 +106,10 @@ public class EditQuizController {
     private void handleDeleteQuiz() {
         if(quizTableView.getSelectionModel().getSelectedItem() != null) {
             quizService.deleteQuiz(storedQuizId);
-            System.out.println("Deleted stored quiz with id " + storedQuizId + " from database");
-
             int selectedQuiz = quizTableView.getSelectionModel().getSelectedIndex();
             quizTableView.getItems().remove(selectedQuiz);
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Inget valt");
-            alert.setHeaderText("Ingen quiz är valt");
-            alert.setContentText("För att ta bort, välj ett quiz");
-
-            alert.showAndWait();
+            Alerts.warningAlert("Inget valt", "Ingen quiz är valt", "För att ta bort, välj ett quiz");
         }
     }
 
@@ -123,11 +118,13 @@ public class EditQuizController {
             // Load FXML file to dialog stage
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("EditQuizDialog.fxml"));
+
             BorderPane page = loader.load();
 
             // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Redigera Quiz");
+            dialogStage.initOwner(deleteButton.getScene().getWindow());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -143,10 +140,5 @@ public class EditQuizController {
 
     public static int getStoredQuizId() {
         return storedQuizId;
-    }
-
-    public void updateTable() {
-        data.addAll(quizService.findAllQuiz());
-        quizTableView.setItems(data);
     }
 }

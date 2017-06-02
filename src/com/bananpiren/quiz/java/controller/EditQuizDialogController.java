@@ -22,10 +22,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Observable;
 
 public class EditQuizDialogController {
 
-    private final ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();
+    public ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();
 
     private static int currentQuiz;
     private static int selectedQuestion;
@@ -63,17 +64,13 @@ public class EditQuizDialogController {
     @FXML
     private CheckBox selfCorrectingCheckBox;
 
-//    @FXML
-//    private TableColumn<QuizQuestions, Integer> idColumn;
-
     @FXML
     private TableColumn<QuizQuestions, String> questionColumn;
 
     @FXML
-    private TableView<QuizQuestions> questionsTable;
+    public TableView<QuizQuestions> questionsTable;
 
     public EditQuizDialogController() {
-
     }
 
     @FXML
@@ -103,7 +100,8 @@ public class EditQuizDialogController {
                 } else if (questionsTable.getSelectionModel().getSelectedItem() != null){
                     editQuestionButton.setDisable(false);
                     deleteQuestionButton.setDisable(false);
-                    selectedQuestion = newValue.getQuestionId();
+                    selectedQuestion = questionsTable.getSelectionModel().getSelectedItem().getQuestionId();
+                    System.out.println(selectedQuestion);
                 }
             }
         });
@@ -116,6 +114,8 @@ public class EditQuizDialogController {
         // Delete button
         deleteQuestionButton.setOnAction(e -> {
             QuestionService.deleteQuestion(selectedQuestion);
+            int selectedIndex = questionsTable.getSelectionModel().getSelectedIndex();
+            questionsTable.getItems().remove(selectedIndex);
         });
 
         // Save button
@@ -198,6 +198,7 @@ public class EditQuizDialogController {
             // Create the dialog Stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Redigera Fråga");
+            dialogStage.initOwner(cancelButton.getScene().getWindow());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);

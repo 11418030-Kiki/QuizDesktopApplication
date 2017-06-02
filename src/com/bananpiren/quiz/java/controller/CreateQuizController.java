@@ -150,21 +150,16 @@ public class CreateQuizController {
             warnings.append("Quiznamn saknas!\n");
         } else {
             quizName = textFieldQuizName.getText();
-            System.out.println("Quiznamn: " + quizName);
         }
 
         // Check if Starting date is entered
         if (datePickerStartDate.getValue() == null) {
             warnings.append("Startdatum saknas!\n");
-        } else {
-            System.out.println("startdatum är " + datePickerStartDate.getValue());
         }
 
         // Check if Ending date is entered
         if (datePickerEndDate.getValue() == null) {
             warnings.append("Slutdatum saknas!\n");
-        } else {
-            System.out.println("slutdatum är " + datePickerEndDate.getValue());
         }
 
         // Check if Quiz is selfcorrecting or not
