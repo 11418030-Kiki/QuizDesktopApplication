@@ -71,6 +71,7 @@ public class StatisticsController {
         statisticsUserCorrectPercentageColumn.setCellValueFactory(new PropertyValueFactory<StatisticsUser, String>("correctPercentage"));
         quizTableView.setItems(data);
         quizTableView.getSelectionModel().selectedItemProperty().addListener(e -> {
+            statisticsUserData.clear();
             averageScore = 0;
             users = 0;
             questionCount = 0;
