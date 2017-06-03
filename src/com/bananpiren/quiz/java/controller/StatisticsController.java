@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
+import com.bananpiren.quiz.Entity.StatisticsUser;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
@@ -23,6 +24,18 @@ public class StatisticsController {
     private Tab correctAnswersTab;
 
     @FXML
+    private TableColumn<StatisticsUser, String> statisticsUserCorrectPercentageColumn;
+
+    @FXML
+    private TableColumn<StatisticsUser, String> statisticsUserFirstNameColumn;
+
+    @FXML
+    private TableColumn<StatisticsUser, String> statisticsUserLastNameColumn;
+
+    @FXML
+    private TableView<StatisticsUser> statisticsUserTableViev;
+
+    @FXML
     private PieChart correctAnswersPieChart;
 
     @FXML
@@ -35,6 +48,7 @@ public class StatisticsController {
     private TableColumn<Quiz, String> quizTableColumn;
 
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
+    private ObservableList<StatisticsUser> statisticsUserData = FXCollections.observableArrayList();
     private QuizService quizService = new QuizService();
     private UserQuizService userQuizService = new UserQuizService();
     private int quizID;
@@ -42,12 +56,19 @@ public class StatisticsController {
     private List<UserQuiz> userQuizList = new ArrayList<>();
     private double averageScore;
     private int users;
+    private double userPoints;
+    private double maxPoints;
+    private double pointsPercentage;
+    private String pointsPercentageString;
 
     @FXML
     private void initialize() {
 
         data.addAll(quizService.findAllQuiz());
         quizTableColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
+        statisticsUserFirstNameColumn.setCellValueFactory(new PropertyValueFactory<StatisticsUser, String>("firstName"));
+        statisticsUserLastNameColumn.setCellValueFactory(new PropertyValueFactory<StatisticsUser, String>("lastName"));
+        statisticsUserCorrectPercentageColumn.setCellValueFactory(new PropertyValueFactory<StatisticsUser, String>("correctPercentage"));
         quizTableView.setItems(data);
         quizTableView.getSelectionModel().selectedItemProperty().addListener(e -> {
             averageScore = 0;
@@ -55,7 +76,7 @@ public class StatisticsController {
             questionCount = 0;
             quizID = quizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
             questionCount = Integer.parseInt(QuestionService.getNumberOfQuestions(Integer.toString(quizID)));
-            userQuizList = userQuizService.getAllUserQuizById(quizID);
+            userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
             userQuizList.forEach(f -> {
                 averageScore = averageScore + f.getPoints();
@@ -65,12 +86,25 @@ public class StatisticsController {
             averageScore = averageScore / users;
             double averageScorePercentage = (averageScore / questionCount) * 100;
             double wrongAnswerPercentage = 100 - averageScorePercentage;
-
+            averageScorePercentage = Math.round(averageScorePercentage * 100.0) / 100.0;
+            wrongAnswerPercentage = Math.round(wrongAnswerPercentage * 100.0) / 100.0;
             ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
                     new PieChart.Data("Rätt svar: " + averageScorePercentage + "%", averageScorePercentage),
                     new PieChart.Data("Fel svar: " + wrongAnswerPercentage + "%", wrongAnswerPercentage)
             );
             correctAnswersPieChart.setData(userData);
+
+            userQuizList.forEach (y -> {
+                userPoints = y.getPoints();
+                maxPoints = y.getMaxPoints();
+                pointsPercentage = (userPoints/maxPoints) * 100;
+                pointsPercentage = Math.round(pointsPercentage * 100.0) / 100.0;
+                pointsPercentageString = String.valueOf(pointsPercentage);
+                statisticsUserData.add(
+                        new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString));
+
+            });
+            statisticsUserTableViev.setItems(statisticsUserData);
         });
 
 

@@ -28,6 +28,8 @@ public class UserQuiz {
     private int maxPoints; //
     @NotNull
     private int points; // number of points
+    @NotNull
+    private String userLastName; //
 
 
     public String getUserName() {
@@ -93,4 +95,8 @@ public class UserQuiz {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public String getUserLastName() { return userLastName; }
+
+    public void setUserLastName(String userLastName) { this.userLastName = userLastName; }
 }

@@ -31,7 +31,7 @@ public class UserQuizService {
         entityManagerFactory.close();
     }
 
-    public List<UserQuiz> getAllUserQuizById(int quizID){
+    public List<UserQuiz> getAllUserQuizByQuizId(int quizID){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 

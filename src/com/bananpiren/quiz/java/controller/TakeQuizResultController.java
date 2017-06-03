@@ -30,7 +30,7 @@ public class TakeQuizResultController {
     private void initialize() {
 
         int quizID = StartController.getCurrentQuizId();
-        List<UserQuiz> userQuizList = userQuizService.getAllUserQuizById(quizID);
+        List<UserQuiz> userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
         quizNameText.setText("Testar bara");
 
