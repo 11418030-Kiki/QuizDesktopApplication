@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.java.model;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 
 public class Alerts {
 

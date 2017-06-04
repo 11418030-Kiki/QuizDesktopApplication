@@ -5,8 +5,6 @@ import javafx.application.Platform;
 import javafx.scene.control.*;
 
 public class QuizTimer {
-
-
     public static void quizTimerClock(int quizTime, Label quizTimeLabel) {
         TakeQuizController takeQuizController = new TakeQuizController();
 

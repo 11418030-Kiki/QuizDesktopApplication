@@ -80,6 +80,9 @@ public class CreateQuizController {
         vboxAddQuestions.setPrefHeight(265);
         vboxAddQuestions.getChildren().addAll(QuestionList);
 
+        datePickerEndDate.setValue(LocalDate.now());
+        datePickerStartDate.setValue(LocalDate.now());
+
         // Timelimit
         timeLimitCheckBox.setOnAction(e -> {
             if (timeLimitCheckBox.isSelected()) {

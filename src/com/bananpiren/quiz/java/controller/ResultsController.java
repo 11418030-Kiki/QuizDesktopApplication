@@ -33,6 +33,15 @@ public class ResultsController {
     private TableColumn<UserQuiz, Integer> correctAnswersColumn;
 
     @FXML
+    private TableColumn<UserQuiz, Integer> numberOfQuestionsColumn;
+
+    @FXML
+    private TableColumn<String, String> gradeColumn;
+
+    @FXML
+    private TableColumn<?, ?> resultColumn;
+
+    @FXML
     private PieChart resultPieChart;
 
     private final ObservableList<UserQuiz> data = FXCollections.observableArrayList();
@@ -49,27 +58,25 @@ public class ResultsController {
 
     @FXML
     private void initialize(){
-        quizNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, Integer>("QuizName"));
-        correctAnswersColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, Integer>("points"));
+        quizNameColumn.setCellValueFactory(new PropertyValueFactory<>("QuizName"));
+        correctAnswersColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
+        numberOfQuestionsColumn.setCellValueFactory(new PropertyValueFactory<>("noOfQuestions"));
         resultsTable.setItems(data);
 
-        resultsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserQuiz>() {
-            @Override
-            public void changed(ObservableValue<? extends UserQuiz> observable, UserQuiz oldValue, UserQuiz newValue) {
-                storedSelectedTableIndex = resultsTable.getSelectionModel().getSelectedIndex();
+        resultsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            storedSelectedTableIndex = resultsTable.getSelectionModel().getSelectedIndex();
 
-                storedScore = data.get(storedSelectedTableIndex).getPoints();
-                storedSelectedQuizId = data.get(storedSelectedTableIndex).getQuizId();
-                storedNumberOfQuestions = QuestionService.getNumberOfQuestions(storedSelectedQuizId);
-                storedWrongAnswers = storedScore - Integer.valueOf(storedNumberOfQuestions);
+            storedScore = data.get(storedSelectedTableIndex).getPoints();
+            storedSelectedQuizId = data.get(storedSelectedTableIndex).getQuizId();
+            storedNumberOfQuestions = QuestionService.getNumberOfQuestions(storedSelectedQuizId);
+            storedWrongAnswers = storedScore - Integer.valueOf(storedNumberOfQuestions);
 
 
-                ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
-                        new PieChart.Data("Rätt svar: " + storedScore, storedScore),
-                        new PieChart.Data("Fel svar: " + storedWrongAnswers, storedWrongAnswers)
-                );
-                resultPieChart.setData(userData);
-            }
+            ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
+                    new PieChart.Data("Rätt svar: " + storedScore, storedScore),
+                    new PieChart.Data("Fel svar: " + storedWrongAnswers, storedWrongAnswers)
+            );
+            resultPieChart.setData(userData);
         });
     }
 }
