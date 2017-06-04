@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Remove questions in create quiz, added deletebutton action">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added &quot;Print to PDF&quot; function in StatisticsController">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/CreateQuizController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/CreateQuizController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/EditQuizController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/EditQuizController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/SettingsController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/SettingsController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/ResultsController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/ResultsController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StartController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StartController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StatisticsController.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StatisticsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.class" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/EditQuiz.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/EditQuiz.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java" afterPath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java" afterPath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizDialogController.java" afterPath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizDialogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/CreateQuiz.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/CreateQuiz.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Results.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Results.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Settings.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Settings.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Statistics.fxml" afterPath="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Statistics.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +22,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/QuizDesktopApplication$Main.coverage" NAME="Main Coverage Results" MODIFIED="1495231788357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>sample.*</FILTER>
-    </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -97,80 +89,161 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EditQuizController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java">
+      <file leaf-file-name="TakeQuizController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="61" column="90" lean-forward="false" selection-start-line="61" selection-start-column="90" selection-end-line="61" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4356#4357#0" expanded="true" />
-                <element signature="e#4391#4392#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditQuizDialogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizDialogController.java">
+      <file leaf-file-name="StatisticsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StatisticsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#EditQuizDialogController#0;class#EditQuizDialogController#0" expanded="false" />
-                <element signature="e#6723#6724#0" expanded="true" />
-                <element signature="e#6762#6763#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-              <folding>
-                <element signature="e#1970#1971#0" expanded="true" />
-                <element signature="e#2065#2066#0" expanded="true" />
-                <element signature="e#2141#2142#0" expanded="true" />
-                <element signature="e#2205#2206#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsersController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/UsersController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="134" column="68" lean-forward="true" selection-start-line="134" selection-start-column="68" selection-end-line="134" selection-end-column="68" />
+            <state relative-caret-position="119">
+              <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditQuestionDialogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuestionDialogController.java">
+      <file leaf-file-name="AnswerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/AnswerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="48" column="50" lean-forward="true" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+            <state relative-caret-position="-340">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/StatisticsUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-150">
+              <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizQuestions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-34">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1877#1878#0" expanded="true" />
-                <element signature="e#1961#1962#0" expanded="true" />
+                <marker date="1496608481595" expanded="true" signature="250:305" ph="@{...}" />
+                <marker date="1496608481595" expanded="true" signature="760:827" ph="{...}" />
+                <marker date="1496608481595" expanded="true" signature="903:1012" ph="{...}" />
+                <marker date="1496608481595" expanded="false" signature="1040:1051" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1059:1065" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1097:1108" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1126:1132" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1179:1190" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1219:1225" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1258:1269" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1285:1291" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1337:1348" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1373:1379" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1416:1427" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1447:1453" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1507:1518" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1551:1557" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1584:1595" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1607:1613" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1649:1660" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1677:1683" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1725:1736" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1763:1769" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1835:1846" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1893:1899" ph=" }" />
+                <marker date="1496608481595" expanded="false" signature="1960:1971" ph=" { " />
+                <marker date="1496608481595" expanded="false" signature="1994:2000" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateQuizController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java">
+      <file leaf-file-name="Statistics.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Statistics.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="1003">
+              <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
+              <folding>
+                <marker date="1496608483823" expanded="true" signature="4594:4639" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4683" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4718" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4747" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4775" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4804" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4831" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4857" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4874" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4893" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:4906" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4594:5010" ph="..." />
+                <marker date="1496608483823" expanded="true" signature="4919:4996" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserQuizService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserQuizService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="248" column="37" lean-forward="true" selection-start-line="248" selection-start-column="37" selection-end-line="248" selection-end-column="37" />
+            <state relative-caret-position="408">
+              <caret line="33" column="48" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="48" />
+              <folding>
+                <marker date="1496608481598" expanded="true" signature="1930:1966" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <marker date="1496608481600" expanded="true" signature="4755:4762" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CorrectQuizService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CorrectQuizService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StartController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2050">
+              <caret line="258" column="27" lean-forward="false" selection-start-line="258" selection-start-column="15" selection-end-line="258" selection-end-column="27" />
+              <folding>
+                <marker date="1496608481611" expanded="true" signature="2714:5351" ph="{...}" />
+                <marker date="1496608481611" expanded="true" signature="5108:5193" ph="//..." />
+                <marker date="1496608481611" expanded="true" signature="7172:9867" ph="{...}" />
+                <marker date="1496608481611" expanded="false" signature="9918:9929" ph=" { " />
+                <marker date="1496608481611" expanded="false" signature="9949:9955" ph=" }" />
+                <marker date="1496608481611" expanded="false" signature="10008:10019" ph=" { " />
+                <marker date="1496608481611" expanded="false" signature="10042:10048" ph=" }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -180,6 +253,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="FxmlFile" />
         <option value="Class" />
       </list>
@@ -187,36 +261,15 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sliderTime</find>
-      <find>lägg</find>
-      <find>lägg till</find>
-      <find>buttonAddQuestion</find>
-      <find>addQuestion</find>
-      <find>questionNumber</find>
-      <find>prompt</find>
-      <find>textFieldQuizName</find>
-      <find>questionList</find>
-      <find>question =</find>
-      <find>fdsa2</find>
-      <find>quizQuestionsList</find>
-      <find>fdsad3</find>
-      <find>uestionsList()</find>
-      <find>questionAnswersList</find>
-      <find>QUESTIONID</find>
-      <find>: QUESTIONID</find>
-      <find>setQuestionsList</find>
-      <find>seta</find>
-      <find>setAnswerList</find>
-      <find>newquestion</find>
-      <find>list</find>
-      <find>namn</find>
-      <find>questions</find>
-      <find>find</find>
-      <find>read</find>
-      <find>se</find>
-      <find>system</find>
-      <find>modal</find>
-      <find>moda</find>
+      <find>answerbutton</find>
+      <find>togglegroups</find>
+      <find>alert</find>
+      <find>takequizlist</find>
+      <find>quiztable</find>
+      <find>userquiz</find>
+      <find>quizservice</find>
+      <find>getAllUserQuizByQuizId</find>
+      <find>try</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -235,52 +288,49 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/TestAnswers.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CreateQuizServices.java" />
-        <option value="$PROJECT_DIR$/lib/javax.persistence.jar/javax/persistence/spi/PersistenceProviderResolverHolder.class" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/Questions.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizAnswers.java" />
-        <option value="$PROJECT_DIR$/.idea/libraries/lib.xml" />
-        <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CreateQuizService2.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/UsersController.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2b492d9a-046c-4122-9376-ef12fe1ae053/console.sql" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java" />
         <option value="$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/Services/CreateQuizService.class" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CreateGUIQuestionService.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CreateQuizService.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/MultipleAnswer.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/NewQuestionType.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/User.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/ResultsController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/SettingsController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/NewQuestionType.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.fxml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/CreateQuiz.fxml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/Quiz.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuizService.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/PersonEditDialogController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/PersonAddDialogController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuizDialog.fxml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuestionDialog.fxml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuestionDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuestionService.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UpdateUserService.java" />
         <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuestionAnswers.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/AnswerService.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuiz.fxml" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/Alerts.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java" />
         <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuestionDialogController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java" />
-        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizDialogController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/PersonAddDialogController.java" />
         <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/lib/eclipselink.jar!/org/eclipse/persistence/jpa/PersistenceProvider.class" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/06bf81d6-1056-4d2f-9369-074cc4a7ca9b/console.sql" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CreateGUIQuestionService.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/CreateGUIQuestionService.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/TakeQuiz.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuiz.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuizDialog.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Login.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/PersonAddDialog.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/PersonEditDialog.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Results.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Settings.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Start.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Users.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuiz.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/stylesheet.css" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuizService.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/ResultsController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/UsersController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/CreateQuiz.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuizResult.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/UserQuiz.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserQuizService.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizResultController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java" />
+        <option value="$PROJECT_DIR$/.idea/libraries/lib.xml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Statistics.fxml" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/StatisticsUser.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java" />
+        <option value="$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StatisticsController.java" />
       </list>
     </option>
   </component>
@@ -294,46 +344,10 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1320" />
+    <option name="height" value="784" />
   </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Android &gt; Lint &gt; Correctness</id>
-          </State>
-          <State>
-            <id>Android &gt; Lint &gt; Security</id>
-          </State>
-          <State>
-            <id>Android Lint for Kotlin</id>
-          </State>
-          <State>
-            <id>JPA issues</id>
-          </State>
-          <State>
-            <id>Java</id>
-          </State>
-          <State>
-            <id>Security issuesJava</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>JpaAttributeTypeInspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -358,6 +372,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuizDesktopApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="QuizDesktopApplication" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -387,14 +411,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -420,15 +436,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,14 +455,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -480,23 +484,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="quiz" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -511,14 +503,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -548,19 +532,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bananpiren" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="quiz" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuizDesktopApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuizDesktopApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -582,21 +572,17 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/itextpdf-5.5.1.jar!/" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bananpiren.quiz.Services" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.bananpiren.quiz.Services" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Anton\Documents\GitHub\QuizDesktopApplication\src\com\bananpiren\quiz\java\controller" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -613,17 +599,42 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/CreateQuiz.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/CreateQuizController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/EditQuizController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/MainController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StartController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/controller/StatisticsController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/EditQuiz.fxml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/UserQuiz.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Main.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/QuizDesktopApplication/com/bananpiren/quiz/java/view/Statistics.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuestionAnswers.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/Quiz.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/User.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserQuizService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/MainController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/ResultsController.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StatisticsController.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizResultController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/Alerts.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/QuizTimer.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/CreateQuiz.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuestionDialog.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuiz.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuizDialog.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Login.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.fxml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Results.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Settings.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Statistics.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuiz.fxml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuizResult.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/stylesheet.css</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -631,6 +642,11 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/SocketClientController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/Server.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/qa.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/SocketClient.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/bananpiren/quiz/resources/banana logo.png</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1153,9 +1169,6 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration>$USER_HOME$/.subversion</configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
@@ -1167,39 +1180,14 @@
       <workItem from="1493922794961" duration="165000" />
       <workItem from="1493924900085" duration="77000" />
       <workItem from="1494009632347" duration="2782000" />
-      <workItem from="1494317213392" duration="1245000" />
-      <workItem from="1494318518020" duration="13027000" />
-      <workItem from="1494366571794" duration="244000" />
-      <workItem from="1494402580671" duration="2702000" />
-      <workItem from="1494421401462" duration="552000" />
-      <workItem from="1494503117642" duration="1278000" />
-      <workItem from="1494767226700" duration="10622000" />
-      <workItem from="1494873119638" duration="15621000" />
-      <workItem from="1494921374142" duration="19191000" />
-      <workItem from="1495095094051" duration="218000" />
-      <workItem from="1495095402025" duration="42000" />
-      <workItem from="1495095574750" duration="1241000" />
-      <workItem from="1495096927940" duration="11382000" />
-      <workItem from="1495221443769" duration="11392000" />
-      <workItem from="1495233052528" duration="34000" />
-      <workItem from="1495233225430" duration="111000" />
-      <workItem from="1495447016863" duration="17320000" />
-      <workItem from="1495527076872" duration="5110000" />
-      <workItem from="1495538525817" duration="624000" />
-      <workItem from="1495539650751" duration="945000" />
-      <workItem from="1495546809545" duration="1757000" />
-      <workItem from="1495563677081" duration="6608000" />
-      <workItem from="1495627553819" duration="1339000" />
-      <workItem from="1495630663490" duration="2750000" />
-      <workItem from="1495711142688" duration="453000" />
-      <workItem from="1495918731628" duration="308000" />
-      <workItem from="1496050896292" duration="17745000" />
-      <workItem from="1496134593033" duration="4848000" />
-      <workItem from="1496263559328" duration="5209000" />
-      <workItem from="1496268926727" duration="99000" />
-      <workItem from="1496301418167" duration="10773000" />
-      <workItem from="1496319173701" duration="4748000" />
-      <workItem from="1496394050656" duration="30862000" />
+      <workItem from="1494315996263" duration="20801000" />
+      <workItem from="1494593815574" duration="4137000" />
+      <workItem from="1494927085733" duration="620000" />
+      <workItem from="1495005122600" duration="2071000" />
+      <workItem from="1495007287565" duration="6286000" />
+      <workItem from="1495014984679" duration="47276000" />
+      <workItem from="1496238566456" duration="2778000" />
+      <workItem from="1496245059805" duration="53466000" />
     </task>
     <task id="LOCAL-00001" summary="added warnings if not all fields for creating quiz is filled in using stringbuilder and alert">
       <created>1494011508491</created>
@@ -1208,294 +1196,297 @@
       <option name="project" value="LOCAL" />
       <updated>1494011508491</updated>
     </task>
-    <task id="LOCAL-00002" summary="Test">
-      <created>1494317347896</created>
+    <task id="LOCAL-00002" summary="Added Results">
+      <created>1494317109225</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1494317347896</updated>
+      <updated>1494317109226</updated>
     </task>
-    <task id="LOCAL-00003" summary="Added gitignore">
-      <created>1494317716338</created>
+    <task id="LOCAL-00003" summary="Added Results">
+      <created>1494317415801</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1494317716338</updated>
+      <updated>1494317415801</updated>
     </task>
-    <task id="LOCAL-00004" summary="JPA. Skapa prov">
-      <created>1494354546357</created>
+    <task id="LOCAL-00004" summary="Added Results">
+      <created>1494317425860</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1494354546357</updated>
+      <updated>1494317425860</updated>
     </task>
-    <task id="LOCAL-00005" summary="JPA. Skapa prov">
-      <created>1494359729482</created>
+    <task id="LOCAL-00005" summary="Kopplat ihop Results.fxml med ResultsController.java">
+      <created>1494320594483</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1494359729482</updated>
+      <updated>1494320594483</updated>
     </task>
-    <task id="LOCAL-00006" summary="JPA. Med bibliotek">
-      <created>1494406924348</created>
+    <task id="LOCAL-00006" summary="Fixat Settings.fxml och logik i SettingsController.java">
+      <created>1494408904506</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1494406924348</updated>
+      <updated>1494408904506</updated>
     </task>
-    <task id="LOCAL-00007" summary="JPA. lägg upp quiz">
-      <created>1494921673634</created>
+    <task id="LOCAL-00007" summary="Fixat Settings.fxml och logik i SettingsController.java och lagt till mer logik i ResultsController.java">
+      <created>1494440108639</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1494921673634</updated>
+      <updated>1494440108639</updated>
     </task>
-    <task id="LOCAL-00008" summary="JPA. lägg upp quiz">
-      <created>1494943713759</created>
+    <task id="LOCAL-00008" summary="Skapat UpdateUserService.java i Services">
+      <created>1494589606677</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1494943713759</updated>
+      <updated>1494589606689</updated>
     </task>
-    <task id="LOCAL-00009" summary="Updated user settings and user editing.">
-      <created>1495109309468</created>
+    <task id="LOCAL-00009" summary="Removed login screen for faster using under development.">
+      <created>1495008030252</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1495109309468</updated>
+      <updated>1495008030252</updated>
     </task>
-    <task id="LOCAL-00010" summary="Updated user service with function to load first user in database.&#10;Updated Main to load first users userId.">
-      <created>1495112493556</created>
+    <task id="LOCAL-00010" summary="Ändringar i Main.java, StartController.java, TakeQuizController.java, och CreateGUIQuestionService.java">
+      <created>1495095341131</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1495112493556</updated>
+      <updated>1495095341131</updated>
     </task>
-    <task id="LOCAL-00011" summary="Remove quiz removes quiz from database based in ID. Removes quiz from list immediatly and also removes questions and answers">
-      <created>1495197407878</created>
+    <task id="LOCAL-00011" summary="TakeQuiz logik uppdaterad">
+      <created>1495726794785</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1495197407878</updated>
+      <updated>1495726794785</updated>
     </task>
-    <task id="LOCAL-00012" summary="Remove quiz removes quiz from database based in ID. Removes quiz from list immediatly and also removes questions and answers">
-      <created>1495197620807</created>
+    <task id="LOCAL-00012" summary="TakeQuiz logik uppdaterad">
+      <created>1496067241464</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1495197620807</updated>
+      <updated>1496067241464</updated>
     </task>
-    <task id="LOCAL-00013" summary="Edit quiz labels updated">
-      <created>1495198707446</created>
+    <task id="LOCAL-00013" summary="Fixat funktion för att kolla quizets slutdatum och blockera quizet ifall slutdatumet har passerat">
+      <created>1496084542115</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1495198707446</updated>
+      <updated>1496084542115</updated>
     </task>
-    <task id="LOCAL-00014" summary="update gitignore">
-      <created>1495199704022</created>
+    <task id="LOCAL-00014" summary="Lagt till så att du får vänta ifall quizets startdatum inte har inträffat">
+      <created>1496136612162</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1495199704022</updated>
+      <updated>1496136612162</updated>
     </task>
-    <task id="LOCAL-00015" summary="Create quiz now works">
-      <created>1495455687988</created>
+    <task id="LOCAL-00015" summary="Tog bort import av swing">
+      <created>1496136671191</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1495455687988</updated>
+      <updated>1496136671191</updated>
     </task>
-    <task id="LOCAL-00016" summary="Added testdata to createquiz">
-      <created>1495456538771</created>
+    <task id="LOCAL-00016" summary="buggfix">
+      <created>1496137450820</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1495456538771</updated>
+      <updated>1496137450820</updated>
     </task>
-    <task id="LOCAL-00017" summary="Updated entities so that deletequiz now works properly. Stored quizes now also have a &quot;questionType&quot;">
-      <created>1495574481622</created>
+    <task id="LOCAL-00017" summary="Buggfix">
+      <created>1496140897459</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1495574481622</updated>
+      <updated>1496140897459</updated>
     </task>
-    <task id="LOCAL-00018" summary="Create quiz now takes multiple and single type of questions">
-      <created>1495632266309</created>
+    <task id="LOCAL-00018" summary="Skapat TakeQuizResult.fxml och controller">
+      <created>1496233770725</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1495632266309</updated>
+      <updated>1496233770725</updated>
     </task>
-    <task id="LOCAL-00019" summary="Create quiz now takes multiple and single type of questions">
-      <created>1495632672063</created>
+    <task id="LOCAL-00019" summary="Fixat i Statistics">
+      <created>1496258728864</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1495632672063</updated>
+      <updated>1496258728864</updated>
     </task>
-    <task id="LOCAL-00020" summary="update gitignore. Out folder shouldn't sync properly">
-      <created>1495711439967</created>
+    <task id="LOCAL-00020" summary="TakeQuiz logik uppdaterad">
+      <created>1496260163569</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1495711439967</updated>
+      <updated>1496260163569</updated>
     </task>
-    <task id="LOCAL-00021" summary="Corrected validation of datefields when creating quiz,&#10;Feedback added when creating quiz and redirecting,&#10;Added option to selfcorrect/noselfcorreting quiz,&#10;Added open questions,&#10;Changed the way quizes are created to be more dynamic">
-      <created>1496060018122</created>
+    <task id="LOCAL-00021" summary="TakeQuiz logik uppdaterad">
+      <created>1496260840272</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1496060018122</updated>
+      <updated>1496260840272</updated>
     </task>
-    <task id="LOCAL-00022" summary="Remove questions in create quiz, added deletebutton action">
-      <created>1496075670099</created>
+    <task id="LOCAL-00022" summary="TakeQuiz logik uppdaterad">
+      <created>1496317071018</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1496075670099</updated>
+      <updated>1496317071018</updated>
     </task>
-    <task id="LOCAL-00023" summary="Edit quiz now works">
-      <created>1496309176846</created>
+    <task id="LOCAL-00023" summary="TakeQuiz logik uppdaterad">
+      <created>1496317800072</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1496309176846</updated>
+      <updated>1496317800072</updated>
     </task>
-    <task id="LOCAL-00024" summary="Edit quiz can now update quiz, questions and answers. Can also delete quiz, questions, answers.">
-      <created>1496418642719</created>
+    <task id="LOCAL-00024" summary="Statistik sidan fixad och klar.">
+      <created>1496491131587</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1496418642719</updated>
+      <updated>1496491131587</updated>
     </task>
-    <task id="LOCAL-00025" summary="Fixed bug when creating test, deleting question now removes question properly from both gui and backend.">
-      <created>1496420558207</created>
+    <task id="LOCAL-00025" summary="Glömde ladda upp entitet">
+      <created>1496491196645</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1496420558207</updated>
+      <updated>1496491196645</updated>
     </task>
-    <task id="LOCAL-00026" summary="Buggfix when deleted question, list updates correctly now&#10;Added modality oweners to create quzi&#10;Added warning alert">
-      <created>1496428630338</created>
+    <task id="LOCAL-00026" summary="Buggfix in StatisticsController.java">
+      <created>1496511630748</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1496428630338</updated>
+      <updated>1496511630748</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Test">
+      <created>1496513174272</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1496513174272</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added &quot;Print to PDF&quot; function in StatisticsController">
+      <created>1496608828069</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1496608828069</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214918000" />
+    <option name="totallyTimeSpent" value="167869000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2553305" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22186147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27813852" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933578" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44805196" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2835498" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20670995" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20255864" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264095" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36053413" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13725491" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19478528" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
     </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="added warnings if not all fields for creating quiz is filled in using stringbuilder and alert" />
+    <MESSAGE value="Added Results" />
+    <MESSAGE value="Kopplat ihop Results.fxml med ResultsController.java" />
+    <MESSAGE value="Fixat Settings.fxml och logik i SettingsController.java" />
+    <MESSAGE value="Fixat Settings.fxml och logik i SettingsController.java och lagt till mer logik i ResultsController.java" />
+    <MESSAGE value="Skapat UpdateUserService.java i Services" />
+    <MESSAGE value="Removed login screen for faster using under development." />
+    <MESSAGE value="Ändringar i Main.java, StartController.java, TakeQuizController.java, och CreateGUIQuestionService.java" />
+    <MESSAGE value="Fixat funktion för att kolla quizets slutdatum och blockera quizet ifall slutdatumet har passerat" />
+    <MESSAGE value="Lagt till så att du får vänta ifall quizets startdatum inte har inträffat" />
+    <MESSAGE value="Tog bort import av swing" />
+    <MESSAGE value="buggfix" />
+    <MESSAGE value="Buggfix" />
+    <MESSAGE value="Skapat TakeQuizResult.fxml och controller" />
+    <MESSAGE value="Fixat i Statistics" />
+    <MESSAGE value="Statistik sidan fixad och klar." />
+    <MESSAGE value="TakeQuiz logik uppdaterad" />
+    <MESSAGE value="Glömde ladda upp entitet" />
+    <MESSAGE value="Buggfix in StatisticsController.java" />
     <MESSAGE value="Test" />
-    <MESSAGE value="Added gitignore" />
-    <MESSAGE value="JPA" />
-    <MESSAGE value="JPA. Skapa prov" />
-    <MESSAGE value="JPA. Med bibliotek" />
-    <MESSAGE value="JPA. lägg upp quiz" />
-    <MESSAGE value="Updated user settings and user editing." />
-    <MESSAGE value="Updated user service with function to load first user in database.&#10;Updated Main to load first users userId." />
-    <MESSAGE value="Remove quiz removes quiz from database based in ID. Removes quiz from list immediatly and also removes questions and answers" />
-    <MESSAGE value="Edit quiz labels updated" />
-    <MESSAGE value="update gitignore" />
-    <MESSAGE value="Create quiz now works" />
-    <MESSAGE value="Added testdata to createquiz" />
-    <MESSAGE value="Updated entities so that deletequiz now works properly. Stored quizes now also have a &quot;questionType&quot;" />
-    <MESSAGE value="Create quiz now takes multiple and single type of questions" />
-    <MESSAGE value="update gitignore. Out folder shouldn't sync properly" />
-    <MESSAGE value="Corrected validation of datefields when creating quiz,&#10;Feedback added when creating quiz and redirecting,&#10;Added option to selfcorrect/noselfcorreting quiz,&#10;Added open questions,&#10;Changed the way quizes are created to be more dynamic" />
-    <MESSAGE value="Remove questions in create quiz, added deletebutton action" />
-    <MESSAGE value="Edit quiz now works" />
-    <MESSAGE value="Edit quiz can now update quiz, questions and answers. Can also delete quiz, questions, answers." />
-    <MESSAGE value="Fixed bug when creating test, deleting question now removes question properly from both gui and backend." />
-    <MESSAGE value="Buggfix when deleted question, list updates correctly now&#10;Added modality oweners to create quzi&#10;Added warning alert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buggfix when deleted question, list updates correctly now&#10;Added modality oweners to create quzi&#10;Added warning alert" />
+    <MESSAGE value="Added &quot;Print to PDF&quot; function in StatisticsController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;Print to PDF&quot; function in StatisticsController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1504,531 +1495,563 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.quizquestions">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.correctquiz">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/src.zip!/java/util/ArrayList.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="417" column="0" lean-forward="false" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
+        <state relative-caret-position="104">
+          <caret line="2047" column="0" lean-forward="false" selection-start-line="2047" selection-start-column="0" selection-end-line="2047" selection-end-column="0" />
           <folding>
-            <element signature="e#15459#15460#0" expanded="false" />
+            <element signature="e#71768#71776#0" expanded="false" />
+            <element signature="e#71835#71853#0" expanded="false" />
+            <element signature="e#78827#78828#0" expanded="false" />
+            <element signature="e#79010#79011#0" expanded="false" />
+            <element signature="e#79046#79047#0" expanded="false" />
+            <element signature="e#79248#79249#0" expanded="false" />
+            <element signature="e#79295#79296#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="54" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="162" lean-forward="false" selection-start-line="7" selection-start-column="133" selection-end-line="7" selection-end-column="162" />
+        <state relative-caret-position="113">
+          <caret line="8411" column="0" lean-forward="false" selection-start-line="8411" selection-start-column="0" selection-end-line="8411" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="2494" column="0" lean-forward="false" selection-start-line="2494" selection-start-column="0" selection-end-line="2494" selection-end-column="0" />
+          <folding>
+            <element signature="e#66572#66573#0" expanded="false" />
+            <element signature="e#66618#66619#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/PersonEditDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="444">
+          <caret line="145" column="59" lean-forward="false" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/Quiz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.quizquestions_questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuestionDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/CreateQuiz.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="162" lean-forward="true" selection-start-line="18" selection-start-column="162" selection-end-line="18" selection-end-column="162" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/TakeQuiz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-748">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="1972">
+          <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizResultController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="255" column="27" lean-forward="false" selection-start-line="255" selection-start-column="15" selection-end-line="255" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuizDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuizService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="53" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/PersonEditDialogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.questionanswers">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuestionAnswers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/AnswerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="60" column="47" lean-forward="true" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/NewQuestionType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuiz.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <marker date="1496419951667" expanded="true" signature="6153:6157" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.quiz">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="67" column="47" lean-forward="false" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
-          <folding>
-            <marker date="1496418585389" expanded="false" signature="5331:5342" ph=" { " />
-            <marker date="1496418585389" expanded="false" signature="5418:5424" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/Alerts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuestionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2b492d9a-046c-4122-9376-ef12fe1ae053/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e3659505/2b492d9a-046c-4122-9376-ef12fe1ae053/bananpiren.quizquestions">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/PersonAddDialogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/event/EventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/UsersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="134" column="68" lean-forward="true" selection-start-line="134" selection-start-column="68" selection-end-line="134" selection-end-column="68" />
+        <state relative-caret-position="141">
+          <caret line="93" column="34" lean-forward="false" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/CreateQuizController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="248" column="37" lean-forward="true" selection-start-line="248" selection-start-column="37" selection-end-line="248" selection-end-column="37" />
+        <state relative-caret-position="149">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <marker date="1496608481603" expanded="true" signature="9768:9775" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuizDialog.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1496608481627" expanded="true" signature="4371:4400" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/model/QuizTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuestionDialogController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/ResultsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="48" column="50" lean-forward="true" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+        <state relative-caret-position="-136">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuizResult.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-            <element signature="e#1961#1962#0" expanded="true" />
+            <marker date="1496608481645" expanded="true" signature="1565:1585" ph="..." />
+            <marker date="1496608481645" expanded="true" signature="1565:1599" ph="..." />
+            <marker date="1496608481645" expanded="true" signature="1565:1626" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/resources/wallpaper.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuizService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1650">
+          <caret line="194" column="20" lean-forward="true" selection-start-line="194" selection-start-column="20" selection-end-line="194" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Start.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-116">
+          <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/TakeQuiz.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <marker date="1496608481643" expanded="true" signature="2304:2318" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1881#1882#0" expanded="false" />
+            <element signature="e#1921#1922#0" expanded="false" />
+            <marker date="1496608481597" expanded="true" signature="323:352" ph="@{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/UserQuiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="933">
+          <caret line="100" column="89" lean-forward="false" selection-start-line="100" selection-start-column="89" selection-end-line="100" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/TakeQuiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizResultController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="32" column="85" lean-forward="true" selection-start-line="32" selection-start-column="85" selection-end-line="32" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#4391#4392#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="109">
+          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuizDialogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
+        <state relative-caret-position="-10">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/EditQuestionDialogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/EditQuiz.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#EditQuizDialogController#0;class#EditQuizDialogController#0" expanded="false" />
-            <element signature="e#6723#6724#0" expanded="true" />
-            <element signature="e#6762#6763#0" expanded="true" />
+            <marker date="1496608481625" expanded="true" signature="6381:6385" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.41-bin.jar!/org/gjt/mm/mysql/Driver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.41-bin.jar!/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuizDesktopApplication.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/description.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/dataSources.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/gradle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/kotlinc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/libraries/lib.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/Quiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-609">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
-            <element signature="e#1970#1971#0" expanded="true" />
-            <element signature="e#2065#2066#0" expanded="true" />
-            <element signature="e#2141#2142#0" expanded="true" />
-            <element signature="e#2205#2206#0" expanded="true" />
+            <marker date="1496608481593" expanded="true" signature="306:361" ph="@{...}" />
+            <marker date="1496608481593" expanded="true" signature="839:1046" ph="{...}" />
+            <marker date="1496608481593" expanded="false" signature="1123:1134" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1148:1154" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1193:1204" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1225:1231" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1264:1275" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1291:1297" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1343:1354" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1379:1385" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1416:1427" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1444:1450" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1495:1506" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1533:1539" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1577:1588" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1609:1615" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1671:1682" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1717:1723" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1759:1770" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1789:1795" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1847:1858" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1889:1895" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="1952:1963" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="1984:1990" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="2065:2076" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="2111:2117" ph=" }" />
+            <marker date="1496608481593" expanded="false" signature="2156:2167" ph=" { " />
+            <marker date="1496608481593" expanded="false" signature="2189:2195" ph=" }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/QuestionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+          <folding>
+            <marker date="1496484524780" expanded="true" signature="3400:3527" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuestionAnswers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <marker date="1496608481591" expanded="true" signature="211:266" ph="@{...}" />
+            <marker date="1496608481591" expanded="true" signature="518:633" ph="{...}" />
+            <marker date="1496608481591" expanded="false" signature="697:708" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="722:728" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="770:781" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="802:808" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="843:854" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="875:881" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="934:945" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="980:986" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="1016:1027" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="1043:1049" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="1088:1099" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="1120:1126" ph=" }" />
+            <marker date="1496608481591" expanded="false" signature="1166:1177" ph=" { " />
+            <marker date="1496608481591" expanded="false" signature="1193:1199" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/QuizQuestions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <marker date="1496608481595" expanded="true" signature="250:305" ph="@{...}" />
+            <marker date="1496608481595" expanded="true" signature="760:827" ph="{...}" />
+            <marker date="1496608481595" expanded="true" signature="903:1012" ph="{...}" />
+            <marker date="1496608481595" expanded="false" signature="1040:1051" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1059:1065" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1097:1108" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1126:1132" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1179:1190" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1219:1225" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1258:1269" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1285:1291" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1337:1348" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1373:1379" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1416:1427" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1447:1453" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1507:1518" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1551:1557" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1584:1595" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1607:1613" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1649:1660" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1677:1683" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1725:1736" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1763:1769" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1835:1846" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1893:1899" ph=" }" />
+            <marker date="1496608481595" expanded="false" signature="1960:1971" ph=" { " />
+            <marker date="1496608481595" expanded="false" signature="1994:2000" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/view/Statistics.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
+          <folding>
+            <marker date="1496608483823" expanded="true" signature="4594:4639" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4683" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4718" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4747" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4775" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4804" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4831" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4857" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4874" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4893" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:4906" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4594:5010" ph="..." />
+            <marker date="1496608483823" expanded="true" signature="4919:4996" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Entity/StatisticsUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/AnswerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2050">
+          <caret line="258" column="27" lean-forward="false" selection-start-line="258" selection-start-column="15" selection-end-line="258" selection-end-column="27" />
+          <folding>
+            <marker date="1496608481611" expanded="true" signature="2714:5351" ph="{...}" />
+            <marker date="1496608481611" expanded="true" signature="5108:5193" ph="//..." />
+            <marker date="1496608481611" expanded="true" signature="7172:9867" ph="{...}" />
+            <marker date="1496608481611" expanded="false" signature="9918:9929" ph=" { " />
+            <marker date="1496608481611" expanded="false" signature="9949:9955" ph=" }" />
+            <marker date="1496608481611" expanded="false" signature="10008:10019" ph=" { " />
+            <marker date="1496608481611" expanded="false" signature="10042:10048" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/TakeQuizController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="61" column="90" lean-forward="false" selection-start-line="61" selection-start-column="90" selection-end-line="61" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/java/controller/StatisticsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserQuizService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="33" column="48" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="48" />
+          <folding>
+            <marker date="1496608481598" expanded="true" signature="1930:1966" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <marker date="1496608481600" expanded="true" signature="4755:4762" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bananpiren/quiz/Services/CorrectQuizService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2049,7 +2072,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>JPA</last-edited>
+          <last-edited>JPA (QuizDesktopApplication)|JPA</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
