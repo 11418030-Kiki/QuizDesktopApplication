@@ -7,11 +7,13 @@ public class StatisticsUser {
     private String firstName;
     private String lastName;
     private String correctPercentage;
+    private int userId;
 
-    public StatisticsUser(String firstName, String lastName, String correctPercentage){
+    public StatisticsUser(String firstName, String lastName, String correctPercentage, int userId){
         this.firstName = firstName;
         this.lastName = lastName;
         this.correctPercentage = correctPercentage;
+        this.userId = userId;
     }
 
     public String getLastName() {
@@ -37,4 +39,8 @@ public class StatisticsUser {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    public int getUserId() { return userId; }
+
+    public void setUserId(int userId) { this.userId = userId; }
 }

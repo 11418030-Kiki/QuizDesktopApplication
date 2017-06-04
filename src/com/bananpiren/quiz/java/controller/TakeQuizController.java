@@ -124,7 +124,6 @@ public class TakeQuizController {
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
         userQuiz.setQuizId(takeQuizList.get(0).getQuizId());
         userQuiz.setUserName(LoginController.getCurrentUser().getFirstName());
-        userQuiz.setUserLastName(LoginController.getCurrentUser().getLastName());
 
         System.out.println("RESET");
         int points = 1;
