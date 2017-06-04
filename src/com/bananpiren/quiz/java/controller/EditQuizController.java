@@ -86,8 +86,10 @@ public class EditQuizController {
                 endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
                 selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
 
+                editButton.setDisable(false);
                 deleteButton.setDisable(false);
             } else {
+                editButton.setDisable(true);
                 deleteButton.setDisable(true);
             }
         });
