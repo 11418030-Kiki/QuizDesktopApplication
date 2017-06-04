@@ -1,4 +1,6 @@
-//TODO: Add class info
+/*
+This is an entity class for creating answer objects
+ */
 
 package com.bananpiren.quiz.Entity;
 

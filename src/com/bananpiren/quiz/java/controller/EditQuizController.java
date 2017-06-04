@@ -81,7 +81,7 @@ public class EditQuizController {
                 quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
                 //TODO: hämta antal frågor
                 numberOfQuestionsLabel.setText("" + QuizService.numberOfQuestions(storedQuizId).size());
-                timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()));
+                timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()) + " minuter");
                 startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                 endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
                 selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());

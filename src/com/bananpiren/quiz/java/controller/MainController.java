@@ -38,6 +38,9 @@ public class MainController {
     private Button buttonLogOut;
 
     @FXML
+    private Button buttonSocketClient;
+
+    @FXML
     private void initialize() {
         if (LoginController.getCurrentUser().getAccountLevel().equals("Användare")) {
             buttonCreateQuiz.setManaged(false);
@@ -80,6 +83,11 @@ public class MainController {
         // Settings Button
         buttonSettings.setOnAction(e -> {
             showSettings();
+        });
+
+        // Quiz Battle Button
+        buttonSocketClient.setOnAction(e -> {
+            showSocketClient();
         });
 
         // Exit button
@@ -135,6 +143,15 @@ public class MainController {
             main.showUsers();
         } catch (IOException e) {
             System.out.println("Couldn't show Users");
+        }
+    }
+
+    @FXML
+    private void showSocketClient() {
+        try {
+            main.showSocketClient();
+        } catch (IOException e) {
+            System.out.println("Couldn't show Quiz Battle");
         }
     }
 

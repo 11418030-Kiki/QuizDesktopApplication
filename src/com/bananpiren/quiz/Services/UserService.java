@@ -1,10 +1,8 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.User;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import javax.persistence.*;
-import java.io.IOException;
 import java.util.List;
 
 public class UserService {

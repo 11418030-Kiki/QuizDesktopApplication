@@ -1,17 +1,11 @@
 package com.bananpiren.quiz.java.view;
 
-import com.bananpiren.quiz.Entity.User;
-import com.bananpiren.quiz.Services.UserService;
-import com.bananpiren.quiz.java.controller.LoginController;
-import com.bananpiren.quiz.java.controller.MainController;
-import com.bananpiren.quiz.java.controller.UsersController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -93,6 +87,14 @@ public class Main extends Application {
     public static void showStatistics() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("Statistics.fxml"));
+        BorderPane mainMenu = loader.load();
+        mainLayout.setCenter(mainMenu);
+    }
+
+    // Quiz Battle "SocketClient"
+    public static void showSocketClient() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("SocketClient.fxml"));
         BorderPane mainMenu = loader.load();
         mainLayout.setCenter(mainMenu);
     }

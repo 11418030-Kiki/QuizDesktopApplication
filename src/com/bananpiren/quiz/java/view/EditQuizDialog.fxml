@@ -50,13 +50,14 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <Button fx:id="editQuestionButton" disable="true" mnemonicParsing="false" text="Redigera markerad fråga" />
+                  <Pane HBox.hgrow="ALWAYS" />
                   <Button fx:id="deleteQuestionButton" disable="true" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" text="Ta bort markerad fråga" />
                </children>
             </HBox>
          </children>
          <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="10.0" prefWidth="415.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
