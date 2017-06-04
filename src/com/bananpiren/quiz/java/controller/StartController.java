@@ -127,6 +127,7 @@ public class StartController {
                         if (Integer.parseInt(q.getQuizId()) != currentQuizId) {
                             runQuiz = true;
                         } else {
+//                            runQuiz = true;
                             runQuiz = false;
                             new Alert(Alert.AlertType.INFORMATION, "Du har redan gjort detta Quiz!").showAndWait();
                             break;
@@ -173,6 +174,9 @@ public class StartController {
     // TODO: för openquestionfrågor: För varje openquestion, minska len med 3
     VBox createQuizQuestions() {
 
+        // reset the lists
+        multiAnswerList.clear();
+        singleAnswerList.clear();
 
         // length of the list divided with the number of questions
         int len = takeQuizList.size() / 4;

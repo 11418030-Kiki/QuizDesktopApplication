@@ -26,7 +26,7 @@ public class QuizTimer {
                         e.printStackTrace();
                     }
                     if (timeSek == 0){
-                        timeSek = 60;
+                        timeSek = 59;
                         timeMin--;
                     } else {
                         timeSek--;

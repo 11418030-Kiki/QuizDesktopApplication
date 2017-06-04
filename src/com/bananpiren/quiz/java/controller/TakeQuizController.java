@@ -126,6 +126,7 @@ public class TakeQuizController {
         userQuiz.setUserName(LoginController.getCurrentUser().getFirstName());
         userQuiz.setUserLastName(LoginController.getCurrentUser().getLastName());
 
+        System.out.println("RESET");
         int points = 1;
         int countedPoints = 0;
         int questionId = Integer.parseInt(takeQuizList.get(0).getQuestionId());
@@ -143,14 +144,25 @@ public class TakeQuizController {
 
             int selected = 0;
 
-            // check if multi or single quiestion
+            // check if multi or single question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
                 selected = (multiAnswerList.get(i - noSingle).isSelected()) ? 1 : 0;
+//                System.out.println("selected multi = " + selected);
                 noMultiple++;
             } else {
                 selected = singleAnswerList.get(i - noMultiple).isSelected() ? 1 : 0;
+//                System.out.println("selected SIngle= " + selected);
+
                 noSingle++;
             }
+
+//            for(RadioButton s : singleAnswerList) {
+//                System.out.println("singleanswerlist = " + s);
+//            }
+//
+//            for(CheckBox c : multiAnswerList) {
+//                System.out.println("multianswerList = " + c);
+//            }
 
             if (selected == Integer.parseInt(takeQuizList.get(i).getCorrectAnswer())) {
                 points++;
@@ -161,6 +173,12 @@ public class TakeQuizController {
                 countedPoints++;
             }
         }
+
+        int theResult = countedPoints;
+        int questionNumber = takeQuizList.size()/4;
+//        String theResult = takeQuizList.get(0).getPoints();
+        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
+
 
         userQuiz.setNoOfQuestions(maxResultNo);
         userQuiz.setMaxPoints(maxResultNo);
