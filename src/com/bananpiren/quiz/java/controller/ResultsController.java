@@ -39,6 +39,7 @@ public class ResultsController {
 
     private static int storedSelectedTableIndex;
     private int storedScore;
+    private int storedWrongAnswers;
     private String storedNumberOfQuestions;
     private String storedSelectedQuizId;
 
@@ -60,10 +61,12 @@ public class ResultsController {
                 storedScore = data.get(storedSelectedTableIndex).getPoints();
                 storedSelectedQuizId = data.get(storedSelectedTableIndex).getQuizId();
                 storedNumberOfQuestions = QuestionService.getNumberOfQuestions(storedSelectedQuizId);
+                storedWrongAnswers = storedScore - Integer.valueOf(storedNumberOfQuestions);
+
 
                 ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
                         new PieChart.Data("Rätt svar: " + storedScore, storedScore),
-                        new PieChart.Data("Antal frågor: " + storedNumberOfQuestions, Integer.valueOf(storedNumberOfQuestions))
+                        new PieChart.Data("Fel svar: " + storedWrongAnswers, storedWrongAnswers)
                 );
                 resultPieChart.setData(userData);
             }
