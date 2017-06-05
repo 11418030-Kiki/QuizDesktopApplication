@@ -198,6 +198,12 @@ public class EditQuizDialogController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        reloadTableData();
+    }
+
+    private void reloadTableData() {
+        questions.clear();
+        questions.addAll(QuestionService.findAllQuestions(currentQuiz));
     }
 
     // Getters and setters

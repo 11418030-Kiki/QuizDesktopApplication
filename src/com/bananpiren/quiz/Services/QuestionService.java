@@ -65,8 +65,18 @@ public class QuestionService {
         return question;
     }
 
+    // Get all Questions from database and return as list of Question objects
+    public static List findAllQuestions(int questionId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query query = entityManager.createQuery("Select q from QuizQuestions q where q.quiz.quizId = " + questionId);
+
+        return query.getResultList();
+    }
+
     // Returns List of Questions based on testId
-    public static List<QuizQuestions> read(int testId) {
+    public static List read(int testId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 

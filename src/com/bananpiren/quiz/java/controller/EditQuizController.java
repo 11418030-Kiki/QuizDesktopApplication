@@ -57,7 +57,7 @@ public class EditQuizController {
     private TableView<Quiz> quizTableView;
 
     public EditQuizController() {
-        data.addAll(quizService.findAllQuiz());
+        loadTableData();
     }
 
     @FXML
@@ -79,7 +79,6 @@ public class EditQuizController {
                 storedQuizId = data.get(storedSelectedTableIndex).getQuizId();
 
                 quizNameLabel.setText(data.get(storedSelectedTableIndex).getQuizName());
-                //TODO: hämta antal frågor
                 numberOfQuestionsLabel.setText("" + QuizService.numberOfQuestions(storedQuizId).size());
                 timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()) + " minuter");
                 startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
@@ -127,6 +126,12 @@ public class EditQuizController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        loadTableData();
+    }
+
+    private void loadTableData() {
+        data.clear();
+        data.addAll(QuizService.findAllQuiz());
     }
 
     static int getStoredQuizId() {

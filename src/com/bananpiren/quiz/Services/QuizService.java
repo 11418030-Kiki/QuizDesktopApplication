@@ -68,7 +68,7 @@ public class QuizService {
     }
 
     // Get all Quizes from database and return as list of Quiz objects
-    public List<Quiz> findAllQuiz() {
+    public static List findAllQuiz() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
