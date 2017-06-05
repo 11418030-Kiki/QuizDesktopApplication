@@ -22,7 +22,7 @@
    <content>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" stylesheets="@stylesheet.css">
          <top>
-            <Label styleClass="headerLabel" text="Redigera Quiz" BorderPane.alignment="CENTER">
+            <Label text="Redigera Quiz" BorderPane.alignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>

@@ -34,12 +34,14 @@
             <Button fx:id="buttonSettings" mnemonicParsing="false" prefWidth="120.0" text="Inställningar" />
             <Button fx:id="buttonLogOut" mnemonicParsing="false" prefWidth="120.0" text="Logga Ut" />
             <Button fx:id="buttonExit" mnemonicParsing="false" prefWidth="120.0" text="Avsluta" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Pane prefWidth="200.0" />
             <ImageView fitHeight="41.0" fitWidth="143.0">
                <image>
                   <Image url="@../../resources/banana%20logo.png" />
                </image>
                <VBox.margin>
-                  <Insets top="150.0" />
+                  <Insets />
                </VBox.margin>
             </ImageView>
          </children>

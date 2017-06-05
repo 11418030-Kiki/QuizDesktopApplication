@@ -58,11 +58,12 @@ public class LoginController {
 
         try {
             currentUser = userService.findUserByEmail(storedUserEmail);
-            if (storeUserPassword.equals(currentUser.getPassword())){
+            if (storeUserPassword.equals(currentUser.getPassword())) {
                 main.showMainView(primaryStage);
                 mainController.showHome();
+            } else {
+                informationOutputTextField.setText("Felaktigt mail och/eller lösenord");
             }
-
         } catch (Exception e) {
             informationOutputTextField.setText("Felaktigt mail och/eller lösenord");
             System.out.println("Incorrect");
@@ -75,10 +76,5 @@ public class LoginController {
 
     void reloadCurrentUser() {
         LoginController.currentUser = userService.findUserById(currentUser.getUserId());
-    }
-
-    //TODO: Används denna?
-    public void setCurrentUser (String email) {
-        currentUser = userService.findUserByEmail(email);
     }
 }

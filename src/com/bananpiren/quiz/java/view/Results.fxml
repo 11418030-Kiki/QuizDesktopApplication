@@ -28,7 +28,7 @@
               <columns>
                 <TableColumn fx:id="quizNameColumn" prefWidth="321.0" text="Quiz" />
                 <TableColumn fx:id="correctAnswersColumn" prefWidth="93.0" text="Antal Rätt" />
-                  <TableColumn fx:id="numberOfQuestionsColumn" prefWidth="84.0" text="Antal Fel" />
+                  <TableColumn fx:id="numberOfQuestionsColumn" prefWidth="84.0" text="Antal Frågor" />
                   <TableColumn fx:id="resultColumn" minWidth="9.666656494140625" prefWidth="38.333343505859375" text="\%" />
                   <TableColumn fx:id="gradeColumn" prefWidth="59.333343505859375" text="Betyg" />
               </columns>
