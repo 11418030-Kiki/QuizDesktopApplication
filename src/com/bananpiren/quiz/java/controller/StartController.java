@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class StartController {
 
     private QuizService quizService = new QuizService();
 
-     static int currentQuizId;
+    static int currentQuizId;
 
     @FXML
     private TableColumn<Quiz, String> quizNameColumn;
@@ -57,7 +58,7 @@ public class StartController {
 
     private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
     private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
-
+    private static ArrayList<TextField> openAnswerList = new ArrayList<>();
 
     public StartController() {
         data.addAll(quizService.findAllQuiz());
@@ -159,15 +160,29 @@ public class StartController {
     }
 
 
+
+
     // TODO: för openquestionfrågor: För varje openquestion, minska len med 3
     VBox createQuizQuestions() {
+
+        int openQuestions = 0;
 
         // reset the lists
         multiAnswerList.clear();
         singleAnswerList.clear();
+        openAnswerList.clear();
 
-        // length of the list divided with the number of questions
-        int len = takeQuizList.size() / 4;
+        // check the number of open questions
+        for (TakeQuiz a : takeQuizList) {
+            if (a.getQuestionType().equals("open")) {
+                openQuestions++;
+                System.out.println("open question = " + openQuestions);
+            }
+        }
+
+        // length of the list divided with the number of questions plus number of open questions
+        int len = (takeQuizList.size() / 4) + openQuestions;
+
 
         String[] questionName = new String[len];
         Label[] questionLabel = new Label[len];
@@ -176,6 +191,7 @@ public class StartController {
         String[] answer = new String[takeQuizList.size()];
         Label[] answerLabel = new Label[takeQuizList.size()];
         CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
+        TextField[] answerTextField = new TextField[takeQuizList.size()];
 
         RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
 
@@ -192,8 +208,6 @@ public class StartController {
         // loop through the questions
         for (int i = 0; i < len; i++) {
             // increment the question with the number of answers and get the question
-            incQuest = i * answerNo;
-
             questionName[i] = takeQuizList.get(incQuest).getQuestion();
             questionType = takeQuizList.get(incQuest).getQuestionType();
 
@@ -204,6 +218,12 @@ public class StartController {
             Separator separator = new Separator();
             separator.setValignment(VPos.CENTER);
 
+            if(questionType.equals("multiple") || questionType.equals("single")) {
+                answerNo = 4;
+            } else if(questionType.equals("open")) {
+                answerNo = 1;
+            }
+
             // loop through the answers
             for (int j = 0; j < answerNo; j++) {
                 incAnswer = incQuest + j;
@@ -212,7 +232,6 @@ public class StartController {
 
                 answerLabel[j] = new Label(answer[j]);
                 answerBox[j] = new HBox();
-
 
                 answerBox[j].setSpacing(5);
 
@@ -224,7 +243,7 @@ public class StartController {
 
                     multiAnswerList.add(answerCheckbox[j]);
 
-                } else {
+                } else if (questionType.equals("single")) {
                     answerButton[j] = new RadioButton();
                     answerButton[j].setToggleGroup(toggleGroups[i]);
 
@@ -232,11 +251,22 @@ public class StartController {
                     answerBox[j].getChildren().add(answerLabel[j]);
 
                     singleAnswerList.add(answerButton[j]);
+
+                } else if (questionType.equals("open")) {
+                    answerTextField[j] = new TextField();
+
+                    answerBox[j].getChildren().add(answerTextField[j]);
+                    answerBox[j].getChildren().add(answerLabel[j]);
+
+                    openAnswerList.add(answerTextField[j]);
                 }
 
                 questionBox.getChildren().add(answerBox[j]);
             }
             questionBox.getChildren().add(separator);
+
+            // increment with the number of answers
+            incQuest += answerNo;
         }
 
         return questionBox;
@@ -253,6 +283,10 @@ public class StartController {
 
     static ArrayList<RadioButton> getSingleAnswerList() {
         return singleAnswerList;
+    }
+
+    static ArrayList<TextField> getOpenAnswerList() {
+        return openAnswerList;
     }
 
     static int getCurrentQuizId() {

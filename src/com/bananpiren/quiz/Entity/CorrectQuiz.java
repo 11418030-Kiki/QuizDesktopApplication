@@ -16,7 +16,7 @@ public class CorrectQuiz {
     @NotNull
     private int userId;
     @NotNull
-    private int correctAnswer;
+    private String correctAnswer;
     @NotNull
     private boolean userAnswer;
 
@@ -45,11 +45,11 @@ public class CorrectQuiz {
         this.userId = userId;
     }
 
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(int correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 

@@ -30,6 +30,7 @@ public class CorrectQuizService {
         entityManager.close();
         entityManagerFactory.close();
     }
+
     public CorrectQuiz findCorrectQuizByAnswerId(int answerId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();

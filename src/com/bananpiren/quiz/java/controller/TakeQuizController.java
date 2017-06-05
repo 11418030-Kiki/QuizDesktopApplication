@@ -44,6 +44,10 @@ public class TakeQuizController {
     ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
     @FXML
+    private
+    ArrayList<TextField> openAnswerList = new ArrayList<>();
+
+    @FXML
     private CorrectQuiz correctQuiz;
 
     @FXML
@@ -56,6 +60,8 @@ public class TakeQuizController {
         takeQuizList = StartController.getTakeQuizList();
         multiAnswerList = StartController.getMultiAnswerList();
         singleAnswerList = StartController.getSingleAnswerList();
+        openAnswerList = StartController.getOpenAnswerList();
+
         maxResultNo = QuizService.numberOfQuestions(StartController.currentQuizId).size();
 
         // set maxResultLabel
@@ -91,24 +97,32 @@ public class TakeQuizController {
     private void sendQuiz() {
         int noMultiple = 0;
         int noSingle = 0;
+        int noOpen = 0;
+        int counter = 0;
 
         for (int i = 0; i < takeQuizList.size(); i++) {
 
+
             correctQuiz = new CorrectQuiz();
             correctQuiz.setAnswerId(Integer.parseInt(takeQuizList.get(i).getAnswerId()));
-            correctQuiz.setCorrectAnswer(Integer.parseInt(takeQuizList.get(i).getCorrectAnswer()));
+            correctQuiz.setCorrectAnswer(takeQuizList.get(i).getCorrectAnswer());
             correctQuiz.setUserId(LoginController.getCurrentUser().getUserId());
 
             // check if multi or single question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
-                correctQuiz.setUserAnswer(multiAnswerList.get(i - noSingle).isSelected());
+                correctQuiz.setUserAnswer(multiAnswerList.get(i - noSingle - noOpen).isSelected());
                 noMultiple++;
-            } else {
-                correctQuiz.setUserAnswer(singleAnswerList.get(i - noMultiple).isSelected());
+            } else if (takeQuizList.get(i).getQuestionType().equals("single")) {
+                correctQuiz.setUserAnswer(singleAnswerList.get(i - noMultiple - noOpen).isSelected());
                 noSingle++;
+            } else if (takeQuizList.get(i).getQuestionType().equals("open")) {
+
+                noOpen++;
             }
 
-            // create table
+            System.out.println("\n\nnoMultiple = " + noMultiple + "noSingle = " + noSingle + "noOpen = " + noOpen);
+
+                // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
 
             correctQuizService.correctQuiz(correctQuiz);
@@ -144,22 +158,11 @@ public class TakeQuizController {
             // check if multi or single question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
                 selected = (multiAnswerList.get(i - noSingle).isSelected()) ? 1 : 0;
-//                System.out.println("selected multi = " + selected);
                 noMultiple++;
             } else {
                 selected = singleAnswerList.get(i - noMultiple).isSelected() ? 1 : 0;
-//                System.out.println("selected SIngle= " + selected);
-
                 noSingle++;
             }
-
-//            for(RadioButton s : singleAnswerList) {
-//                System.out.println("singleanswerlist = " + s);
-//            }
-//
-//            for(CheckBox c : multiAnswerList) {
-//                System.out.println("multianswerList = " + c);
-//            }
 
             if (selected == Integer.parseInt(takeQuizList.get(i).getCorrectAnswer())) {
                 points++;
@@ -173,7 +176,6 @@ public class TakeQuizController {
 
         int theResult = countedPoints;
         int questionNumber = takeQuizList.size()/4;
-//        String theResult = takeQuizList.get(0).getPoints();
         new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
 
 
