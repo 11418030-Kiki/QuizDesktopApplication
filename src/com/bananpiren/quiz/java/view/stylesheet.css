@@ -47,11 +47,11 @@
 }
 .defaultDialogViewStyle {
     -fx-background-color: lightgray;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 5;
     -fx-opacity: 0.9;
     -fx-padding: 5px;
     -fx-border-color: rgba(217, 192, 50, 0.84);
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-border-width: 3;
 }
 .mainButtons .button {
@@ -130,4 +130,20 @@
     -fx-pref-width: 200;
     -fx-pref-height: 50;
     -fx-font-size: 20;
+}
+.headerLabel {
+    -fx-text-fill: lightgray;
+    -fx-stroke: #303030;
+    -fx-stroke-width: 1;
+}
+.headerLabel .text {
+    -fx-stroke: #303030;
+    -fx-stroke-width: 0.5;
+}
+.editQuizDialog .button {
+    -fx-pref-width: 150;
+}
+.scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding: -7;
 }

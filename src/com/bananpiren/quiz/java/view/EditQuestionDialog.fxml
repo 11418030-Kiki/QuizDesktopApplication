@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.EditQuestionDialogController">
    <top>
-      <Label fx:id="testLabel" text="Redigera Fråga" BorderPane.alignment="CENTER">
+      <Label fx:id="testLabel" styleClass="headerLabel" text="Redigera Fråga" BorderPane.alignment="CENTER">
          <font>
             <Font size="30.0" />
          </font></Label>

@@ -7,6 +7,7 @@ public class StatisticsUser {
     private String firstName;
     private String lastName;
     private String correctPercentage;
+    private String grade;
     private int userId;
 
     public StatisticsUser(String firstName, String lastName, String correctPercentage, int userId){
@@ -14,6 +15,15 @@ public class StatisticsUser {
         this.lastName = lastName;
         this.correctPercentage = correctPercentage;
         this.userId = userId;
+        double storedCorrectPercentage = Double.parseDouble(correctPercentage);
+
+        if (storedCorrectPercentage < 50) {
+            this.grade = "IG";
+        } else if (storedCorrectPercentage < 80) {
+            this.grade = "G";
+        } else {
+            this.grade = "VG";
+        }
     }
 
     public String getLastName() {
@@ -43,4 +53,12 @@ public class StatisticsUser {
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
+
+    public String getGrade() {
+        return this.grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 }

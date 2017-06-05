@@ -47,12 +47,14 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" styleClass="editQuizDialog" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="editQuestionButton" disable="true" mnemonicParsing="false" text="Redigera markerad fråga" />
-                  <Pane HBox.hgrow="ALWAYS" />
-                  <Button fx:id="deleteQuestionButton" disable="true" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" text="Ta bort markerad fråga" />
+                  <Button fx:id="deleteQuestionButton" disable="true" layoutX="10.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Ta bort markerad fråga" />
+                  <Button fx:id="editQuestionButton" disable="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Redigera markerad fråga" />
                </children>
+               <GridPane.margin>
+                  <Insets left="80.0" />
+               </GridPane.margin>
             </HBox>
          </children>
          <columnConstraints>

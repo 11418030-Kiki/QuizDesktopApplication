@@ -18,7 +18,7 @@
 
 <BorderPane fx:id="loginBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="214.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.LoginController">
    <top>
-      <Label id="welcomeLabel" styleClass="headerLabel" text="Welcome" BorderPane.alignment="CENTER">
+      <Label id="welcomeLabel" text="Welcome" BorderPane.alignment="CENTER">
          <font>
             <Font name="Arial Black" size="40.0" />
          </font>

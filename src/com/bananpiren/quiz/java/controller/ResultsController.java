@@ -1,56 +1,54 @@
 package com.bananpiren.quiz.java.controller;
 
-import com.bananpiren.quiz.Entity.QuizQuestions;
+import com.bananpiren.quiz.Entity.StatisticCurrentUser;
+import com.bananpiren.quiz.Entity.StatisticsUser;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class ResultsController {
 
     @FXML
-    private TableView<UserQuiz> resultsTable;
+    private TableView<StatisticCurrentUser> resultsTable;
+
+//    @FXML
+//    private TableView<StatisticsUser> resultStatisticTable;
 
     @FXML
-    private TextArea resultsTextArea;
+    private TableColumn<StatisticCurrentUser, Integer> quizNameColumn;
 
     @FXML
-    private TableColumn<UserQuiz, Integer> quizNameColumn;
+    private TableColumn<StatisticCurrentUser, Integer> correctAnswersColumn;
 
     @FXML
-    private TableColumn<UserQuiz, Integer> correctAnswersColumn;
+    private TableColumn<StatisticCurrentUser, Integer> numberOfQuestionsColumn;
 
     @FXML
-    private TableColumn<UserQuiz, Integer> numberOfQuestionsColumn;
+    private TableColumn<StatisticCurrentUser, String> resultColumn;
 
     @FXML
-    private TableColumn<String, String> gradeColumn;
-
-    @FXML
-    private TableColumn<?, ?> resultColumn;
+    private TableColumn<StatisticCurrentUser, String> gradeColumn;
 
     @FXML
     private PieChart resultPieChart;
 
-    private final ObservableList<UserQuiz> data = FXCollections.observableArrayList();
+    private ObservableList<UserQuiz> data = FXCollections.observableArrayList();
+    private ObservableList<StatisticsUser> userData = FXCollections.observableArrayList();
+    private ObservableList<StatisticCurrentUser> statisticsUserData = FXCollections.observableArrayList();
 
     private static int storedSelectedTableIndex;
     private int storedScore;
     private int storedWrongAnswers;
     private String storedNumberOfQuestions;
     private String storedSelectedQuizId;
+
 
     public ResultsController() {
         data.addAll(QuizService.getUserQuiz(LoginController.getCurrentUser().getUserId()));
@@ -61,7 +59,35 @@ public class ResultsController {
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<>("QuizName"));
         correctAnswersColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
         numberOfQuestionsColumn.setCellValueFactory(new PropertyValueFactory<>("noOfQuestions"));
-        resultsTable.setItems(data);
+        resultColumn.setCellValueFactory(new PropertyValueFactory<>("correctPercentage"));
+        gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        data.forEach(y -> {
+            double userPoints = y.getPoints();
+            double maxPoints = y.getMaxPoints();
+            double pointsPercentage = (userPoints/maxPoints) * 100;
+            pointsPercentage = Math.round(pointsPercentage * 100.0) / 100.0;
+            String pointsPercentageString = String.valueOf(pointsPercentage);
+            userData.add(
+                    new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
+        });
+
+        int dataListSize = data.size();
+        int counter = 0;
+
+        while (counter < dataListSize) {
+            int finalCounter = counter;
+        data.forEach(d -> statisticsUserData.add(
+                new StatisticCurrentUser(d.getQuizName(),
+                        d.getPoints(),
+                        d.getNoOfQuestions(),
+                        userData.get(finalCounter).getCorrectPercentage(),
+                        userData.get(finalCounter).getGrade())
+        ));
+        counter++;
+        }
+
+        resultsTable.setItems(statisticsUserData);
 
         resultsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             storedSelectedTableIndex = resultsTable.getSelectionModel().getSelectedIndex();
@@ -70,7 +96,6 @@ public class ResultsController {
             storedSelectedQuizId = data.get(storedSelectedTableIndex).getQuizId();
             storedNumberOfQuestions = QuestionService.getNumberOfQuestions(storedSelectedQuizId);
             storedWrongAnswers = storedScore - Integer.valueOf(storedNumberOfQuestions);
-
 
             ObservableList<PieChart.Data> userData = FXCollections.observableArrayList(
                     new PieChart.Data("Rätt svar: " + storedScore, storedScore),
