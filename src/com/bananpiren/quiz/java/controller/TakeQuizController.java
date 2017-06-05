@@ -21,9 +21,6 @@ public class TakeQuizController {
     QuizService quizService = new QuizService();
 
     @FXML
-    private Label quizNameHeader;
-
-    @FXML
     private Label quizLabel;
 
     @FXML
@@ -85,6 +82,7 @@ public class TakeQuizController {
         if (takeQuizList.get(0).getTimeLimit() != 0) {
             startQuizTimer();
         }
+        quizLabel.setText(""+takeQuizList.get(takeQuizList.size()-1).getQuizName());
 
 
     }

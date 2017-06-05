@@ -6,6 +6,7 @@ import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
+import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,9 +39,6 @@ public class StartController {
      static int currentQuizId;
 
     @FXML
-    private TableColumn<Quiz, Integer> quizIdColumn;
-
-    @FXML
     private TableColumn<Quiz, String> quizNameColumn;
 
     @FXML
@@ -68,7 +66,6 @@ public class StartController {
     @FXML
     private void initialize() {
         // Setting data to right column "cellvalue"
-        quizIdColumn.setCellValueFactory(new PropertyValueFactory<Quiz, Integer>("quizId"));
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
         quizStartDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizStartDate"));
@@ -93,22 +90,13 @@ public class StartController {
                 calQuizEndDate.setTime(dateQuizEndDate);
                 calquizStartDate.setTime(dateQuizStartDate);
                 Calendar calToday = Calendar.getInstance();
-                calToday.set(Calendar.HOUR_OF_DAY, 0);
-                calToday.set(Calendar.MINUTE, 0);
-                calToday.set(Calendar.SECOND, 0);
-                calToday.set(Calendar.MILLISECOND, 0);
+                calQuizEndDate.set(Calendar.HOUR_OF_DAY, 23);
+                calQuizEndDate.set(Calendar.MINUTE, 59);
+                calQuizEndDate.set(Calendar.SECOND, 59);
                 if (calQuizEndDate.compareTo(calToday) <= 0) {
-                    Alert toLate = new Alert(Alert.AlertType.ERROR);
-                    toLate.setTitle("Meddelande");
-                    toLate.setHeaderText("Datumet passerat");
-                    toLate.setContentText("Datumet för provet har redan passerat");
-                    toLate.showAndWait();
+                    Alerts.informationAlert("Fel", "Quiz har passerat datum", "Quizet du har valt har passerat sitt slutdatum");
                 } else if (calquizStartDate.compareTo(calToday) > 0) {
-                    Alert toEarly = new Alert(Alert.AlertType.INFORMATION);
-                    toEarly.setTitle("Meddelande");
-                    toEarly.setHeaderText("Quizet har inte startat");
-                    toEarly.setContentText("Quizets startdatum har inte inträffat");
-                    toEarly.showAndWait();
+                    Alerts.informationAlert("Fel", "Quiz har inte startat", "Quizet du har valt har inte börjat än");
                 } else {
 
                     // get the Id of the current Quiz

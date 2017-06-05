@@ -32,7 +32,7 @@ public class TakeQuizResultController {
         int quizID = StartController.getCurrentQuizId();
         List<UserQuiz> userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
-        quizNameText.setText("Testar bara");
+        quizNameText.setText(""+userQuizList.get(userQuizList.size()-1).getQuizName());
 
         correctQuizAnswerText.setText(
                 "Användare: " + userQuizList.get(userQuizList.size() - 1).getUserName() +
@@ -41,7 +41,5 @@ public class TakeQuizResultController {
                         "\nMaxpoäng: " + userQuizList.get(userQuizList.size() - 1).getMaxPoints() +
                         "\nDin poäng: " + userQuizList.get(userQuizList.size() - 1).getPoints()
         );
-
-        myLabel.setText("MYLABEL");
     }
 }
