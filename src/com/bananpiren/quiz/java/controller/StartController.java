@@ -256,7 +256,7 @@ public class StartController {
                     answerTextField[j] = new TextField();
 
                     answerBox[j].getChildren().add(answerTextField[j]);
-                    answerBox[j].getChildren().add(answerLabel[j]);
+//                    answerBox[j].getChildren().add(answerLabel[j]);
 
                     openAnswerList.add(answerTextField[j]);
                 }

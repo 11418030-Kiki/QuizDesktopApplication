@@ -136,6 +136,11 @@ public class QuizService {
         Query timer = entityManager.createQuery("SELECT q.timeLimit FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
         List timerList = timer.getResultList();
 
+        // Query selfCorrecting
+        Query selfCorrecting = entityManager.createQuery("SELECT q.selfcorrecting FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
+        List selfCorrectingList = selfCorrecting.getResultList();
+
+
         int count = 0;
 
         TakeQuiz takeQuiz;
@@ -153,6 +158,7 @@ public class QuizService {
             takeQuiz.setQuestionId(questionIdList.get(i).toString());
             takeQuiz.setQuizId(quizIdList.get(i).toString());//            takeQuiz.setPoints(resultList.get(i).toString());
             takeQuiz.setTimeLimit((int) timerList.get(i));
+            takeQuiz.setSelfCorrectingList(selfCorrectingList.get(i).toString());
             takeQuizList.add(takeQuiz);
         }
 

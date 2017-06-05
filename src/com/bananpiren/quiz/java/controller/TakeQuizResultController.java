@@ -32,14 +32,19 @@ public class TakeQuizResultController {
         int quizID = StartController.getCurrentQuizId();
         List<UserQuiz> userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
-        quizNameText.setText(""+userQuizList.get(userQuizList.size()-1).getQuizName());
 
-        correctQuizAnswerText.setText(
-                "Användare: " + userQuizList.get(userQuizList.size() - 1).getUserName() +
-                        "\nQuiznamn: " + userQuizList.get(userQuizList.size() - 1).getQuizName() +
-                        "\nAntal frågor: " + userQuizList.get(userQuizList.size() - 1).getNoOfQuestions() +
-                        "\nMaxpoäng: " + userQuizList.get(userQuizList.size() - 1).getMaxPoints() +
-                        "\nDin poäng: " + userQuizList.get(userQuizList.size() - 1).getPoints()
-        );
+        if (TakeQuizController.getSelfCorrect()) {
+            quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
+
+            correctQuizAnswerText.setText(
+                    "Användare: " + userQuizList.get(userQuizList.size() - 1).getUserName() +
+                            "\nQuiznamn: " + userQuizList.get(userQuizList.size() - 1).getQuizName() +
+                            "\nAntal frågor: " + userQuizList.get(userQuizList.size() - 1).getNoOfQuestions() +
+                            "\nMaxpoäng: " + userQuizList.get(userQuizList.size() - 1).getMaxPoints() +
+                            "\nDin poäng: " + userQuizList.get(userQuizList.size() - 1).getPoints()
+            );
+        } else if (!TakeQuizController.getSelfCorrect()) {
+            correctQuizAnswerText.setText("DETTA ÄR INTE SJÄLVRÄTTANDE!");
+        }
     }
 }

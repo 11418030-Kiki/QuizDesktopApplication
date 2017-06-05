@@ -55,6 +55,9 @@ public class TakeQuizController {
 
     private int maxResultNo;
 
+    private static boolean selfCorrect;
+
+
     @FXML
     private void initialize() {
         takeQuizList = StartController.getTakeQuizList();
@@ -73,7 +76,13 @@ public class TakeQuizController {
         // Create CorrectQuizObject
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
-            sendUserQuiz();
+
+            if(takeQuizList.get(0).getSelfCorrectingList().equals("yes")) {
+                sendUserQuiz();
+                selfCorrect = true;
+            } else {
+                selfCorrect = false;
+            }
 
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -88,7 +97,7 @@ public class TakeQuizController {
         if (takeQuizList.get(0).getTimeLimit() != 0) {
             startQuizTimer();
         }
-        quizLabel.setText(""+takeQuizList.get(takeQuizList.size()-1).getQuizName());
+        quizLabel.setText("" + takeQuizList.get(takeQuizList.size() - 1).getQuizName());
 
 
     }
@@ -102,7 +111,6 @@ public class TakeQuizController {
 
         for (int i = 0; i < takeQuizList.size(); i++) {
 
-
             correctQuiz = new CorrectQuiz();
             correctQuiz.setAnswerId(Integer.parseInt(takeQuizList.get(i).getAnswerId()));
             correctQuiz.setCorrectAnswer(takeQuizList.get(i).getCorrectAnswer());
@@ -110,19 +118,17 @@ public class TakeQuizController {
 
             // check if multi or single question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
-                correctQuiz.setUserAnswer(multiAnswerList.get(i - noSingle - noOpen).isSelected());
+                correctQuiz.setUserAnswer(String.valueOf(multiAnswerList.get(i - noSingle - noOpen).isSelected() ? 1 : 0));
                 noMultiple++;
             } else if (takeQuizList.get(i).getQuestionType().equals("single")) {
-                correctQuiz.setUserAnswer(singleAnswerList.get(i - noMultiple - noOpen).isSelected());
+                correctQuiz.setUserAnswer(String.valueOf(singleAnswerList.get(i - noMultiple - noOpen).isSelected() ? 1 : 0));
                 noSingle++;
             } else if (takeQuizList.get(i).getQuestionType().equals("open")) {
-
+                correctQuiz.setUserAnswer(openAnswerList.get(i - noMultiple - noSingle).getText());
                 noOpen++;
             }
 
-            System.out.println("\n\nnoMultiple = " + noMultiple + "noSingle = " + noSingle + "noOpen = " + noOpen);
-
-                // create table
+            // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
 
             correctQuizService.correctQuiz(correctQuiz);
@@ -175,7 +181,7 @@ public class TakeQuizController {
         }
 
         int theResult = countedPoints;
-        int questionNumber = takeQuizList.size()/4;
+        int questionNumber = takeQuizList.size() / 4;
         new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
 
 
@@ -187,7 +193,6 @@ public class TakeQuizController {
         UserQuizService userQuizService = new UserQuizService();
 
         userQuizService.userQuiz(userQuiz);
-
     }
 
     private void startQuizTimer() {
@@ -197,5 +202,9 @@ public class TakeQuizController {
     public void ternInQuiz() {
         //TODO: Skapa logik för att lämna in quiz.
         sendQuizButton.fire();
+    }
+
+    public static boolean getSelfCorrect() {
+        return selfCorrect;
     }
 }

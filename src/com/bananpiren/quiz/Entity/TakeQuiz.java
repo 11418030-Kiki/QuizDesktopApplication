@@ -13,6 +13,7 @@ public class TakeQuiz {
     private int timeLimit;
     private String quizStartDate;
     private String quizEndDate;
+    private String selfCorrectingList;
 
     // QuizQuestions
     private String questionId;
@@ -25,20 +26,20 @@ public class TakeQuiz {
     private String correctAnswer;
 
     // UserQuiz
-//    private int userQuizId;
     private int userId;
     private String points;
 
     public TakeQuiz() {
     }
 
-//    public int getUserQuizId() {
-//        return userQuizId;
-//    }
 
-//    public void setUserQuizId(int userQuizId) {
-//        this.userQuizId = userQuizId;
-//    }
+    public String getSelfCorrectingList() {
+        return selfCorrectingList;
+    }
+
+    public void setSelfCorrectingList(String selfCorrectingList) {
+        this.selfCorrectingList = selfCorrectingList;
+    }
 
     public int getUserId() {
         return userId;
