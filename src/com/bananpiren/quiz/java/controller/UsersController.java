@@ -109,7 +109,7 @@ public class UsersController {
     }
 
     private void loadTableData() {
-        data.removeAll();
+        data.clear();
         data.addAll(userService.findAllUsers());
     }
 
@@ -119,7 +119,6 @@ public class UsersController {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
         levelColumn.setCellValueFactory(new PropertyValueFactory<User, String>("accountLevel"));
         personTable.setItems(data);
-        //TODO: Få table view att refresha efter att data ändrats
     }
 
     private void showPersonAddDialog() {
@@ -142,8 +141,8 @@ public class UsersController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        loadTableData();
-//        setTableData();
+        loadTableData();
+        setTableData();
     }
 
     private void showPersonEditDialog() {
@@ -168,8 +167,8 @@ public class UsersController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        loadTableData();
-//        setTableData();
+        loadTableData();
+        setTableData();
     }
 
     @FXML
