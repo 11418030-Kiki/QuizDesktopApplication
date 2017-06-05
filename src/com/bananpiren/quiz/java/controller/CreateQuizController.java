@@ -155,10 +155,10 @@ public class CreateQuizController {
         }
 
         // Check if Quiz is selfcorrecting or not
-        if (timeLimitCheckBox.isSelected()) {
-            selfcorrectingvalue = "Ja";
+        if (selfCorrectingCheckBox.isSelected()) {
+            selfcorrectingvalue = "yes";
         } else {
-            selfcorrectingvalue = "Nej";
+            selfcorrectingvalue = "no";
         }
 
         if (warnings.length() > 0) {

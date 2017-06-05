@@ -84,8 +84,11 @@ public class EditQuizController {
                 timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()) + " minuter");
                 startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                 endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
-                selfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getSelfcorrecting());
-
+                if(data.get(storedSelectedTableIndex).getSelfcorrecting()=="no") {
+                    selfCorrectedLabel.setText("Nej");
+                }else{
+                    selfCorrectedLabel.setText("Ja");
+                }
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);
             } else {
