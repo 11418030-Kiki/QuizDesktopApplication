@@ -77,7 +77,7 @@ public class TakeQuizController {
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
 
-            if(takeQuizList.get(0).getSelfCorrectingList().equals("yes")) {
+            if (takeQuizList.get(0).getSelfCorrectingList().equals("yes")) {
                 sendUserQuiz();
                 selfCorrect = true;
             } else {
@@ -98,8 +98,6 @@ public class TakeQuizController {
             startQuizTimer();
         }
         quizLabel.setText("" + takeQuizList.get(takeQuizList.size() - 1).getQuizName());
-
-
     }
 
     // store correct answer and useranswer
@@ -204,7 +202,7 @@ public class TakeQuizController {
         sendQuizButton.fire();
     }
 
-    public static boolean getSelfCorrect() {
+    static boolean getSelfCorrect() {
         return selfCorrect;
     }
 }
