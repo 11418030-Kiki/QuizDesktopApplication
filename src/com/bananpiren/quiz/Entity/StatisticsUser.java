@@ -10,7 +10,7 @@ public class StatisticsUser {
     private String grade;
     private int userId;
 
-    public StatisticsUser(String firstName, String lastName, String correctPercentage, int userId){
+    public StatisticsUser(String firstName, String lastName, String correctPercentage, int userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.correctPercentage = correctPercentage;
@@ -24,6 +24,14 @@ public class StatisticsUser {
         } else {
             this.grade = "VG";
         }
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -42,23 +50,19 @@ public class StatisticsUser {
         this.correctPercentage = correctPercentage;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public int getUserId() { return userId; }
-
-    public void setUserId(int userId) { this.userId = userId; }
-
     public String getGrade() {
-        return this.grade;
+        return grade;
     }
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

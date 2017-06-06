@@ -1,10 +1,7 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.*;
-import com.bananpiren.quiz.Services.AnswerService;
-import com.bananpiren.quiz.Services.QuestionService;
-import com.bananpiren.quiz.Services.QuizService;
-import com.bananpiren.quiz.Services.UserQuizService;
+import com.bananpiren.quiz.Services.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.FontSelector;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -21,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Phaser;
 
 public class StatisticsController {
 
@@ -62,6 +60,9 @@ public class StatisticsController {
     private List<QuizQuestions> questionsList = new ArrayList<>();
     private AnswerService answerService = new AnswerService();
     private List<QuestionAnswers> answersList = new ArrayList<>();
+    private CorrectQuizService correctQuizService = new CorrectQuizService();
+    private List<CorrectQuiz> correctQuizList2 = new ArrayList<>();
+    private List<CorrectQuiz> correctQuizList = new ArrayList<>();
     private int quizID;
     private int questionCount;
     private List<UserQuiz> userQuizList = new ArrayList<>();
@@ -71,8 +72,9 @@ public class StatisticsController {
     private double maxPoints;
     private double pointsPercentage;
     private String pointsPercentageString;
-    private String answerString;
-    private String questionString;
+    private boolean studentAnswerPrinted;
+    private String studentAnswerString;
+    FontSelector studentAnswerSelector = new FontSelector();
 
     @FXML
     private void initialize() {
@@ -122,7 +124,10 @@ public class StatisticsController {
             statisticsUserTableViev.setItems(statisticsUserData);
 
         });
-
+        printPdfButton.setDisable(true);
+        statisticsUserTableViev.getSelectionModel().selectedItemProperty().addListener(o->{
+            printPdfButton.setDisable(false);
+        });
         printPdfButton.setOnAction(x -> {
             int selectedUserId = statisticsUserTableViev.getSelectionModel().selectedItemProperty().getValue().getUserId();
             String selectedUserFirstName = statisticsUserTableViev.getSelectionModel().selectedItemProperty().getValue().getFirstName();
@@ -159,41 +164,93 @@ public class StatisticsController {
 
                 //Prints the questions and the answers
                 questionsList.forEach(l -> {
+                    studentAnswerString = "";
                     try {
+                        //Print the question
                         FontSelector questionSelector = new FontSelector();
                         Font questionFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 14);
                         questionSelector.addFont(questionFont);
                         Phrase question = questionSelector.process(l.getQuestion()+"\n");
                         document.add(question);
 
-                        questionString = l.getQuestion();
+                        //Print the questiontype
+                        FontSelector questionTypeSelector = new FontSelector();
+                        Font questionTypeFont = FontFactory.getFont(FontFactory.TIMES_ITALIC, 11);
+                        questionTypeSelector.addFont(questionTypeFont);
+
+                        if(l.getQuestionType().equals("single")){
+                            Phrase questionType = questionTypeSelector.process("(Envalsfråga)\n");
+                            document.add(questionType);
+                        }else if(l.getQuestionType().equals("multiple")) {
+                            Phrase questionType = questionTypeSelector.process("(Flervalsfråga)\n");
+                            document.add(questionType);
+                        }else if(l.getQuestionType().equals("open")){
+                            Phrase questionType = questionTypeSelector.process("(Öppen fråga)\n");
+                            document.add(questionType);
+                        }
+
+
                         int questionId = l.getQuestionId();
+                        studentAnswerPrinted=true;
                         answersList = answerService.read(questionId);
                         answersList.forEach(p-> {
+                            correctQuizList2 = correctQuizService.findAllCorrectQuizByAnswerId(p.getAnswerId());
+                            correctQuizList.clear();
+                            correctQuizList2.forEach(e->{
+                                if(e.getUserId()==selectedUserId){
+                                    correctQuizList.add(e);
+                                }
+                            });
+                            //Set font for answer and students answer
+                            try{
                             FontSelector answerSelector = new FontSelector();
                             Font answerFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12);
                             answerSelector.addFont(answerFont);
-                            try{
-                            if (p.getCorrectAnswer() == 1) {
-                                answerString = p.getAnswer().substring(questionString.length());
-                                Phrase answer = answerSelector.process(answerString + "  (Rätt svar)\n");
+
+                            Font studentAnswerFont = FontFactory.getFont(FontFactory.TIMES_ITALIC, 12);
+                            studentAnswerSelector.addFont(studentAnswerFont);
+
+                            if(l.getQuestionType().equals("single")){
+                                if (correctQuizList.get(0).getCorrectAnswer().equals("1")){
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"   Rätt svar\n");
+                                    document.add(answer);
+                                }else{
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"\n");
+                                    document.add(answer);
+                                }
+                                if(studentAnswerPrinted){
+                                    studentAnswerString = "Studentens svar: "+p.getAnswer()+"\n";
+                                }else{
+
+                                }
+                            }else if(l.getQuestionType().equals("multiple")){
+                                if(correctQuizList.get(0).getCorrectAnswer().equals("1")){
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"   Rätt svar\n");
+                                    document.add(answer);
+                                }else{
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"\n");
+                                    document.add(answer);
+                                }
+
+                                if(correctQuizList.get(0).getUserAnswer().equals("1")){
+                                    studentAnswerString += "Studentens svar: "+p.getAnswer()+"\n";
+                                }else{
+
+                                }
+                            }else if(l.getQuestionType().equals("open")){
+                                Phrase answer = studentAnswerSelector.process("Studentens öppna svar:\n");
                                 document.add(answer);
-                            }else{
-                                answerString = p.getAnswer().substring(questionString.length());
-                                Phrase answer = answerSelector.process(answerString+"\n");
-                                document.add(answer);
+                                Phrase studentAnswer = answerSelector.process(p.getAnswer());
+                                document.add(studentAnswer);
                             }
-                        }catch(Exception n){
-                                System.out.println(n);
+                        }catch(DocumentException n){
+                                System.out.println(n+" in answerslist");
                             }
+                            studentAnswerPrinted=false;
+
                         });
-
-                        //Show the students answer
-                        FontSelector studentAnswerSelector = new FontSelector();
-                        Font studentAnswerFont = FontFactory.getFont(FontFactory.TIMES_ITALIC, 12);
-                        studentAnswerSelector.addFont(studentAnswerFont);
-                        Phrase studentAnswer = studentAnswerSelector.process("Elevens svar: ");
-
+                        Phrase studentAnswer = studentAnswerSelector.process(studentAnswerString);
+                        document.add(studentAnswer);
                     }catch(Exception t){
                         System.out.println(t);
                     }

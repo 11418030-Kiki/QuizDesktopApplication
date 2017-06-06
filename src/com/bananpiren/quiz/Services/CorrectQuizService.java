@@ -30,16 +30,17 @@ public class CorrectQuizService {
         entityManager.close();
         entityManagerFactory.close();
     }
-
-    public CorrectQuiz findCorrectQuizByAnswerId(int answerId){
+    public List<CorrectQuiz> findAllCorrectQuizByAnswerId(int answerId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        CorrectQuiz correctQuiz = entityManager.find(CorrectQuiz.class, answerId);
+        Query query = entityManager.createQuery("SELECT u FROM CorrectQuiz u WHERE u.answerId ="+answerId);
+        List<CorrectQuiz> correctQuizList = (List<CorrectQuiz>) query.getResultList();
 
         entityManager.close();
+        entityManagerFactory.close();
 
-        return correctQuiz;
+        return correctQuizList;
     }
 
 
