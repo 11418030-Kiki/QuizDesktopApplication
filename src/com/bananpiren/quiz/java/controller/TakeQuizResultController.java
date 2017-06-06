@@ -45,6 +45,9 @@ public class TakeQuizResultController {
             );
         } else if (!TakeQuizController.getSelfCorrect()) {
             correctQuizAnswerText.setText("DETTA ÄR INTE SJÄLVRÄTTANDE!");
+
+            // HÄR FÅ IN newCoolVBox!
+            // så visar quizet
         }
     }
 }

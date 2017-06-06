@@ -114,7 +114,7 @@ public class TakeQuizController {
             correctQuiz.setCorrectAnswer(takeQuizList.get(i).getCorrectAnswer());
             correctQuiz.setUserId(LoginController.getCurrentUser().getUserId());
 
-            // check if multi or single question
+            // check if multi, single or open question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
                 correctQuiz.setUserAnswer(String.valueOf(multiAnswerList.get(i - noSingle - noOpen).isSelected() ? 1 : 0));
                 noMultiple++;
