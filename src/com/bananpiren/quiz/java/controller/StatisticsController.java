@@ -119,7 +119,6 @@ public class StatisticsController {
                 pointsPercentageString = String.valueOf(pointsPercentage);
                 statisticsUserData.add(
                         new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
-
             });
             statisticsUserTableViev.setItems(statisticsUserData);
 
