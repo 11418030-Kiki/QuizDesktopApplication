@@ -76,12 +76,13 @@ public class TakeQuizController {
         // Create CorrectQuizObject
         sendQuizButton.setOnAction(event -> {
             sendQuiz();
+            sendUserQuiz();
 
             if (takeQuizList.get(0).getSelfCorrectingList().equals("yes")) {
-                sendUserQuiz();
                 selfCorrect = true;
             } else {
                 selfCorrect = false;
+
             }
 
             try {
@@ -149,38 +150,42 @@ public class TakeQuizController {
         int noMultiple = 0;
         int noSingle = 0;
 
-        // get points
-        for (int i = 0; i < takeQuizList.size(); i++) {
+        if(takeQuizList.get(0).getSelfCorrectingList().equals("yes")) {
+            // get points
+            for (int i = 0; i < takeQuizList.size(); i++) {
 
-            // check if its a new Question
-            if (i % 4 == 0) {
-                points = 0;
+                // check if its a new Question
+                if (i % 4 == 0) {
+                    points = 0;
+                }
+
+                int selected = 0;
+
+                // check if multi or single question
+                if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
+                    selected = (multiAnswerList.get(i - noSingle).isSelected()) ? 1 : 0;
+                    noMultiple++;
+                } else {
+                    selected = singleAnswerList.get(i - noMultiple).isSelected() ? 1 : 0;
+                    noSingle++;
+                }
+
+                if (selected == Integer.parseInt(takeQuizList.get(i).getCorrectAnswer())) {
+                    points++;
+                }
+
+                // if all is correct - get point, otherwise dont
+                if (points >= 4) {
+                    countedPoints++;
+                }
             }
-
-            int selected = 0;
-
-            // check if multi or single question
-            if (takeQuizList.get(i).getQuestionType().equals("multiple")) {
-                selected = (multiAnswerList.get(i - noSingle).isSelected()) ? 1 : 0;
-                noMultiple++;
-            } else {
-                selected = singleAnswerList.get(i - noMultiple).isSelected() ? 1 : 0;
-                noSingle++;
-            }
-
-            if (selected == Integer.parseInt(takeQuizList.get(i).getCorrectAnswer())) {
-                points++;
-            }
-
-            // if all is correct - get point, otherwise dont
-            if (points >= 4) {
-                countedPoints++;
-            }
+        } else {
+            countedPoints = -1;
         }
 
         int theResult = countedPoints;
         int questionNumber = takeQuizList.size() / 4;
-        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
+//        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
 
 
         userQuiz.setNoOfQuestions(maxResultNo);

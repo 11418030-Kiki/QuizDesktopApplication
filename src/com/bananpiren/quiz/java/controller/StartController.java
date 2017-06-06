@@ -116,8 +116,8 @@ public class StartController {
                         if (Integer.parseInt(q.getQuizId()) != currentQuizId) {
                             runQuiz = true;
                         } else {
-                            runQuiz = true;
-//                            runQuiz = false;
+//                            runQuiz = true;
+                            runQuiz = false;
                             new Alert(Alert.AlertType.INFORMATION, "Du har redan gjort detta Quiz!").showAndWait();
                             break;
                         }
