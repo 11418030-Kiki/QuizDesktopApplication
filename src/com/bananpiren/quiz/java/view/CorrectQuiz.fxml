@@ -31,7 +31,7 @@
    <top>
       <Pane prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="5.0" prefHeight="17.0" prefWidth="600.0" text="Label">
+            <Label fx:id="quizName" alignment="CENTER" contentDisplay="BOTTOM" layoutY="5.0" prefHeight="17.0" prefWidth="600.0" text="">
                <font>
                   <Font size="30.0" />
                </font>

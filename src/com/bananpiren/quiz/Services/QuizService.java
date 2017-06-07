@@ -1,6 +1,7 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.*;
+import com.bananpiren.quiz.java.controller.LoginController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -143,6 +144,7 @@ public class QuizService {
         // Query showfCorrecting
         Query showCorrecting = entityManager.createQuery("SELECT q.showSelfCorrecting FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
         List showCorrectingList = showCorrecting.getResultList();
+
 
         int count = 0;
 

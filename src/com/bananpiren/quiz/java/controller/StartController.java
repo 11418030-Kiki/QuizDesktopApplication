@@ -2,6 +2,7 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
+import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
@@ -53,7 +54,9 @@ public class StartController {
     @FXML
     private Button takeQuizButton;
 
-    private boolean runQuiz = false;
+    private boolean runQuiz;
+
+    private boolean quizCorrectExists = true;
 
     private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
     private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
@@ -65,8 +68,25 @@ public class StartController {
 
     @FXML
     private void initialize() {
+        System.out.println("quizCorrectExists " + quizCorrectExists);
+        // are there tests to correct?
+        for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
+            if (uq.getPoints() == -1) {
+                System.out.println("uq.getQuizName() = " + uq.getQuizName());
+                // lista.add(uq.getQuizName());
+            }
+        }
 
         // are there tests to correct?
+        for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
+            // alert if you have quiz to correct
+            if ((uq.getPoints() == -1) && quizCorrectExists) {
+                quizCorrectExists = false;
+                new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();
+
+                break;
+            }
+        }
 //        for (Integer uq : UserQuizService.getPointsfromAllQuiz()) {
 //            if (uq == -1) {
 //                new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();

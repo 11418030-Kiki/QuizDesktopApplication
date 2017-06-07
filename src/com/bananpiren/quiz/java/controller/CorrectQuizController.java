@@ -1,7 +1,10 @@
 package com.bananpiren.quiz.java.controller;
 
+import com.bananpiren.quiz.Entity.CorrectQuiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
 import com.bananpiren.quiz.Entity.UserQuiz;
+import com.bananpiren.quiz.Services.CorrectQuizService;
+import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
@@ -19,9 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Anton on 2017-06-07.
- */
 public class CorrectQuizController {
 
     // private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
@@ -38,20 +38,35 @@ public class CorrectQuizController {
     @FXML
     private TableColumn<UserQuiz, String> userNameColumn;
     private ArrayList<TakeQuiz> takeQuizList;
+
     private ObservableList<UserQuiz> userQuizData = FXCollections.observableArrayList();
     private List<UserQuiz> userQuizList = new ArrayList<>();
-    private UserQuizService userQuizService = new UserQuizService();
+    private QuizService quizService = new QuizService();
+
+    CorrectQuizService correctQuizService = new CorrectQuizService();
+//    @FXML
+//    private Label quizNameLabel = new Label();
 
     @FXML
     private void initialize (){
-       takeQuizList = StartController.getTakeQuizList();
 
-        userQuizList.addAll(userQuizService.getAllUserQuiz());
+
+        userQuizList.addAll(UserQuizService.getAllUserQuiz());
         userQuizList.forEach(e->{
-            if(e.getPoints()>0){
+            if(e.getPoints() < 0){
                 userQuizData.add(e);
+                System.out.println("hhhej: " + e.getQuizName());
             }
         });
+
+
+
+//        for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
+//            if (uq.getPoints() == -1) {
+//                System.out.println("uq.getQuizName() = " + uq.getQuizName());
+//                userQuizData.add(uq);
+//            }
+//        }
 
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("QuizName"));
         userNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("userName"));
@@ -61,29 +76,39 @@ public class CorrectQuizController {
 
         correctQuizTableView.getSelectionModel().selectedItemProperty().addListener(e->{
             correctQuizButton.setDisable(false);
+            String quizId = correctQuizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
+            takeQuizList = quizService.currentQuiz(Integer.parseInt(quizId));
         });
+
+
 
         correctQuizButton.setOnAction(e->{
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("CorrectQuizEdit.fxml"));
                 BorderPane correctQuiz = loader.load();
+
                 correctQuiz.setCenter(createQuizQuestions());
                 Main.mainLayout.setCenter(correctQuiz);
             } catch (IOException f) {
                 System.out.println("Couldn't load CorrectQuizEditController.fxml: " + f);
             }
         });
+
     }
 
     private VBox createQuizQuestions() {
 
-        int openQuestions = 0;
+        int quizId = Integer.parseInt(correctQuizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId());
 
-        // reset the lists
-//        multiAnswerList.clear();
- //       singleAnswerList.clear();
-  //      openAnswerList.clear();
+        int openQuestions = 0;
+//
+//        List<CorrectQuiz> correct = CorrectQuizService.findCorrectQuizUserIdQuizId(quizId);
+//        System.out.println("correct.size() = " + correct.size());
+//        for(CorrectQuiz cq : correct) {
+//            System.out.println("HEEEEE " + cq.getCorrectAnswer());
+//        }
+
 
         // check the number of open questions
         for (TakeQuiz a : takeQuizList) {
@@ -94,7 +119,6 @@ public class CorrectQuizController {
 
         // length of the list divided with the number of questions plus number of open questions
         int len = (takeQuizList.size() / 4) + openQuestions;
-
 
         String[] questionName = new String[len];
         Label[] questionLabel = new Label[len];
@@ -142,6 +166,8 @@ public class CorrectQuizController {
 
                 answer[j] = takeQuizList.get(incAnswer).getAnswer();
 
+//                takeQuizList.get(incAnswer).getUserId();
+
                 answerLabel[j] = new Label(answer[j]);
                 answerBox[j] = new HBox();
 
@@ -150,6 +176,11 @@ public class CorrectQuizController {
                 // checks what kind of question
                 if (questionType.equals("multiple")) {
                     answerCheckbox[j] = new CheckBox();
+
+//                    System.out.println("HEEEEJ: " + takeQuizList.get(incAnswer).);
+
+//                    answerCheckbox[j].setSelected(true);
+
                     answerBox[j].getChildren().add(answerCheckbox[j]);
                     answerBox[j].getChildren().add(answerLabel[j]);
 
@@ -162,15 +193,12 @@ public class CorrectQuizController {
                     answerBox[j].getChildren().add(answerButton[j]);
                     answerBox[j].getChildren().add(answerLabel[j]);
 
-                //    singleAnswerList.add(answerButton[j]);
 
                 } else if (questionType.equals("open")) {
                     answerTextField[j] = new TextField();
 
                     answerBox[j].getChildren().add(answerTextField[j]);
-//                    answerBox[j].getChildren().add(answerLabel[j]);
 
-                //    openAnswerList.add(answerTextField[j]);
                 }
 
                 questionBox.getChildren().add(answerBox[j]);

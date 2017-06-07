@@ -30,6 +30,8 @@ public class CorrectQuizService {
         entityManager.close();
         entityManagerFactory.close();
     }
+
+
     public List<CorrectQuiz> findAllCorrectQuizByAnswerId(int answerId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -42,6 +44,23 @@ public class CorrectQuizService {
 
         return correctQuizList;
     }
+
+
+    public static List<CorrectQuiz> findCorrectQuizUserIdQuizId(int currentQuizId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query userAnswers = entityManager.createQuery("SELECT cq FROM CorrectQuiz cq JOIN QuizQuestions qq WHERE qq.quiz.quizId = " + currentQuizId + " AND cq.userId = 1");
+        List userAnswersList = userAnswers.getResultList();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return userAnswersList;
+    }
+    // Query userAnswers
+
+
 
 
 }
