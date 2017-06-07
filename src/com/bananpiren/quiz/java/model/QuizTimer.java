@@ -1,13 +1,11 @@
 package com.bananpiren.quiz.java.model;
-
-import com.bananpiren.quiz.java.controller.TakeQuizController;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 
 public class QuizTimer {
-    public static void quizTimerClock(int quizTime, Label quizTimeLabel) {
-        TakeQuizController takeQuizController = new TakeQuizController();
+    private static Thread updateQuizTimeThread;
 
+    public static void quizTimerClock(int quizTime, Label quizTimeLabel, Button sendQuizButton) {
         Runnable updateQuizTimeRunnable = () -> {
             int timeMin = quizTime -1;
             int timeSek = 59;
@@ -19,7 +17,7 @@ public class QuizTimer {
                         quizTimeLabel.setText(finalTimeMin + ":" + finalTimeSek);
                     });
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e){
                         e.printStackTrace();
                     }
@@ -31,13 +29,15 @@ public class QuizTimer {
                     }
                 }
 
-            Platform.runLater(() -> {
-                quizTimeLabel.setText("Times up!");
-                takeQuizController.ternInQuiz();
-            });
+            Platform.runLater(sendQuizButton::fire);
         };
 
-        Thread updateQuizTimeThread = new Thread(updateQuizTimeRunnable);
+        updateQuizTimeThread = new Thread(updateQuizTimeRunnable);
         updateQuizTimeThread.start();
+    }
+
+    public void killTimer() {
+        System.out.println("Döda klockan körs.");
+        updateQuizTimeThread.stop();
     }
 }

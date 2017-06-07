@@ -45,7 +45,7 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        if (LoginController.getCurrentUser().getAccountLevel().equals("Användare")) {
+        if (LoginController.getCurrentUser().getAccountLevel().equals("User")) {
             buttonCreateQuiz.setManaged(false);
             buttonEditQuiz.setManaged(false);
             buttonUsers.setManaged(false);

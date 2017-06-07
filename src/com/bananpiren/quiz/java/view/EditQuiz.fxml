@@ -91,6 +91,7 @@
                <children>
                   <Button fx:id="editButton" disable="true" mnemonicParsing="false" text="Redigera Quiz" />
                   <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" text="Ta bort Quiz" />
+                  <Button fx:id="sendMailButton" disable="true" mnemonicParsing="false" text="Skicka Mail" />
                </children>
             </HBox>
          </bottom>

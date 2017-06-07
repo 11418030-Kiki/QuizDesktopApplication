@@ -18,9 +18,6 @@ public class ResultsController {
     @FXML
     private TableView<StatisticCurrentUser> resultsTable;
 
-//    @FXML
-//    private TableView<StatisticsUser> resultStatisticTable;
-
     @FXML
     private TableColumn<StatisticCurrentUser, Integer> quizNameColumn;
 
@@ -72,19 +69,16 @@ public class ResultsController {
                     new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
         });
 
-        int dataListSize = data.size();
-        int counter = 0;
-
-        while (counter < dataListSize) {
-            int finalCounter = counter;
-        data.forEach(d -> statisticsUserData.add(
-                new StatisticCurrentUser(d.getQuizName(),
-                        d.getPoints(),
-                        d.getNoOfQuestions(),
-                        userData.get(finalCounter).getCorrectPercentage(),
-                        userData.get(finalCounter).getGrade())
-        ));
-        counter++;
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getPoints() != -1) {
+                statisticsUserData.add(new StatisticCurrentUser(
+                        data.get(i).getQuizName(),
+                        data.get(i).getPoints(),
+                        data.get(i).getNoOfQuestions(),
+                        userData.get(i).getCorrectPercentage(),
+                        userData.get(i).getGrade())
+                );
+            }
         }
 
         resultsTable.setItems(statisticsUserData);
@@ -92,7 +86,7 @@ public class ResultsController {
         resultsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             storedSelectedTableIndex = resultsTable.getSelectionModel().getSelectedIndex();
 
-            storedScore = data.get(storedSelectedTableIndex).getPoints();
+            storedScore = statisticsUserData.get(storedSelectedTableIndex).getPoints();
             storedSelectedQuizId = data.get(storedSelectedTableIndex).getQuizId();
             storedNumberOfQuestions = QuestionService.getNumberOfQuestions(storedSelectedQuizId);
             storedWrongAnswers = storedScore - Integer.valueOf(storedNumberOfQuestions);

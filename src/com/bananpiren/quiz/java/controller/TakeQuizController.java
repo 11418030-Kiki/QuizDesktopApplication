@@ -59,6 +59,7 @@ public class TakeQuizController {
 
     private static boolean showCorrect;
 
+    private QuizTimer quizTimer = new QuizTimer();
 
     @FXML
     private void initialize() {
@@ -146,6 +147,8 @@ public class TakeQuizController {
 
     // correct the quiz and save it in a new table
     private void sendUserQuiz() {
+        quizTimer.killTimer();
+
         UserQuiz userQuiz = new UserQuiz();
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
         userQuiz.setQuizName(takeQuizList.get(0).getQuizName());
@@ -211,12 +214,7 @@ public class TakeQuizController {
     }
 
     private void startQuizTimer() {
-        QuizTimer.quizTimerClock(takeQuizList.get(0).getTimeLimit(), quizTimeLabel);
-    }
-
-    public void ternInQuiz() {
-        //TODO: Skapa logik för att lämna in quiz.
-        sendQuizButton.fire();
+        QuizTimer.quizTimerClock(takeQuizList.get(0).getTimeLimit(), quizTimeLabel, sendQuizButton);
     }
 
     static boolean getSelfCorrect() {

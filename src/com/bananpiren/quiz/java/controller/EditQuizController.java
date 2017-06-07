@@ -1,8 +1,11 @@
 package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
+import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.model.Alerts;
+import com.bananpiren.quiz.java.model.SendMail;
 import com.bananpiren.quiz.java.view.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,11 +23,15 @@ import java.io.IOException;
 public class EditQuizController {
 
     private final ObservableList<Quiz> data = FXCollections.observableArrayList();
+    private final ObservableList<User> users = FXCollections.observableArrayList();
 
     private static int storedSelectedTableIndex;
     private static int storedQuizId;
 
     private QuizService quizService = new QuizService();
+    private UserService userService = new UserService();
+
+    private SendMail sendMail = new SendMail();
 
     @FXML
     private Label numberOfQuestionsLabel;
@@ -59,6 +66,9 @@ public class EditQuizController {
     @FXML
     private TableView<Quiz> quizTableView;
 
+    @FXML
+    private Button sendMailButton;
+
     public EditQuizController() {
         loadTableData();
     }
@@ -73,6 +83,8 @@ public class EditQuizController {
         editButton.setOnAction(e -> showEditQuizDialog());
 
         deleteButton.setOnAction(e -> handleDeleteQuiz());
+
+        sendMailButton.setOnAction(event -> sendMailToUsers());
 
         quizTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(quizTableView.getSelectionModel().getSelectedItem() == null) {
@@ -103,9 +115,11 @@ public class EditQuizController {
 
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);
+                sendMailButton.setDisable(false);
             } else {
                 editButton.setDisable(true);
                 deleteButton.setDisable(true);
+                sendMailButton.setDisable(true);
             }
         });
     }
@@ -146,6 +160,17 @@ public class EditQuizController {
     private void loadTableData() {
         data.clear();
         data.addAll(QuizService.findAllQuiz());
+    }
+
+    private void sendMailToUsers() {
+        users.addAll(userService.findAllStudents());
+
+        for (User user : users) {
+            sendMail.sendMailToUser(user.getEmail(),
+                    data.get(storedSelectedTableIndex).getQuizName(),
+                    data.get(storedSelectedTableIndex).getQuizStartDate(),
+                    data.get(storedSelectedTableIndex).getQuizEndDate());
+        }
     }
 
     static int getStoredQuizId() {

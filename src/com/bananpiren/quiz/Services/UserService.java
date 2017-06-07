@@ -41,6 +41,18 @@ public class UserService {
         return query.getResultList();
     }
 
+    public List<User> findAllStudents() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query query = entityManager.createQuery("SELECT u FROM  User u WHERE u.accountLevel = 'User'");
+
+        //entityManager.close();
+        //entityManagerFactory.close();
+
+        return query.getResultList();
+    }
+
     //Get user by ID number
     public User findUserById(int userId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");

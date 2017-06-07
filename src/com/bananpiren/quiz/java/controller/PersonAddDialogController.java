@@ -15,7 +15,7 @@ public class PersonAddDialogController {
     private UserService userService = new UserService();
     private Alerts alerts = new Alerts();
 
-    private ObservableList<String> userLevel = FXCollections.observableArrayList("Användare", "Admin");
+    private ObservableList<String> userLevel = FXCollections.observableArrayList("User", "Admin");
 
     @FXML
     private TextField mailTextField;

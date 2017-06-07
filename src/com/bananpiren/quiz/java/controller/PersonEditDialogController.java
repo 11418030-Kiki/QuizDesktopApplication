@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class PersonEditDialogController {
 
     private ObservableList<String> userLevel = FXCollections
-            .observableArrayList("Användare", "Admin");
+            .observableArrayList("User", "Admin");
 
     private int storedUserId;
     private int storedUserTableIndex;
@@ -54,7 +54,7 @@ public class PersonEditDialogController {
         this.data = usersController.getData();
 
         userLevelChoiceBox.setItems(userLevel);
-        if (data.get(storedUserTableIndex).getAccountLevel().equals("Användare")) {
+        if (data.get(storedUserTableIndex).getAccountLevel().equals("User")) {
             userLevelChoiceBox.getSelectionModel().select(0);
         } else {
             userLevelChoiceBox.getSelectionModel().select(1);
