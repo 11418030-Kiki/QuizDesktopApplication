@@ -1,4 +1,3 @@
-//TODO: Move to model folder
 
 package com.bananpiren.quiz.java.model;
 
