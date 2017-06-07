@@ -114,7 +114,7 @@ public class MainController {
         try {
             main.showStart();
         } catch (IOException e) {
-            System.out.println("Couldn't show Home");
+            System.out.println("Couldn't show Home"+e);
         }
     }
 
