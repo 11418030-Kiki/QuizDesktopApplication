@@ -38,6 +38,9 @@ public class CreateQuizController {
     private CheckBox selfCorrectingCheckBox;
 
     @FXML
+    private CheckBox showResultsIfSelfCorrectedCheckBox;
+
+    @FXML
     private Slider sliderTime;
 
     @FXML
@@ -109,7 +112,18 @@ public class CreateQuizController {
         buttonAddOpenAnswerQuestion.setOnAction(e -> {
             selfCorrectingCheckBox.setSelected(false);
             selfCorrectingCheckBox.setDisable(true);
+            showResultsIfSelfCorrectedCheckBox.setSelected(false);
+            showResultsIfSelfCorrectedCheckBox.setDisable(true);
             buttonAddOpenAnswerQuestion();
+        });
+
+        selfCorrectingCheckBox.setOnAction(e -> {
+            if(selfCorrectingCheckBox.isSelected()) {
+                showResultsIfSelfCorrectedCheckBox.setDisable(false);
+            } else {
+                showResultsIfSelfCorrectedCheckBox.setDisable(true);
+                showResultsIfSelfCorrectedCheckBox.setSelected(false);
+            }
         });
 
         buttonRemoveCurrentQuestion.setOnAction(e -> removeSelectedQuestion());
@@ -136,6 +150,7 @@ public class CreateQuizController {
         LocalDate quizStartDate = datePickerStartDate.getValue();
         LocalDate quizEndDate = datePickerEndDate.getValue();
         String selfcorrectingvalue;
+        String showSelfCorrectingValue;
 
         // Check if Quiz name is entered
         if (quizName.isEmpty()) {
@@ -161,6 +176,13 @@ public class CreateQuizController {
             selfcorrectingvalue = "no";
         }
 
+        // Check if Quiz is selfcorrecting or not
+        if (showResultsIfSelfCorrectedCheckBox.isSelected()) {
+            showSelfCorrectingValue = "no";
+        } else {
+            showSelfCorrectingValue = "yes";
+        }
+
         if (warnings.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -169,7 +191,7 @@ public class CreateQuizController {
         } else {
             //TODO: Koolla validera av svar?
             // Saves Quiz to database
-            Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString(), selfcorrectingvalue);
+            Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString(), selfcorrectingvalue, showSelfCorrectingValue);
             QuizService.create(quiz);
 
             // ArrayLists for Question and Answer entities

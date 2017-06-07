@@ -33,6 +33,7 @@ public class EditQuizDialogController {
     private String quizStartDate;
     private String quizEndDate;
     private String selfcorrecting;
+    private String showSelfcorrecting;
 
     @FXML
     private Button cancelButton;
@@ -60,6 +61,9 @@ public class EditQuizDialogController {
 
     @FXML
     private CheckBox selfCorrectingCheckBox;
+
+    @FXML
+    private CheckBox showSelfCorrectingCheckBox;
 
     @FXML
     private TableColumn<QuizQuestions, String> questionColumn;
@@ -100,6 +104,14 @@ public class EditQuizDialogController {
             }
         });
 
+        // Check if self correcting is checked
+        if (selfCorrectingCheckBox.isSelected()) {
+            showSelfCorrectingCheckBox.setDisable(false);
+        } else {
+            showSelfCorrectingCheckBox.setDisable(true);
+            showSelfCorrectingCheckBox.setSelected(false);
+        }
+
         // Edit button
         editQuestionButton.setOnAction(e -> showEditQuizDialog());
 
@@ -119,10 +131,17 @@ public class EditQuizDialogController {
                 selfCorrectingCheckBoxValue = "no";
             }
 
+            String showSelfCorrectingCheckBoxValue;
+            if (showSelfCorrectingCheckBox.isSelected()) {
+                showSelfCorrectingCheckBoxValue = "no";
+            } else {
+                showSelfCorrectingCheckBoxValue = "yes";
+            }
+
             int timeLimit = Integer.parseInt(timeLimitTextField.getText());
 
             try {
-                QuizService.updateQuiz(currentQuiz, quizNameTextField.getText(), timeLimit, startDateDatePicker.getValue().toString(), endDateDatePicker.getValue().toString(), selfCorrectingCheckBoxValue);
+                QuizService.updateQuiz(currentQuiz, quizNameTextField.getText(), timeLimit, startDateDatePicker.getValue().toString(), endDateDatePicker.getValue().toString(), selfCorrectingCheckBoxValue, showSelfCorrectingCheckBoxValue);
                 Alerts.informationAlert("Succe!", "Quizet uppdaterades", "");
 
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -154,6 +173,14 @@ public class EditQuizDialogController {
                 break;
             default: selfCorrectingCheckBox.setSelected(false);
         }
+
+        switch(showSelfcorrecting) {
+            case "yes" : showSelfCorrectingCheckBox.setSelected(false);
+                break;
+            case "no" : showSelfCorrectingCheckBox.setSelected(true);
+                break;
+            default: showSelfCorrectingCheckBox.setSelected(false);
+        }
     }
 
     // Load selected quiz and set variables
@@ -165,7 +192,7 @@ public class EditQuizDialogController {
         quizStartDate = quiz.getQuizStartDate();
         quizEndDate = quiz.getQuizEndDate();
         selfcorrecting = quiz.getSelfcorrecting();
-        System.out.println(selfcorrecting);
+        showSelfcorrecting = quiz.getShowSelfCorrecting();
     }
 
     private void loadTableData() {

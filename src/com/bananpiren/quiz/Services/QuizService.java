@@ -169,7 +169,7 @@ public class QuizService {
     }
 
 
-    public static void updateQuiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate, String selfCorrecting) {
+    public static void updateQuiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate, String selfCorrecting, String showSelfCorrecting) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -182,6 +182,7 @@ public class QuizService {
         quiz.setQuizStartDate(quizStartDate);
         quiz.setQuizEndDate(quizEndDate);
         quiz.setSelfcorrecting(selfCorrecting);
+        quiz.setShowSelfCorrecting(showSelfCorrecting);
 
         entityManager.getTransaction().commit();
         entityManager.close();

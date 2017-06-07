@@ -51,6 +51,9 @@ public class EditQuizController {
     private Label endDateLimitLabel;
 
     @FXML
+    private Label showSelfCorrectedLabel;
+
+    @FXML
     private TableColumn<Quiz, String> quizNameColumn;
 
     @FXML
@@ -83,11 +86,23 @@ public class EditQuizController {
                 timeLimitLabel.setText(Integer.toString(data.get(storedSelectedTableIndex).getTimeLimit()) + " minuter");
                 startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                 endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
+
                 if(data.get(storedSelectedTableIndex).getSelfcorrecting()=="no") {
                     selfCorrectedLabel.setText("Nej");
                 }else{
                     selfCorrectedLabel.setText("Ja");
                 }
+
+                if(data.get(storedSelectedTableIndex).getShowSelfCorrecting()=="yes") {
+//                    showSelfCorrectedLabel.setText("Resultat visas ej");
+//                    System.out.println("visa");
+                    showSelfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getShowSelfCorrecting());
+                }else{
+//                    showSelfCorrectedLabel.setText("Resultat visas");
+//                    System.out.println("visa ej");
+                    showSelfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getShowSelfCorrecting());
+                }
+
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);
             } else {
