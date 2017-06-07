@@ -61,7 +61,7 @@ public class StartController {
     private static ArrayList<TextField> openAnswerList = new ArrayList<>();
 
     public StartController() {
-        data.addAll(quizService.findAllQuiz());
+        data.addAll(QuizService.findAllQuiz());
     }
 
     @FXML
@@ -160,8 +160,7 @@ public class StartController {
     }
 
 
-
-    VBox createQuizQuestions() {
+    private VBox createQuizQuestions() {
 
         int openQuestions = 0;
 
@@ -174,7 +173,6 @@ public class StartController {
         for (TakeQuiz a : takeQuizList) {
             if (a.getQuestionType().equals("open")) {
                 openQuestions++;
-                System.out.println("open question = " + openQuestions);
             }
         }
 
@@ -216,9 +214,9 @@ public class StartController {
             Separator separator = new Separator();
             separator.setValignment(VPos.CENTER);
 
-            if(questionType.equals("multiple") || questionType.equals("single")) {
+            if (questionType.equals("multiple") || questionType.equals("single")) {
                 answerNo = 4;
-            } else if(questionType.equals("open")) {
+            } else if (questionType.equals("open")) {
                 answerNo = 1;
             }
 

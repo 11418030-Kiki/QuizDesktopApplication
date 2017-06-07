@@ -19,10 +19,6 @@ public class TakeQuizResultController {
     private Text correctQuizAnswerText;
 
     @FXML
-    private
-    Label myLabel = new Label();
-
-    @FXML
     private TableView<Quiz> quizTableView;
     private UserQuizService userQuizService = new UserQuizService();
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -24,7 +23,6 @@
       <Pane prefHeight="55.0" prefWidth="648.0" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="correctQuizAnswerText" layoutX="181.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="285.13671875" />
-            <Label fx:id="myLabel" layoutX="147.0" layoutY="313.0" text="Labelfddffdd" />
          </children>
       </Pane>
    </center>
