@@ -16,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class TakeQuizController {
     QuizService quizService = new QuizService();
 
@@ -147,7 +146,9 @@ public class TakeQuizController {
 
     // correct the quiz and save it in a new table
     private void sendUserQuiz() {
-        quizTimer.killTimer();
+        if (takeQuizList.get(0).getTimeLimit() != 0) {
+            quizTimer.killTimer();
+        }
 
         UserQuiz userQuiz = new UserQuiz();
         userQuiz.setUserId(LoginController.getCurrentUser().getUserId());
