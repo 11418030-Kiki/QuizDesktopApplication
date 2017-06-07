@@ -196,7 +196,7 @@ public class Server {
     // Load questions and answers from textfile "qa.txt"
     private static void loadQuestions() {
         try {
-            InputStream is = ClassLoader.getSystemResourceAsStream("com/bananpiren/quiz/java/model/qa.txt");
+            InputStream is = ClassLoader.getSystemResourceAsStream("com/bananpiren/quiz/resources/qa.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String key;
             while ((key = br.readLine()) != null) {
