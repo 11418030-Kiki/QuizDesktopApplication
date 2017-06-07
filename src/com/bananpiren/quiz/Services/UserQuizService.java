@@ -57,17 +57,30 @@ public class UserQuizService {
         return userQuiz;
     }
 
-    public static List<Integer> getPointsfromAllQuiz(){
+//    public static List<Integer> getPointsfromAllQuiz(){
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//
+//        Query query = entityManager.createQuery("SELECT u.points FROM UserQuiz u");
+//        List<Integer> userQuizPoints = query.getResultList();
+//
+//        entityManager.close();
+//        entityManagerFactory.close();
+//
+//        return userQuizPoints;
+//    }
+
+    public static List<UserQuiz> getAllUserQuiz(){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery("SELECT u.points FROM UserQuiz u");
-        List<Integer> userQuizPoints = query.getResultList();
+        Query query = entityManager.createQuery("SELECT u FROM UserQuiz u");
+        List<UserQuiz> userQuiz = query.getResultList();
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return userQuizPoints;
+        return userQuiz;
     }
 
 

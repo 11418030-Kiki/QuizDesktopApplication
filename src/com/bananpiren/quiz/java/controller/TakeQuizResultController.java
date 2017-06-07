@@ -47,11 +47,8 @@ public class TakeQuizResultController {
         } else if (!TakeQuizController.getSelfCorrect()) {
             correctQuizAnswerText.setText("DETTA ÄR INTE SJÄLVRÄTTANDE!");
 
-            // HÄR FÅ IN newCoolVBox!
-            // så visar quizet
         } else if (TakeQuizController.getSelfCorrect() && !TakeQuizController.getShowCorrect()) {
             correctQuizAnswerText.setText("DETTA ÄR SJÄLVRÄTTANDE MEN VISAR INTE SJÄLVRÄTTNINGEN!");
-
         }
     }
 }
