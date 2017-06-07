@@ -104,13 +104,23 @@ public class EditQuizDialogController {
             }
         });
 
-        // Check if self correcting is checked
+        // Check if self correcting is checked initial
         if (selfCorrectingCheckBox.isSelected()) {
             showSelfCorrectingCheckBox.setDisable(false);
         } else {
             showSelfCorrectingCheckBox.setDisable(true);
             showSelfCorrectingCheckBox.setSelected(false);
         }
+
+        // Check if self correcting is checked listener
+        selfCorrectingCheckBox.setOnAction(e -> {
+            if (selfCorrectingCheckBox.isSelected()) {
+                showSelfCorrectingCheckBox.setDisable(false);
+            } else {
+                showSelfCorrectingCheckBox.setDisable(true);
+                showSelfCorrectingCheckBox.setSelected(false);
+            }
+        });
 
         // Edit button
         editQuestionButton.setOnAction(e -> showEditQuizDialog());

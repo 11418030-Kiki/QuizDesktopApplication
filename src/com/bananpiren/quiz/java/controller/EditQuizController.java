@@ -87,20 +87,18 @@ public class EditQuizController {
                 startDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizStartDate());
                 endDateLimitLabel.setText(data.get(storedSelectedTableIndex).getQuizEndDate());
 
-                if(data.get(storedSelectedTableIndex).getSelfcorrecting()=="no") {
-                    selfCorrectedLabel.setText("Nej");
-                }else{
-                    selfCorrectedLabel.setText("Ja");
+                switch(data.get(storedSelectedTableIndex).getShowSelfCorrecting()) {
+                    case "yes" : showSelfCorrectedLabel.setText("Ja");
+                        break;
+                    case "no" : showSelfCorrectedLabel.setText("Nej");
+                     break;
                 }
 
-                if(data.get(storedSelectedTableIndex).getShowSelfCorrecting()=="yes") {
-//                    showSelfCorrectedLabel.setText("Resultat visas ej");
-//                    System.out.println("visa");
-                    showSelfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getShowSelfCorrecting());
-                }else{
-//                    showSelfCorrectedLabel.setText("Resultat visas");
-//                    System.out.println("visa ej");
-                    showSelfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getShowSelfCorrecting());
+                switch(data.get(storedSelectedTableIndex).getSelfcorrecting()) {
+                    case "yes" : selfCorrectedLabel.setText("Ja");
+                        break;
+                    case "no" : selfCorrectedLabel.setText("Nej");
+                        break;
                 }
 
                 editButton.setDisable(false);
@@ -142,6 +140,7 @@ public class EditQuizController {
             e.printStackTrace();
         }
         loadTableData();
+        showSelfCorrectedLabel.setText(data.get(storedSelectedTableIndex).getShowSelfCorrecting());
     }
 
     private void loadTableData() {

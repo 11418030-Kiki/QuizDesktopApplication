@@ -57,7 +57,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label text="Quiz namn" />
@@ -72,7 +72,7 @@
                               <Label fx:id="startDateLimitLabel" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label fx:id="endDateLimitLabel" layoutX="170.0" layoutY="177.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label fx:id="selfCorrectedLabel" layoutX="170.0" layoutY="227.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="Självrättande - Visa inte resultat direkt efter test" wrapText="true" GridPane.rowIndex="6" />
+                              <Label text="Resultat visas efter prov" wrapText="true" GridPane.rowIndex="6" />
                               <Label fx:id="showSelfCorrectedLabel" layoutX="153.0" layoutY="165.0" text="Inget quiz är valt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
                         </GridPane>
