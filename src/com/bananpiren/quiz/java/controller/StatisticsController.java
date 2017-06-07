@@ -116,7 +116,7 @@ public class StatisticsController {
                 pointsPercentage = (userPoints/maxPoints) * 100;
                 pointsPercentage = Math.round(pointsPercentage * 100.0) / 100.0;
                 pointsPercentageString = String.valueOf(pointsPercentage);
-                if(y.getPoints()>0) {
+                if(y.getPoints()>=0) {
                     statisticsUserData.add(
                             new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
                 }
