@@ -57,6 +57,8 @@ public class TakeQuizController {
 
     private static boolean selfCorrect;
 
+    private static boolean showCorrect;
+
 
     @FXML
     private void initialize() {
@@ -84,6 +86,14 @@ public class TakeQuizController {
                 selfCorrect = false;
 
             }
+
+            if (takeQuizList.get(0).getShowCorrectingList().equals("yes")) {
+                showCorrect = true;
+            } else {
+                showCorrect = false;
+
+            }
+
 
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -212,5 +222,9 @@ public class TakeQuizController {
 
     static boolean getSelfCorrect() {
         return selfCorrect;
+    }
+
+    static boolean getShowCorrect() {
+        return showCorrect;
     }
 }

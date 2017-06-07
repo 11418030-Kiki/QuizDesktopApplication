@@ -40,7 +40,6 @@ public class UserQuizService {
         entityManagerFactory.close();
 
         return userQuiz;
-
     }
 
     public static List<UserQuiz> getAllUserQuizByUserId(int userId) {
@@ -56,7 +55,19 @@ public class UserQuizService {
         entityManagerFactory.close();
 
         return userQuiz;
+    }
 
+    public static List<Integer> getPointsfromAllQuiz(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query query = entityManager.createQuery("SELECT u.points FROM UserQuiz u");
+        List<Integer> userQuizPoints = query.getResultList();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return userQuizPoints;
     }
 
 

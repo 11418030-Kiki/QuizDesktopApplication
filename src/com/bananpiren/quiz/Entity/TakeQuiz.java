@@ -14,6 +14,7 @@ public class TakeQuiz {
     private String quizStartDate;
     private String quizEndDate;
     private String selfCorrectingList;
+    private String showCorrectingList;
 
     // QuizQuestions
     private String questionId;
@@ -32,6 +33,13 @@ public class TakeQuiz {
     public TakeQuiz() {
     }
 
+    public String getShowCorrectingList() {
+        return showCorrectingList;
+    }
+
+    public void setShowCorrectingList(String showSelfCorrectingList) {
+        this.showCorrectingList = showSelfCorrectingList;
+    }
 
     public String getSelfCorrectingList() {
         return selfCorrectingList;

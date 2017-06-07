@@ -66,6 +66,15 @@ public class StartController {
 
     @FXML
     private void initialize() {
+
+        // are there tests to correct?
+//        for (Integer uq : UserQuizService.getPointsfromAllQuiz()) {
+//            if (uq == -1) {
+//                new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();
+//                break;
+//            }
+//        }
+
         // Setting data to right column "cellvalue"
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
@@ -148,7 +157,6 @@ public class StartController {
                             System.out.println("Couldn't load TakeQuiz.fxml: " + f);
                         }
 
-
                     }
 
                 }
@@ -157,6 +165,7 @@ public class StartController {
             }
 
         });
+
     }
 
 

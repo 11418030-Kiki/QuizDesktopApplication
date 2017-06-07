@@ -4,7 +4,6 @@ import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.UserQuizService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 
@@ -29,7 +28,13 @@ public class TakeQuizResultController {
         List<UserQuiz> userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
 
-        if (TakeQuizController.getSelfCorrect()) {
+        if(TakeQuizController.getShowCorrect()) {
+            System.out.println("DETTA PROVET VISAR SJÄLVRÄTTNING");
+        } else {
+            System.out.println("DETTA VISAR INTE SJÄLVRÄTTNING!");
+        }
+
+        if (TakeQuizController.getSelfCorrect() && TakeQuizController.getShowCorrect()) {
             quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
 
             correctQuizAnswerText.setText(
@@ -44,6 +49,9 @@ public class TakeQuizResultController {
 
             // HÄR FÅ IN newCoolVBox!
             // så visar quizet
+        } else if (TakeQuizController.getSelfCorrect() && !TakeQuizController.getShowCorrect()) {
+            correctQuizAnswerText.setText("DETTA ÄR SJÄLVRÄTTANDE MEN VISAR INTE SJÄLVRÄTTNINGEN!");
+
         }
     }
 }
