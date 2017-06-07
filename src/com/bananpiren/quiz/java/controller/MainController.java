@@ -50,6 +50,7 @@ public class MainController {
             buttonEditQuiz.setManaged(false);
             buttonUsers.setManaged(false);
             buttonStatistics.setManaged(false);
+            buttonCorrectQuiz.setManaged(false);
         }
 
         // Start button
