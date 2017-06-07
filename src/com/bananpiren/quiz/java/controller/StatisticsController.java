@@ -2,6 +2,7 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.*;
 import com.bananpiren.quiz.Services.*;
+import com.bananpiren.quiz.java.model.Alerts;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.FontSelector;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -9,12 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,8 +116,10 @@ public class StatisticsController {
                 pointsPercentage = (userPoints/maxPoints) * 100;
                 pointsPercentage = Math.round(pointsPercentage * 100.0) / 100.0;
                 pointsPercentageString = String.valueOf(pointsPercentage);
-                statisticsUserData.add(
-                        new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
+                if(y.getPoints()>0) {
+                    statisticsUserData.add(
+                            new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
+                }
             });
             statisticsUserTableViev.setItems(statisticsUserData);
 
@@ -192,7 +193,8 @@ public class StatisticsController {
                         int questionId = l.getQuestionId();
                         studentAnswerPrinted=true;
                         answersList = answerService.read(questionId);
-                        answersList.forEach(p-> {
+
+                        answersList.forEach(p -> {
                             correctQuizList2 = correctQuizService.findAllCorrectQuizByAnswerId(p.getAnswerId());
                             correctQuizList.clear();
                             correctQuizList2.forEach(e->{
@@ -211,20 +213,21 @@ public class StatisticsController {
 
                             if(l.getQuestionType().equals("single")){
                                 if (correctQuizList.get(0).getCorrectAnswer().equals("1")){
-                                    Phrase answer = answerSelector.process(p.getAnswer()+"   Rätt svar\n");
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"      (Rätt svar)\n");
                                     document.add(answer);
                                 }else{
                                     Phrase answer = answerSelector.process(p.getAnswer()+"\n");
                                     document.add(answer);
                                 }
-                                if(studentAnswerPrinted){
+                                if(studentAnswerPrinted && correctQuizList.get(0).getUserAnswer().equals("1")){
                                     studentAnswerString = "Studentens svar: "+p.getAnswer()+"\n";
+                                    studentAnswerPrinted=false;
                                 }else{
 
                                 }
                             }else if(l.getQuestionType().equals("multiple")){
                                 if(correctQuizList.get(0).getCorrectAnswer().equals("1")){
-                                    Phrase answer = answerSelector.process(p.getAnswer()+"   Rätt svar\n");
+                                    Phrase answer = answerSelector.process(p.getAnswer()+"      (Rätt svar)\n");
                                     document.add(answer);
                                 }else{
                                     Phrase answer = answerSelector.process(p.getAnswer()+"\n");
@@ -239,26 +242,27 @@ public class StatisticsController {
                             }else if(l.getQuestionType().equals("open")){
                                 Phrase answer = studentAnswerSelector.process("Studentens öppna svar:\n");
                                 document.add(answer);
-                                Phrase studentAnswer = answerSelector.process(p.getAnswer());
+                                Phrase studentAnswer = answerSelector.process(correctQuizList.get(0).getUserAnswer());
                                 document.add(studentAnswer);
                             }
                         }catch(DocumentException n){
                                 System.out.println(n+" in answerslist");
                             }
-                            studentAnswerPrinted=false;
 
                         });
                         Phrase studentAnswer = studentAnswerSelector.process(studentAnswerString);
                         document.add(studentAnswer);
-                    }catch(Exception t){
+                    }catch(DocumentException t){
                         System.out.println(t);
                     }
                 });
 
 
                 document.close();
-            }catch(Exception m){
+            }catch(DocumentException m){
                 System.out.println(m);
+            }catch(FileNotFoundException k){
+                Alerts.errorAlert("Fel", "Fil öppen", "Filen är redan öppnad i ettt annat program. Stäng ner programmet och försök igen");
             }
         });
 

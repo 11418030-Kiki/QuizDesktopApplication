@@ -14,6 +14,9 @@ public class MainController {
     private Button buttonSettings;
 
     @FXML
+    private Button buttonCorrectQuiz;
+
+    @FXML
     private Button buttonUsers;
 
     @FXML
@@ -99,6 +102,10 @@ public class MainController {
         buttonLogOut.setOnAction(event -> {
             showLogin();
         });
+        //Correct quiz button
+        buttonCorrectQuiz.setOnAction(e ->{
+            showCorrectQuiz();
+        });
     }
 
     @FXML
@@ -181,6 +188,15 @@ public class MainController {
             stage.close();
         } catch (IOException e) {
             System.out.println("Couldn't log out");
+        }
+    }
+
+    @FXML
+    private void showCorrectQuiz(){
+        try {
+            main.showCorrectQuiz();
+        }catch (IOException e){
+            System.out.println("Couldn't show Correct Quiz"+ e);
         }
     }
 }

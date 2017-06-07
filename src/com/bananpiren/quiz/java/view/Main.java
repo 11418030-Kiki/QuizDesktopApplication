@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -103,6 +104,13 @@ public class Main extends Application {
     public static void showSettings() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("Settings.fxml"));
+        BorderPane mainMenu = loader.load();
+        mainLayout.setCenter(mainMenu);
+    }
+    // Correct quiz
+    public static void showCorrectQuiz() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("CorrectQuiz.fxml"));
         BorderPane mainMenu = loader.load();
         mainLayout.setCenter(mainMenu);
     }
