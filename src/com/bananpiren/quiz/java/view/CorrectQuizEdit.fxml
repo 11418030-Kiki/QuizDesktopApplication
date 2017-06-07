@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -11,7 +13,7 @@
     <top>
         <Pane prefHeight="49.0" prefWidth="648.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="quizNameLabel" alignment="TOP_CENTER" layoutX="-1.0" prefHeight="45.0" prefWidth="629.0" text="Label">
+                <Label fx:id="quizNameLabel" alignment="TOP_CENTER" layoutX="-1.0" prefHeight="45.0" prefWidth="629.0" text="Rätta quiz">
                     <font>
                         <Font size="30.0" />
                     </font>
@@ -21,7 +23,11 @@
         </Pane>
     </top>
     <bottom>
-        <Pane prefHeight="75.0" prefWidth="648.0" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="75.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="points" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="50.0" />
+            <Button fx:id="sendPoints" layoutX="80.0" layoutY="14.0" mnemonicParsing="false" text="Sätt poäng" />
+         </children></Pane>
     </bottom>
     <center>
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

@@ -19,7 +19,16 @@ public class CorrectQuiz {
     private String correctAnswer;
     @NotNull
     private String userAnswer;
+    @NotNull
+    private int quizId;
 
+    public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
 
     public int getCorrectId() {
         return correctId;

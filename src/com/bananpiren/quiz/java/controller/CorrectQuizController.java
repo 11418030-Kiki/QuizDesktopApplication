@@ -39,34 +39,25 @@ public class CorrectQuizController {
     private TableColumn<UserQuiz, String> userNameColumn;
     private ArrayList<TakeQuiz> takeQuizList;
 
+    private static int quizId;
+
     private ObservableList<UserQuiz> userQuizData = FXCollections.observableArrayList();
     private List<UserQuiz> userQuizList = new ArrayList<>();
     private QuizService quizService = new QuizService();
 
     CorrectQuizService correctQuizService = new CorrectQuizService();
-//    @FXML
-//    private Label quizNameLabel = new Label();
 
     @FXML
-    private void initialize (){
-
+    private void initialize() {
 
         userQuizList.addAll(UserQuizService.getAllUserQuiz());
-        userQuizList.forEach(e->{
-            if(e.getPoints() < 0){
+        userQuizList.forEach(e -> {
+            if (e.getPoints() < 0) {
                 userQuizData.add(e);
                 System.out.println("hhhej: " + e.getQuizName());
             }
         });
 
-
-
-//        for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
-//            if (uq.getPoints() == -1) {
-//                System.out.println("uq.getQuizName() = " + uq.getQuizName());
-//                userQuizData.add(uq);
-//            }
-//        }
 
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("QuizName"));
         userNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("userName"));
@@ -74,15 +65,14 @@ public class CorrectQuizController {
 
         correctQuizButton.setDisable(true);
 
-        correctQuizTableView.getSelectionModel().selectedItemProperty().addListener(e->{
+        correctQuizTableView.getSelectionModel().selectedItemProperty().addListener(e -> {
             correctQuizButton.setDisable(false);
-            String quizId = correctQuizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId();
-            takeQuizList = quizService.currentQuiz(Integer.parseInt(quizId));
+             quizId = Integer.parseInt(correctQuizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId());
+            takeQuizList = quizService.currentQuiz(quizId);
         });
 
 
-
-        correctQuizButton.setOnAction(e->{
+        correctQuizButton.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("CorrectQuizEdit.fxml"));
@@ -95,20 +85,14 @@ public class CorrectQuizController {
             }
         });
 
+
+
     }
 
     private VBox createQuizQuestions() {
-
-        int quizId = Integer.parseInt(correctQuizTableView.getSelectionModel().selectedItemProperty().getValue().getQuizId());
-
         int openQuestions = 0;
-//
-//        List<CorrectQuiz> correct = CorrectQuizService.findCorrectQuizUserIdQuizId(quizId);
-//        System.out.println("correct.size() = " + correct.size());
-//        for(CorrectQuiz cq : correct) {
-//            System.out.println("HEEEEE " + cq.getCorrectAnswer());
-//        }
 
+        List<CorrectQuiz> correct = CorrectQuizService.findCorrectQuizUserIdQuizId(quizId);
 
         // check the number of open questions
         for (TakeQuiz a : takeQuizList) {
@@ -166,8 +150,6 @@ public class CorrectQuizController {
 
                 answer[j] = takeQuizList.get(incAnswer).getAnswer();
 
-//                takeQuizList.get(incAnswer).getUserId();
-
                 answerLabel[j] = new Label(answer[j]);
                 answerBox[j] = new HBox();
 
@@ -176,19 +158,17 @@ public class CorrectQuizController {
                 // checks what kind of question
                 if (questionType.equals("multiple")) {
                     answerCheckbox[j] = new CheckBox();
-
-//                    System.out.println("HEEEEJ: " + takeQuizList.get(incAnswer).);
-
-//                    answerCheckbox[j].setSelected(true);
+                    answerCheckbox[j].setSelected(Integer.parseInt(correct.get(incAnswer).getUserAnswer()) != 0);
+                    answerCheckbox[j].setDisable(true);
 
                     answerBox[j].getChildren().add(answerCheckbox[j]);
                     answerBox[j].getChildren().add(answerLabel[j]);
 
-                 //   multiAnswerList.add(answerCheckbox[j]);
-
                 } else if (questionType.equals("single")) {
                     answerButton[j] = new RadioButton();
                     answerButton[j].setToggleGroup(toggleGroups[i]);
+                    answerButton[j].setSelected(Integer.parseInt(correct.get(incAnswer).getUserAnswer()) != 0);
+                    answerButton[j].setDisable(true);
 
                     answerBox[j].getChildren().add(answerButton[j]);
                     answerBox[j].getChildren().add(answerLabel[j]);
@@ -196,9 +176,9 @@ public class CorrectQuizController {
 
                 } else if (questionType.equals("open")) {
                     answerTextField[j] = new TextField();
-
+                    answerTextField[j].setText(correct.get(incAnswer).getUserAnswer());
                     answerBox[j].getChildren().add(answerTextField[j]);
-
+                    answerTextField[j].setDisable(true);
                 }
 
                 questionBox.getChildren().add(answerBox[j]);
@@ -210,5 +190,9 @@ public class CorrectQuizController {
         }
 
         return questionBox;
+    }
+
+    static int getQuizId() {
+        return quizId;
     }
 }

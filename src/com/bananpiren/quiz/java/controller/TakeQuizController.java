@@ -124,6 +124,7 @@ public class TakeQuizController {
             correctQuiz.setAnswerId(Integer.parseInt(takeQuizList.get(i).getAnswerId()));
             correctQuiz.setCorrectAnswer(takeQuizList.get(i).getCorrectAnswer());
             correctQuiz.setUserId(LoginController.getCurrentUser().getUserId());
+            correctQuiz.setQuizId(Integer.parseInt(takeQuizList.get(0).getQuizId()));
 
             // check if multi, single or open question
             if (takeQuizList.get(i).getQuestionType().equals("multiple")) {

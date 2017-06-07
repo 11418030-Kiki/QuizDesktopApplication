@@ -3,6 +3,7 @@ package com.bananpiren.quiz.Services;
 import com.bananpiren.quiz.Entity.CorrectQuiz;
 import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Entity.UserQuiz;
+import com.bananpiren.quiz.java.controller.LoginController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,7 +51,7 @@ public class CorrectQuizService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query userAnswers = entityManager.createQuery("SELECT cq FROM CorrectQuiz cq JOIN QuizQuestions qq WHERE qq.quiz.quizId = " + currentQuizId + " AND cq.userId = 1");
+        Query userAnswers = entityManager.createQuery("SELECT cq FROM CorrectQuiz cq WHERE cq.quizId= " + currentQuizId + " AND cq.userId = " + LoginController.getCurrentUser().getUserId());
         List userAnswersList = userAnswers.getResultList();
 
         entityManager.close();
@@ -58,9 +59,23 @@ public class CorrectQuizService {
 
         return userAnswersList;
     }
-    // Query userAnswers
 
+    // update points
+    public static void updatePoints(String id, int points) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        entityManager.getTransaction().begin();
 
+        Query userAnswer = entityManager.createQuery("SELECT uq FROM UserQuiz uq WHERE uq.quizId= " + id);
+        UserQuiz uq = (UserQuiz) userAnswer.getSingleResult();
+
+        uq.setPoints(points);
+
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
 
 }

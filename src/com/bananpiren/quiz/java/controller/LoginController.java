@@ -70,7 +70,7 @@ public class LoginController {
         }
     }
 
-    static User getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 
