@@ -3,7 +3,7 @@
 School group project.
 
 
-The goal is to create a desktop JavaFX application using:
+We created a desktop JavaFX application using:
 
 *JavaFX
 
