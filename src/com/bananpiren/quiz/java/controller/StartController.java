@@ -30,7 +30,6 @@ import java.util.List;
 public class StartController {
 
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
-    //    private ObservableList<VBox> vbox = FXCollections.observableArrayList();
     private static ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
     private VBox vbox;
@@ -68,31 +67,21 @@ public class StartController {
 
     @FXML
     private void initialize() {
-        System.out.println("quizCorrectExists " + quizCorrectExists);
-        // are there tests to correct?
-        for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
-            if (uq.getPoints() == -1) {
-                System.out.println("uq.getQuizName() = " + uq.getQuizName());
-                // lista.add(uq.getQuizName());
-            }
-        }
+
+        boolean theAdmin;
+
+        theAdmin = LoginController.getCurrentUser().getAccountLevel().equals("Admin");
 
         // are there tests to correct?
         for (UserQuiz uq : UserQuizService.getAllUserQuiz()) {
             // alert if you have quiz to correct
-            if ((uq.getPoints() == -1) && quizCorrectExists) {
+            if ((uq.getPoints() == -1) && quizCorrectExists && theAdmin) {
                 quizCorrectExists = false;
                 new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();
-
                 break;
             }
         }
-//        for (Integer uq : UserQuizService.getPointsfromAllQuiz()) {
-//            if (uq == -1) {
-//                new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();
-//                break;
-//            }
-//        }
+
 
         // Setting data to right column "cellvalue"
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
