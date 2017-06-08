@@ -42,6 +42,9 @@ public class LoginController {
 
     @FXML
     private void initialize() {
+        userEmailTextField.setText("user@user.se");
+        userPasswordTextField.setText("user");
+
         loginButton.setOnAction(event -> checkPassword());
     }
 
