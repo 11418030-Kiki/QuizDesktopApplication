@@ -39,11 +39,7 @@
       </Pane>
    </bottom>
    <center>
-      <ScrollPane BorderPane.alignment="CENTER">
-         <content>
-            <Pane prefHeight="449.0" prefWidth="469.0" />
-         </content>
-      </ScrollPane>
+      <ScrollPane BorderPane.alignment="CENTER" />
    </center>
    <right>
       <Pane prefHeight="453.0" prefWidth="144.0" BorderPane.alignment="CENTER">

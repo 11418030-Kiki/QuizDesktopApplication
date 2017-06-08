@@ -2,7 +2,6 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.TakeQuiz;
-import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.Services.QuizService;
 import com.bananpiren.quiz.Services.UserQuizService;
@@ -32,7 +31,7 @@ public class StartController {
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
     private static ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
-    private VBox vbox;
+    private ScrollPane vbox;
 
     private QuizService quizService = new QuizService();
 
@@ -177,7 +176,7 @@ public class StartController {
     }
 
 
-    private VBox createQuizQuestions() {
+    private ScrollPane createQuizQuestions() {
 
         int openQuestions = 0;
 
@@ -213,6 +212,8 @@ public class StartController {
         HBox[] answerBox = new HBox[takeQuizList.size()];
 
         VBox questionBox = new VBox();
+
+        ScrollPane scrollPane = new ScrollPane();
 
         int incQuest = 0;
         int incAnswer = 0;
@@ -280,8 +281,9 @@ public class StartController {
             // increment with the number of answers
             incQuest += answerNo;
         }
+        scrollPane.setContent(questionBox);
 
-        return questionBox;
+        return scrollPane;
     }
 
 
