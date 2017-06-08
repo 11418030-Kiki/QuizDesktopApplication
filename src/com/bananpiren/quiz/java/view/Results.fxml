@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="670.0" styleClass="defaultViewStyle" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bananpiren.quiz.java.controller.ResultsController">
    <top>
-      <Label text="Resultat" BorderPane.alignment="CENTER">
+      <Label text="Dina resultat" BorderPane.alignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>

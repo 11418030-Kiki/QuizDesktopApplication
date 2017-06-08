@@ -16,9 +16,11 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TakeQuizController {
-    QuizService quizService = new QuizService();
+/**
+ * This is a controller class that handles take quiz page
+ */
 
+public class TakeQuizController {
     @FXML
     private Label quizLabel;
 
@@ -55,10 +57,10 @@ public class TakeQuizController {
     private int maxResultNo;
 
     private static boolean selfCorrect;
-
     private static boolean showCorrect;
 
     private QuizTimer quizTimer = new QuizTimer();
+
 
     @FXML
     private void initialize() {
@@ -84,16 +86,13 @@ public class TakeQuizController {
                 selfCorrect = true;
             } else {
                 selfCorrect = false;
-
             }
 
             if (takeQuizList.get(0).getShowCorrectingList().equals("yes")) {
                 showCorrect = true;
             } else {
                 showCorrect = false;
-
             }
-
 
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -140,7 +139,6 @@ public class TakeQuizController {
 
             // create table
             CorrectQuizService correctQuizService = new CorrectQuizService();
-
             correctQuizService.correctQuiz(correctQuiz);
         }
     }
@@ -158,8 +156,6 @@ public class TakeQuizController {
         userQuiz.setUserName(LoginController.getCurrentUser().getFirstName());
         userQuiz.setUserLastName(LoginController.getCurrentUser().getLastName());
 
-
-        System.out.println("RESET");
         int points = 1;
         int countedPoints = 0;
         int questionId = Integer.parseInt(takeQuizList.get(0).getQuestionId());
@@ -186,7 +182,6 @@ public class TakeQuizController {
                     selected = singleAnswerList.get(i - noMultiple).isSelected() ? 1 : 0;
                     noSingle++;
                 }
-
                 if (selected == Integer.parseInt(takeQuizList.get(i).getCorrectAnswer())) {
                     points++;
                 }
@@ -202,8 +197,6 @@ public class TakeQuizController {
 
         int theResult = countedPoints;
         int questionNumber = takeQuizList.size() / 4;
-//        new Alert(Alert.AlertType.INFORMATION, "Du fick " + theResult + " poäng!" + " Maxpoäng är: " + questionNumber).showAndWait();
-
 
         userQuiz.setNoOfQuestions(maxResultNo);
         userQuiz.setMaxPoints(maxResultNo);

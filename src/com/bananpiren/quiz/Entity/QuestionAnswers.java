@@ -1,12 +1,12 @@
-/*
-This is an entity class for creating answer objects
- */
-
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+
+/**
+ * This is an entity class for creating answer objects
+ */
 
 @Entity
 public class QuestionAnswers {
@@ -29,6 +29,7 @@ public class QuestionAnswers {
         this.question = question;
     }
 
+    // Getters and setters
     public QuestionAnswers() {}
 
     public String getAnswer() {

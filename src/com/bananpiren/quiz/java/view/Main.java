@@ -4,11 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+/**
+ * This is the main class that starts the program
+ * To enable quiz battle feature start the Server manually in the models folder
+ */
 
 public class Main extends Application {
     private static Stage loginStage;

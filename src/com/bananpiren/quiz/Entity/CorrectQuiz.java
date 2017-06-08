@@ -1,9 +1,12 @@
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
-import javafx.scene.control.CheckBox;
 
 import javax.persistence.*;
+
+/**
+ * This is an entity class for correcting quiz
+ */
 
 @Entity
 public class CorrectQuiz {
@@ -22,6 +25,7 @@ public class CorrectQuiz {
     @NotNull
     private int quizId;
 
+    // Getters and setters
     public int getQuizId() {
         return quizId;
     }

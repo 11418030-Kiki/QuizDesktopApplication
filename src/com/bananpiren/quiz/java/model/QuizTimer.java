@@ -1,4 +1,5 @@
 package com.bananpiren.quiz.java.model;
+
 import javafx.application.Platform;
 import javafx.scene.control.*;
 

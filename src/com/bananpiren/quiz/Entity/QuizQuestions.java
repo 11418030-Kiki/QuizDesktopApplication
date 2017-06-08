@@ -1,13 +1,12 @@
-/*
-This is an entity class for creating question objects
- */
-
 package com.bananpiren.quiz.Entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+/**
+ * This is an entity class for creating question objects
+ */
 
 @Entity
 public class QuizQuestions {
@@ -43,6 +42,7 @@ public class QuizQuestions {
         super();
     }
 
+    // Getters and setters
     public int getQuestionId() {
         return questionId;
     }

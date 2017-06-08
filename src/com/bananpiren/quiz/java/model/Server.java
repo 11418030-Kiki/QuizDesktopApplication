@@ -5,6 +5,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 
+/**
+ * Modell class for starting a new Quiz Server for Quiz Battle function
+ */
+
 public class Server {
 
     private static Map<String, Integer> names = new HashMap<String, Integer>();
@@ -50,11 +54,6 @@ public class Server {
         } catch (Exception exception) {
             System.out.println("getOnlineUsers failed");
         }
-    }
-
-    //todo - get the size of names Map
-    public static int getOnlineUserNumber() {
-        return names.size();
     }
 
     // Get current online users + score and send to everyone listening
@@ -154,12 +153,14 @@ public class Server {
             } else if (message.contains("/DISCONNECT")) {
                 getScore();
                 getOnlineUsers();
-            }
-            System.out.println(message);
+            } else {
+                System.out.println(message);
+                getOnlineUsers();
 
-            // Send to all clients
-            for (PrintWriter writer : writers) {
-                writer.println(message);
+                // Send to all clients
+                for (PrintWriter writer : writers) {
+                    writer.println(message);
+                }
             }
         }
     }

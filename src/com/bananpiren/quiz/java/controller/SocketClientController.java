@@ -3,16 +3,18 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.java.model.Alerts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+
+/**
+ * This is a controller class that handles QuizBattle page
+ */
 
 public class SocketClientController {
 
@@ -27,9 +29,6 @@ public class SocketClientController {
 
     @FXML
     private TextArea textAreaConnectedUsers;
-
-    @FXML
-    private TextField textFieldPortNumber;
 
     @FXML
     private TextField textFieldUserName;
@@ -89,15 +88,14 @@ public class SocketClientController {
             }
         });
 
-        // Autoscroll when adding questions
-//        textAreaConsole.heightProperty().addListener((observable, oldValue, newValue) -> textAreaConsole.setVvalue((newValue).doubleValue()));
-
+        // Autoscroll message area
         textAreaConsole.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 textAreaConsole.setScrollTop(Double.MAX_VALUE);
             }
         });
+
         // Listen to textfield input, send message with "Enter Key"
         textFieldInput.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
@@ -126,10 +124,7 @@ public class SocketClientController {
                     buttonDisconnect.setDisable(true);
                     buttonConnect.setDisable(false);
                 } else {
-                    String text = textFieldInput.getText();
-                    output.println(USERNAME + ": " + text);
-                    output.flush();
-                    textFieldInput.clear();
+                    send(textFieldInput.getText());
                 }
             }
         });
@@ -213,10 +208,10 @@ public class SocketClientController {
             output.println("/DISCONNECT " + USERNAME + " has disconnected.");
             output.flush();
             socket.close();
+            Alerts.warningAlert("Information", "", "You have disconnected");
         } catch (Exception exception) {
             textAreaConsole.setText("Disconnect function failed! \n");
         }
-        Alerts.warningAlert("Information", "", "You have disconnected");
     }
 
     public void send(String message) {
@@ -228,5 +223,4 @@ public class SocketClientController {
             output.println("message not sent! -something went wrong... \n");
         }
     }
-
 }

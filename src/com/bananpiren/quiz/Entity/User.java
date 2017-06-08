@@ -1,12 +1,12 @@
-/*
-This is an entity class for creating user objects
- */
-
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+
+/**
+ * This is an entity class for creating user objects
+ */
 
 @Entity
 @Table

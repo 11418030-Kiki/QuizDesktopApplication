@@ -1,7 +1,6 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.CorrectQuiz;
-import com.bananpiren.quiz.Entity.User;
 import com.bananpiren.quiz.Entity.UserQuiz;
 import com.bananpiren.quiz.java.controller.LoginController;
 
@@ -11,11 +10,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * This is a service class that handles database commands via JPA
+ * This class handles everything about correcting quizes
+ */
+
 public class CorrectQuizService {
 
-    public CorrectQuizService() {
-
-    }
+    public CorrectQuizService() {}
 
     public void correctQuiz(CorrectQuiz correctQuiz) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -77,5 +79,4 @@ public class CorrectQuizService {
         entityManager.close();
         entityManagerFactory.close();
     }
-
 }

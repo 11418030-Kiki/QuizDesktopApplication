@@ -22,9 +22,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CorrectQuizController {
+/**
+ * This is a controller class that handles correction of quizes
+ */
 
-    // private ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+public class CorrectQuizController {
 
     @FXML
     private Button correctQuizButton;
@@ -49,7 +51,6 @@ public class CorrectQuizController {
 
     @FXML
     private void initialize() {
-
         userQuizList.addAll(UserQuizService.getAllUserQuiz());
         userQuizList.forEach(e -> {
             if (e.getPoints() < 0) {
@@ -57,7 +58,6 @@ public class CorrectQuizController {
                 System.out.println("hhhej: " + e.getQuizName());
             }
         });
-
 
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("QuizName"));
         userNameColumn.setCellValueFactory(new PropertyValueFactory<UserQuiz, String>("userName"));
@@ -71,7 +71,6 @@ public class CorrectQuizController {
             takeQuizList = quizService.currentQuiz(quizId);
         });
 
-
         correctQuizButton.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -84,9 +83,6 @@ public class CorrectQuizController {
                 System.out.println("Couldn't load CorrectQuizEditController.fxml: " + f);
             }
         });
-
-
-
     }
 
     private VBox createQuizQuestions() {
@@ -180,7 +176,6 @@ public class CorrectQuizController {
                     answerBox[j].getChildren().add(answerTextField[j]);
                     answerTextField[j].setDisable(true);
                 }
-
                 questionBox.getChildren().add(answerBox[j]);
             }
             questionBox.getChildren().add(separator);
@@ -188,7 +183,6 @@ public class CorrectQuizController {
             // increment with the number of answers
             incQuest += answerNo;
         }
-
         return questionBox;
     }
 

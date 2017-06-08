@@ -6,12 +6,12 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Service for handling database connection regarding Users and user information.
+ * This is a service class that handles database commands via JPA
+ * This class handles everything about Users and user information
  */
 
 public class UserService {
-    public UserService() {
-    }
+    public UserService() {}
 
     //Method to create user
     public void createUser(String firstName, String lastName, String email, String password, String accountLevel) {

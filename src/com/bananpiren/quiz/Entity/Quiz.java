@@ -1,16 +1,13 @@
-/*
-This is an entity class for creating quiz objects
- */
-
 package com.bananpiren.quiz.Entity;
 
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
+/**
+ * This is an entity class for creating quiz objects
+ */
 
 @Entity
 public class Quiz {

@@ -9,6 +9,9 @@ import javafx.scene.text.Text;
 
 import java.util.List;
 
+/**
+ * This is a controller class that handles the view of results after taking a quiz
+ */
 
 public class TakeQuizResultController {
     @FXML

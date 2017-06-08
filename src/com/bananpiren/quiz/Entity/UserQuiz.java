@@ -1,6 +1,5 @@
 package com.bananpiren.quiz.Entity;
 
-
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.Entity;
@@ -8,30 +7,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * This is an entity class for handling quizes taking by specific users
+ */
+
 @Entity
 public class UserQuiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userQuizId; // generate id
+    private int userQuizId;
     @NotNull
-    private int userId; // userId V
+    private int userId;
     @NotNull
-    private String userName; // userId V
+    private String userName;
     @NotNull
-    private String QuizName; // quizName V
+    private String QuizName;
     @NotNull
-    private String quizId; // quizID V
+    private String quizId;
     @NotNull
-    private int noOfQuestions; //
+    private int noOfQuestions;
     @NotNull
-    private int maxPoints; //
+    private int maxPoints;
     @NotNull
-    private int points; // number of points
+    private int points;
     @NotNull
-    private String userLastName; //
+    private String userLastName;
 
-
+    // Getters and setters
     public String getUserName() {
         return userName;
     }

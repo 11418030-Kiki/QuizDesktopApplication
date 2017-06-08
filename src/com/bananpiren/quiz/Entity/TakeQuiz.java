@@ -1,8 +1,7 @@
 package com.bananpiren.quiz.Entity;
 
-
 /**
- * Created by per on 2017-05-23.
+ * This is an entity class for creating take quiz
  */
 
 public class TakeQuiz {
@@ -41,6 +40,7 @@ public class TakeQuiz {
         this.showCorrectingList = showSelfCorrectingList;
     }
 
+    // Getters and setters
     public String getSelfCorrectingList() {
         return selfCorrectingList;
     }

@@ -18,6 +18,9 @@ import java.util.List;
 
 import static com.bananpiren.quiz.Services.QuestionService.findQuestion;
 
+/**
+ * This is a controller class that handles edits of questions
+ */
 
 public class EditQuestionDialogController {
 

@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This is a controller class that handles the start of the program and loads in the GUI
+ */
+
 public class MainController {
     private Main main = new Main();
 
@@ -94,18 +98,19 @@ public class MainController {
             showSocketClient();
         });
 
-        // Exit button
-        buttonExit.setOnAction(e -> {
-            System.exit(1);
+        //Correct quiz button
+        buttonCorrectQuiz.setOnAction(e ->{
+            showCorrectQuiz();
         });
 
         // Log out button
         buttonLogOut.setOnAction(event -> {
             showLogin();
         });
-        //Correct quiz button
-        buttonCorrectQuiz.setOnAction(e ->{
-            showCorrectQuiz();
+
+        // Exit button
+        buttonExit.setOnAction(e -> {
+            System.exit(1);
         });
     }
 
@@ -197,7 +202,7 @@ public class MainController {
         try {
             main.showCorrectQuiz();
         }catch (IOException e){
-            System.out.println("Couldn't show Correct Quiz"+ e);
+            System.out.println("Couldn't show Correct Quiz");
         }
     }
 }

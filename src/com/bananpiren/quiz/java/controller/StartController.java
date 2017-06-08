@@ -26,16 +26,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This is a controller class that handles the start page
+ */
+
 public class StartController {
 
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
     private static ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
+    private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
+    private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
+    private static ArrayList<TextField> openAnswerList = new ArrayList<>();
 
     private ScrollPane scrollPane;
 
-    private QuizService quizService = new QuizService();
-
     static int currentQuizId;
+
+    private QuizService quizService = new QuizService();
 
     @FXML
     private TableColumn<Quiz, String> quizNameColumn;
@@ -51,14 +58,9 @@ public class StartController {
 
     @FXML
     private Button takeQuizButton;
-
     private boolean runQuiz;
 
     private boolean quizCorrectExists = true;
-
-    private static ArrayList<CheckBox> multiAnswerList = new ArrayList<>();
-    private static ArrayList<RadioButton> singleAnswerList = new ArrayList<>();
-    private static ArrayList<TextField> openAnswerList = new ArrayList<>();
 
     public StartController() {
         data.addAll(QuizService.findAllQuiz());
@@ -81,7 +83,6 @@ public class StartController {
             }
         }
 
-
         // Setting data to right column "cellvalue"
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         quizEndDateColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizEndDate"));
@@ -91,7 +92,6 @@ public class StartController {
         quizTableView.getSelectionModel().selectedIndexProperty().addListener(y -> {
             takeQuizButton.setDisable(false);
         });
-
 
         takeQuizButton.setOnAction((ActionEvent e) -> {
             runQuiz = false;
@@ -132,7 +132,6 @@ public class StartController {
                         if (Integer.parseInt(q.getQuizId()) != currentQuizId) {
                             runQuiz = true;
                         } else {
-//                            runQuiz = true;
                             runQuiz = false;
                             new Alert(Alert.AlertType.INFORMATION, "Du har redan gjort detta Quiz!").showAndWait();
                             break;
@@ -170,11 +169,8 @@ public class StartController {
             } catch (Exception f) {
                 System.out.println(f);
             }
-
         });
-
     }
-
 
     private ScrollPane createQuizQuestions() {
 
@@ -195,7 +191,6 @@ public class StartController {
         // length of the list divided with the number of questions plus number of open questions
         int len = (takeQuizList.size() / 4) + openQuestions;
 
-
         String[] questionName = new String[len];
         Label[] questionLabel = new Label[len];
         String questionType = "";
@@ -204,9 +199,7 @@ public class StartController {
         Label[] answerLabel = new Label[takeQuizList.size()];
         CheckBox[] answerCheckbox = new CheckBox[takeQuizList.size()];
         TextField[] answerTextField = new TextField[takeQuizList.size()];
-
         RadioButton[] answerButton = new RadioButton[takeQuizList.size()];
-
         ToggleGroup[] toggleGroups = new ToggleGroup[len]; // set with the number of questions
 
         HBox[] answerBox = new HBox[takeQuizList.size()];
@@ -268,7 +261,6 @@ public class StartController {
 
                 } else if (questionType.equals("open")) {
                     answerTextField[j] = new TextField();
-
                     answerBox[j].getChildren().add(answerTextField[j]);
 
                     openAnswerList.add(answerTextField[j]);
@@ -285,7 +277,6 @@ public class StartController {
 
         return scrollPane;
     }
-
 
     static ArrayList<TakeQuiz> getTakeQuizList() {
         return takeQuizList;

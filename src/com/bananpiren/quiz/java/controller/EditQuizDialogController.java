@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This is a controller class that handles edits of quizes and questions
+ */
+
 public class EditQuizDialogController {
 
     private ObservableList<QuizQuestions> questions = FXCollections.observableArrayList();

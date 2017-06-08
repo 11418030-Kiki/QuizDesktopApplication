@@ -2,17 +2,18 @@ package com.bananpiren.quiz.java.controller;
 
 import com.bananpiren.quiz.Services.UserService;
 import com.bananpiren.quiz.java.model.Alerts;
-import com.bananpiren.quiz.java.view.Main;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+/**
+ * This is a controller class that handles the settings page
+ */
 
 public class SettingsController {
     private UserService userService = new UserService();
     private LoginController loginController = new LoginController();
     private Alerts alerts = new Alerts();
-
 
     @FXML
     private TextField emailTextField;
@@ -25,6 +26,9 @@ public class SettingsController {
 
     @FXML
     private Button usernameBtn;
+
+    public SettingsController() {
+    }
 
     @FXML
     private void initialize(){
@@ -69,8 +73,5 @@ public class SettingsController {
                 alerts.informationAlert("Succe!", "Användare redigerad", null);
             }
         });
-    }
-
-    public SettingsController() {
     }
 }

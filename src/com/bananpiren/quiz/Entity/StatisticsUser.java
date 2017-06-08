@@ -1,8 +1,9 @@
 package com.bananpiren.quiz.Entity;
 
 /**
- * Created by Anton on 2017-06-01.
+ * This is an entity class for creating user statistics
  */
+
 public class StatisticsUser {
     private String firstName;
     private String lastName;
@@ -26,6 +27,7 @@ public class StatisticsUser {
         }
     }
 
+    // Getters and setters
     public String getFirstName() {
         return firstName;
     }

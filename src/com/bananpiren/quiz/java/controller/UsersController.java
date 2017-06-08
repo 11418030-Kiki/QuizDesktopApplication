@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This is a controller class that handles users page
+ */
+
 public class UsersController {
 
     private final ObservableList<User> data = FXCollections.observableArrayList();
@@ -165,7 +169,6 @@ public class UsersController {
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
-
 
         } catch (IOException e) {
             e.printStackTrace();

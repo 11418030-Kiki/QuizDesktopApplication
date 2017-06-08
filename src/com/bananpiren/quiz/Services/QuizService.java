@@ -1,7 +1,6 @@
 package com.bananpiren.quiz.Services;
 
 import com.bananpiren.quiz.Entity.*;
-import com.bananpiren.quiz.java.controller.LoginController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +8,11 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * This is a service class that handles database commands via JPA
+ * This class handles everything about Quizes
+ */
 
 public class QuizService {
 
@@ -145,7 +149,6 @@ public class QuizService {
         Query showCorrecting = entityManager.createQuery("SELECT q.showSelfCorrecting FROM Quiz q JOIN QuestionAnswers qa WHERE q.quizId = " + currentQuizId + "");
         List showCorrectingList = showCorrecting.getResultList();
 
-
         int count = 0;
 
         TakeQuiz takeQuiz;
@@ -174,7 +177,6 @@ public class QuizService {
 
         return takeQuizList;
     }
-
 
     public static void updateQuiz(int quizId, String quizName, int timeLimit, String quizStartDate, String quizEndDate, String selfCorrecting, String showSelfCorrecting) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
@@ -208,23 +210,4 @@ public class QuizService {
 
         return list;
     }
-
-//    public static ArrayList<UserQuiz> getUserQuizId(int userId) {
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//
-//        // Query answers and put them in a list
-//        Query userQuizId = entityManager.createQuery("SELECT q.quizId FROM UserQuiz q WHERE q.userId = " + userId);
-//        List userQuizIdList = userQuizId.getResultList();
-//
-//        UserQuiz userQuiz;
-//        ArrayList<UserQuiz> takeQuizList = new ArrayList<>();
-//
-//        entityManager.close();
-//        entityManagerFactory.close();
-//
-//        return userQuizIdList;
-//    }
-
-
 }

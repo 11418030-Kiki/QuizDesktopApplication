@@ -17,7 +17,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Phaser;
+
+/**
+ * This is a controller class that handles statistics page
+ */
 
 public class StatisticsController {
 
@@ -73,11 +76,11 @@ public class StatisticsController {
     private String pointsPercentageString;
     private boolean studentAnswerPrinted;
     private String studentAnswerString;
+
     FontSelector studentAnswerSelector = new FontSelector();
 
     @FXML
     private void initialize() {
-
         data.addAll(quizService.findAllQuiz());
         quizTableColumn.setCellValueFactory(new PropertyValueFactory<Quiz, String>("quizName"));
         statisticsUserFirstNameColumn.setCellValueFactory(new PropertyValueFactory<StatisticsUser, String>("firstName"));
@@ -257,7 +260,6 @@ public class StatisticsController {
                     }
                 });
 
-
                 document.close();
             }catch(DocumentException m){
                 System.out.println(m);
@@ -265,6 +267,5 @@ public class StatisticsController {
                 Alerts.errorAlert("Fel", "Fil öppen", "Filen är redan öppnad i ettt annat program. Stäng ner programmet och försök igen");
             }
         });
-
     }
 }

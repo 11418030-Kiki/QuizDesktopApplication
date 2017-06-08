@@ -20,6 +20,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This is a controller class that handles edits of quizes
+ */
+
 public class EditQuizController {
 
     private final ObservableList<Quiz> data = FXCollections.observableArrayList();
@@ -172,6 +176,7 @@ public class EditQuizController {
                     data.get(storedSelectedTableIndex).getQuizEndDate());
         }
     }
+
     static int getStoredQuizId() {
         return storedQuizId;
     }

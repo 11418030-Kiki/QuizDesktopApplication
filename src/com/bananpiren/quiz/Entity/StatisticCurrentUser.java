@@ -19,7 +19,7 @@ public class StatisticCurrentUser {
         this.grade = grade;
     }
 
-    //Getters and setters.
+    //Getters and setters
     public String getQuizName() {
         return quizName;
     }

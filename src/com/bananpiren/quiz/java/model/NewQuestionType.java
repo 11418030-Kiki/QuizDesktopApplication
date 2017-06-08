@@ -1,4 +1,3 @@
-
 package com.bananpiren.quiz.java.model;
 
 import javafx.scene.Node;
@@ -7,10 +6,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * This is a model for questions
+ * It contains a general label for all type of questions, the available methods are:
+ * Multiple answers question
+ * Single answer question
+ * Open questions
+ */
+
 public class NewQuestionType {
 
-    public static int questionNumber = 1;
-    public static int answerNumber = 1;
     public String questionType;
 
     public Label label;
@@ -28,7 +33,7 @@ public class NewQuestionType {
         label = new Label();
         questionField.getChildren().add(label);
 
-        questionTextField = new TextField("Fråga " + questionNumber);
+        questionTextField = new TextField("");
         questionField.getChildren().add(questionTextField);
 
         List.getItems().add(questionField);
@@ -43,10 +48,14 @@ public class NewQuestionType {
         hBox = new HBox[4];
 
         for(int i = 0; i < 4; i++){
-            hBox[i] = new HBox();
+            final HBox answer = new HBox();
+            hBox[i] = answer;
             Button deleteButton = new Button("X");
-            newAnswerTextField[i] = new TextField();
-            newAnswerTextField[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
+            deleteButton.setOnAction(e -> {
+                removeAnswer(answer);
+            });
+
+            newAnswerTextField[i] = new TextField("");
             hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
 
             answerCheckbox[i] = new CheckBox("Rätt svar");
@@ -54,9 +63,7 @@ public class NewQuestionType {
 
             questionField.getChildren().add(hBox[i]);
         }
-        answerNumber = 1;
         questionType = "multipleAnswer";
-        questionNumber++;
     }
 
     public void singleAnswer() {
@@ -76,8 +83,7 @@ public class NewQuestionType {
                 removeAnswer(answer);
             });
 
-            newAnswerTextField[i] = new TextField();
-            newAnswerTextField[i].setText("Fråga " + questionNumber + " svar " + answerNumber++);
+            newAnswerTextField[i] = new TextField("");
             hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
 
             radioButtonAnswer[i] = new RadioButton("Rätt svar");
@@ -86,13 +92,7 @@ public class NewQuestionType {
 
             questionField.getChildren().add(hBox[i]);
         }
-        answerNumber = 1;
         questionType = "singleAnswer";
-        questionNumber++;
-    }
-
-    private void removeAnswer(Node answer) {
-        this.questionField.getChildren().removeAll(answer);
     }
 
     public void openAnswer() {
@@ -103,24 +103,18 @@ public class NewQuestionType {
 
         for(int i = 0; i < 1; i++){
             hBox[i] = new HBox();
-            Button deleteButton = new Button("X");
-            newAnswerTextField[i] = new TextField();
-            newAnswerTextField[i].setText("Open question");
-            answerNumber++;
-            hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
-        }
 
-        answerNumber = 1;
+            newAnswerTextField[i] = new TextField("");
+            hBox[i].getChildren().addAll(newAnswerTextField[i]);
+        }
         questionType = "openAnswer";
-        questionNumber++;
+    }
+
+    private void removeAnswer(Node answer) {
+        this.questionField.getChildren().removeAll(answer);
     }
 
     public String getQuestionType() {
         return questionType;
-    }
-
-    public static void resetQuestionsAndAnswerNumbers() {
-        questionNumber = 1;
-        answerNumber = 1;
     }
 }

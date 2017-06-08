@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 /**
- * Input dialog for add a new user to the database.
+ * Input dialog for add a new user to the database
  */
 
 public class PersonAddDialogController {

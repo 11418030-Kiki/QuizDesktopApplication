@@ -6,6 +6,7 @@ import com.bananpiren.quiz.Entity.QuizQuestions;
 import com.bananpiren.quiz.Services.AnswerService;
 import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
+import com.bananpiren.quiz.java.model.Alerts;
 import com.bananpiren.quiz.java.view.Main;
 import com.bananpiren.quiz.java.model.NewQuestionType;
 import javafx.fxml.FXML;
@@ -19,6 +20,10 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+
+/**
+ * This is a controller class that handles creation of quizes
+ */
 
 public class CreateQuizController {
 
@@ -189,10 +194,8 @@ public class CreateQuizController {
             alert.setContentText("Alla fält är inte ifyllda!\n" + warnings.toString());
             alert.showAndWait();
         } else {
-            //TODO: Koolla validera av svar?
-            // Saves Quiz to database
+            // Creating a new quiz object
             Quiz quiz = new Quiz(quizName, timeLimit, quizStartDate.toString(), quizEndDate.toString(), selfcorrectingvalue, showSelfCorrectingValue);
-            QuizService.create(quiz);
 
             // ArrayLists for Question and Answer entities
             ArrayList<QuizQuestions> quizQuestions = new ArrayList<>();
@@ -238,20 +241,25 @@ public class CreateQuizController {
                             correctAnswer = 0;
                             break;
                     }
-
                     QuestionAnswers answer = new QuestionAnswers(element.newAnswerTextField[j].getText(), correctAnswer, questions);
                     answers.add(answer);
                 }
             }
 
-            // Saves all Question and Answer objects to database
-            QuestionService.create(quizQuestions);
-            AnswerService.create(answers);
+            // Check that quiz contains questions else create quiz
+            if (quizQuestions.size() <= 0) {
+                Alerts.warningAlert("Varning", "Det finns inga frågor","Lägg till frågor för att skapa quiz");
+            } else {
+                // Save quiz to database
+                QuizService.create(quiz);
 
-            NewQuestionType.resetQuestionsAndAnswerNumbers();
+                // Saves all Question and Answer objects to database
+                QuestionService.create(quizQuestions);
+                AnswerService.create(answers);
 
-            // Feedback after successfully added quiz
-            successfullyCreatedQuiz();
+                // Feedback after successfully added quiz
+                successfullyCreatedQuiz();
+            }
         }
     }
 

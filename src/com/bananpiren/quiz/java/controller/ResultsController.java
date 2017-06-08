@@ -3,7 +3,6 @@ package com.bananpiren.quiz.java.controller;
 import com.bananpiren.quiz.Entity.StatisticCurrentUser;
 import com.bananpiren.quiz.Entity.StatisticsUser;
 import com.bananpiren.quiz.Entity.UserQuiz;
-import com.bananpiren.quiz.Services.QuestionService;
 import com.bananpiren.quiz.Services.QuizService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * View for collecting and displaying data fro current users taken test
+ * Controller class for collecting and displaying data fro current users taken test
  */
 
 public class ResultsController {

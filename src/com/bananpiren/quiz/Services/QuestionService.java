@@ -1,6 +1,5 @@
 package com.bananpiren.quiz.Services;
 
-import com.bananpiren.quiz.Entity.Quiz;
 import com.bananpiren.quiz.Entity.QuizQuestions;
 
 import javax.persistence.EntityManager;
@@ -9,6 +8,11 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * This is a service class that handles database commands via JPA
+ * This class handles everything about questions
+ */
 
 public class QuestionService {
 
