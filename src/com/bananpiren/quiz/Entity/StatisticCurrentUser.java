@@ -1,5 +1,9 @@
 package com.bananpiren.quiz.Entity;
 
+/**
+ * Class for holding statistic data for quiz taken by the current user.
+ */
+
 public class StatisticCurrentUser {
     private String quizName;
     private int points;
@@ -15,6 +19,7 @@ public class StatisticCurrentUser {
         this.grade = grade;
     }
 
+    //Getters and setters.
     public String getQuizName() {
         return quizName;
     }

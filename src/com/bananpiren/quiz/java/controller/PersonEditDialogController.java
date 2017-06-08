@@ -13,14 +13,18 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class PersonEditDialogController {
+/**
+ * Input dialog for updating a user selected from menu in previous view.
+ */
 
+public class PersonEditDialogController {
     private ObservableList<String> userLevel = FXCollections
             .observableArrayList("User", "Admin");
 
+    private ObservableList<User> data = FXCollections.observableArrayList();
+
     private int storedUserId;
     private int storedUserTableIndex;
-    private ObservableList<User> data = FXCollections.observableArrayList();
     private String storedFirstName;
     private String storedLastName;
     private String storedEmail;
@@ -93,7 +97,6 @@ public class PersonEditDialogController {
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
-
         });
 
         cancelButton.setOnAction(e -> {

@@ -13,6 +13,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * View for collecting and displaying data fro current users taken test
+ */
+
 public class ResultsController {
 
     @FXML
@@ -45,8 +49,6 @@ public class ResultsController {
     private int storedWrongAnswers;
     private int storedNumberOfQuestions;
 
-
-
     public ResultsController() {
         data.addAll(QuizService.getUserQuiz(LoginController.getCurrentUser().getUserId()));
     }
@@ -59,6 +61,7 @@ public class ResultsController {
         resultColumn.setCellValueFactory(new PropertyValueFactory<>("correctPercentage"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
 
+        //Taking data from UserQuiz entity and creating a list of StatisticsUser.
         data.forEach(y -> {
             double userPoints = y.getPoints();
             double maxPoints = y.getMaxPoints();
@@ -69,6 +72,7 @@ public class ResultsController {
                     new StatisticsUser(y.getUserName(), y.getUserLastName(), pointsPercentageString, y.getUserId()));
         });
 
+        //Combining UserQuiz data and StatisticsUser data to a list of StatisticCurrentUser data.
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i).getPoints() != -1) {
                 statisticsUserData.add(new StatisticCurrentUser(
@@ -83,6 +87,7 @@ public class ResultsController {
 
         resultsTable.setItems(statisticsUserData);
 
+        //Calculating correct and wrong answers in a selected quiz and shows it in a pie chart.
         resultsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             storedSelectedTableIndex = resultsTable.getSelectionModel().getSelectedIndex();
 

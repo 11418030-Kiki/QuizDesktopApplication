@@ -12,8 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import javax.persistence.EntityManagerFactory;
-import java.io.IOException;
+/**
+ * Controller for taking user input and check if username and password is in the
+ * database and is matching.
+ */
 
 public class LoginController {
     @FXML
@@ -38,13 +40,8 @@ public class LoginController {
 
     private static User currentUser;
 
-
     @FXML
     private void initialize() {
-
-        userEmailTextField.setText("user@user.se");
-        userPasswordTextField.setText("user");
-
         loginButton.setOnAction(event -> checkPassword());
     }
 
@@ -70,10 +67,12 @@ public class LoginController {
         }
     }
 
+    //Method to get the current logged in user.
     public static User getCurrentUser() {
         return currentUser;
     }
 
+    //Method to reload current user from database if changes to it were made.
     void reloadCurrentUser() {
         LoginController.currentUser = userService.findUserById(currentUser.getUserId());
     }

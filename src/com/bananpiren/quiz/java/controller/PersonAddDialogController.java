@@ -10,8 +10,11 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class PersonAddDialogController {
+/**
+ * Input dialog for add a new user to the database.
+ */
 
+public class PersonAddDialogController {
     private UserService userService = new UserService();
     private Alerts alerts = new Alerts();
 

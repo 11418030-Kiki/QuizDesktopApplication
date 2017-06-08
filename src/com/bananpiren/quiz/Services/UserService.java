@@ -5,8 +5,11 @@ import com.bananpiren.quiz.Entity.User;
 import javax.persistence.*;
 import java.util.List;
 
-public class UserService {
+/**
+ * Service for handling database connection regarding Users and user information.
+ */
 
+public class UserService {
     public UserService() {
     }
 
@@ -41,14 +44,12 @@ public class UserService {
         return query.getResultList();
     }
 
+    //Getting a list of user that's not admin.
     public List<User> findAllStudents() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Query query = entityManager.createQuery("SELECT u FROM  User u WHERE u.accountLevel = 'User'");
-
-        //entityManager.close();
-        //entityManagerFactory.close();
 
         return query.getResultList();
     }
@@ -97,6 +98,7 @@ public class UserService {
         entityManagerFactory.close();
     }
 
+    //Finding user by email address, used by the login controller to check password.
     public User findUserByEmail(String userEmailInput) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();

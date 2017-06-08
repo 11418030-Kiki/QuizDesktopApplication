@@ -108,6 +108,7 @@ public class UsersController {
         deleteButton.setOnAction(e -> handleDeletePerson());
     }
 
+    //Loading user data to a list.
     private void loadTableData() {
         data.clear();
         data.addAll(userService.findAllUsers());
@@ -121,6 +122,7 @@ public class UsersController {
         personTable.setItems(data);
     }
 
+    //Open dialog for adding a new user.
     private void showPersonAddDialog() {
         try {
             // Load FXML file to dialog stage
@@ -145,6 +147,7 @@ public class UsersController {
         setTableData();
     }
 
+    //Open dialog for editing selected user.
     private void showPersonEditDialog() {
         try {
             // Load FXML file to dialog stage
@@ -171,6 +174,7 @@ public class UsersController {
         setTableData();
     }
 
+    //Deleting selected user.
     @FXML
     private void handleDeletePerson() {
 
