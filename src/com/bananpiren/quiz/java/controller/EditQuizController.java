@@ -103,7 +103,7 @@ public class EditQuizController {
                     case "yes" : showSelfCorrectedLabel.setText("Ja");
                         break;
                     case "no" : showSelfCorrectedLabel.setText("Nej");
-                     break;
+                        break;
                 }
 
                 switch(data.get(storedSelectedTableIndex).getSelfcorrecting()) {
@@ -172,7 +172,6 @@ public class EditQuizController {
                     data.get(storedSelectedTableIndex).getQuizEndDate());
         }
     }
-
     static int getStoredQuizId() {
         return storedQuizId;
     }

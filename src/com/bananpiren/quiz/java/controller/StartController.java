@@ -77,7 +77,7 @@ public class StartController {
             // alert if you have quiz to correct
             if ((uq.getPoints() == -1) && quizCorrectExists && theAdmin) {
                 quizCorrectExists = false;
-                new Alert(Alert.AlertType.INFORMATION, "Du har quiz att rätta!").showAndWait();
+                new Alert(Alert.AlertType.INFORMATION, "Det finns nya orättade quiz att rätta!").showAndWait();
                 break;
             }
         }
@@ -269,7 +269,6 @@ public class StartController {
                     answerTextField[j] = new TextField();
 
                     answerBox[j].getChildren().add(answerTextField[j]);
-//                    answerBox[j].getChildren().add(answerLabel[j]);
 
                     openAnswerList.add(answerTextField[j]);
                 }

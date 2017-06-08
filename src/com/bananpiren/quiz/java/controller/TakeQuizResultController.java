@@ -12,6 +12,9 @@ import java.util.List;
 
 public class TakeQuizResultController {
     @FXML
+    private Text headerTextLabel;
+
+    @FXML
     private Text quizNameText;
 
     @FXML
@@ -19,6 +22,7 @@ public class TakeQuizResultController {
 
     @FXML
     private TableView<Quiz> quizTableView;
+
     private UserQuizService userQuizService = new UserQuizService();
 
     @FXML
@@ -27,28 +31,32 @@ public class TakeQuizResultController {
         int quizID = StartController.getCurrentQuizId();
         List<UserQuiz> userQuizList = userQuizService.getAllUserQuizByQuizId(quizID);
 
-
-        if(TakeQuizController.getShowCorrect()) {
-            System.out.println("DETTA PROVET VISAR SJÄLVRÄTTNING");
-        } else {
-            System.out.println("DETTA VISAR INTE SJÄLVRÄTTNING!");
-        }
-
         if (TakeQuizController.getSelfCorrect() && TakeQuizController.getShowCorrect()) {
             quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
 
+            int numberOfQuestions = userQuizList.get(userQuizList.size() - 1).getNoOfQuestions();
+            int maxScore = userQuizList.get(userQuizList.size() - 1).getMaxPoints();
+            int userScore = userQuizList.get(userQuizList.size() - 1).getPoints();
+            String passed;
+
+            if ((userScore/maxScore) * 100 >= 60 ) {
+                passed = "Grattis, du är godkänd!";
+            } else {
+                passed = "Underkänd, tyvärr fick du inte tillräcklig många rätt";
+            }
+
             correctQuizAnswerText.setText(
-                    "Användare: " + userQuizList.get(userQuizList.size() - 1).getUserName() +
-                            "\nQuiznamn: " + userQuizList.get(userQuizList.size() - 1).getQuizName() +
-                            "\nAntal frågor: " + userQuizList.get(userQuizList.size() - 1).getNoOfQuestions() +
-                            "\nMaxpoäng: " + userQuizList.get(userQuizList.size() - 1).getMaxPoints() +
-                            "\nDin poäng: " + userQuizList.get(userQuizList.size() - 1).getPoints()
+                    passed + "\n" +
+                    "\nDin poäng: " + userScore +
+                    "\nMaxpoäng: " + maxScore
             );
         } else if (!TakeQuizController.getSelfCorrect()) {
-            correctQuizAnswerText.setText("DETTA ÄR INTE SJÄLVRÄTTANDE!");
+            quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
+            correctQuizAnswerText.setText("Du har genomfört ett prov som inte är självrättande och provet måste därför rättas innan du kan se dina resultat!");
 
         } else if (TakeQuizController.getSelfCorrect() && !TakeQuizController.getShowCorrect()) {
-            correctQuizAnswerText.setText("DETTA ÄR SJÄLVRÄTTANDE MEN VISAR INTE SJÄLVRÄTTNINGEN!");
+            quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
+            correctQuizAnswerText.setText("Skaparen av quizet har valt att inte visa resultaten!");
         }
     }
 }
