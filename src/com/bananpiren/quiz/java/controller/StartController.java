@@ -31,7 +31,7 @@ public class StartController {
     private ObservableList<Quiz> data = FXCollections.observableArrayList();
     private static ArrayList<TakeQuiz> takeQuizList = new ArrayList<>();
 
-    private ScrollPane vbox;
+    private ScrollPane scrollPane;
 
     private QuizService quizService = new QuizService();
 
@@ -148,8 +148,8 @@ public class StartController {
                         takeQuizList = quizService.currentQuiz(currentQuizId);
 
                         // displaying the question and answers on vbox
-                        vbox = createQuizQuestions();
-                        newCoolVbox.getChildren().addAll(vbox);
+                        scrollPane = createQuizQuestions();
+                        newCoolVbox.getChildren().addAll(scrollPane);
 
                         // create the TakeQuizController
                         TakeQuizController takeQuizController = new TakeQuizController();
