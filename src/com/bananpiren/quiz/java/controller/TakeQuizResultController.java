@@ -38,8 +38,8 @@ public class TakeQuizResultController {
             quizNameText.setText("" + userQuizList.get(userQuizList.size() - 1).getQuizName());
 
             int numberOfQuestions = userQuizList.get(userQuizList.size() - 1).getNoOfQuestions();
-            int maxScore = userQuizList.get(userQuizList.size() - 1).getMaxPoints();
-            int userScore = userQuizList.get(userQuizList.size() - 1).getPoints();
+            double maxScore = userQuizList.get(userQuizList.size() - 1).getMaxPoints();
+            double userScore = userQuizList.get(userQuizList.size() - 1).getPoints();
             String passed;
 
             if ((userScore/maxScore) * 100 >= 60 ) {
