@@ -259,6 +259,8 @@ public class CreateQuizController {
 
                 // Feedback after successfully added quiz
                 successfullyCreatedQuiz();
+
+                NewQuestionType.resetQuestionsAndAnswerNumbers();
             }
         }
     }

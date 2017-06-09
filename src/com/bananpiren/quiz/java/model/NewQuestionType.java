@@ -18,6 +18,9 @@ public class NewQuestionType {
 
     public String questionType;
 
+    public static int questionNumber = 1;
+    public static int answerNumber = 1;
+
     public Label label;
     VBox questionField;
     public TextField questionTextField;
@@ -33,7 +36,8 @@ public class NewQuestionType {
         label = new Label();
         questionField.getChildren().add(label);
 
-        questionTextField = new TextField("");
+        questionTextField = new TextField();
+        questionTextField.setPromptText("Fråga " + questionNumber);
         questionField.getChildren().add(questionTextField);
 
         List.getItems().add(questionField);
@@ -55,7 +59,9 @@ public class NewQuestionType {
                 removeAnswer(answer);
             });
 
-            newAnswerTextField[i] = new TextField("");
+            newAnswerTextField[i] = new TextField();
+            newAnswerTextField[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
+
             hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
 
             answerCheckbox[i] = new CheckBox("Rätt svar");
@@ -63,6 +69,8 @@ public class NewQuestionType {
 
             questionField.getChildren().add(hBox[i]);
         }
+        answerNumber = 1;
+        questionNumber++;
         questionType = "multipleAnswer";
     }
 
@@ -83,7 +91,8 @@ public class NewQuestionType {
                 removeAnswer(answer);
             });
 
-            newAnswerTextField[i] = new TextField("");
+            newAnswerTextField[i] = new TextField();
+            newAnswerTextField[i].setPromptText("Fråga " + questionNumber + " svar " + answerNumber++);
             hBox[i].getChildren().addAll(deleteButton, newAnswerTextField[i]);
 
             radioButtonAnswer[i] = new RadioButton("Rätt svar");
@@ -92,6 +101,8 @@ public class NewQuestionType {
 
             questionField.getChildren().add(hBox[i]);
         }
+        answerNumber = 1;
+        questionNumber++;
         questionType = "singleAnswer";
     }
 
@@ -104,7 +115,8 @@ public class NewQuestionType {
         for(int i = 0; i < 1; i++){
             hBox[i] = new HBox();
 
-            newAnswerTextField[i] = new TextField("");
+            newAnswerTextField[i] = new TextField();
+            newAnswerTextField[i].setPromptText("Ny öppen fråga");
             hBox[i].getChildren().addAll(newAnswerTextField[i]);
         }
         questionType = "openAnswer";
@@ -116,5 +128,10 @@ public class NewQuestionType {
 
     public String getQuestionType() {
         return questionType;
+    }
+
+    public static void resetQuestionsAndAnswerNumbers() {
+        questionNumber = 1;
+        answerNumber = 1;
     }
 }
